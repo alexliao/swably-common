@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/viewZero" xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	>
+	<LinearLayout 
+		style="@style/tip_bubble"
+		>
+		<TextView android:id="@+id/txtZero"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/zero_friend"
+			style="@style/content"
+		/>
+		<Button android:id="@+id/btnInvite"
+			android:text="@string/invite_friends"
+			android:layout_gravity="right"
+			style="@style/holoBtn.blue"
+			android:layout_marginTop="5dp"
+		/>
+	</LinearLayout>
+</LinearLayout>

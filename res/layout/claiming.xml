@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBody"
+	android:background="@color/back"
+    android:isScrollContainer="true"
+	>
+	<LinearLayout
+		style="@style/titleBar" >
+		<TextView android:id="@+id/txtTitle" android:text="@string/claiming_title" style="@style/title"/>
+	</LinearLayout>
+	<include layout="@layout/header_bottom" />
+	<LinearLayout 
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+		android:padding="@dimen/padding"
+	    >
+		<goofy2.utils.Avatar android:id="@+id/avatar"
+		    style="@style/avatar"
+			android:layout_marginRight="@dimen/padding"
+		/>
+		<TextView android:id="@+id/txtClaimingPrompt"
+		    style="@style/content"
+		    android:text="@string/claiming_prompt" 
+		    android:paddingLeft="@dimen/padding"
+		    android:paddingRight="@dimen/padding"
+		    android:paddingBottom="@dimen/padding"
+		    />
+	</LinearLayout>
+	<include layout="@layout/section_divider_ex" />
+	<ListView android:id="@+id/list" 
+		style="@style/list"
+	/>
+	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+	    <Button  android:id="@+id/btnClaim" 
+		    style="@style/bottomBtn"
+		    android:text="@string/claim"
+    		android:textColor="@color/back"
+		    />
+
+		<View
+		    android:layout_width="1dp"
+		    android:layout_height="fill_parent"
+		    android:layout_marginBottom="@dimen/padding"
+		    android:layout_marginTop="@dimen/padding"
+		    android:background="@color/divider_menu" />
+
+	    <Button  android:id="@+id/btnCancel" 
+		    style="@style/bottomBtn"
+		    android:text="@string/cancel"
+		    android:textColor="@color/back"
+		    />
+	</LinearLayout>
+</LinearLayout>

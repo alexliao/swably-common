@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="48dp"
+	>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		>
+   		<LinearLayout android:id="@+id/btnFollow" android:orientation="vertical" style="@style/inplaceBtn" >
+			<ImageView android:src="@drawable/btn_follow" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		</LinearLayout>
+		<LinearLayout android:id="@+id/btnUnfollow" android:orientation="vertical" style="@style/inplaceBtn" >
+			<ImageView android:src="@drawable/btn_unfollow" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		</LinearLayout>
+	</LinearLayout>
+	<goofy2.utils.LinearGradientView
+	    android:layout_width="fill_parent"
+	    android:layout_height="@dimen/shadow_thick"
+	    android:startColor="#66000000"
+	    android:orientation="vertical"
+	    android:layout_alignParentTop="true"
+	    />
+	<goofy2.utils.LinearGradientView
+	    android:layout_width="fill_parent"
+	    android:layout_height="@dimen/shadow_thick"
+	    android:endColor="#66000000"
+	    android:orientation="vertical"
+	    android:layout_alignParentBottom="true"
+	    />
+</RelativeLayout>

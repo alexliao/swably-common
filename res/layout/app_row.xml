@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:paddingBottom="1px"
+	>
+    <RelativeLayout android:id="@+id/row"  
+		android:layout_width="fill_parent" 
+		android:layout_height="68dp"
+		android:layout_weight="1"
+		android:background="@drawable/row"
+		android:padding="@dimen/padding"
+		>
+		<ImageView android:id="@+id/icon" 
+		    android:src="@drawable/noimage"
+			style="@style/app_icon"
+			android:layout_marginRight="@dimen/padding"
+		/>
+		<LinearLayout android:id="@+id/viewNormal" 
+		    android:orientation="horizontal"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@id/icon"
+			>
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				>
+				<TextView android:id="@+id/txtName" 
+					style="@style/name"
+					android:layout_height="40dp"
+				/>
+				<TextView android:id="@+id/txtError"
+					style="@style/content"
+					android:textColor="@color/desc"
+				/>
+			</LinearLayout>
+			<TextView android:id="@+id/txtReviewsCount" 
+				style="@style/desc"
+				android:text="12"
+				android:layout_marginLeft="3dp"
+			/>
+		</LinearLayout>
+<!-- <RelativeLayout android:id="@+id/viewUploading"
+		    android:orientation="vertical"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@id/icon"
+			>
+			<ProgressBar android:id="@+id/progressBar" 
+				style="@style/ProgressBar" 
+				android:layout_toLeftOf="@id/btnCancel"
+			/>
+			<TextView android:id="@+id/txtSizeSent"
+				android:text="@string/uploading_queued"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="12sp"
+				android:textColor="@color/content"
+				android:layout_marginTop="5dp"
+				android:layout_below="@id/progressBar"
+			/>
+		</RelativeLayout> -->
+	</RelativeLayout>		
+	<ImageView android:id="@+id/btnTriangle" style="@style/btnTriangle" android:layout_alignBottom="@id/row" />
+	<LinearLayout android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+	<FrameLayout android:id="@+id/inplacePanel" style="@style/inplacePanel" android:layout_below="@id/row" >
+		<include layout="@layout/app_inplace_actions" />
+	</FrameLayout>
+</RelativeLayout>	

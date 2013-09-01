@@ -1,0 +1,50 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	>
+	<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
+		<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
+		<TextView android:id="@+id/txtTitle" android:text="@string/availability" style="@style/title" /> 
+        <ImageButton style="@style/titleBtn" android:visibility="invisible" /> 
+		/>
+	</LinearLayout>
+	<include layout="@layout/header_bottom" />
+	<include layout="@layout/app_info2"/>
+	<LinearLayout 
+		android:id="@+id/viewUpload"
+		android:orientation="vertical"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		android:padding="@dimen/padding"
+		android:gravity="center_vertical"
+		>
+			<TextView
+			    android:id="@+id/txtPrompt1"
+			    style="@style/name"
+				android:textSize="20sp"
+			    />
+			<TextView
+			    style="@style/content"
+			    android:textColor="@color/desc"
+			    android:text="@string/terms_short"
+			    android:layout_marginTop="10dp"
+			    android:visibility="gone"
+			    />
+			<TextView
+			    android:id="@+id/txtTerms"
+			    style="@style/content"
+			    android:textColor="@color/desc"
+			    android:text="@string/terms_underline"
+			    android:visibility="gone"
+			    />
+	</LinearLayout>
+	<LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+		<LinearLayout android:id="@+id/btnUpload" style="@style/inplaceBtn" >
+			<ImageView android:src="@drawable/upload" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

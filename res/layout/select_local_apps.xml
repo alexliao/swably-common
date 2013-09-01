@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	>
+	<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
+		<TextView android:id="@+id/txtTitle" android:text="@string/pick_app" style="@style/title" android:gravity="left"/>
+        <ImageButton
+            android:id="@+id/btnRefresh"
+            style="@style/titleBtn"
+            android:src="@drawable/refresh" />
+	</LinearLayout>
+	<LinearLayout android:id="@+id/viewProgress" 
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="-5dp"
+		android:visibility="gone"
+		>
+		<ProgressBar android:id="@+id/progressBar" 
+			style="@style/ProgressBar"
+		/>
+		<TextView android:id="@+id/txtSizeSent"
+			android:text="@string/refreshing_app_status"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="12sp"
+			android:textColor="@color/back"
+			android:visibility="gone"
+		/>
+	</LinearLayout>
+	<GridView  android:id="@+id/list"
+		style="@style/list.app"
+	    android:numColumns="2"
+	    android:verticalSpacing="-1px"
+	    android:horizontalSpacing="1dp"
+	    android:background="#d4d4d4"
+	    />
+	
+	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" android:visibility="gone">
+	    <TextView android:id="@+id/btnRequest"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:background="@drawable/action_row"
+	        android:text="@string/request_an_app"
+	        android:drawableLeft="@drawable/add"
+	        android:drawablePadding="@dimen/padding"
+	        android:clickable="true"
+	        style="@style/title"
+	        android:gravity="center_vertical"
+	        />
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	>
+	<goofy2.utils.PullToRefreshListView android:id="@+id/list" 
+		style="@style/list.user"
+	/>
+	<include android:id="@+id/viewZero" 
+		layout="@layout/zero_sns_users"
+		android:visibility="gone"
+	/>
+	<LinearLayout android:id="@+id/viewFollow" android:orientation="horizontal" style="@style/bottomBar" >
+		<LinearLayout android:id="@+id/btnFollowAll" 
+		    android:orientation="horizontal"
+		    style="@style/action_row"
+		    android:gravity="center"
+		    >
+	   		<TextView 
+	   		    android:layout_width="wrap_content"
+	   		    android:layout_height="wrap_content"
+				android:drawableLeft="@drawable/btn_follow_all"
+				android:drawablePadding="@dimen/padding"
+				 android:text="@string/follow_all"
+				 android:textColor="@color/back"
+				 android:textSize="16sp"
+				 android:gravity="center"
+			/>
+		</LinearLayout>
+	 </LinearLayout>
+</LinearLayout>

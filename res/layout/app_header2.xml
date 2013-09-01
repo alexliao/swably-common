@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	>
+	<include android:id="@+id/viewInfo" layout="@layout/app_info2" />
+	<Button android:id="@+id/btnLike"
+	    android:text="@string/bookmark"  
+	    style="@style/roundBtnLight.text"
+	    android:layout_alignParentRight="true"
+		android:layout_marginRight="15dp"
+		android:layout_marginTop="18dp"
+	    />
+	<ImageButton android:id="@+id/btnUnlike" 
+	    style="@style/roundBtnLight"
+	    android:src="@drawable/starred"
+	    android:layout_alignParentRight="true"
+		android:layout_marginRight="15dp"
+		android:layout_marginTop="18dp"
+	    />
+	<LinearLayout android:id="@+id/viewEmpty"
+		style="@style/tip_bubble"
+		android:visibility="gone"
+		android:layout_below="@id/viewInfo"
+		>
+		<TextView android:id="@+id/txtEmpty"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/no_review_for_app"
+			style="@style/content"
+		/>
+		<Button android:id="@+id/btnAdd"
+			android:text="@string/add_review"
+			android:layout_gravity="right"
+			style="@style/holoBtn.blue"
+			android:layout_marginTop="5dp"
+		/>
+	</LinearLayout>
+</RelativeLayout>
+	

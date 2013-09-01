@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	android:isScrollContainer="true"
+	>
+	<LinearLayout
+	 	android:id="@+id/viewBody"
+		android:orientation="vertical" 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		>
+		<LinearLayout style="@style/titleBar" >
+            <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
+			<TextView android:id="@+id/txtTitle" android:text="@string/editing" style="@style/title" />
+			<ImageButton  android:id="@+id/btnPost"
+				android:src="@drawable/send" 
+				style="@style/titleBtn"
+			/>
+		</LinearLayout>
+		<include layout="@layout/header_bottom" />
+		<LinearLayout
+			android:orientation="vertical" 
+			android:layout_width="fill_parent" 
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:padding="10dp"
+			android:background="@color/back"
+			>
+			<LinearLayout android:id="@+id/btnMore"
+				android:orientation="horizontal" 
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:background="@drawable/row"
+				>
+				<ImageView android:id="@+id/icon"
+					android:src="@drawable/add"
+					style="@style/avatar"
+					android:layout_marginRight="@dimen/padding"
+					android:layout_marginBottom="@dimen/padding"
+				/>
+				<TextView android:id="@+id/txtAppName"
+					android:singleLine="true"
+					style="@style/name"
+					android:textColor="@color/header"
+					android:textSize="20sp"
+				/>
+			</LinearLayout>
+			<LinearLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="1.5dp"
+			    android:background="#c5c5c5" 
+			    />
+			<RelativeLayout
+				android:layout_width="fill_parent" 
+				android:layout_height="fill_parent"
+				android:layout_weight="1"
+			    >
+				<EditText android:id="@+id/editContent"
+					android:layout_width="fill_parent" 
+					android:layout_height="fill_parent"
+					android:gravity="top"
+					android:inputType="textMultiLine"
+					android:maxLength="120"
+					style="@style/field"
+					android:textSize="20sp"
+				/>
+				<ImageButton android:id="@+id/btnImage"
+				    android:src="@drawable/add_image"
+				    android:layout_width="48dp"
+				    android:layout_height="48dp"
+				    android:layout_marginBottom="10dp"
+				    android:layout_alignParentRight="true"
+				    android:layout_alignParentBottom="true"
+				    android:background="@drawable/icon_clickable"
+				    />
+				<ImageView android:id="@+id/imgImage"
+				    android:layout_width="96dp"
+				    android:layout_height="96dp"
+				    android:layout_marginRight="4dp"
+				    android:layout_marginBottom="15dp"
+				    android:layout_alignParentRight="true"
+				    android:layout_alignParentBottom="true"
+				    android:background="@drawable/icon_clickable"
+				    android:clickable="true"
+				    />
+				</RelativeLayout>
+			<goofy2.utils.HeightListView android:id="@+id/listNetworks"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:clipChildren="false"
+				android:divider="@color/divider"
+				android:dividerHeight="1px"
+				android:cacheColorHint="#00000000"
+				android:fadingEdge="none"
+				android:scrollbars="none"
+				android:visibility="gone"
+			/>
+			<CheckBox android:id="@+id/chkSync"
+				style="@style/content"
+				android:textColor="@color/header"
+				android:button="@drawable/check_sync" 
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp"
+				android:checked="false"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentRight="false"
+			/>
+		</LinearLayout>
+	</LinearLayout>	
+	<LinearLayout
+		android:orientation="vertical" 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		android:visibility="gone"
+		>
+	</LinearLayout>	
+</LinearLayout>

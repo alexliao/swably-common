@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	>
+	<LinearLayout style="@style/titleBar" >
+		<TextView android:id="@+id/txtTitle" android:text="@string/invite_friends"  style="@style/title"/>
+		<include android:id="@+id/loading"	layout="@layout/loading" />
+		<ImageView
+		    android:src="@drawable/step2"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" 
+		    />
+		<ImageButton  android:id="@+id/btnNext"
+			android:src="@drawable/next" 
+			style="@style/titleBtn"
+		/>
+	</LinearLayout>
+	<include layout="@layout/header_bottom" />
+	<LinearLayout style="@style/sectionBar" >
+		<TextView android:id="@+id/txtInvitesLeft"
+			style="@style/sectionTitle"
+		/>
+		<include layout="@layout/section_divider" />
+	</LinearLayout>
+	<goofy2.utils.PullToRefreshListView android:id="@+id/list" 
+		style="@style/list.user"
+		android:fastScrollEnabled="true"
+	/>
+</LinearLayout>

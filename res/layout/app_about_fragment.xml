@@ -1,0 +1,149 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@color/back"
+	>
+	<include layout="@layout/app_info2" />
+	<ScrollView
+	    style="@style/fill"
+	    android:layout_weight="1"
+	    >
+
+		<LinearLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:padding="@dimen/padding" >
+		    <TextView
+		        style="@style/sectionTitle"
+		        android:text="@string/version_cap"
+		        />
+		    <include layout="@layout/section_divider" />
+    		<TextView
+		        android:id="@+id/txtVersion2"
+		        style="@style/name"
+		        android:singleLine="true" 
+		        />
+		    <TextView
+		        style="@style/sectionTitle"
+		        android:layout_marginTop="@dimen/padding"
+		        android:text="@string/description_cap" />
+		    <include layout="@layout/section_divider" />
+		    <TextView
+		        android:id="@+id/txtDescription"
+		        style="@style/name"
+				android:autoLink="all"
+				android:textColorLink="@color/tab"
+		        android:layout_marginBottom="@dimen/padding"
+		        android:visibility="gone"
+		        />
+		    <TextView
+		        android:id="@+id/txtUpdatedOn"
+		        style="@style/content.grey"
+		        android:layout_marginBottom="@dimen/padding"
+		        android:visibility="gone"
+		        />
+		    <TextView
+		        style="@style/sectionTitle"
+		        android:layout_marginTop="@dimen/padding"
+		        android:text="@string/developer_cap" />
+		    <include layout="@layout/section_divider" />
+		    <LinearLayout
+		        android:id="@+id/viewClaim"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="top"
+		        android:orientation="horizontal"
+		        android:paddingBottom="@dimen/padding"
+		        android:paddingTop="@dimen/padding"
+	            android:layout_marginBottom="@dimen/padding"
+	            android:visibility="gone"
+		        >
+		        <TextView
+		            style="@style/content.grey"
+		            android:layout_width="fill_parent"
+		            android:layout_weight="1"
+		            android:layout_gravity="top"
+		            android:text="@string/claim_prompt" />
+
+		        <Button
+		            android:id="@+id/btnClaim"
+		            style="@style/holoBtn.blue"
+		            android:width="120dp"
+		            android:layout_marginLeft="@dimen/padding"
+		            android:text="@string/claim_btn" />
+		    </LinearLayout>
+
+		    <LinearLayout
+		        android:id="@+id/btnDeveloper"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/row"
+		        android:clickable="true"
+		        android:gravity="center_vertical"
+		        android:orientation="horizontal"
+		        android:paddingBottom="@dimen/padding"
+		        android:paddingTop="@dimen/padding"
+		        >
+
+		        <goofy2.utils.Avatar     
+		            xmlns:app="http://schemas.android.com/apk/res/goofy2.swably"
+		            android:id="@+id/avatarDev"
+		            style="@style/icon"
+		            android:layout_marginRight="@dimen/padding"
+		            android:src="@drawable/noname" />
+
+		        <TextView
+		            android:id="@+id/txtDevName2"
+		            style="@style/content" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/btnEmail"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/row"
+		        android:clickable="true"
+		        android:gravity="center_vertical"
+		        android:orientation="horizontal"
+		        android:paddingTop="0dp"
+		        android:paddingBottom="@dimen/padding"
+		        android:visibility="gone" >
+		        
+		        <ImageView
+		            style="@style/icon"
+		            android:layout_marginRight="@dimen/padding"
+		            android:src="@drawable/email" 
+		            />
+
+    		    <TextView
+			        android:id="@+id/txtContact"
+			        style="@style/content"
+			        />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/btnReport"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/row"
+		        android:clickable="true"
+		        android:gravity="top"
+		        android:orientation="vertical"
+		        android:paddingBottom="@dimen/padding"
+		        android:paddingTop="@dimen/padding"
+		        android:visibility="gone"
+		        >
+		        <TextView
+		            android:text="@string/report_title"
+		            style="@style/content" />
+		        <TextView
+		            android:text="@string/report_desc"
+		            style="@style/content.grey" />
+		    </LinearLayout>
+		</LinearLayout>
+
+	</ScrollView>
+</LinearLayout>
+	

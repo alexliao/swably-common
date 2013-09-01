@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/listFooter"
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:paddingLeft="10dp"
+	android:paddingRight="10dp"
+	>
+	<LinearLayout android:id="@+id/loadingMore"
+	    android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:paddingTop="16dp"
+		android:paddingBottom="16dp"
+		android:gravity="center"
+		android:visibility="gone"
+		>
+		<ProgressBar
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			style="@android:style/Widget.ProgressBar.Small.Inverse"
+			android:layout_marginRight="7dp"
+		/>
+		<TextView 
+			android:text="@string/loading" 
+			style="@style/listLoading"
+			>
+		</TextView>
+	</LinearLayout>
+	<TextView android:id="@+id/txtMore" 
+		android:text="@string/retry" 
+		style="@style/action_row"
+		android:layout_width="fill_parent" 
+		android:paddingTop="16dp"
+		android:paddingBottom="16dp"
+		android:gravity="center_horizontal"
+		android:visibility="gone"
+		>
+	</TextView>
+	<TextView android:id="@+id/txtNoMore" 
+		style="@style/listLoading"
+		android:layout_width="fill_parent" 
+		android:paddingTop="16dp"
+		android:paddingBottom="16dp"
+		android:gravity="center_horizontal"
+		android:visibility="gone"
+		>
+	</TextView>
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	android:layout_weight="1"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	>
+	<goofy2.utils.PullToRefreshListView android:id="@+id/list" 
+		style="@style/list.app"
+	/>
+	<LinearLayout android:id="@+id/viewProgress" 
+		android:orientation="vertical"
+		style="@style/bottomBar"
+		android:layout_height="wrap_content"
+		android:padding="@dimen/padding"
+		android:gravity="right|center_vertical"
+		android:visibility="gone"
+		>
+		<ProgressBar android:id="@+id/progressBar" 
+			style="@style/ProgressBar"
+		/>
+		<TextView android:id="@+id/txtSizeSent"
+			android:text="@string/refreshing_app_status"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="12sp"
+			android:textColor="@color/back"
+		/>
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,1 @@
+<View android:background="@color/tab" android:layout_height="1dp" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding" android:layout_width="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"/>

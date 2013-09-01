@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="manage_menu_enabled">
+    	<item>@string/edit_description</item>
+    	<item>@string/edit_contact</item>
+    	<item>@string/disable_downloading</item>
+    	<item>@string/renounce_your_claim</item>
+	</array>    
+    <array name="manager_menu_disabled">
+    	<item>@string/edit_description</item>
+    	<item>@string/edit_contact</item>
+    	<item>@string/enable_downloading</item>
+    	<item>@string/renounce_your_claim</item>
+	</array>    
+    
+
+</resources>

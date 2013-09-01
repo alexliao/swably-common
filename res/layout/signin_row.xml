@@ -1,0 +1,24 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	>
+	<LinearLayout
+	    android:orientation="horizontal"
+		android:gravity="center_vertical"
+		style="@style/action_row"
+		>
+		<ImageView android:id="@+id/imgLogo" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="10dip"
+		/>
+		<TextView android:id="@+id/txtName" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="18sp"
+			android:textColor="@color/name"
+		/>
+	</LinearLayout>
+	<include layout="@layout/hdivider2" />
+</LinearLayout>

@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:paddingBottom="1px"
+	>
+	<LinearLayout
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+		android:background="@drawable/row"
+		android:padding="@dimen/padding"
+		>
+		<LinearLayout
+		    android:orientation="horizontal"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			>
+			<goofy2.utils.Avatar android:id="@+id/avatar" 
+				style="@style/avatar"
+				android:layout_marginRight="10dp"
+			/>
+			<LinearLayout 
+				android:orientation="vertical"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				>
+				<TextView android:id="@+id/txtName" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					style="@style/name"
+				/>
+				<TextView android:id="@+id/txtContent" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					style="@style/content"
+				/>
+			</LinearLayout>
+			<Button android:id="@+id/btnInvite"
+				android:text="@string/invite"
+				style="@style/holoBtn.blue"
+				android:layout_width="80dp"
+				android:layout_gravity="center_vertical"
+			/>
+			<Button android:id="@+id/btnPending"
+				android:text="@string/invited"
+				style="@style/holoBtn.default"
+				android:layout_width="80dp"
+				android:layout_gravity="center_vertical"
+				android:visibility="gone"
+			/>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"/>
+</LinearLayout>		

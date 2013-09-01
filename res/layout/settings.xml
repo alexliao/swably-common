@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	>
+	<LinearLayout
+		android:orientation="vertical" 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		>
+		<LinearLayout style="@style/titleBar" >
+			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
+			<TextView android:id="@+id/txtTitle" android:text="@string/settings" style="@style/title"/>
+            <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
+		</LinearLayout>
+		<include layout="@layout/header_bottom" />
+		<ScrollView style="@style/fill">
+			<LinearLayout
+				android:orientation="vertical" 
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				>
+
+				<LinearLayout
+				    style="@style/sectionBar"
+				    >
+
+					<TextView android:text="@string/notification_cap"
+						style="@style/sectionTitle"
+					/>
+					<include layout="@layout/section_divider" />
+				</LinearLayout>
+
+				<LinearLayout
+				    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content"
+				    android:gravity="top"
+				    android:orientation="horizontal"
+				    android:paddingLeft="@dimen/padding"
+				    android:paddingRight="@dimen/padding"
+				    android:paddingBottom="@dimen/padding"
+				    >
+
+					<TextView android:text="@string/notification_desc"
+					    style="@style/settings_desc"
+					    android:layout_weight="1"
+					    android:layout_marginTop="-5dp"
+					    android:layout_marginRight="@dimen/padding"
+					    android:paddingBottom="5dp"
+					    />
+					<ToggleButton android:id="@+id/tglNotification" 
+					    android:background="@drawable/btn_toggle" 
+					    android:layout_width="wrap_content" 
+					    android:layout_height="wrap_content" 
+					    android:textOn="" 
+					    android:textOff="" 
+					    />
+				</LinearLayout>
+				<LinearLayout style="@style/sectionBar.topPadding" >
+					<TextView android:text="@string/account_cap"
+						style="@style/sectionTitle"
+					/>
+					<include layout="@layout/section_divider" />
+				</LinearLayout>
+				<LinearLayout android:id="@+id/btnSignout" style="@style/settings_row">
+					<TextView android:id="@+id/txtSignout"
+					    style="@style/content"
+					    android:text="@string/sign_out"
+					/>
+				</LinearLayout>
+				<LinearLayout style="@style/sectionBar.topPadding" >
+					<TextView android:text="@string/version_cap"
+						style="@style/sectionTitle"
+					/>
+					<include layout="@layout/section_divider" />
+				</LinearLayout>
+				<LinearLayout android:id="@+id/btnVersion" style="@style/settings_row">
+					<TextView android:id="@+id/txtVersion"
+					    style="@style/content"
+					/>
+				</LinearLayout>
+				<LinearLayout android:id="@+id/btnTerms" style="@style/settings_row">
+					<TextView android:text="@string/terms_title"
+					    style="@style/content"
+					/>
+				</LinearLayout>
+			</LinearLayout>
+		</ScrollView>
+	</LinearLayout>
+</LinearLayout>

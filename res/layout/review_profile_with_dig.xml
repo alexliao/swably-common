@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+    android:isScrollContainer="true"
+	>
+	<LinearLayout 
+	    android:orientation="vertical"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+	 	android:id="@+id/viewBody"
+		>
+		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
+			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn.wide"/>
+			<include layout="@layout/vdivider" />
+			<TextView android:id="@+id/txtTitle" android:text="@string/a_review" style="@style/title" />
+			<ImageButton  android:id="@+id/btnShare"
+				android:src="@drawable/share" 
+				style="@style/titleBtn"
+			/>
+		</LinearLayout>
+		<include layout="@layout/header_bottom" />
+		<RelativeLayout android:id="@+id/viewReview"  
+			android:layout_width="fill_parent" 
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			>
+		    <RelativeLayout android:id="@+id/viewUser"  
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:background="@drawable/row"
+				android:padding="@dimen/padding"
+				android:clickable="true"
+				>
+				<goofy2.utils.Avatar android:id="@+id/avatar"
+					style="@style/avatar"
+					android:layout_marginRight="@dimen/padding"
+				/>
+				<TextView android:id="@+id/txtUserName" 
+					style="@style/name"
+					android:layout_toRightOf="@id/avatar"
+					android:layout_alignTop="@id/avatar"
+				/>
+				<TextView android:id="@+id/txtTime" 
+					android:layout_alignParentRight="true"
+					android:layout_alignTop="@id/avatar"
+					style="@style/desc"
+				/>
+				<TextView android:id="@+id/txtModel"
+					style="@style/desc"
+					android:singleLine="true"
+					android:layout_below="@id/txtUserName"
+					android:layout_toRightOf="@id/avatar"
+				/>
+			</RelativeLayout>	
+			<ImageView android:id="@+id/btnTriangleUser" style="@style/btnTriangle" android:layout_alignBottom="@id/viewUser" />
+			<LinearLayout style="@style/divider" android:background="@color/tab" android:layout_below="@id/viewUser" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+			<FrameLayout android:id="@+id/inplacePanelUser" style="@style/inplacePanel" android:layout_below="@id/viewUser" >
+			    <include layout="@layout/user_inplace_actions" />
+			</FrameLayout>
+	
+			<LinearLayout android:id="@+id/viewContent"  
+				android:orientation="vertical"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:minHeight="72dp"
+				android:padding="@dimen/padding"
+				android:layout_marginLeft="62dp"
+				android:layout_below="@id/inplacePanelUser"
+				>
+				<TextView android:id="@+id/txtContent" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					style="@style/content"
+					android:autoLink="all"
+				/>
+			</LinearLayout>
+			<LinearLayout style="@style/divider" android:layout_alignBottom="@id/viewContent" android:layout_marginLeft="72dp" android:layout_marginRight="@dimen/padding"/>
+			
+			<RelativeLayout android:id="@+id/viewApp"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:padding="@dimen/padding"
+				android:layout_marginLeft="62dp"
+				android:background="@drawable/row"
+				android:clickable="true"
+				android:layout_below="@id/viewContent"
+				>
+				<ImageView android:id="@+id/icon"
+					android:layout_width="48dp"
+					android:layout_height="48dp"
+					android:src="@drawable/noimage"
+					android:layout_marginRight="5dp"
+				/>
+				<TextView android:id="@+id/txtAppName" 
+					style="@style/name"
+					android:layout_toRightOf="@id/icon"
+					android:layout_alignTop="@id/icon"
+				/>
+				<TextView android:id="@+id/txtAppVersion" 
+					style="@style/content"
+					android:layout_toRightOf="@id/icon"
+					android:layout_below="@id/txtAppName"
+					android:visibility="gone"
+				/>
+				<TextView android:id="@+id/txtAppSize"
+					style="@style/desc"
+					android:layout_toRightOf="@id/icon"
+					android:layout_below="@id/txtAppName"
+				/>
+			</RelativeLayout>
+			<ImageView android:id="@+id/btnTriangleApp" style="@style/btnTriangle" android:layout_alignBottom="@id/viewApp" />
+			<LinearLayout style="@style/divider" android:layout_below="@id/viewApp" android:layout_marginLeft="72dp" android:layout_marginRight="@dimen/padding"/>
+			<FrameLayout android:id="@+id/inplacePanelApp" style="@style/inplacePanel" android:layout_below="@id/viewApp" >
+			    <include layout="@layout/app_inplace_actions" />"
+			</FrameLayout>
+		</RelativeLayout>
+
+		<LinearLayout android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+			<ImageButton  android:id="@+id/btnReply"
+				android:src="@drawable/reply" 
+				style="@style/inplaceBtn"
+			/>
+		    <ImageButton  android:id="@+id/btnDelete" 
+			    android:src="@drawable/delete" 
+			    style="@style/inplaceBtn"
+				android:visibility="gone"
+			    />
+			/>
+			<ImageButton  android:id="@+id/btnDig"
+				android:src="@drawable/like" 
+				style="@style/inplaceBtn"
+			/>
+			<ImageButton  android:id="@+id/btnUndig"
+				android:src="@drawable/liked" 
+				style="@style/inplaceBtn"
+				android:visibility="gone"
+			/>
+		</LinearLayout>
+	</LinearLayout>
+</RelativeLayout>

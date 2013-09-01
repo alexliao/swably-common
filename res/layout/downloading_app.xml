@@ -1,0 +1,37 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	>
+	<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
+		<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
+		<TextView android:id="@+id/txtTitle" android:text="@string/downloading_cap" style="@style/title" />
+        <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
+	</LinearLayout>
+	<include layout="@layout/header_bottom" />
+	<include layout="@layout/app_info2"/>
+	<LinearLayout android:id="@+id/viewUpload"
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1" 
+		android:gravity="center_vertical"
+		android:padding="@dimen/padding"
+		>
+		<ProgressBar android:id="@+id/progressBar" 
+			style="@style/ProgressBar"
+			android:layout_height="16dp"
+		/>
+		<TextView android:id="@+id/txtSizeSent"
+			android:text="@string/downloading_queued"
+			style="@style/content"
+		/>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+		<LinearLayout android:id="@+id/btnCancel" style="@style/inplaceBtn" >
+			<ImageView android:src="@drawable/cancel" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

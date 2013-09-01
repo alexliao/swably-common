@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	>
+		<goofy2.utils.LinearGradientView
+		    android:layout_width="32dp"
+		    android:layout_height="30dp"
+		    android:startColor="#ff222222"
+		    android:endColor="#00222222"
+		    />
+		<goofy2.utils.LinearGradientView
+		    android:layout_width="32dp"
+		    android:layout_height="30dp"
+		    android:endColor="#ff222222"
+		    android:startColor="#00222222"
+		    android:layout_alignParentRight="true"
+		    />
+		<goofy2.utils.LinearGradientView
+		    android:layout_width="fill_parent"
+		    android:layout_height="@dimen/shadow_thick"
+		    android:layout_marginTop="32dp"
+		    android:startColor="#66000000"
+		    android:orientation="vertical"
+		    />
+</RelativeLayout>
+	

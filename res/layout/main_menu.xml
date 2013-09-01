@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/fill" 
+    >
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:paddingLeft="15dp" 
+		android:paddingRight="15dp"
+		android:background="@color/tab_strip_back"
+		android:isScrollContainer="true"
+		>
+		<LinearLayout android:id="@+id/viewMe" 
+		    style="@style/menu_row"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    >
+			<goofy2.utils.Avatar android:id="@+id/avatarMenu"
+			    android:src="@drawable/noname"
+				android:layout_width="32dp"
+				android:layout_height="32dp"
+				app:radius="16"
+			/>
+			<TextView android:id="@+id/txtMenuUserName"
+			    android:text="@string/tap_to_signin" 
+				style="@style/menu_row"
+				android:clickable="false"
+			/>
+		</LinearLayout>
+		
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
+		<TextView android:id="@+id/viewHome" android:text="@string/stream" android:drawableLeft="@drawable/ic_menu_home" style="@style/menu_row" />
+		
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent" android:visibility="gone"/>
+		<TextView android:id="@+id/viewApps" android:text="@string/local_apps" android:drawableLeft="@drawable/ic_menu_apps" style="@style/menu_row" android:visibility="gone"/>
+		
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent" android:visibility="gone"/>
+		<TextView android:id="@+id/viewFindPeople" android:text="@string/people" android:drawableLeft="@drawable/ic_menu_people" style="@style/menu_row" android:visibility="gone" />
+		
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
+		<TextView android:id="@+id/viewSearchApps" android:text="@string/search" android:drawableLeft="@drawable/search" style="@style/menu_row" />
+		
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
+		<TextView android:id="@+id/viewSettings" android:text="@string/settings" android:drawableLeft="@drawable/ic_menu_settings" style="@style/menu_row" />
+		
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
+		<TextView android:id="@+id/viewTestClaiming" android:text="Test Claiming" style="@style/menu_row" android:visibility="gone"/>
+		
+	</LinearLayout>
+    <ImageButton
+        android:id="@+id/viewAdd"
+        style="@style/addBtn"
+        android:src="@drawable/btn_add_left"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        />
+</RelativeLayout>

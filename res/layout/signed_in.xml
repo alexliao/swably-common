@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBody"
+	android:background="@color/back"
+    android:isScrollContainer="true"
+	>
+	<LinearLayout
+		style="@style/titleBar" >
+		<TextView android:id="@+id/txtTitle" style="@style/title"/>
+	</LinearLayout>
+	<include layout="@layout/header_bottom" />
+	<include layout="@layout/user_header2" />
+	<LinearLayout 
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="right"
+	    android:paddingLeft="@dimen/padding"
+	    android:paddingRight="@dimen/padding"
+	    >
+		<include layout="@layout/section_divider" />
+	    <Button android:id="@+id/btnNext"
+			 style="@style/holoBtn.blue"
+			 android:text="@string/next"
+			 android:layout_marginTop="@dimen/padding"
+		/>
+	</LinearLayout>
+</LinearLayout>

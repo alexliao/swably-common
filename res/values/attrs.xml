@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="DashLine">
+	    <attr name="dashColor" format="color" />
+	    <attr name="gapColor" format="color" />
+	    <attr name="dashWidth" format="float" />
+	    <attr name="gapWidth" format="float" />
+    </declare-styleable>
+	<declare-styleable name="Avatar">
+	    <attr name="radius" format="float" />
+    </declare-styleable>
+	
+</resources>

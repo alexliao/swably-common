@@ -1,0 +1,26 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:paddingRight="5dp"
+	android:gravity="center_vertical"
+	>
+	<ImageView android:id="@+id/icon" 
+		style="@style/app_icon"
+	/>
+	<LinearLayout 
+		android:orientation="vertical"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		>
+		<TextView android:id="@+id/txtName" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			style="@style/name"
+		/>
+	</LinearLayout>
+	<ImageView android:id="@+id/avatar" 
+		style="@style/avatar"
+	/>
+</LinearLayout>

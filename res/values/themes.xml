@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="defaultActivity" parent="android:style/Theme.NoTitleBar" mce_bogus="1">          
+		<item name="android:windowAnimationStyle">@style/defaultAnim</item>         
+	</style>
+
+	<style name="defaultActivity_noAnim"  parent="android:style/Theme.NoTitleBar" mce_bogus="1">          
+		<item name="android:windowAnimationStyle">@style/noAnim</item>         
+	</style>
+	
+	<style name="MainMenuActivity" parent="android:style/Theme.NoTitleBar" mce_bogus="1">          
+		<!-- <item name="android:windowAnimationStyle">@style/MainMenuAnim</item> -->         
+	</style>
+
+	<style name="SelectLocalAppsActivity" parent="android:style/Theme.NoTitleBar" mce_bogus="1">          
+		<item name="android:windowAnimationStyle">@style/PickLocalAppsAnim</item>         
+	</style>
+
+	<style name="PickLocalAppsActivity" parent="android:style/Theme.NoTitleBar" mce_bogus="1">          
+		<item name="android:windowAnimationStyle">@style/PickLocalAppsAnim</item>         
+	</style>
+
+	<style name="defaultActivity.faceInOut" mce_bogus="1">          
+		<item name="android:windowAnimationStyle">@style/fadeInOutAnim</item>         
+	</style>
+
+</resources>

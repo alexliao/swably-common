@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	android:isScrollContainer="true"
+	>
+	<LinearLayout style="@style/titleBar" >
+		<TextView android:id="@+id/txtTitle" android:text="@string/invite_friends" style="@style/title"/>
+		<ImageView
+		    android:src="@drawable/step2"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" 
+		    />
+		<ImageButton  android:id="@+id/btnNext"
+			android:src="@drawable/next" 
+			style="@style/titleBtn"
+		/>
+	</LinearLayout>
+	<include layout="@layout/header_bottom" />
+	<LinearLayout
+		android:orientation="vertical" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+ 		android:paddingLeft="@dimen/padding" android:paddingRight="@dimen/padding" 
+		>
+		<LinearLayout android:id="@+id/viewAdd" style="@style/action_row" android:orientation="horizontal" >
+			<ImageView android:id="@+id/imageAdd" style="@style/arrow_row_icon"	/>
+			<TextView android:text="@string/friends" style="@style/arrow_row_title" />
+		</LinearLayout>
+		<LinearLayout style="@style/divider"/>
+
+		<LinearLayout android:id="@+id/btnContacts" style="@style/action_row" android:orientation="horizontal" >
+			<ImageView android:src="@drawable/contacts_ontile" style="@style/arrow_row_icon"	/>
+			<TextView android:text="@string/contacts" style="@style/arrow_row_title" />
+		</LinearLayout>
+		<LinearLayout style="@style/divider"/>
+	</LinearLayout>
+</LinearLayout>

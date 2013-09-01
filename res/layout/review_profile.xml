@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+    android:isScrollContainer="true"
+	>
+	<LinearLayout 
+	    android:orientation="vertical"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+	 	android:id="@+id/viewBody"
+		>
+		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
+			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
+			<TextView android:id="@+id/txtTitle" android:text="@string/a_review" style="@style/title" />
+			<ImageButton  android:id="@+id/btnOptionsMenu"
+				android:src="@drawable/ic_menu_moreoverflow_normal_holo_dark" 
+				style="@style/titleBtn"
+			/>
+		</LinearLayout>
+		<include layout="@layout/header_bottom" />
+		<ScrollView
+		    style="@style/fill" 
+		    android:layout_weight="1"
+		    android:scrollbarAlwaysDrawVerticalTrack="false"
+		    >
+		    
+			<RelativeLayout android:id="@+id/viewReview"  
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:paddingBottom="@dimen/padding"
+				>
+			    <RelativeLayout android:id="@+id/viewUser"  
+					android:layout_width="fill_parent" 
+					android:layout_height="wrap_content"
+					android:background="@drawable/row"
+					android:padding="@dimen/padding"
+					android:clickable="true"
+					>
+					<goofy2.utils.Avatar android:id="@+id/avatar"
+						style="@style/avatar"
+						app:radius="26"
+						android:layout_centerHorizontal="true"
+					/>
+					<TextView android:id="@+id/txtUserName" 
+						style="@style/name"
+						android:layout_marginTop="8dp"
+						android:layout_marginBottom="4dp"
+						android:layout_below="@id/avatar"
+						android:layout_centerHorizontal="true"
+					/>
+					<TextView android:id="@+id/txtTime" 
+						android:layout_alignParentRight="true"
+						android:layout_alignTop="@id/avatar"
+						style="@style/desc"
+					/>
+					<TextView android:id="@+id/txtModel"
+						style="@style/desc"
+						android:singleLine="true"
+						android:layout_below="@id/txtUserName"
+						android:layout_toRightOf="@id/avatar"
+						android:visibility="gone"
+					/>
+				</RelativeLayout>	
+				<ImageView android:id="@+id/btnTriangleUser" style="@style/btnTriangle" android:layout_alignBottom="@id/viewUser" android:visibility="gone"/>
+				<LinearLayout style="@style/divider" android:layout_below="@id/viewUser" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+				<FrameLayout android:id="@+id/inplacePanelUser" style="@style/inplacePanel" android:layout_below="@id/viewUser" >
+				    <include layout="@layout/user_inplace_actions" />
+				</FrameLayout>
+		
+				<RelativeLayout android:id="@+id/viewContent"  
+					android:layout_width="fill_parent" 
+					android:layout_height="wrap_content"
+					android:minHeight="72dp"
+					android:padding="@dimen/padding"
+					android:layout_below="@id/inplacePanelUser"
+					>
+					<TextView android:id="@+id/txtContent" 
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						style="@style/content"
+						android:textSize="20sp"
+						android:paddingLeft="@dimen/padding"
+						android:paddingRight="@dimen/padding"
+						android:autoLink="all"
+						android:textColorLink="@color/tab"
+						android:textIsSelectable="true"
+						android:clickable="true"
+					/>
+				</RelativeLayout>
+				<ImageView android:id="@+id/btnTriangleContent" style="@style/btnTriangle" android:layout_alignBottom="@id/viewContent" android:visibility="gone" />
+				<LinearLayout style="@style/divider" android:layout_below="@id/viewContent" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+				<FrameLayout android:id="@+id/inplacePanelContent" style="@style/inplacePanel" android:layout_below="@id/viewContent" android:layout_marginTop="1dp">
+				    <include layout="@layout/content_inplace_actions" />
+				</FrameLayout>
+				<RelativeLayout android:id="@+id/viewApp"
+					android:layout_width="fill_parent" 
+					android:layout_height="wrap_content"
+					android:padding="@dimen/padding"
+					android:background="@drawable/row"
+					android:clickable="true"
+					android:layout_below="@id/inplacePanelContent"
+					>
+					<ImageView android:id="@+id/icon"
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:src="@drawable/noimage"
+						android:layout_marginRight="5dp"
+						android:layout_marginLeft="@dimen/padding"
+					/>
+					<TextView android:id="@+id/txtAppName" 
+						style="@style/name"
+						android:layout_toRightOf="@id/icon"
+						android:layout_alignTop="@id/icon"
+						android:layout_marginRight="@dimen/padding"
+					/>
+					<TextView android:id="@+id/txtAppVersion" 
+						style="@style/content"
+						android:layout_toRightOf="@id/icon"
+						android:layout_below="@id/txtAppName"
+						android:visibility="gone"
+					/>
+					<TextView android:id="@+id/txtAppSize"
+						style="@style/desc"
+						android:layout_toRightOf="@id/icon"
+						android:layout_below="@id/txtAppName"
+					/>
+				</RelativeLayout>
+				<ImageView android:id="@+id/btnTriangleApp" style="@style/btnTriangle" android:layout_alignBottom="@id/viewApp" android:visibility="gone" />
+				<LinearLayout android:id="@+id/dividerApp"  style="@style/divider" android:layout_below="@id/viewApp" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+				<FrameLayout android:id="@+id/inplacePanelApp" style="@style/inplacePanel" android:layout_below="@id/viewApp" >
+				    <include layout="@layout/app_inplace_actions" />"
+				</FrameLayout>
+	
+				<LinearLayout android:id="@+id/viewInreplyto"
+				    android:orientation="horizontal"
+					android:layout_width="fill_parent" 
+					android:layout_height="wrap_content"
+					android:gravity="right"
+					android:minHeight="72dp"
+					android:padding="@dimen/padding"
+					android:background="@drawable/row"
+					android:clickable="true"
+					android:layout_below="@id/inplacePanelApp"
+					android:layout_marginTop="1dp"
+					android:visibility="gone"
+					>
+					<TextView android:id="@+id/txtInreplyto" 
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/in_reply_to"
+						style="@style/desc"
+					/>
+				    <TextView android:id="@+id/txtInreplytoName" 
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						style="@style/desc"
+						android:textColor="@color/content"
+						android:gravity="right"
+					/>
+				</LinearLayout>
+				<goofy2.utils.FitXImageView android:id="@+id/imgThumbnail"
+				    style="@style/fill"
+					android:layout_margin="@dimen/padding"
+					android:layout_below="@id/viewInreplyto"
+				    />
+				<ProgressBar android:id="@+id/loadingImage"
+					style="@style/ProgressBar"
+					android:layout_below="@id/viewInreplyto"
+					android:layout_marginRight="@dimen/padding"
+					android:layout_marginLeft="@dimen/padding"
+					android:layout_marginTop="19dp"
+				/>
+				<goofy2.utils.FitXImageView android:id="@+id/imgImage"
+				    style="@style/fill"
+					android:layout_margin="@dimen/padding"
+					android:clickable="true"
+					android:layout_below="@id/viewInreplyto"
+				    />
+			</RelativeLayout>
+		</ScrollView>
+			
+		<LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+			<ImageButton  android:id="@+id/btnReply"
+				android:src="@drawable/reply" 
+				style="@style/inplaceBtn"
+			/>
+			<include android:id="@+id/tribtn" layout="@layout/app_tribtn4" />
+			<LinearLayout android:visibility="gone" style="@style/fill">
+			    <ImageButton  android:id="@+id/btnDelete" 
+				    android:src="@drawable/delete" 
+				    style="@style/inplaceBtn"
+					android:visibility="gone"
+				    />
+				/>
+				<ImageButton  android:id="@+id/btnDig"
+					android:src="@drawable/like" 
+					style="@style/inplaceBtn"
+				/>
+				<ImageButton  android:id="@+id/btnUndig"
+					android:src="@drawable/liked" 
+					style="@style/inplaceBtn"
+					android:visibility="gone"
+				/>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+</RelativeLayout>

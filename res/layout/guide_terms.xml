@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/header"
+    >
+	<LinearLayout
+		style="@style/titleBar" >
+		<TextView android:id="@+id/txtTitle" style="@style/title"
+			android:text="@string/terms_title" 
+		/>
+	</LinearLayout>
+	<View 
+	    android:background="@color/tab" 
+	    android:layout_height="1dp" 
+	    android:layout_width="fill_parent"
+	    />
+	<ScrollView 
+	    style="@style/fill"
+	    android:layout_weight="1"
+	    >
+		<LinearLayout 
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="@dimen/padding"
+		    >
+			<TextView android:id="@+id/txtDesc"
+				style="@style/content"
+				android:textColor="@color/back"
+				android:text="@string/terms_content"
+				android:layout_marginBottom="@dimen/padding"
+			/>
+		</LinearLayout>
+	</ScrollView>
+	<LinearLayout 
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="@dimen/padding"
+	    android:gravity="right"
+	    >
+		<Button android:id="@+id/btnOk" 
+			 style="@style/holoBtn.blue.big"
+			 android:text="@string/terms_yes"
+			 android:layout_width="fill_parent"
+		/>
+	</LinearLayout>
+</LinearLayout>
