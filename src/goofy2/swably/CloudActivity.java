@@ -111,9 +111,9 @@ public class CloudActivity extends goofy2.utils.SlidingFragmentActivity {
 	protected View viewLoading;
 //	protected Typeface FONT_NEUROPOL;
 //	protected Typeface FONT_VEGUR;
-	protected Typeface FONT_ROBOTO_MEDIUM;
-	protected Typeface FONT_ROBOTO_REGULAR;
-	protected Typeface FONT_ROBOTO_LIGHT;
+	public static Typeface FONT_ROBOTO_MEDIUM;
+	public static Typeface FONT_ROBOTO_REGULAR;
+	public static Typeface FONT_ROBOTO_LIGHT;
 //	protected Typeface FONT_ROBOTO_THIN;
 	public Typeface mHeaderFont = Typeface.DEFAULT;
 	protected Typeface mBoldFont = Typeface.DEFAULT_BOLD;

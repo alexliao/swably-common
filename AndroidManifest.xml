@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="goofy2.swably"
-      android:versionName="1.236" android:versionCode="1236">
-    <application />
-</manifest> 
+    package="goofy2.swably"
+    android:versionCode="1236"
+    android:versionName="1.236" >
+
+    <uses-sdk
+        android:minSdkVersion="5"
+        android:targetSdkVersion="15" />
+
+    <application>
+    </application>
+
+</manifest>

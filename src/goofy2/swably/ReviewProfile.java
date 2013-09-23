@@ -653,7 +653,10 @@ public class ReviewProfile extends WithHeaderActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    if (item.getItemId() == R.id.share) {
-	    	sendOutReview(mReview);
+//	    	sendOutReview(mReview);
+			Intent i = new Intent(this, ShareActivity.class);
+//			i.setData(Uri.parse(Const.HTTP_PREFIX+"/r/"+mReview.optString("in_reply_to_id")));
+			startActivity(i);
 	    	return true;
 	    }else if (item.getItemId() == R.id.delete) {
 			confirm(getString(R.string.delete_review),  new DialogInterface.OnClickListener(){

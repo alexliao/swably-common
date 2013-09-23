@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/header" 
+    >
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="68dp"
+	    android:orientation="vertical"
+	    android:gravity="center"
+	    >
+		<TextView android:id="@+id/txtTitle"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			android:text="@string/share_title"
+			android:textSize="24sp"
+			android:textColor="@color/tab"
+		    />
+	</LinearLayout>
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="2dp"
+	    android:orientation="horizontal"
+	    android:background="@color/tab"
+	    />
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="100dp"
+	    android:orientation="horizontal"
+	    >
+	    
+		<Button  android:id="@+id/btnPrivate"
+			android:drawableTop="@drawable/share_private"
+			android:drawablePadding="8dp"
+			android:padding="20dp"
+			style="@style/inplaceBtn"
+			android:text="@string/share_private"
+		/>
+		<Button  android:id="@+id/btnPublic"
+			android:drawableTop="@drawable/share_public"
+			android:drawablePadding="8dp"
+			android:padding="20dp"
+			style="@style/inplaceBtn"
+			android:text="@string/share_public"
+		/>
+		<Button  android:id="@+id/btnLink"
+			android:drawableTop="@drawable/share_link"
+			android:drawablePadding="8dp"
+			android:padding="20dp"
+			style="@style/inplaceBtn"
+			android:text="@string/share_link"
+		/>
+				
+	</LinearLayout>
+</LinearLayout>
