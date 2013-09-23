@@ -268,7 +268,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		holder.btnTriangle = convertView.findViewById(R.id.btnTriangle);
 		holder.inplacePanel = convertView.findViewById(R.id.inplacePanel);
 		holder.btnReply = convertView.findViewById(R.id.btnReply);
-		holder.btnShare = convertView.findViewById(R.id.btnShare);
+		holder.btnShareReview = convertView.findViewById(R.id.btnShareReview);
 //		holder.btnLike = convertView.findViewById(R.id.btnDig);
 //		holder.btnUnlike = convertView.findViewById(R.id.btnUndig);
 		holder.btnDownload = convertView.findViewById(R.id.btnDownload);
@@ -289,7 +289,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		View btnTriangle;
 		View inplacePanel;
 		View btnReply;
-		View btnShare;
+		View btnShareReview;
 //		View btnLike;
 //		View btnUnlike;
 		View btnDownload;
@@ -333,8 +333,8 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 //			return btnUnlike;
 //		}
 		@Override
-		public View getBtnShare() {
-			return btnShare;
+		public View getBtnShareReview() {
+			return btnShareReview;
 		}
 	}
 	

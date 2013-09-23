@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import goofy2.swably.R;
 import goofy2.utils.Rotate3dAnimation;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -45,8 +46,8 @@ public class WithHeaderActivity extends CloudActivity {
 	protected TextView txtHeader;
 	protected ImageView imgLogo;
 	protected View loading;
+	protected View btnOptionsMenu;
 	private ArrayList<CharSequence> mUsernames = new ArrayList<CharSequence>();
-
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -110,7 +111,7 @@ public class WithHeaderActivity extends CloudActivity {
 //		    }
 //	    }
 
-		View btnOptionsMenu = findViewById(R.id.btnOptionsMenu);
+		btnOptionsMenu = findViewById(R.id.btnOptionsMenu);
 		if(btnOptionsMenu != null){
 			btnOptionsMenu.setOnClickListener(new View.OnClickListener(){
 				@Override
@@ -140,7 +141,8 @@ public class WithHeaderActivity extends CloudActivity {
     	return 0;
     }
 
-    public void openOptionsMenu(View v){
+    @SuppressLint("NewApi")
+	public void openOptionsMenu(View v){
     	if(getMenu() == 0) return;
     	if(Build.VERSION.SDK_INT >= 11){
 		    PopupMenu popup = new PopupMenu(getApplicationContext(), v);

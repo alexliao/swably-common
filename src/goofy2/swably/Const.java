@@ -65,7 +65,10 @@ public class Const {
 	public static final String KEY_REVIEW = "review";
 	public static final String KEY_UNREAD_REVIEWS_COUNT = "unread_reviews_count";
 	public static final String KEY_UNREAD_FOLLOWS_COUNT = "unread_follows_count";
+	public static final String KEY_TEXT = "text";
+	public static final String KEY_SUBJECT = "subject";
 
+	
     final static int AUTHORIZE_ACTIVITY_RESULT_CODE = 0;
     public final static int LIST_SIZE = 20;
 	public static final long DEFAULT_CACHE_EXPIRES_IN = 5*60*1000; // mill-second

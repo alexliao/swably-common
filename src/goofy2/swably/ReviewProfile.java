@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.text.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -41,7 +42,7 @@ public class ReviewProfile extends WithHeaderActivity {
 	private View btnUser;
 	private View btnRetweet;
 	private View btnReply;
-//	private View btnShare;
+	private View btnShareReview;
 //	private View btnDelete;
 	private ViewGroup viewReview;
 	private ViewGroup viewUser;
@@ -103,7 +104,7 @@ public class ReviewProfile extends WithHeaderActivity {
 //        btnReply = this.findViewById(R.id.btnReply);
 //        btnRetweet = this.findViewById(R.id.btnRetweet);
 //        btnDelete = this.findViewById(R.id.btnDelete);
-//        btnShare = this.findViewById(R.id.btnShare);
+//        btnShareReview = this.findViewById(R.id.btnShareReview);
         
         btnUser.setOnClickListener(new OnClickListener(){
 			@Override
@@ -169,12 +170,13 @@ public class ReviewProfile extends WithHeaderActivity {
 //				});
 //			}
 //        });
-//        btnShare.setOnClickListener(new OnClickListener(){
+//        btnShareReview.setOnClickListener(new OnClickListener(){
 //			@Override
 //			public void onClick(View arg0) {
-//				sendOutReview(mReview);
+//				Utils.shareReview(ReviewProfile.this, mReview);
 //			}
-//        });
+//
+//       });
 
         View btnCopy = findViewById(R.id.txtContent);
         btnCopy.setOnClickListener(new OnClickListener(){
@@ -240,7 +242,7 @@ public class ReviewProfile extends WithHeaderActivity {
     		loadReview(mId);
     }
 
-    @Override
+	@Override
     public void onStart(){
     	super.onStart();
         if(mReview != null){
@@ -257,9 +259,11 @@ public class ReviewProfile extends WithHeaderActivity {
         header.setUserFromCache(header.getUserId());
         if(header.isMe())
         	btnTriangleUser.setVisibility(View.GONE);
-//        else
+        else{
+    		btnOptionsMenu = findViewById(R.id.btnOptionsMenu);
+        	btnOptionsMenu.setVisibility(View.INVISIBLE);
 //        	followBtn.bind();
-
+        }
         bindReview();
 
         if(mReview.optJSONObject("app") != null){
@@ -652,13 +656,11 @@ public class ReviewProfile extends WithHeaderActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    if (item.getItemId() == R.id.share) {
-//	    	sendOutReview(mReview);
-			Intent i = new Intent(this, ShareActivity.class);
-			i.putExtra(Const.KEY_REVIEW, mReview.toString());
-			startActivity(i);
-	    	return true;
-	    }else if (item.getItemId() == R.id.delete) {
+//	    if (item.getItemId() == R.id.share) {
+////	    	sendOutReview(mReview);
+//	    	return true;
+//	    }else if (item.getItemId() == R.id.delete) {
+	    if (item.getItemId() == R.id.delete) {
 			confirm(getString(R.string.delete_review),  new DialogInterface.OnClickListener(){
 				public void onClick(DialogInterface dialog, int which)
 				{

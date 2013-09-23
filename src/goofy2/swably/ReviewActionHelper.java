@@ -30,7 +30,7 @@ public class ReviewActionHelper {
 	public View btnReply;
 	public View btnLike;
 	public View btnUnlike;
-	public View btnShare;
+	public View btnShareReview;
 	
 	
 	public ReviewActionHelper(final CloudActivity activity, JSONObject review){
@@ -101,12 +101,13 @@ public class ReviewActionHelper {
 //			}
 //		});
 
-		if(holder == null) btnShare = container.findViewById(R.id.btnShare);
-		else btnShare = holder.getBtnShare();
-        if(btnShare != null) btnShare.setOnClickListener(new OnClickListener(){
+		if(holder == null) btnShareReview = container.findViewById(R.id.btnShareReview);
+		else btnShareReview = holder.getBtnShareReview();
+        if(btnShareReview != null) btnShareReview.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
-				mActivity.sendOutReview(mReview);
+//				mActivity.sendOutReview(mReview);
+				Utils.shareReview(mActivity, mReview);
 				if(callback != null) callback.run();
 			}
         });
@@ -128,6 +129,6 @@ public class ReviewActionHelper {
 		View getBtnReply();
 //		View getBtnLike();
 //		View getBtnUnlike();
-		View getBtnShare();
+		View getBtnShareReview();
 	}
 }

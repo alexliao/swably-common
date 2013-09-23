@@ -9,10 +9,13 @@
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		>
-		<LinearLayout android:id="@+id/btnReply" android:orientation="vertical" style="@style/inplaceBtn" >
+		<LinearLayout android:id="@+id/btnReply" style="@style/inplaceBtn" >
 			<ImageView android:src="@drawable/reply" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
 		<include layout="@layout/app_tribtn4" />
+		<LinearLayout android:id="@+id/btnShareReview" style="@style/inplaceBtn" >
+			<ImageView android:src="@drawable/share" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		</LinearLayout>
 	</LinearLayout>
 	<goofy2.utils.LinearGradientView
 	    android:layout_width="fill_parent"

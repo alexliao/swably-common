@@ -3,6 +3,7 @@ package goofy2.swably;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.ClipboardManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -33,7 +34,10 @@ public class ShareActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), SharePrivateActivity.class);
+				i.putExtra(Const.KEY_TEXT, getIntent().getStringExtra(Const.KEY_TEXT));
+				i.putExtra(Const.KEY_SUBJECT, getIntent().getStringExtra(Const.KEY_SUBJECT));
 				startActivity(i);
+				finish();
 			}
 		});
 
@@ -42,10 +46,24 @@ public class ShareActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), SharePublicActivity.class);
-				i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
+				i.putExtra(Const.KEY_TEXT, getIntent().getStringExtra(Const.KEY_TEXT));
+				i.putExtra(Const.KEY_SUBJECT, getIntent().getStringExtra(Const.KEY_SUBJECT));
 				startActivity(i);
+				finish();
 			}
 		});
+
+		btnLink.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+				cbm.setText(getIntent().getStringExtra(Const.KEY_TEXT));		
+				Utils.showToast(ShareActivity.this, getString(R.string.link_copied));
+				finish();
+			}
+		});
+	
 	}
 
 

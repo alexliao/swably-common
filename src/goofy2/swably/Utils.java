@@ -1463,24 +1463,32 @@ i = new Intent(context, DownloaderEx.class);
 		});
 	}
 
-    static public void sendOutReviewTo(Context context, JSONObject review, String toPackageName){
+    static public String genReviewShareText(JSONObject review){
     	App app = new App(review.optJSONObject("app"));
-    	shareTo(context, toPackageName, review.optString("content")+" -- @"+review.optJSONObject("user").optString("screen_name"), app.getName(), Const.DEFAULT_MAIN_HOST+"/r/"+review.optString("id"));
+    	String url = "http://" + Const.DEFAULT_MAIN_HOST+"/r/"+review.optString("id");
+    	return "#" + app.getName() + " " + review.optString("content") + " " + url + " -- @"+review.optJSONObject("user").optString("screen_name");
     }
 
-    static public void shareTo(Context context, String toPackageName, String review, String name, String url){
+    static public void shareTo(Context context, String text, String subject, String toPackageName){
 		try {
-			String content = "#" + name + " " + url + " " + review;
 	        Intent intent = new Intent(Intent.ACTION_SEND);
 	        intent.setType("text/plain");
-	        intent.putExtra(Intent.EXTRA_TEXT, content);
-	        intent.putExtra(Intent.EXTRA_SUBJECT, name);
+	        intent.putExtra(Intent.EXTRA_TEXT, text);
+	        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 	        intent.setPackage(toPackageName);
 	        context.startActivity(intent);
 		} catch (Exception e) {
 			Utils.showToastLong(context, String.format(context.getString(R.string.share_no_app_x), toPackageName));
 		}
     }
+
+    static public void shareReview(Context context, JSONObject review) {
+		Intent i = new Intent(context, ShareActivity.class);
+		i.putExtra(Const.KEY_TEXT, Utils.genReviewShareText(review));
+    	App app = new App(review.optJSONObject("app"));
+		i.putExtra(Const.KEY_SUBJECT, app.getName());
+		context.startActivity(i);
+	}
 
 
 }

@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 public class SharePublicActivity extends Activity {
 	Button btnFacebook, btnTwitter, btnGooglePlus;
-	JSONObject review;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,12 +25,8 @@ public class SharePublicActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.share_public);
 		
-		try {
-			review = new JSONObject(getIntent().getStringExtra(Const.KEY_REVIEW));
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		final String shareText = getIntent().getStringExtra(Const.KEY_TEXT);
+		final String shareSubject = getIntent().getStringExtra(Const.KEY_SUBJECT);
 		
 		btnFacebook = (Button) findViewById(R.id.btnFacebook);
 		btnTwitter = (Button) findViewById(R.id.btnTwitter);
@@ -49,7 +44,7 @@ public class SharePublicActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				Utils.sendOutReviewTo(SharePublicActivity.this, review, "com.facebook.katana");
+				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, "com.facebook.katana");
 				finish();
 
 //				List<Intent> targetedShareIntents = new ArrayList<Intent>();
@@ -86,7 +81,7 @@ public class SharePublicActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.sendOutReviewTo(SharePublicActivity.this, review, "com.twitter.android");
+				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, "com.twitter.android");
 				finish();
 			}
 		});
@@ -96,7 +91,7 @@ public class SharePublicActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.sendOutReviewTo(SharePublicActivity.this, review, "com.google.android.apps.plus");
+				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, "com.google.android.apps.plus");
 				finish();
 			}
 		});

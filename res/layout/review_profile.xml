@@ -189,6 +189,10 @@
 				style="@style/inplaceBtn"
 			/>
 			<include android:id="@+id/tribtn" layout="@layout/app_tribtn4" />
+			<ImageButton  android:id="@+id/btnShareReview"
+				android:src="@drawable/share" 
+				style="@style/inplaceBtn"
+			/>
 			<LinearLayout android:visibility="gone" style="@style/fill">
 			    <ImageButton  android:id="@+id/btnDelete" 
 				    android:src="@drawable/delete" 
