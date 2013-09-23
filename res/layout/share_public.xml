@@ -14,7 +14,7 @@
 		<TextView android:id="@+id/txtTitle"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-			android:text="@string/share_title"
+			android:text="@string/share_public"
 			android:textSize="24sp"
 			android:textColor="@color/tab"
 		    />
@@ -31,26 +31,26 @@
 	    android:orientation="horizontal"
 	    >
 	    
-		<Button  android:id="@+id/btnPrivate"
-			android:drawableTop="@drawable/share_private"
+		<Button  android:id="@+id/btnGooglePlus"
+			android:drawableTop="@drawable/share_google_plus"
 			android:paddingTop="@dimen/paddingShareBtn"
 			android:paddingBottom="@dimen/paddingShareBtn"
 			style="@style/inplaceBtn"
-			android:text="@string/share_private"
+			android:text="@string/share_google_plus"
 		/>
-		<Button  android:id="@+id/btnPublic"
-			android:drawableTop="@drawable/share_public"
+		<Button  android:id="@+id/btnFacebook"
+			android:drawableTop="@drawable/share_facebook"
 			android:paddingTop="@dimen/paddingShareBtn"
 			android:paddingBottom="@dimen/paddingShareBtn"
 			style="@style/inplaceBtn"
-			android:text="@string/share_public"
+			android:text="@string/share_facebook"
 		/>
-		<Button  android:id="@+id/btnLink"
-			android:drawableTop="@drawable/share_link"
+		<Button  android:id="@+id/btnTwitter"
+			android:drawableTop="@drawable/share_twitter"
 			android:paddingTop="@dimen/paddingShareBtn"
 			android:paddingBottom="@dimen/paddingShareBtn"
 			style="@style/inplaceBtn"
-			android:text="@string/share_link"
+			android:text="@string/share_twitter"
 		/>
 				
 	</LinearLayout>

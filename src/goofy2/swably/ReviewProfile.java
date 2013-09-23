@@ -655,7 +655,7 @@ public class ReviewProfile extends WithHeaderActivity {
 	    if (item.getItemId() == R.id.share) {
 //	    	sendOutReview(mReview);
 			Intent i = new Intent(this, ShareActivity.class);
-//			i.setData(Uri.parse(Const.HTTP_PREFIX+"/r/"+mReview.optString("in_reply_to_id")));
+			i.putExtra(Const.KEY_REVIEW, mReview.toString());
 			startActivity(i);
 	    	return true;
 	    }else if (item.getItemId() == R.id.delete) {

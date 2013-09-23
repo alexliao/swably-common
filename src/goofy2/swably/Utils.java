@@ -50,6 +50,7 @@ import goofy2.swably.facebook.FacebookApp;
 import goofy2.utils.DownloadImage;
 import goofy2.utils.ParamRunnable;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -1288,6 +1289,7 @@ i = new Intent(context, DownloaderEx.class);
 	    return true;
 	}
 
+	@SuppressLint("NewApi")
 	static public boolean createTempDirectory(Context context) {
 		if(!Const.TMP_FOLDER.equals("")) return true;
 		if(Build.VERSION.SDK_INT >= 8){ 
@@ -1460,5 +1462,25 @@ i = new Intent(context, DownloaderEx.class);
 			}
 		});
 	}
+
+    static public void sendOutReviewTo(Context context, JSONObject review, String toPackageName){
+    	App app = new App(review.optJSONObject("app"));
+    	shareTo(context, toPackageName, review.optString("content")+" -- @"+review.optJSONObject("user").optString("screen_name"), app.getName(), Const.DEFAULT_MAIN_HOST+"/r/"+review.optString("id"));
+    }
+
+    static public void shareTo(Context context, String toPackageName, String review, String name, String url){
+		try {
+			String content = "#" + name + " " + url + " " + review;
+	        Intent intent = new Intent(Intent.ACTION_SEND);
+	        intent.setType("text/plain");
+	        intent.putExtra(Intent.EXTRA_TEXT, content);
+	        intent.putExtra(Intent.EXTRA_SUBJECT, name);
+	        intent.setPackage(toPackageName);
+	        context.startActivity(intent);
+		} catch (Exception e) {
+			Utils.showToastLong(context, String.format(context.getString(R.string.share_no_app_x), toPackageName));
+		}
+    }
+
 
 }

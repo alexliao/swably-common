@@ -7,4 +7,5 @@
 	<dimen name="actionbar_home_width">56dp</dimen>
 	<dimen name="shadow_thick">2dp</dimen>
 	<dimen name="padding">12dp</dimen>
+	<dimen name="paddingShareBtn">15dp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 package goofy2.swably;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +27,25 @@ public class ShareActivity extends Activity {
 			btnPublic.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
 			btnLink.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
 		}
+		
+		btnPrivate.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), SharePrivateActivity.class);
+				startActivity(i);
+			}
+		});
+
+		btnPublic.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), SharePublicActivity.class);
+				i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
+				startActivity(i);
+			}
+		});
 	}
 
 
