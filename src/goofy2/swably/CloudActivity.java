@@ -463,40 +463,40 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
 //		context.startActivity(i);
 //    }
 
-    protected void sendOutApp(App app){
-    	share("", app.getName(), Const.HTTP_PREFIX+"/a/"+app.getCloudId());
-    }
+//    protected void sendOutApp(App app){
+//    	share("", app.getName(), Const.HTTP_PREFIX+"/a/"+app.getCloudId());
+//    }
 
-    protected void sendOutReview(JSONObject review){
-    	App app = new App(review.optJSONObject("app"));
-    	share(review.optString("content")+" -- @"+review.optJSONObject("user").optString("screen_name"), app.getName(), Const.HTTP_PREFIX+"/r/"+review.optString("id"));
-    }
+//    protected void sendOutReview(JSONObject review){
+//    	App app = new App(review.optJSONObject("app"));
+//    	share(review.optString("content")+" -- @"+review.optJSONObject("user").optString("screen_name"), app.getName(), Const.HTTP_PREFIX+"/r/"+review.optString("id"));
+//    }
 
-    protected void share(String review, String name, String url){
-		try {
-			String content = "#" + name + " " + url + " " + review;
-	        Intent intent = new Intent(Intent.ACTION_SEND);
-	        intent.setType("text/plain");
-	        intent.putExtra(Intent.EXTRA_TEXT, content);
-	        intent.putExtra(Intent.EXTRA_SUBJECT, name);
-	    	Intent i = Intent.createChooser(intent, getString(R.string.tell_friends_via));
-	    	startActivity(i);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    }
+//    protected void share(String review, String name, String url){
+//		try {
+//			String content = "#" + name + " " + url + " " + review;
+//	        Intent intent = new Intent(Intent.ACTION_SEND);
+//	        intent.setType("text/plain");
+//	        intent.putExtra(Intent.EXTRA_TEXT, content);
+//	        intent.putExtra(Intent.EXTRA_SUBJECT, name);
+//	    	Intent i = Intent.createChooser(intent, getString(R.string.tell_friends_via));
+//	    	startActivity(i);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//    }
 
-    protected void share(String title, String content){
-		try {
-	        Intent intent = new Intent(Intent.ACTION_SEND);
-	        intent.setType("text/plain");
-	        intent.putExtra(Intent.EXTRA_TEXT, content);
-	    	Intent i = Intent.createChooser(intent, title);
-	    	startActivity(i);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    }
+//    protected void share(String title, String content){
+//		try {
+//	        Intent intent = new Intent(Intent.ACTION_SEND);
+//	        intent.setType("text/plain");
+//	        intent.putExtra(Intent.EXTRA_TEXT, content);
+//	    	Intent i = Intent.createChooser(intent, title);
+//	    	startActivity(i);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//    }
 
     public JSONObject doReview(String appId, String content, String inReplyToId, String sync_sns, String imagePath){
 		JSONObject ret = null ;

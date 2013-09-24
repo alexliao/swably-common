@@ -1490,5 +1490,16 @@ i = new Intent(context, DownloaderEx.class);
 		context.startActivity(i);
 	}
 
+    static public String genAppShareText(App app){
+    	String url = "http://" + Const.DEFAULT_MAIN_HOST + "/a/" + app.getCloudId();
+    	return "#" + app.getName() + " " + url;
+    }
+
+    static public void shareApp(Context context, App app) {
+		Intent i = new Intent(context, ShareActivity.class);
+		i.putExtra(Const.KEY_TEXT, Utils.genAppShareText(app));
+		i.putExtra(Const.KEY_SUBJECT, app.getName());
+		context.startActivity(i);
+	}
 
 }

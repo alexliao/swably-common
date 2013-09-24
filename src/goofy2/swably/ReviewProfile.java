@@ -188,14 +188,14 @@ public class ReviewProfile extends WithHeaderActivity {
 //				mHelper.hideActionsAnim();
 			}
         });
-        View btnShareContent = findViewById(R.id.btnShareContent);
-        btnShareContent.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-		    	share(getString(R.string.tell_friends_via), mReview.optString("content"));
-				mHelper.hideActionsAnim();
-			}
-	    });
+//        View btnShareContent = findViewById(R.id.btnShareContent);
+//        btnShareContent.setOnClickListener(new OnClickListener(){
+//			@Override
+//			public void onClick(View arg0) {
+//		    	share(getString(R.string.tell_friends_via), mReview.optString("content"));
+//				mHelper.hideActionsAnim();
+//			}
+//	    });
         
         final View inplacePanelUser = findViewById(R.id.inplacePanelUser);
 		mHelper.hideActions(inplacePanelUser);

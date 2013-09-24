@@ -126,7 +126,7 @@ public class AppActionHelper {
         if(btnShare != null) btnShare.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
-				mActivity.sendOutApp(mHeader.getApp());
+				Utils.shareApp(mActivity, mHeader.getApp());
 				if(callback != null) callback.run();
 			}
         });
