@@ -47,7 +47,7 @@ public class SharePrivateActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, "com.android.mms");
+				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, "com.whatsapp");
 				finish();
 			}
 		});

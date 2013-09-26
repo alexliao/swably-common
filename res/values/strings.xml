@@ -238,7 +238,7 @@
     <string name="share_no_app_x">You don\'t have the app [%s] installed</string>
     <string name="share_private">Private</string>
     <string name="share_public">Public</string>
-    <string name="share_text">Text</string>
+    <string name="share_text">WhatsApp</string>
     <string name="share_title">Share to</string>
     <string name="share_twitter">Twitter</string>
     <string name="title_activity_share">ShareActivity</string>
