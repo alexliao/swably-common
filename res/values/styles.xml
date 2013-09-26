@@ -412,7 +412,13 @@
 		<item name="android:textColor">@color/title</item>
 		<item name="android:textSize">18sp</item>
 	</style>
-	<style name="sectionTitle">
+    <style name="inplaceBtn.shareButton">
+   		<item name="android:layout_width">@dimen/shareButtonSize</item>
+   		<item name="android:layout_height">@dimen/shareButtonSize</item>
+		<item name="android:paddingBottom">@dimen/shareButtonPadding</item>
+		<item name="android:paddingTop">@dimen/shareButtonPadding</item>
+   	</style>
+    <style name="sectionTitle">
 		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textSize">16sp</item>

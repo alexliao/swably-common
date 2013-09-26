@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="shareButtonPadding">21dp</dimen>
+   	<dimen name="shareButtonSize">111dp</dimen>
+    
+</resources>

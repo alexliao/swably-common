@@ -24,4 +24,7 @@
 		<item name="android:windowAnimationStyle">@style/fadeInOutAnim</item>         
 	</style>
 
+	<style name="defaultDialog" parent="android:style/Theme.Dialog" mce_bogus="1">          
+		<item name="android:windowAnimationStyle">@style/fadeInOutAnim</item>         
+	</style>
 </resources>
