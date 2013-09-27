@@ -15,7 +15,7 @@
     <color name="action_count">#02779e</color>
     <color name="desc">#d8d8d8</color>
 	
-    <color name="header">#292929</color>
+    <color name="header">#222222</color>
     <color name="title">#ffffff</color>
     <color name="disabled">#d6d8d5</color>
 
@@ -25,7 +25,7 @@
     <color name="divider_menu">#3b3b3b</color>
     <color name="menu_text">#ffffff</color>
     <color name="highlight">#3b3b3b</color>
-    <color name="highlight_light">#24adde</color>
+    <color name="highlight_light">#74cef4</color>
     <color name="focus">#24adde</color>
     
     <color name="tab">#24adde</color>
