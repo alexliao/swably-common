@@ -182,7 +182,7 @@
 		<item name="android:layout_width">fill_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:minHeight">@dimen/action_row_min_height</item>
-		<item name="android:background">@drawable/action_row</item>
+		<item name="android:background">@drawable/row</item>
 		<item name="android:layout_marginLeft">@dimen/padding</item>
 		<item name="android:layout_marginRight">@dimen/padding</item>
 		<item name="android:paddingBottom">@dimen/padding</item>
@@ -373,7 +373,7 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:textSize">20sp</item>
-		<item name="android:textColor">@color/menu_text</item>
+		<item name="android:textColor">@color/hover_blue</item>
 		<item name="android:padding">10dp</item>
 		<item name="android:drawablePadding">10dp</item>
 		<item name="android:gravity">center_vertical</item>
@@ -409,7 +409,7 @@
    		<item name="android:background">@drawable/action_row</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">false</item>
-		<item name="android:textColor">@color/title</item>
+		<item name="android:textColor">@color/hover_blue</item>
 		<item name="android:textSize">18sp</item>
 	</style>
     <style name="inplaceBtn.shareButton">

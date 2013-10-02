@@ -19,7 +19,7 @@
             <ImageButton
                 android:id="@+id/btnOptionsMenu"
                 style="@style/titleBtn"
-                android:src="@drawable/header_triangle"
+                android:src="@drawable/hover_ic_menu_moreoverflow_normal_holo_dark"
             /> 
 		</LinearLayout>
 		<include layout="@layout/header_bottom" />

@@ -205,9 +205,9 @@ public class AppTribtn {
 				btnDownload.setVisibility(View.VISIBLE);
 				ImageView imgDownload = (ImageView) btnDownload.findViewById(R.id.imgDownload);
 				if(app.getEnabled())
-					imgDownload.setImageResource(R.drawable.download);
+					imgDownload.setImageResource(R.drawable.hover_download);
 				else
-					imgDownload.setImageResource(R.drawable.stop);
+					imgDownload.setImageResource(R.drawable.hover_stop);
 				btnUpload.setVisibility(View.GONE);
 				btnPlay.setVisibility(View.GONE);
 				btnInstall.setVisibility(View.GONE);

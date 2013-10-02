@@ -4,18 +4,18 @@
 	android:layout_weight="1"
 	>
 	<LinearLayout android:id="@+id/btnDownload" style="@style/inplaceBtn" >
-		<ImageView android:id="@+id/imgDownload" android:src="@drawable/download" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<ImageView android:id="@+id/imgDownload" android:src="@drawable/hover_download" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 	</LinearLayout>
 	<LinearLayout android:id="@+id/btnUpload" style="@style/inplaceBtn" android:visibility="gone" >
-		<ImageView android:src="@drawable/upload" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<ImageView android:src="@drawable/hover_upload" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 	</LinearLayout>
 		<LinearLayout android:id="@+id/btnPlay" style="@style/inplaceBtn" android:visibility="gone" >
-		<ImageView android:src="@drawable/start" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<ImageView android:src="@drawable/hover_start" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 	</LinearLayout>
 	<LinearLayout android:id="@+id/btnInstall" style="@style/inplaceBtn" android:visibility="gone" >
 		<ImageView android:src="@drawable/download" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 	</LinearLayout>
 	<LinearLayout android:id="@+id/btnStop" style="@style/inplaceBtn" android:visibility="gone" >
-		<ImageView android:src="@drawable/stop" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<ImageView android:src="@drawable/hover_stop" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 	</LinearLayout>
 </LinearLayout>

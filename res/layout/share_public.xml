@@ -32,17 +32,17 @@
 	    >
 	    
 		<Button  android:id="@+id/btnGooglePlus"
-			android:drawableTop="@drawable/share_google_plus"
+			android:drawableTop="@drawable/hover_share_google_plus"
 			style="@style/inplaceBtn.shareButton"
 			android:text="@string/share_google_plus"
 		/>
 		<Button  android:id="@+id/btnFacebook"
-			android:drawableTop="@drawable/share_facebook"
+			android:drawableTop="@drawable/hover_share_facebook"
 			style="@style/inplaceBtn.shareButton"
 			android:text="@string/share_facebook"
 		/>
 		<Button  android:id="@+id/btnTwitter"
-			android:drawableTop="@drawable/share_twitter"
+			android:drawableTop="@drawable/hover_share_twitter"
 			style="@style/inplaceBtn.shareButton"
 			android:text="@string/share_twitter"
 		/>

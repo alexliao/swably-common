@@ -17,7 +17,7 @@
 			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
 			<TextView android:id="@+id/txtTitle" android:text="@string/a_review" style="@style/title" />
 			<ImageButton  android:id="@+id/btnOptionsMenu"
-				android:src="@drawable/ic_menu_moreoverflow_normal_holo_dark" 
+				android:src="@drawable/hover_ic_menu_moreoverflow_normal_holo_dark" 
 				style="@style/titleBtn"
 			/>
 		</LinearLayout>
@@ -185,12 +185,12 @@
 			
 		<LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
 			<ImageButton  android:id="@+id/btnReply"
-				android:src="@drawable/reply" 
+				android:src="@drawable/hover_reply" 
 				style="@style/inplaceBtn"
 			/>
 			<include android:id="@+id/tribtn" layout="@layout/app_tribtn4" />
 			<ImageButton  android:id="@+id/btnShareReview"
-				android:src="@drawable/share" 
+				android:src="@drawable/hover_share" 
 				style="@style/inplaceBtn"
 			/>
 			<LinearLayout android:visibility="gone" style="@style/fill">

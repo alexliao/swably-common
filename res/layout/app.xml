@@ -19,7 +19,7 @@
             <ImageButton
                 android:id="@+id/btnOptionsMenu"
                 style="@style/titleBtn"
-                android:src="@drawable/header_triangle" />
+                android:src="@drawable/hover_ic_menu_moreoverflow_normal_holo_dark" />
  
 		</LinearLayout>
 		<include layout="@layout/header_bottom" />
@@ -32,7 +32,7 @@
 			<ImageView android:src="@drawable/comment" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
 		<LinearLayout android:id="@+id/btnShare" android:orientation="vertical" style="@style/inplaceBtn">
-			<ImageView android:src="@drawable/share" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+			<ImageView android:src="@drawable/hover_share" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
 	</LinearLayout>
 </goofy2.utils.RevealLayout>
