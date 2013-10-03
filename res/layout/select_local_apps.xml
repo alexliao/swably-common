@@ -11,7 +11,7 @@
         <ImageButton
             android:id="@+id/btnRefresh"
             style="@style/titleBtn"
-            android:src="@drawable/refresh" />
+            android:src="@drawable/hover_refresh" />
 	</LinearLayout>
 	<LinearLayout android:id="@+id/viewProgress" 
 		android:orientation="vertical"

@@ -15,7 +15,7 @@
 			<ImageView android:src="@drawable/starred" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
 		<LinearLayout android:id="@+id/btnReview" android:orientation="vertical" style="@style/inplaceBtn">
-			<ImageView android:src="@drawable/comment" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+			<ImageView android:src="@drawable/add" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
 		<include android:id="@+id/tribtn" layout="@layout/app_tribtn4" />
 		<LinearLayout android:id="@+id/btnShare" android:orientation="vertical" style="@style/inplaceBtn">

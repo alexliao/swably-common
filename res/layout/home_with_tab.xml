@@ -15,7 +15,7 @@
 			<TextView android:id="@+id/txtTitle" android:text="@string/following" style="@style/title"/>
 			<include android:id="@+id/loading"	layout="@layout/loading" />
 			<ImageButton  android:id="@+id/btnAdd"
-				android:src="@drawable/comment" 
+				android:src="@drawable/add" 
 				style="@style/titleBtn"
 				android:visibility="gone"
 			/>
