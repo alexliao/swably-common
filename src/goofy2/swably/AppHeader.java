@@ -196,5 +196,9 @@ public class AppHeader {
 			new AsyncImageLoader(mActivity, iv, 0).loadUrl(url);
 		}
 
+		if(mApp.getBanner() != null){
+			ImageView imgBanner = (ImageView)container.findViewById(R.id.imgBanner);
+			if(imgBanner != null) new AsyncImageLoader(mActivity, imgBanner, 1).loadUrl(mApp.getBanner());
+		}
 	}
 }

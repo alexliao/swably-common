@@ -35,6 +35,7 @@ public class App {
 	public static final String NAME = "name";
 	public static final String PATH = "path";
 	public static final String ICON = "icon";
+	public static final String BANNER = "banner";
 	// cloud property
 	public static final String CLOUD_ID = "id";
 	public static final String CLOUD_APK = "apk";
@@ -145,6 +146,9 @@ public class App {
 	}
 	public String getIcon(){
 		return mJson.optString(ICON, null);
+	}
+	public String getBanner(){
+		return mJson.optString(BANNER, null);
 	}
 	public String getSignature(){
 		return mJson.optString(SIGNATURE, null);

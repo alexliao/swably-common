@@ -143,7 +143,13 @@ public class UserHeader {
 			tv.setTypeface(mActivity.mLightFont);
 		}
 		
-//		tv = (TextView)container.findViewById(R.id.txtBio);
+
+		if(!getUser().isNull("banner")){
+			ImageView imgBanner = (ImageView)container.findViewById(R.id.imgBanner);
+			if(imgBanner != null) new AsyncImageLoader(mActivity, imgBanner, 1).loadUrl(getUser().optString("banner", ""));
+		}
+		
+		//		tv = (TextView)container.findViewById(R.id.txtBio);
 //		if(tv != null){
 //			tv.setText(getUser().optString("bio"));
 //	    	if(tv.getText().equals("null")) tv.setText("");
