@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -45,7 +48,18 @@ public class OAuthSignin extends Activity {
 //    	d.setBounds(0, 0, d.getMinimumWidth(), d.getMinimumHeight());
 //    	tv.setCompoundDrawables(d, null, null, null);
 		
+
 		mWeb = (WebView) this.findViewById(R.id.webView);
+
+//		CookieSyncManager cookieSyncManager = CookieSyncManager.createInstance(this);
+//		CookieManager cookieManager = CookieManager.getInstance();
+//		cookieManager.setAcceptCookie(true);	
+////		cookieManager.removeSessionCookie();
+//		SystemClock.sleep(5000);
+//		cookieSyncManager.sync();
+//		SystemClock.sleep(5000);
+
+		
 		WebSettings set = mWeb.getSettings();  
 		set.setJavaScriptEnabled(true);
 		set.setLightTouchEnabled(true);

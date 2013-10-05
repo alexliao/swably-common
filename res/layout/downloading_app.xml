@@ -13,25 +13,41 @@
 	<include layout="@layout/header_bottom" />
 	<include layout="@layout/app_info2"/>
 	<LinearLayout android:id="@+id/viewUpload"
-		android:orientation="vertical"
+		android:orientation="horizontal"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1" 
 		android:gravity="center_vertical"
-		android:padding="@dimen/padding"
 		>
-		<ProgressBar android:id="@+id/progressBar" 
-			style="@style/ProgressBar"
-			android:layout_height="16dp"
-		/>
-		<TextView android:id="@+id/txtSizeSent"
-			android:text="@string/downloading_queued"
-			style="@style/content"
-		/>
+		<LinearLayout android:id="@+id/viewUpload"
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1" 
+			android:gravity="center_vertical"
+			android:layout_marginTop="12dp"
+			android:layout_marginRight="@dimen/padding"
+			android:layout_marginLeft="@dimen/padding"
+			>
+			<ProgressBar android:id="@+id/progressBar" 
+				style="@style/ProgressBar"
+				android:layout_height="16dp"
+			/>
+			<TextView android:id="@+id/txtSizeSent"
+				android:text="@string/downloading_queued"
+				style="@style/content"
+			/>
+		</LinearLayout>
+        <ImageButton
+            android:id="@+id/btnCancel"
+            style="@style/titleBtn"
+            android:background="@color/none"
+            android:src="@drawable/hover_cancel_light"
+        /> 
 	</LinearLayout>
 	<LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
-		<LinearLayout android:id="@+id/btnCancel" style="@style/inplaceBtn" >
-			<ImageView android:src="@drawable/hover_cancel" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<LinearLayout android:id="@+id/btnShare" style="@style/inplaceBtn" >
+			<ImageView android:src="@drawable/hover_share" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

@@ -65,6 +65,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -98,6 +99,14 @@ public class DownloadingApp extends WithHeaderActivity {
 
         txtSizeSent = (TextView) this.findViewById(R.id.txtSizeSent);
         txtSizeSent.setTypeface(mLightFont);
+
+        View btnShare = this.findViewById(R.id.btnShare);
+        btnShare.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				Utils.shareApp(DownloadingApp.this, header.getApp());
+			}
+        });
 
         try {
 			registerReceiver(mProgressReceiver, new IntentFilter(Const.BROADCAST_DOWNLOAD_PROGRESS));
