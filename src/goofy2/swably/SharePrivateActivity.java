@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class SharePrivateActivity extends Activity {
-	Button btnFacebookMessenger, btnText, btnGmail;
+	Button btnPrivate1, btnPrivate2, btnPrivate3;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -22,41 +22,41 @@ public class SharePrivateActivity extends Activity {
 		final String shareText = getIntent().getStringExtra(Const.KEY_TEXT);
 		final String shareSubject = getIntent().getStringExtra(Const.KEY_SUBJECT);
 
-		btnFacebookMessenger = (Button) findViewById(R.id.btnFacebookMessenger);
-		btnText = (Button) findViewById(R.id.btnText);
-		btnGmail = (Button) findViewById(R.id.btnGmail);
+		btnPrivate1 = (Button) findViewById(R.id.btnPrivate1);
+		btnPrivate2 = (Button) findViewById(R.id.btnPrivate2);
+		btnPrivate3 = (Button) findViewById(R.id.btnPrivate3);
 		if(Const.LOAD_FONTS){
 			TextView tv = (TextView) findViewById(R.id.txtTitle);
 			tv.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
-			btnFacebookMessenger.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
-			btnText.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
-			btnGmail.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
+			btnPrivate1.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
+			btnPrivate2.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
+			btnPrivate3.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
 		}
 
-		btnFacebookMessenger.setOnClickListener(new View.OnClickListener() {
+		btnPrivate1.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, "com.facebook.orca");
+				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, getString(R.string.share_package_private1), getString(R.string.share_private1));
 				finish();
 			}
 		});
 
 
-		btnText.setOnClickListener(new View.OnClickListener() {
+		btnPrivate2.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, "com.whatsapp");
+				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, getString(R.string.share_package_private2), getString(R.string.share_private2));
 				finish();
 			}
 		});
 	
-		btnGmail.setOnClickListener(new View.OnClickListener() {
+		btnPrivate3.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, "com.google.android.gm");
+				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, getString(R.string.share_package_private3), getString(R.string.share_private3));
 				finish();
 			}
 		});

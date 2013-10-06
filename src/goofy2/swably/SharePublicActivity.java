@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class SharePublicActivity extends Activity {
-	Button btnFacebook, btnTwitter, btnGooglePlus;
+	Button btnPublic1, btnPublic2, btnPublic3;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,23 +28,32 @@ public class SharePublicActivity extends Activity {
 		final String shareText = getIntent().getStringExtra(Const.KEY_TEXT);
 		final String shareSubject = getIntent().getStringExtra(Const.KEY_SUBJECT);
 		
-		btnFacebook = (Button) findViewById(R.id.btnFacebook);
-		btnTwitter = (Button) findViewById(R.id.btnTwitter);
-		btnGooglePlus = (Button) findViewById(R.id.btnGooglePlus);
+		btnPublic1 = (Button) findViewById(R.id.btnPublic1);
+		btnPublic2 = (Button) findViewById(R.id.btnPublic2);
+		btnPublic3 = (Button) findViewById(R.id.btnPublic3);
 		if(Const.LOAD_FONTS){
 			TextView tv = (TextView) findViewById(R.id.txtTitle);
 			tv.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
-			btnFacebook.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
-			btnTwitter.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
-			btnGooglePlus.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
+			btnPublic1.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
+			btnPublic2.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
+			btnPublic3.setTypeface(CloudActivity.FONT_ROBOTO_LIGHT);
 		}
 		
-		btnFacebook.setOnClickListener(new View.OnClickListener() {
+		btnPublic1.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, getString(R.string.share_package_public1), getString(R.string.share_public1));
+				finish();
+			}
+		});
+
+		btnPublic2.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				
-				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, "com.facebook.katana");
+				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, getString(R.string.share_package_public2), getString(R.string.share_public2));
 				finish();
 
 //				List<Intent> targetedShareIntents = new ArrayList<Intent>();
@@ -77,24 +86,15 @@ public class SharePublicActivity extends Activity {
 			}
 		});
 		
-		btnTwitter.setOnClickListener(new View.OnClickListener() {
+		btnPublic3.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, "com.twitter.android");
+				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, getString(R.string.share_package_public3), getString(R.string.share_public3));
 				finish();
 			}
 		});
 
-
-		btnGooglePlus.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, "com.google.android.apps.plus");
-				finish();
-			}
-		});
 
 	}
 

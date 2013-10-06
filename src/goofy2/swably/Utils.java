@@ -1469,16 +1469,17 @@ i = new Intent(context, DownloaderEx.class);
     	return "#" + app.getName() + " " + review.optString("content") + " " + url + " -- @"+review.optJSONObject("user").optString("screen_name");
     }
 
-    static public void shareTo(Context context, String text, String subject, String toPackageName){
+    static public void shareTo(Context context, String text, String subject, String toPackageName, String title){
 		try {
 	        Intent intent = new Intent(Intent.ACTION_SEND);
 	        intent.setType("text/plain");
 	        intent.putExtra(Intent.EXTRA_TEXT, text);
 	        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 	        intent.setPackage(toPackageName);
+	        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	        context.startActivity(intent);
 		} catch (Exception e) {
-			Utils.showToastLong(context, String.format(context.getString(R.string.share_no_app_x), toPackageName));
+			Utils.showToastLong(context, String.format(context.getString(R.string.share_no_app_x), title));
 		}
     }
 

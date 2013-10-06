@@ -101,9 +101,9 @@ public class Start extends WithHeaderActivity {
 	    	});
 	    	Utils.setTouchAnim(this, btnTwitter);
 	    	
-	    	View btnFacebook = this.findViewById(R.id.btnFacebook);
+	    	View btnPublic2 = this.findViewById(R.id.btnPublic2);
 //	        if (FacebookApp.mFacebook.isSessionValid()) { // no need to use Facebook session for nappstr has remembered the user. Using the session easy to cause token invalid error.
-//			  btnFacebook.setOnClickListener(new OnClickListener(){
+//			  btnPublic2.setOnClickListener(new OnClickListener(){
 //				@Override
 //				public void onClick(View v) {
 //			//    			signInWIth("facebook");
@@ -114,7 +114,7 @@ public class Start extends WithHeaderActivity {
 	    		
 	    		SessionEvents events = new SessionEvents();
 	    		events.addAuthListener(new FbAPIsAuthListener());
-		        mFacebookLogin.init(btnFacebook, this, Const.AUTHORIZE_ACTIVITY_RESULT_CODE, FacebookApp.mFacebook, FacebookApp.permissions, events);
+		        mFacebookLogin.init(btnPublic2, this, Const.AUTHORIZE_ACTIVITY_RESULT_CODE, FacebookApp.mFacebook, FacebookApp.permissions, events);
 //	        }
 	    	View btnPlus = this.findViewById(R.id.btnPlus);
 	    	btnPlus.setOnClickListener(new OnClickListener(){

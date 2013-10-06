@@ -54,7 +54,7 @@
 				android:layout_height="0dp"
 		 		>
 				<LinearLayout style="@style/divider"/>
-			    <LinearLayout android:id="@+id/btnFacebook" style="@style/action_row" android:orientation="horizontal" >
+			    <LinearLayout android:id="@+id/btnPublic2" style="@style/action_row" android:orientation="horizontal" >
 					<ImageView android:src="@drawable/facebook_ontile" style="@style/arrow_row_icon"	/>
 					<TextView android:text="Facebook" style="@style/arrow_row_title" />
 				</LinearLayout>

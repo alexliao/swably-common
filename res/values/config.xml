@@ -17,4 +17,10 @@
     <string name="host3">nappstr.com</string>
     <string name="host4">www.nappstr.com</string>
     
+    <string name="share_package_private1">com.facebook.orca</string>
+    <string name="share_package_private2">com.whatsapp</string>
+    <string name="share_package_private3">com.google.android.gm</string>
+    <string name="share_package_public1">com.google.android.apps.plus</string>
+    <string name="share_package_public2">com.facebook.katana</string>
+    <string name="share_package_public3">com.twitter.android</string>
 </resources>

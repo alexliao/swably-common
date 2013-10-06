@@ -31,20 +31,20 @@
 	    android:orientation="horizontal"
 	    >
 	    
-		<Button  android:id="@+id/btnGooglePlus"
-			android:drawableTop="@drawable/hover_share_google_plus"
+		<Button  android:id="@+id/btnPublic1"
+			android:drawableTop="@drawable/hover_share_public1"
 			style="@style/inplaceBtn.shareButton"
-			android:text="@string/share_google_plus"
+			android:text="@string/share_public1"
 		/>
-		<Button  android:id="@+id/btnFacebook"
-			android:drawableTop="@drawable/hover_share_facebook"
+		<Button  android:id="@+id/btnPublic2"
+			android:drawableTop="@drawable/hover_share_public2"
 			style="@style/inplaceBtn.shareButton"
-			android:text="@string/share_facebook"
+			android:text="@string/share_public2"
 		/>
-		<Button  android:id="@+id/btnTwitter"
-			android:drawableTop="@drawable/hover_share_twitter"
+		<Button  android:id="@+id/btnPublic3"
+			android:drawableTop="@drawable/hover_share_public3"
 			style="@style/inplaceBtn.shareButton"
-			android:text="@string/share_twitter"
+			android:text="@string/share_public3"
 		/>
 				
 	</LinearLayout>
