@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class ShareActivity extends Activity {
-	Button btnPrivate, btnPublic, btnLink;
+	protected Button btnPrivate, btnPublic, btnLink;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class ShareActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), SharePrivateActivity.class);
+				Intent i = new Intent(getApplicationContext(), Const.SHARE_PRIVATE_ACTIVITY);
 				i.putExtra(Const.KEY_TEXT, getIntent().getStringExtra(Const.KEY_TEXT));
 				i.putExtra(Const.KEY_SUBJECT, getIntent().getStringExtra(Const.KEY_SUBJECT));
 				startActivity(i);
@@ -45,7 +45,7 @@ public class ShareActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), SharePublicActivity.class);
+				Intent i = new Intent(getApplicationContext(), Const.SHARE_PUBLIC_ACTIVITY);
 				i.putExtra(Const.KEY_TEXT, getIntent().getStringExtra(Const.KEY_TEXT));
 				i.putExtra(Const.KEY_SUBJECT, getIntent().getStringExtra(Const.KEY_SUBJECT));
 				startActivity(i);

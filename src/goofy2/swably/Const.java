@@ -84,4 +84,7 @@ public class Const {
 	
 	public static String HTTP_PREFIX;
 	public static String UPLOAD_HTTP_PREFIX;
+	
+	public static Class SHARE_PRIVATE_ACTIVITY = SharePrivateActivity.class;
+	public static Class SHARE_PUBLIC_ACTIVITY = SharePublicActivity.class;
 }

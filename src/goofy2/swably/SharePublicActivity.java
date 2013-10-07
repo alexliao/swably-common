@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class SharePublicActivity extends Activity {
-	Button btnPublic1, btnPublic2, btnPublic3;
+	protected Button btnPublic1, btnPublic2, btnPublic3;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
