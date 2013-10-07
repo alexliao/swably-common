@@ -9,6 +9,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:paddingBottom="48dp"
         >
 		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
 			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
