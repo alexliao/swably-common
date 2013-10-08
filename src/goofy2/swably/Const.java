@@ -29,7 +29,7 @@ public class Const {
 	public static final int HTTP_TIMEOUT_SHORT = 10000;
 	public static final int HTTP_TIMEOUT_LONG = 120000;
 	public static final int IMAGE_CACHE_MAX_SIZE = 500;
-	public static final int IMAGE_CACHE_MIN_SIZE = 50;
+	public static final int IMAGE_CACHE_MIN_SIZE = 500;
 	public static final int DATA_CACHE_LIVE_DAYS = 7;
 	public static final int MULITI_DOWNLOADING = 2;
 	public static  String BROADCAST_CACHE_APPS_PROGRESS = "goofy2.swably.CACHE_APPS_PROGRESS";

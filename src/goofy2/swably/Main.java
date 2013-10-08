@@ -56,6 +56,7 @@ public class Main extends Activity {
     		public void run(){
 				Utils.clearImageCache();
 				
+				//clear page cache
 				CacheHelper helper = new CacheHelper(Main.this);
 				helper.clearCacheBefore(Const.DATA_CACHE_LIVE_DAYS);
 				
