@@ -1,5 +1,6 @@
 package goofy2.swably;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -66,6 +67,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Bitmap.CompressFormat;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -1463,10 +1465,17 @@ i = new Intent(context, DownloaderEx.class);
 		});
 	}
 
-    static public String genReviewShareText(JSONObject review){
+	static public String genReviewUrl(JSONObject review){
+    	return "http://" + Const.DEFAULT_MAIN_HOST+"/r/"+review.optString("id");
+	}
+	
+	static public String genAppUrl(App app){
+		return "http://" + Const.DEFAULT_MAIN_HOST + "/a/" + app.getCloudId();
+	}
+
+	static public String genReviewShareText(JSONObject review){
     	App app = new App(review.optJSONObject("app"));
-    	String url = "http://" + Const.DEFAULT_MAIN_HOST+"/r/"+review.optString("id");
-    	return "#" + app.getName() + " " + review.optString("content") + " " + url + " -- @"+review.optJSONObject("user").optString("screen_name");
+    	return "#" + app.getName() + " " + review.optString("content") + " " + genReviewUrl(review) + " -- @"+review.optJSONObject("user").optString("screen_name");
     }
 
     static public void shareTo(Context context, String text, String subject, String toPackageName, String title){
@@ -1476,7 +1485,7 @@ i = new Intent(context, DownloaderEx.class);
 	        intent.putExtra(Intent.EXTRA_TEXT, text);
 	        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 	        intent.setPackage(toPackageName);
-	        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//	        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // cause can not share to QQ more than once
 	        context.startActivity(intent);
 		} catch (Exception e) {
 			Utils.showToastLong(context, String.format(context.getString(R.string.share_no_app_x), title));
@@ -1488,19 +1497,37 @@ i = new Intent(context, DownloaderEx.class);
 		i.putExtra(Const.KEY_TEXT, Utils.genReviewShareText(review));
     	App app = new App(review.optJSONObject("app"));
 		i.putExtra(Const.KEY_SUBJECT, app.getName());
+		i.putExtra(Const.KEY_REVIEW, review.toString());
 		context.startActivity(i);
 	}
 
     static public String genAppShareText(App app){
-    	String url = "http://" + Const.DEFAULT_MAIN_HOST + "/a/" + app.getCloudId();
-    	return "#" + app.getName() + " " + url;
+    	return "#" + app.getName() + " " + genAppUrl(app);
     }
 
     static public void shareApp(Context context, App app) {
 		Intent i = new Intent(context, ShareActivity.class);
 		i.putExtra(Const.KEY_TEXT, Utils.genAppShareText(app));
 		i.putExtra(Const.KEY_SUBJECT, app.getName());
+		i.putExtra(Const.KEY_APP, app.getJSON().toString());
 		context.startActivity(i);
+	}
+
+	public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle) {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		bmp.compress(CompressFormat.PNG, 100, output);
+		if (needRecycle) {
+			bmp.recycle();
+		}
+		
+		byte[] result = output.toByteArray();
+		try {
+			output.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 }

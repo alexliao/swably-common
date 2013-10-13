@@ -36,6 +36,8 @@ public class ShareActivity extends Activity {
 				Intent i = new Intent(getApplicationContext(), Const.SHARE_PRIVATE_ACTIVITY);
 				i.putExtra(Const.KEY_TEXT, getIntent().getStringExtra(Const.KEY_TEXT));
 				i.putExtra(Const.KEY_SUBJECT, getIntent().getStringExtra(Const.KEY_SUBJECT));
+				i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
+				i.putExtra(Const.KEY_APP, getIntent().getStringExtra(Const.KEY_APP));
 				startActivity(i);
 				finish();
 			}
@@ -48,6 +50,8 @@ public class ShareActivity extends Activity {
 				Intent i = new Intent(getApplicationContext(), Const.SHARE_PUBLIC_ACTIVITY);
 				i.putExtra(Const.KEY_TEXT, getIntent().getStringExtra(Const.KEY_TEXT));
 				i.putExtra(Const.KEY_SUBJECT, getIntent().getStringExtra(Const.KEY_SUBJECT));
+				i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
+				i.putExtra(Const.KEY_APP, getIntent().getStringExtra(Const.KEY_APP));
 				startActivity(i);
 				finish();
 			}
