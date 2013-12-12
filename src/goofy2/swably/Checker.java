@@ -92,8 +92,8 @@ public class Checker extends CloudAlarmService {
 			
 			if(updated()) fetch();
 		
-			if((System.currentTimeMillis()/1000 - getLastCheckSnsJoinTime(this)) > 8*3600)
-				checkSnsJoin();
+//			if((System.currentTimeMillis()/1000 - getLastCheckSnsJoinTime(this)) > 8*3600)
+//				checkSnsJoin();
 
 		}catch(Exception e){
 			e.printStackTrace();
