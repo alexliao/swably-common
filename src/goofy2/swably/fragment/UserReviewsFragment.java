@@ -1,5 +1,9 @@
 package goofy2.swably.fragment;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import goofy2.swably.AppUploaders;
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.CommentsAdapter;
 import goofy2.swably.Const;
@@ -7,6 +11,8 @@ import goofy2.swably.FollowBtn;
 import goofy2.swably.R;
 import goofy2.swably.UserHeader;
 import goofy2.swably.UserProfile;
+import goofy2.swably.UserUploadedApps;
+import goofy2.utils.AsyncImageLoader;
 import goofy2.utils.JSONUtils;
 
 import org.json.JSONArray;
@@ -19,11 +25,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -32,6 +40,7 @@ public class UserReviewsFragment extends CloudCommentsFragment {
 	protected FollowBtn followBtn;
 //	protected FollowBar followBar = new FollowBar(this, header);
 	protected String mUserCacheId;
+	ExecutorService mLoadImageThreadPool = Executors.newFixedThreadPool(3); // 3 is the count of recent uploadees
 
     @Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -60,9 +69,35 @@ public class UserReviewsFragment extends CloudCommentsFragment {
     
     protected void bind(View v){
     	if(v == null) return; 
-		header.bindUserHeader(v);
+		header.bindUserHeader(v, false);
 //		followBar.bind();
 		followBtn.bind();
+		
+		View viewUploadees = v.findViewById(R.id.viewUploadees);
+		viewUploadees.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(a(), UserUploadedApps.class).putExtra(Const.KEY_USER, header.getUser().toString()));
+			}
+		});
+		
+		JSONArray uploadees = header.getUser().optJSONArray("recent_uploadees");
+		if(uploadees != null){
+			for(int i=0; i<uploadees.length(); i++){
+				JSONObject app = uploadees.optJSONObject(i);
+//				Log.d("", "uploadee: " + "uploadee"+(i+1));
+				ImageView iv = (ImageView) v.findViewWithTag("uploadee"+(i+1));
+				if(iv != null){
+//					Log.d("", "uploadee tag: " + iv.getTag());
+					iv.setVisibility(View.VISIBLE);
+					if(!app.isNull("icon")){
+						String url = app.optString("icon", "");
+						new AsyncImageLoader(a(), iv, 0).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+					}
+				}
+			}
+		}
+		
 	}
 	
 	@Override

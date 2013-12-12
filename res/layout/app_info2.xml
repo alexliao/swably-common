@@ -8,7 +8,7 @@
 	<ImageView
 	    android:id="@+id/imgBanner"
 	    android:layout_width="fill_parent"
-	    android:layout_height="162dp"
+	    android:layout_height="122dp"
 	    android:scaleType="matrix"
 	    />
 
@@ -26,15 +26,16 @@
 			/>
 		<TextView android:id="@+id/txtAppName"
 			android:singleLine="true"
-			style="@style/name"
+			style="@style/name.shadow"
 			android:textColor="@color/title"
 			android:textSize="20sp"
 			android:layout_centerHorizontal="true"
 			android:layout_below="@id/icon"
+			android:visibility="gone"
 		/>
 		<TextView android:id="@+id/txtReviewsCount"
 			android:singleLine="true"
-			style="@style/name"
+			style="@style/name.shadow"
 			android:textColor="@color/title"
 			android:textSize="20sp"
 			android:layout_centerHorizontal="true"
@@ -43,7 +44,7 @@
 		/>
 		<TextView android:id="@+id/txtVersion"
 			android:singleLine="true"
-			style="@style/name"
+			style="@style/name.shadow"
 			android:textColor="@color/title"
 			android:textSize="20sp"
 			android:layout_centerHorizontal="true"
@@ -53,7 +54,7 @@
 		/>
 		<TextView android:id="@+id/txtSize"
 			android:singleLine="true"
-			style="@style/name"
+			style="@style/name.shadow"
 			android:textColor="@color/title"
 			android:textSize="20sp"
 			android:layout_centerHorizontal="true"

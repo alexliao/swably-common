@@ -289,7 +289,7 @@ public class DownloaderEx extends Service {
 		
 		Notification noti = Utils.getDefaultNotification(text);
 
-		Intent i = new Intent(this, goofy2.swably.fragment.App.class);
+		Intent i = new Intent(this, goofy2.swably.App.class);
 		String str = app.getJSON().toString();
 		i.putExtra(Const.KEY_APP, str);
 		PendingIntent launchIntent = PendingIntent.getActivity(this, app.getPackage().hashCode(), i, PendingIntent.FLAG_ONE_SHOT);

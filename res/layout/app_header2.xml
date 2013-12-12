@@ -1,9 +1,84 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	>
 	<include android:id="@+id/viewInfo" layout="@layout/app_info2" />
+	<LinearLayout android:id="@+id/viewUploaders"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="@dimen/padding"
+	    android:orientation="horizontal"
+	    android:gravity="center_vertical"
+	    android:background="@drawable/row"
+	    android:layout_below="@id/viewInfo" 
+	    android:clickable="true"
+	    >
+		<goofy2.utils.Avatar
+			style="@style/avatar"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			app:radius="12"
+			android:layout_centerHorizontal="true"
+			android:layout_marginRight="10dp"
+			android:tag="uploader1"
+			android:src="@drawable/noname"
+			android:visibility="gone"
+		/>
+		<goofy2.utils.Avatar
+			style="@style/avatar"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			app:radius="12"
+			android:layout_centerHorizontal="true"
+			android:layout_marginRight="8dp"
+			android:tag="uploader2"
+			android:src="@drawable/noname"
+			android:visibility="gone"
+		/>
+		<goofy2.utils.Avatar
+			style="@style/avatar"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			app:radius="12"
+			android:layout_centerHorizontal="true"
+			android:layout_marginRight="10dp"
+			android:tag="uploader3"
+			android:src="@drawable/noname"
+			android:visibility="gone"
+		/>
+		<goofy2.utils.Avatar
+			style="@style/avatar"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			app:radius="12"
+			android:layout_centerHorizontal="true"
+			android:layout_marginRight="10dp"
+			android:tag="uploader4"
+			android:src="@drawable/noname"
+			android:visibility="gone"
+		/>
+		<goofy2.utils.Avatar
+			style="@style/avatar"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			app:radius="12"
+			android:layout_centerHorizontal="true"
+			android:layout_marginRight="10dp"
+			android:tag="uploader5"
+			android:src="@drawable/noname"
+			android:visibility="gone"
+		/>
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/recent_uploaders"
+		    android:textColor="@color/content"
+		    android:textSize="12sp"
+		    />
+	</LinearLayout>
+	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/viewUploaders"/>
 	<Button android:id="@+id/btnLike"
 	    android:text="@string/bookmark"  
 	    style="@style/roundBtnLight.text"
@@ -21,7 +96,7 @@
 	<LinearLayout android:id="@+id/viewEmpty"
 		style="@style/tip_bubble"
 		android:visibility="gone"
-		android:layout_below="@id/viewInfo"
+		android:layout_below="@id/bottomDivider"
 		>
 		<TextView android:id="@+id/txtEmpty"
 			android:layout_width="fill_parent"

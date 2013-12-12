@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import goofy2.swably.App.RefreshAppBroadcastReceiver;
 import goofy2.swably.data.App;
-import goofy2.swably.fragment.User.RefreshUserBroadcastReceiver;
+import goofy2.swably.fragment.Back_User.RefreshUserBroadcastReceiver;
 import goofy2.swably.fragment.AppAboutFragment;
 import goofy2.swably.fragment.AppCommentsFragment;
 import goofy2.swably.fragment.UserLikedAppsFragment;

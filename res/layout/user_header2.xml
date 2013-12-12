@@ -8,7 +8,7 @@
 	<ImageView
 	    android:id="@+id/imgBanner"
 	    android:layout_width="fill_parent"
-	    android:layout_height="162dp"
+	    android:layout_height="122dp"
 	    android:scaleType="matrix"
 	    />
 
@@ -43,6 +43,7 @@
 			android:textSize="20sp"
 			android:layout_below="@id/avatar"
 			android:layout_centerHorizontal="true"
+			android:visibility="gone"
 		/>
 		<TextView android:id="@+id/txtReviewsCount" 
 			style="@style/name"
@@ -59,4 +60,63 @@
 		    android:visibility="gone"
 		    />
 	</RelativeLayout>
+	<LinearLayout android:id="@+id/viewUploadees"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="@dimen/padding"
+	    android:orientation="horizontal"
+	    android:gravity="center_vertical"
+	    android:background="@drawable/row"
+	    android:layout_below="@id/imgBanner" 
+	    android:clickable="true"
+	    >
+		<ImageView
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginRight="10dp"
+			android:tag="uploadee1"
+			android:src="@drawable/noimage"
+			android:visibility="gone"
+		/>
+		<ImageView
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginRight="10dp"
+			android:tag="uploadee2"
+			android:src="@drawable/noimage"
+			android:visibility="gone"
+		/>
+		<ImageView
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginRight="10dp"
+			android:tag="uploadee3"
+			android:src="@drawable/noimage"
+			android:visibility="gone"
+		/>
+		<ImageView
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginRight="10dp"
+			android:tag="uploadee4"
+			android:src="@drawable/noimage"
+			android:visibility="gone"
+		/>
+		<ImageView
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginRight="10dp"
+			android:tag="uploadee5"
+			android:src="@drawable/noimage"
+			android:visibility="gone"
+		/>
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/recent_uploadees"
+		    android:textColor="@color/content"
+		    android:textSize="12sp"
+		    />
+	</LinearLayout>
+	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/viewUploadees"/>
 </RelativeLayout>

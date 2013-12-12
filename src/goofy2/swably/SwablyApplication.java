@@ -23,9 +23,8 @@ public class SwablyApplication extends Application {
 
 	protected String getMainHost(final Context context){
 		String result = Utils.getPrefString(context, "main_host", Const.DEFAULT_MAIN_HOST);
+//		result = "172.24.1.100:3000";
 		return result;
-//		return "172.24.1.101:3000";
-//		return "198.23.74.114";
 	}
 	
 	public String getUploadHttpPrefix(Context context){
@@ -34,10 +33,8 @@ public class SwablyApplication extends Application {
 
 	protected String getUploadHost(final Context context){
 		String result = Utils.getPrefString(context, "upload_host", Const.DEFAULT_UPLOAD_HOST);
+//		result = "172.24.1.100:3000";
 		return result;
-//		return "172.24.1.101:3000";
-//		return "new.swably.com";
-//		return "198.23.74.114";
 	}
 
 }

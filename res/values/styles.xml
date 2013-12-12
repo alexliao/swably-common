@@ -155,8 +155,14 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textSize">16sp</item>
 		<item name="android:textColor">@color/name</item>
-	</style>
-	<style name="content">
+    </style>
+	<style name="name.shadow">
+		<item name="android:shadowColor">#a0000000</item>
+		<item name="android:shadowDx">1</item>
+		<item name="android:shadowDy">1</item>
+		<item name="android:shadowRadius">1</item>
+    </style>
+		<style name="content">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textSize">16sp</item>

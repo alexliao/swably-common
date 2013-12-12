@@ -3,7 +3,7 @@ package goofy2.swably;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import goofy2.swably.fragment.User.RefreshUserBroadcastReceiver;
+import goofy2.swably.fragment.Back_User.RefreshUserBroadcastReceiver;
 import goofy2.swably.fragment.UserReviewsFragment;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
@@ -56,8 +56,8 @@ public class User extends WithHeaderActivity {
     }
 
     public void bind() {
-//		TextView tv = (TextView)findViewById(R.id.txtTitle);
-//		tv.setText(header.getUser().optString("name"));
+		TextView tv = (TextView)findViewById(R.id.txtTitle);
+		tv.setText(header.getUser().optString("name"));
     }
 
     @Override

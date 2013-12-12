@@ -243,4 +243,9 @@
     <string name="link_copied">Link copied to clipboard</string>
     <string name="action_settings">Settings</string>
 
+    <string name="uploaders">Uploaders</string>
+    <string name="recent_uploaders">Recent uploaders</string>
+    <string name="uploadees">Uploaded Apps</string>
+    <string name="recent_uploadees">Recent uploaded apps</string>
+    
 </resources>

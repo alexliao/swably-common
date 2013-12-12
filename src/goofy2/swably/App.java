@@ -18,7 +18,7 @@ import android.widget.TextView;
 import goofy2.swably.fragment.AppAboutFragment;
 import goofy2.swably.fragment.AppCommentsFragment;
 import goofy2.swably.fragment.UserReviewsFragment;
-import goofy2.swably.fragment.App.RefreshAppBroadcastReceiver;
+import goofy2.swably.fragment.Back_App.RefreshAppBroadcastReceiver;
 
 public class App extends WithHeaderActivity
 	implements AppCommentsFragment.OnAboutListener 
@@ -111,8 +111,8 @@ public class App extends WithHeaderActivity
     }
 
     public void bind() {
-//		TextView tv = (TextView)findViewById(R.id.txtTitle);
-//		tv.setText(header.getApp().getName());
+		TextView tv = (TextView)findViewById(R.id.txtTitle);
+		tv.setText(header.getApp().getName());
     	actionHelper.bind();
 	}
 

@@ -3,7 +3,7 @@ package goofy2.swably;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import goofy2.swably.fragment.User.RefreshUserBroadcastReceiver;
+import goofy2.swably.fragment.Back_User.RefreshUserBroadcastReceiver;
 import goofy2.swably.fragment.UserFollowingFragment;
 import goofy2.swably.fragment.UserLikedAppsFragment;
 import goofy2.swably.fragment.UserReviewsFragment;

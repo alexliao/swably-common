@@ -1,9 +1,11 @@
 package goofy2.swably.fragment;
 
+import goofy2.swably.AppAbout;
 import goofy2.swably.AppActionHelper;
 import goofy2.swably.AppHeader;
 import goofy2.swably.AppHelper;
 import goofy2.swably.AppProfile;
+import goofy2.swably.AppUploaders;
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.CommentsAdapter;
 import goofy2.swably.Const;
@@ -17,6 +19,7 @@ import goofy2.swably.R.string;
 import goofy2.swably.SnsFriendsFragment.OnInviteListener;
 import goofy2.swably.data.App;
 import goofy2.swably.fragment.AppAboutFragment.RefreshAppBroadcastReceiver;
+import goofy2.utils.AsyncImageLoader;
 import goofy2.utils.JSONUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -25,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -62,6 +67,7 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -75,6 +81,7 @@ public class AppCommentsFragment extends CloudCommentsFragment {
 //	protected HoverBar hoverBar = new HoverBar();
 	protected RefreshAppBroadcastReceiver mRefreshAppReceiver = new RefreshAppBroadcastReceiver();
 	protected AppActionHelper actionHelper;  
+	ExecutorService mLoadImageThreadPool = Executors.newFixedThreadPool(3); // 3 is the count of recent uploaders
 	
     // Container Activity must implement this interface
     public interface OnAboutListener {
@@ -129,6 +136,33 @@ public class AppCommentsFragment extends CloudCommentsFragment {
     protected void bind(View v){
     	if(v == null) return; 
 		header.bindAppHeader(v);
+		
+		View viewUploaders = v.findViewById(R.id.viewUploaders);
+		viewUploaders.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(a(), AppUploaders.class).putExtra(Const.KEY_APP, header.getApp().getJSON().toString()));
+			}
+		});
+		
+		JSONArray uploaders = header.getApp().getJSON().optJSONArray("recent_uploaders");
+		if(uploaders != null){
+			for(int i=0; i<uploaders.length(); i++){
+				JSONObject user = uploaders.optJSONObject(i);
+//				Log.d("", "uploader: " + "uploader"+(i+1));
+				ImageView iv = (ImageView) v.findViewWithTag("uploader"+(i+1));
+				if(iv != null){
+//					Log.d("", "uploader tag: " + iv.getTag());
+					iv.setVisibility(View.VISIBLE);
+					if(!user.isNull("avatar_mask")){
+						String mask = user.optString("avatar_mask", "");
+						String url = mask.replace("[size]", "sq");
+	//					iv.setImageResource(R.drawable.noname);
+						new AsyncImageLoader(a(), iv, 0).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+					}
+				}
+			}
+		}
 
 		TextView tv = (TextView) v.findViewById(R.id.txtEmpty);
 		tv.setText(String.format(getString(R.string.no_review_for_app), header.getApp().getName()));

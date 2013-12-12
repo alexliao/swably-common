@@ -13,7 +13,7 @@ import goofy2.swably.R.id;
 import goofy2.swably.R.layout;
 import goofy2.swably.R.string;
 import goofy2.swably.data.App;
-import goofy2.swably.fragment.App.RefreshAppBroadcastReceiver;
+import goofy2.swably.fragment.Back_App.RefreshAppBroadcastReceiver;
 import goofy2.utils.AsyncImageLoader;
 import goofy2.utils.JSONUtils;
 

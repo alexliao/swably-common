@@ -67,7 +67,7 @@
 		/>
 	</RelativeLayout>	
 	<ImageView android:id="@+id/btnTriangle" style="@style/btnTriangle" android:layout_alignBottom="@id/row" />
-	<LinearLayout android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
 	<FrameLayout android:id="@+id/inplacePanel" style="@style/inplacePanel" android:layout_below="@id/row" >
 		<include layout="@layout/comment_inplace_actions" />
 	</FrameLayout>
