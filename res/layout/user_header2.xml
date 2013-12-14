@@ -9,7 +9,7 @@
 	    android:id="@+id/imgBanner"
 	    android:layout_width="fill_parent"
 	    android:layout_height="122dp"
-	    android:scaleType="matrix"
+	    android:scaleType="centerCrop"
 	    />
 
 	<RelativeLayout
