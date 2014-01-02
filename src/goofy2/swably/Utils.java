@@ -45,11 +45,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.nineoldandroids.animation.ObjectAnimator;
+
 import goofy2.swably.R;
 import goofy2.swably.data.App;
 import goofy2.swably.facebook.FacebookApp;
 import goofy2.utils.DownloadImage;
 import goofy2.utils.ParamRunnable;
+import goofy2.utils.ViewWrapper;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -81,6 +84,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -1529,5 +1533,33 @@ i = new Intent(context, DownloaderEx.class);
 		
 		return result;
 	}
+
+	public static void pullDown(Context context, View v){
+		(new ViewWrapper(v)).setHeight(LayoutParams.WRAP_CONTENT);
+		v.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		int targetHeight = v.getMeasuredHeight();
+		ObjectAnimator anim = ObjectAnimator.ofInt(new ViewWrapper(v), "Height", 0, targetHeight);
+		anim.setDuration(context.getResources().getInteger(R.integer.config_longAnimTime));
+		anim.start();
+	}
+
+	public static void pushUp(Context context, View v){
+		(new ViewWrapper(v)).setHeight(LayoutParams.WRAP_CONTENT);
+		v.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+		int currentHeight = v.getMeasuredHeight();
+		ObjectAnimator anim = ObjectAnimator.ofInt(new ViewWrapper(v), "Height", currentHeight, 0);
+		anim.setDuration(context.getResources().getInteger(R.integer.config_longAnimTime));
+		anim.start();
+	}
+
+    @SuppressLint("NewApi")
+	public final static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+        	if(Build.VERSION.SDK_INT < 8) return true;
+        	else return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
 
 }
