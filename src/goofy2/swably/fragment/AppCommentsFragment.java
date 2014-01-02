@@ -4,6 +4,7 @@ import goofy2.swably.AppAbout;
 import goofy2.swably.AppActionHelper;
 import goofy2.swably.AppHeader;
 import goofy2.swably.AppHelper;
+import goofy2.swably.AppHistory;
 import goofy2.swably.AppProfile;
 import goofy2.swably.AppUploaders;
 import goofy2.swably.CloudBaseAdapter;
@@ -141,7 +142,7 @@ public class AppCommentsFragment extends CloudCommentsFragment {
 		viewUploaders.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(a(), AppUploaders.class).putExtra(Const.KEY_APP, header.getApp().getJSON().toString()));
+				startActivity(new Intent(a(), AppHistory.class).putExtra(Const.KEY_APP, header.getApp().getJSON().toString()));
 			}
 		});
 		

@@ -55,6 +55,7 @@ public class App {
 	public static final String IS_SHARED_BY_ME = "is_shared_by_me";
 	public static final String IS_LIKED = "is_liked";
 	public static final String REVIEWS_COUNT = "reviews_count";
+	private static final String UPLOADS_COUNT = "uploaders_count";
 	//public static final String IS_CLOUDED = "is_clouded";
 	// temperary status
 	public static final String STATUS = "status";
@@ -186,6 +187,9 @@ public class App {
 	}
 	public int getReviewsCount(){
 		return mJson.optInt(REVIEWS_COUNT, 0);
+	}
+	public int getUploadsCount(){
+		return mJson.optInt(UPLOADS_COUNT, 0);
 	}
 
 	public App(){

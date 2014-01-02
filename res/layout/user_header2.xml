@@ -38,7 +38,7 @@
 			android:layout_marginBottom="10dp"
 		/>
 		<TextView android:id="@+id/txtUsername" 
-			style="@style/name"
+			style="@style/name.shadow"
 			android:textColor="@color/title"
 			android:textSize="20sp"
 			android:layout_below="@id/avatar"
@@ -46,7 +46,7 @@
 			android:visibility="gone"
 		/>
 		<TextView android:id="@+id/txtReviewsCount" 
-			style="@style/name"
+			style="@style/name.shadow"
 			android:textColor="@color/title"
 			android:textSize="20sp"
 			android:layout_below="@id/txtUsername"

@@ -63,8 +63,9 @@
     <string name="app_size">Size %.2fMB</string>
     <string name="app_size_short">%.2fMB</string>
     <string name="app_updated_on">updated on %s</string>
-    <string name="reviews_count">Posts: %d</string>
+    <string name="reviews_count">%d Posts</string>
     <string name="likes_count">%d likes</string>
+    <string name="uploads_count">%d Uploads</string>
     <string name="not_in_cloud">%s is not posted on Swably yet. Upload it to review, now?</string>
     <string name="terms_short">Please do NOT upload PAID apps unless you are the developer.</string>
     <string name="uploading_queued">Waiting for uploading...</string>
@@ -247,5 +248,10 @@
     <string name="recent_uploaders">Recent uploaders</string>
     <string name="uploadees">Uploaded Apps</string>
     <string name="recent_uploadees">Recent uploaded apps</string>
+    <string name="upload_history">Upload History</string>
+    
+    <string name="submit_email">Submit email to activate notifications</string>
+   	<string name="err_invalid_email">It is not a valid Email address</string>
+    
     
 </resources>
