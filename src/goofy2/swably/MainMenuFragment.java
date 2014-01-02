@@ -94,7 +94,7 @@ public class MainMenuFragment extends CloudFragment {
 			public void onClick(View arg0) {
 //				ca().showAbove();
 				if(Utils.getCurrentUser(a()) == null){
-					startActivity(new Intent(a(), Start.class));
+					startActivity(new Intent(a(), Const.START_ACTIVITY));
 				}else{
 					if(!(a() instanceof Me)) ca().openMe();
 					else ca().showAbove();

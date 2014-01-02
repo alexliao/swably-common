@@ -116,9 +116,9 @@ public class CloudActivity extends goofy2.utils.SlidingFragmentActivity {
 	public static Typeface FONT_ROBOTO_LIGHT;
 //	protected Typeface FONT_ROBOTO_THIN;
 	public Typeface mHeaderFont = Typeface.DEFAULT;
-	protected Typeface mBoldFont = Typeface.DEFAULT_BOLD;
-	protected Typeface mNormalFont = Typeface.DEFAULT;
-	protected Typeface mLightFont = Typeface.DEFAULT;
+	public Typeface mBoldFont = Typeface.DEFAULT_BOLD;
+	public Typeface mNormalFont = Typeface.DEFAULT;
+	public Typeface mLightFont = Typeface.DEFAULT;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -203,7 +203,7 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
 		if(Utils.getCurrentUser(this) == null){
 			if(finish) finish();
 //			startActivityForResult(new Intent(this, Signup.class), 0);
-			Intent i = new Intent(this, Start.class);
+			Intent i = new Intent(this, Const.START_ACTIVITY);
 			i.setData(data);
 			startActivity(i);
 			ret = true;

@@ -51,7 +51,7 @@ public class Settings extends WithHeaderActivity {
 			btnSignout.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					startActivity(new Intent(Settings.this, Start.class));
+					startActivity(new Intent(Settings.this, Const.START_ACTIVITY));
 				}
 			});
 		}else{

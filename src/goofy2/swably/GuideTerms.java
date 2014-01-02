@@ -51,7 +51,7 @@ public class GuideTerms extends CloudActivity {
 			public void onClick(View arg0) {
 //				startActivity(new Intent(GuideTerms.this, Start.class));
 		        Utils.setPrefString(GuideTerms.this, "terms_accepted", "true");
-				startActivity(new Intent(GuideTerms.this, Start.class));
+				startActivity(new Intent(GuideTerms.this, Const.START_ACTIVITY));
 				finish();
 			}
         });

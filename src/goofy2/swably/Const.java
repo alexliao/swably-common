@@ -87,4 +87,5 @@ public class Const {
 	
 	public static Class SHARE_PRIVATE_ACTIVITY = SharePrivateActivity.class;
 	public static Class SHARE_PUBLIC_ACTIVITY = SharePublicActivity.class;
+	public static Class START_ACTIVITY = Start.class;
 }
