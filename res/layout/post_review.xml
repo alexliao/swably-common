@@ -103,7 +103,7 @@
 			<CheckBox android:id="@+id/chkSync"
 				style="@style/content"
 				android:textColor="@color/header"
-				android:button="@drawable/check_sync" 
+				android:button="@drawable/check_sync_twitter" 
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="10dp"

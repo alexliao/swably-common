@@ -165,7 +165,7 @@ public class StartBase extends WithHeaderActivity {
 //		finish();
 //    }
 
-    void signInWIth(String sns_id){
+    protected void signInWIth(String sns_id){
 		Intent i = new Intent(this, OAuthSignin.class);
 		i.setData(Uri.parse(sns_id));
 		startActivityForResult(i, REQUEST_CODE_OTHER);

@@ -1087,6 +1087,7 @@ Log.d("",Const.APP_NAME + " checkVersion: " + actionURL);
 		sns.put("icon", R.drawable.twitter);
 //		sns.put("icon_ontile", R.drawable.twitter_ontile);
 		sns.put("sync_prompt", "Post it on Twitter");
+		sns.put("check_sync", R.drawable.check_sync_twitter);
 		sns.put("url", "http://twitter.com/%s");
 		map.put("twitter", sns);
 //
@@ -1095,9 +1096,19 @@ Log.d("",Const.APP_NAME + " checkVersion: " + actionURL);
 		sns.put("icon", R.drawable.sina);
 //		sns.put("icon_ontile", R.drawable.sina_ontile);
 		sns.put("sync_prompt", "同步到新浪微博");
+		sns.put("check_sync", R.drawable.check_sync_sina);
 		sns.put("url", "http://weibo.com/u/%s");
 		map.put("sina", sns);
 //		
+		sns = new HashMap<String, Object>();
+		sns.put("name", "腾讯微博");
+		sns.put("icon", R.drawable.qq);
+//		sns.put("icon_ontile", R.drawable.sina_ontile);
+		sns.put("sync_prompt", "同步到腾讯微博");
+		sns.put("check_sync", R.drawable.check_sync_qq);
+		sns.put("url", "http://t.qq.com/%s");
+		map.put("qq", sns);
+
 		return map.get(id).get(key);
     }
 

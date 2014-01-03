@@ -112,6 +112,8 @@ public class PostReview extends WithHeaderActivity {
 //			txtSync.setText(prompt);
     		chkSync.setText(prompt);
     		chkSync.setTypeface(mLightFont);
+    		chkSync.setButtonDrawable((Integer)Utils.getSnsResource(mSnsId, "check_sync"));
+    		
     		chkSync.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v) {
