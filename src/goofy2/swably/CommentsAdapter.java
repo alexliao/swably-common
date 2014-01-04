@@ -202,9 +202,18 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			tv.setText(time);
 			tv.setTypeface(context.mLightFont);
 			
-			iv = holder.imgHasImage;
-			if(review.optString("image", null) == null) iv.setVisibility(View.GONE);
-			else iv.setVisibility(View.VISIBLE); 
+//			iv = holder.imgHasImage;
+			iv = holder.imgScreenshot;
+			if(review.optString("image", null) == null){
+				iv.setVisibility(View.GONE);
+			}else{ 
+				iv.setVisibility(View.VISIBLE);
+				String url = review.optString("thumbnail");
+				iv.setImageResource(R.drawable.noimage);
+				new AsyncImageLoader(mContext, iv, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+			}
+
+
 			
 			if(hideApp || app.getJSON() == null){
 //				viewApp.setVisibility(View.GONE);
@@ -225,6 +234,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 					iv.setImageResource(R.drawable.noimage);
 					new AsyncImageLoader(mContext, iv, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
 				}
+
 				tv = holder.txtAppName;
 				tv.setVisibility(View.VISIBLE);
 				tv.setText(app.getName());
@@ -263,6 +273,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		holder.imgHasImage = (ImageView) convertView.findViewById(R.id.imgHasImage);
 		holder.txtTime = (TextView) convertView.findViewById(R.id.txtTime);
 		holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+		holder.imgScreenshot = (ImageView) convertView.findViewById(R.id.imgScreenshot);
 		holder.txtAppName = (TextView) convertView.findViewById(R.id.txtAppName);
 
 		holder.btnTriangle = convertView.findViewById(R.id.btnTriangle);
@@ -285,6 +296,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		TextView txtTime;
 		ImageView imgHasImage;
 		ImageView icon;
+		ImageView imgScreenshot;
 		TextView txtAppName;
 		View btnTriangle;
 		View inplacePanel;
