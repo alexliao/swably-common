@@ -1481,11 +1481,11 @@ i = new Intent(context, DownloaderEx.class);
 	}
 
 	static public String genReviewUrl(JSONObject review){
-    	return "http://" + Const.DEFAULT_MAIN_HOST+"/r/"+review.optString("id");
+    	return "http://" + Const.DEFAULT_MAIN_HOST+"/r/"+review.optString("id")+"?r=share";
 	}
 	
 	static public String genAppUrl(App app){
-		return "http://" + Const.DEFAULT_MAIN_HOST + "/a/" + app.getCloudId();
+		return "http://" + Const.DEFAULT_MAIN_HOST + "/a/" + app.getCloudId()+"?r=share";
 	}
 
 	static public String genReviewShareText(JSONObject review){

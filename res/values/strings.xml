@@ -233,14 +233,21 @@
     <string name="share_no_app_x">You don\'t have %s installed</string>
     <string name="share_title">Share to</string>
     <string name="share_link">Link</string>
+    <string name="share_link_id">link</string>
     <string name="share_private">Private</string>
     <string name="share_private1">Facebook</string>
     <string name="share_private2">WhatsApp</string>
     <string name="share_private3">Gmail</string>
+    <string name="share_private1_id">fmsgr</string>
+    <string name="share_private2_id">whatsapp</string>
+    <string name="share_private3_id">gmail</string>
     <string name="share_public">Public</string>
     <string name="share_public1">Google+</string>
     <string name="share_public2">Facebook</string>
     <string name="share_public3">Twitter</string>
+    <string name="share_public1_id">plus</string>
+    <string name="share_public2_id">facebook</string>
+    <string name="share_public3_id">twitter</string>
     <string name="link_copied">Link copied to clipboard</string>
     <string name="action_settings">Settings</string>
 

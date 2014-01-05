@@ -1,5 +1,9 @@
 package goofy2.swably;
 
+import java.net.URLEncoder;
+
+import com.google.analytics.tracking.android.MapBuilder;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ShareActivity extends Activity {
+public class ShareActivity extends TrackActivity {
 	protected Button btnPrivate, btnPublic, btnLink;
 	
 	@Override
@@ -40,6 +44,7 @@ public class ShareActivity extends Activity {
 				i.putExtra(Const.KEY_APP, getIntent().getStringExtra(Const.KEY_APP));
 				startActivity(i);
 				finish();
+				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_private), null).build());
 			}
 		});
 
@@ -54,6 +59,7 @@ public class ShareActivity extends Activity {
 				i.putExtra(Const.KEY_APP, getIntent().getStringExtra(Const.KEY_APP));
 				startActivity(i);
 				finish();
+				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_public), null).build());
 			}
 		});
 
@@ -62,9 +68,10 @@ public class ShareActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-				cbm.setText(getIntent().getStringExtra(Const.KEY_TEXT));		
+				cbm.setText(getIntent().getStringExtra(Const.KEY_TEXT).replace("?r=share", "?r="+getString(R.string.share_link_id)));		
 				Utils.showToast(ShareActivity.this, getString(R.string.link_copied));
 				finish();
+				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_link), null).build());
 			}
 		});
 	

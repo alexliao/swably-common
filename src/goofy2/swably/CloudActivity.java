@@ -97,6 +97,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Tracker;
+
 public class CloudActivity extends goofy2.utils.SlidingFragmentActivity {
 	public static final String UPDATE = "goofy2.swably.CloudActivity.UPDATE";
 	public static final String FOLLOWED = "goofy2.swably.CloudActivity.FOLLOWED";
@@ -120,6 +123,8 @@ public class CloudActivity extends goofy2.utils.SlidingFragmentActivity {
 	public Typeface mNormalFont = Typeface.DEFAULT;
 	public Typeface mLightFont = Typeface.DEFAULT;
 
+	public EasyTracker tracker;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,6 +162,8 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
     	setBehindContentView(menuFrame);
 		getSlidingMenu().setBehindOffsetRes(R.dimen.actionbar_home_width);
 		getSlidingMenu().setBehindScrollScale(0.5f);
+		
+		tracker = EasyTracker.getInstance(this);
     }
     
 	public void onPostCreate(Bundle savedInstanceState) {
@@ -190,6 +197,14 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
     public void onStart(){
     	super.onStart();
 //        navbar.init(this);
+    	tracker.activityStart(this);
+    }
+
+    @Override
+    public void onStop(){
+    	super.onStop();
+//        navbar.init(this);
+    	tracker.activityStop(this);
     }
 
     public boolean redirectAnonymous(){

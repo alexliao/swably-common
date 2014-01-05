@@ -6,6 +6,8 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.analytics.tracking.android.MapBuilder;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
@@ -16,7 +18,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SharePublicActivity extends Activity {
+public class SharePublicActivity extends TrackActivity {
 	protected Button btnPublic1, btnPublic2, btnPublic3;
 	
 	@Override
@@ -43,8 +45,9 @@ public class SharePublicActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, getString(R.string.share_package_public1), getString(R.string.share_public1));
+				Utils.shareTo(SharePublicActivity.this, shareText.replace("?r=share", "?r="+getString(R.string.share_public1_id)), shareSubject, getString(R.string.share_package_public1), getString(R.string.share_public1));
 				finish();
+				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_public1), null).build());
 			}
 		});
 
@@ -53,8 +56,9 @@ public class SharePublicActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, getString(R.string.share_package_public2), getString(R.string.share_public2));
+				Utils.shareTo(SharePublicActivity.this, shareText.replace("?r=share", "?r="+getString(R.string.share_public2_id)), shareSubject, getString(R.string.share_package_public2), getString(R.string.share_public2));
 				finish();
+				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_public2), null).build());
 
 //				List<Intent> targetedShareIntents = new ArrayList<Intent>();
 //		        Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -90,8 +94,9 @@ public class SharePublicActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePublicActivity.this, shareText, shareSubject, getString(R.string.share_package_public3), getString(R.string.share_public3));
+				Utils.shareTo(SharePublicActivity.this, shareText.replace("?r=share", "?r="+getString(R.string.share_public3_id)), shareSubject, getString(R.string.share_package_public3), getString(R.string.share_public3));
 				finish();
+				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_public3), null).build());
 			}
 		});
 

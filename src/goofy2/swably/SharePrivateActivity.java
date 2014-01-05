@@ -3,6 +3,8 @@ package goofy2.swably;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.analytics.tracking.android.MapBuilder;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +12,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SharePrivateActivity extends Activity {
+public class SharePrivateActivity extends TrackActivity {
 	protected Button btnPrivate1, btnPrivate2, btnPrivate3;
 	
 	@Override
@@ -37,8 +39,9 @@ public class SharePrivateActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, getString(R.string.share_package_private1), getString(R.string.share_private1));
+				Utils.shareTo(SharePrivateActivity.this, shareText.replace("?r=share", "?r="+getString(R.string.share_private1_id)), shareSubject, getString(R.string.share_package_private1), getString(R.string.share_private1));
 				finish();
+				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_private1), null).build());
 			}
 		});
 
@@ -47,8 +50,9 @@ public class SharePrivateActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, getString(R.string.share_package_private2), getString(R.string.share_private2));
+				Utils.shareTo(SharePrivateActivity.this, shareText.replace("?r=share", "?r="+getString(R.string.share_private2_id)), shareSubject, getString(R.string.share_package_private2), getString(R.string.share_private2));
 				finish();
+				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_private2), null).build());
 			}
 		});
 	
@@ -56,8 +60,9 @@ public class SharePrivateActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Utils.shareTo(SharePrivateActivity.this, shareText, shareSubject, getString(R.string.share_package_private3), getString(R.string.share_private3));
+				Utils.shareTo(SharePrivateActivity.this, shareText.replace("?r=share", "?r="+getString(R.string.share_private3_id)), shareSubject, getString(R.string.share_package_private3), getString(R.string.share_private3));
 				finish();
+				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_private3), null).build());
 			}
 		});
 
