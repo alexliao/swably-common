@@ -209,7 +209,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			}else{ 
 				iv.setVisibility(View.VISIBLE);
 				String url = review.optString("thumbnail");
-				iv.setImageResource(R.drawable.noimage);
+				iv.setImageResource(R.drawable.tweetpic_placeholder);
 				new AsyncImageLoader(mContext, iv, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
 			}
 
