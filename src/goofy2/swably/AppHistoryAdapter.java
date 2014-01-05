@@ -63,10 +63,19 @@ public class AppHistoryAdapter extends CloudBaseAdapter {
 				iv.setImageResource(R.drawable.noname);
 				new AsyncImageLoader(mContext, iv, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
 			}
-			str = user.optString("name");
-			tv.setText(str);
-			tv.setTypeface(context.mNormalFont);
 
+//			str = user.optString("name");
+//			tv.setText(str);
+//			tv.setTypeface(context.mNormalFont);
+
+			str = user.optString("version_name");
+			tv = holder.txtVersionName;
+			tv.setText("");
+			if(str != null){
+				tv.setText(str);
+				tv.setTypeface(context.mNormalFont);
+			}
+			
 			double dTime = user.getDouble("uploaded_at");
 			String time = Utils.formatTimeDistance(context, new Date((long) (dTime*1000)));
 			tv = holder.txtTime;
@@ -90,71 +99,21 @@ public class AppHistoryAdapter extends CloudBaseAdapter {
 		ViewHolder holder = new ViewHolder();
 		holder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
 		holder.txtUserName = (TextView) convertView.findViewById(R.id.txtUserName);
-		holder.txtContent = (TextView) convertView.findViewById(R.id.txtContent);
-		holder.imgHasImage = (ImageView) convertView.findViewById(R.id.imgHasImage);
+		holder.txtVersionName = (TextView) convertView.findViewById(R.id.txtVersionName);
 		holder.txtTime = (TextView) convertView.findViewById(R.id.txtTime);
 		holder.icon = (ImageView) convertView.findViewById(R.id.icon);
 		holder.txtAppName = (TextView) convertView.findViewById(R.id.txtAppName);
 
-		holder.btnTriangle = convertView.findViewById(R.id.btnTriangle);
-		holder.inplacePanel = convertView.findViewById(R.id.inplacePanel);
-		holder.btnReply = convertView.findViewById(R.id.btnReply);
-		holder.btnShareReview = convertView.findViewById(R.id.btnShareReview);
-		holder.btnDownload = convertView.findViewById(R.id.btnDownload);
-		holder.btnUpload = convertView.findViewById(R.id.btnUpload);
-		holder.btnPlay = convertView.findViewById(R.id.btnPlay);
-		holder.btnInstall = convertView.findViewById(R.id.btnInstall);
 		return holder;
 	}
 	
-	static class ViewHolder	implements ReviewActionHelper.ViewHolder, AppTribtn.ViewHolder, CloudInplaceActionsAdapter.ViewHolder {
+	static class ViewHolder	{
 		ImageView avatar;
 		TextView txtUserName;
-		TextView txtContent;
+		TextView txtVersionName;
 		TextView txtTime;
-		ImageView imgHasImage;
 		ImageView icon;
 		TextView txtAppName;
-		View btnTriangle;
-		View inplacePanel;
-		View btnReply;
-		View btnShareReview;
-		View btnDownload;
-		View btnUpload;
-		View btnPlay;
-		View btnInstall;
-		@Override
-		public View getBtnDownload() {
-			return btnDownload;
-		}
-		@Override
-		public View getBtnUpload() {
-			return btnUpload;
-		}
-		@Override
-		public View getBtnPlay() {
-			return btnPlay;
-		}
-		@Override
-		public View getBtnInstall() {
-			return btnInstall;
-		}
-		@Override
-		public View getBtnTriangle() {
-			return btnTriangle;
-		}
-		@Override
-		public View getInplacePanel() {
-			return inplacePanel;
-		}
-		@Override
-		public View getBtnReply() {
-			return btnReply;
-		}
-		@Override
-		public View getBtnShareReview() {
-			return btnShareReview;
-		}
 	}
 	
 }
