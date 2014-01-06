@@ -155,10 +155,12 @@ public class AppsAdapter extends CloudInplaceActionsAdapter {
 			tv = holder.txtReviewsCount;
 			tv.setTypeface(mContext.mLightFont);
 			int c = app.getReviewsCount();
-			if(c > 0)
+			if(c > 0){
+				tv.setVisibility(View.VISIBLE);
 				tv.setText(""+c);
-			else
-				tv.setText("");
+			}else{
+				tv.setVisibility(View.GONE);
+			}
 			
 //			View ib = view.findViewById(R.id.btnCancel);
 //			ib.setOnClickListener(new View.OnClickListener(){
