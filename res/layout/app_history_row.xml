@@ -18,21 +18,15 @@
 			android:clickable="true"
 		/>
 		<TextView android:id="@+id/txtVersionName" 
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content" 
+			style="@style/content"
 			android:layout_marginRight="10dp"
-			android:textColor="#5c5c5c"
-			android:textSize="18dp"
 			android:layout_centerHorizontal="true"
 			android:layout_centerVertical="true"
 		/>
 		<TextView android:id="@+id/txtTime" 
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content" 
+			style="@style/content"
 			android:layout_alignParentRight="true"
 			android:layout_marginRight="10dp"
-			android:textColor="#5c5c5c"
-			android:textSize="18dp"
 			android:layout_centerVertical="true"
 		/>
 	</RelativeLayout>	

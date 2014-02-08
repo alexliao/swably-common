@@ -125,6 +125,7 @@ public class UploaderEx extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
     	int ret = super.onStartCommand(intent, flags, startId); 
+    	if(intent == null) return ret; // sometimes intent is null, cause FC;
 //		String strApp = intent.getStringExtra(Const.KEY_APP);
 		String packageName = intent.getDataString();
 		final App app = new AppHelper(this).getApp(packageName);

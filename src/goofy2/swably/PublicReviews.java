@@ -46,6 +46,13 @@ public class PublicReviews extends PeopleReviews {
 		tv.setTypeface(mNormalFont);
 		
 		viewEmail = findViewById(R.id.viewEmail);
+		View btnCloseEmail = findViewById(R.id.btnCloseEmail);
+		btnCloseEmail.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Utils.pushUp(PublicReviews.this, viewEmail);
+			}
+		});
 		if(Utils.getCurrentUser(this) != null && Utils.isEmpty(Utils.getCurrentUser(this).optString("email"))){
 			viewEmail.setVisibility(View.VISIBLE);
 			View btnSubmitEmail = findViewById(R.id.btnSubmitEmail);

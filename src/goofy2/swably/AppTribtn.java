@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class AppTribtn {
-	protected Activity mActivity;
+	protected CloudActivity mActivity;
 	protected App mApp;
 	protected View btnDownload;
 	protected View btnUpload;
@@ -92,11 +92,11 @@ public class AppTribtn {
 //		});
 //	}
 
-	public void init(final Activity activity, View container, App app){
+	public void init(final CloudActivity activity, View container, App app){
 		init(activity, container, app, null);
 	}
 
-	public void init(final Activity activity, View container, App app, final Runnable callback){
+	public void init(final CloudActivity activity, View container, App app, final Runnable callback){
 		mActivity = activity;
 		mApp = app;
 		ViewHolder holder = (ViewHolder) container.getTag();
@@ -129,6 +129,7 @@ public class AppTribtn {
 		btnUpload.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
+		        if(mActivity.redirectAnonymous(false)) return;
 //				Intent i = new Intent(mActivity, OpenLocalApp.class);
 //				i.putExtra(Const.KEY_APP, app.getJSON().toString());
 //				mActivity.startActivity(i);

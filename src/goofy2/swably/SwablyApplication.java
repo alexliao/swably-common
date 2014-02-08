@@ -25,6 +25,7 @@ public class SwablyApplication extends Application {
 		String result = Utils.getPrefString(context, "main_host", Const.DEFAULT_MAIN_HOST);
 //		result = "172.24.1.100:3000";
 //		result = "zh.swably.com:3000";
+//		result = "117.121.10.138";
 		return result;
 	}
 	
@@ -35,6 +36,7 @@ public class SwablyApplication extends Application {
 	protected String getUploadHost(final Context context){
 		String result = Utils.getPrefString(context, "upload_host", Const.DEFAULT_UPLOAD_HOST);
 //		result = "172.24.1.100:3000";
+//		result = "117.121.10.138";
 		return result;
 	}
 
