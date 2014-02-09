@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<style name="defaultActivity" parent="android:style/Theme.Holo" mce_bogus="1">          
+	<style name="defaultActivity" parent="android:style/Theme.Holo.Light" mce_bogus="1">          
 		<item name="android:windowAnimationStyle">@style/defaultAnim</item>         
         <item name="android:windowNoTitle">true</item>
 	</style>
@@ -9,12 +9,12 @@
 		<item name="android:windowAnimationStyle">@style/noAnim</item>         
 	</style>
 	
-	<style name="SelectLocalAppsActivity" parent="android:style/Theme.Holo" mce_bogus="1">          
+	<style name="SelectLocalAppsActivity" parent="android:style/Theme.Holo.Light" mce_bogus="1">          
 		<item name="android:windowAnimationStyle">@style/PickLocalAppsAnim</item>         
         <item name="android:windowNoTitle">true</item>
 	</style>
 
-	<style name="PickLocalAppsActivity" parent="android:style/Theme.Holo" mce_bogus="1">          
+	<style name="PickLocalAppsActivity" parent="android:style/Theme.Holo.Light" mce_bogus="1">          
 		<item name="android:windowAnimationStyle">@style/PickLocalAppsAnim</item>         
         <item name="android:windowNoTitle">true</item>
 	</style>
@@ -23,7 +23,7 @@
 		<item name="android:windowAnimationStyle">@style/fadeInOutAnim</item>         
 	</style>
 
-	<style name="defaultDialog" parent="android:style/Theme.Holo.Dialog" mce_bogus="1">          
+	<style name="defaultDialog" parent="android:style/Theme.Holo.Light.Dialog" mce_bogus="1">          
 		<item name="android:windowAnimationStyle">@style/fadeInOutAnim</item>         
 	</style>
 </resources>
