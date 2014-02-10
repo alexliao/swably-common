@@ -40,7 +40,6 @@
 				style="@style/desc"
 				android:textSize="18sp"
 				android:text="12"
-				android:drawableRight="@drawable/bubble"
 				android:drawablePadding="3dp"
 				android:layout_marginLeft="3dp"
 			/>

@@ -250,6 +250,13 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 //					
 //				});
 			}
+			
+			if(app.getJSON() == null){
+				holder.imgQuestion.setVisibility(View.VISIBLE);
+			}else{
+				holder.imgQuestion.setVisibility(View.GONE);
+			}
+			
 		} catch (Exception e) {
 			Log.d(Const.APP_NAME, Const.APP_NAME + " CommentsAdapter - bind err: " + e.getMessage());
 		}
@@ -275,6 +282,8 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		holder.icon = (ImageView) convertView.findViewById(R.id.icon);
 		holder.imgScreenshot = (ImageView) convertView.findViewById(R.id.imgScreenshot);
 		holder.txtAppName = (TextView) convertView.findViewById(R.id.txtAppName);
+		holder.imgQuestion = (ImageView) convertView.findViewById(R.id.imgQuestion);
+		holder.viewAppBtn = convertView.findViewById(R.id.viewAppBtn);
 
 		holder.btnTriangle = convertView.findViewById(R.id.btnTriangle);
 		holder.inplacePanel = convertView.findViewById(R.id.inplacePanel);
@@ -297,6 +306,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		ImageView imgHasImage;
 		ImageView icon;
 		ImageView imgScreenshot;
+		ImageView imgQuestion;
 		TextView txtAppName;
 		View btnTriangle;
 		View inplacePanel;
@@ -308,6 +318,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		View btnUpload;
 		View btnPlay;
 		View btnInstall;
+		View viewAppBtn;
 		@Override
 		public View getBtnDownload() {
 			return btnDownload;
@@ -347,6 +358,10 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		@Override
 		public View getBtnShareReview() {
 			return btnShareReview;
+		}
+		@Override
+		public View getViewAppBtn() {
+			return viewAppBtn;
 		}
 	}
 	

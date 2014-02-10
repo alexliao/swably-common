@@ -1489,8 +1489,12 @@ i = new Intent(context, DownloaderEx.class);
 	}
 
 	static public String genReviewShareText(JSONObject review){
-    	App app = new App(review.optJSONObject("app"));
-    	return "#" + app.getName() + " " + review.optString("content") + " " + genReviewUrl(review) + " -- @"+review.optJSONObject("user").optString("screen_name");
+    	String ret = review.optString("content") + " " + genReviewUrl(review) + " -- @"+review.optJSONObject("user").optString("screen_name");
+    	if(review.optJSONObject("app") != null){
+    		App app = new App(review.optJSONObject("app"));
+    		ret = "#" + app.getName() + " " + ret;
+    	}
+    	return ret;
     }
 
     static public void shareTo(Context context, String text, String subject, String toPackageName, String title){
@@ -1510,8 +1514,12 @@ i = new Intent(context, DownloaderEx.class);
     static public void shareReview(Context context, JSONObject review) {
 		Intent i = new Intent(context, ShareActivity.class);
 		i.putExtra(Const.KEY_TEXT, Utils.genReviewShareText(review));
-    	App app = new App(review.optJSONObject("app"));
-		i.putExtra(Const.KEY_SUBJECT, app.getName());
+		if(review.optJSONObject("app") != null){
+			App app = new App(review.optJSONObject("app"));
+			i.putExtra(Const.KEY_SUBJECT, app.getName());
+		}else{
+			i.putExtra(Const.KEY_SUBJECT, context.getString(R.string.request_an_app));
+		}
 		i.putExtra(Const.KEY_REVIEW, review.toString());
 		context.startActivity(i);
 	}

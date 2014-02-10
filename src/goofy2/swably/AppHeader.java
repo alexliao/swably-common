@@ -155,11 +155,11 @@ public class AppHeader {
 //			tv.setTypeface(mActivity.mHeaderFont);
 //		}
 
-//		tv = (TextView)container.findViewById(R.id.txtAppName);
-//		if(tv != null){
-//			tv.setText(mApp.getName());
-//			tv.setTypeface(mActivity.mLightFont);
-//		}
+		tv = (TextView)container.findViewById(R.id.txtAppName);
+		if(tv != null){
+			tv.setText(mApp.getName());
+			tv.setTypeface(mActivity.mLightFont);
+		}
 
 		tv = (TextView)container.findViewById(R.id.txtReviewsCount);
 		if(tv != null){

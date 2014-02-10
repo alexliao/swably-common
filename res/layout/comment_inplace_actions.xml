@@ -12,7 +12,7 @@
 		<LinearLayout android:id="@+id/btnReply" style="@style/inplaceBtn" >
 			<ImageView android:src="@drawable/hover_reply" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
-		<include layout="@layout/app_tribtn4" />
+		<include android:id="@+id/viewAppBtn" layout="@layout/app_tribtn4" />
 		<LinearLayout android:id="@+id/btnShareReview" style="@style/inplaceBtn" >
 			<ImageView android:src="@drawable/hover_share" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>

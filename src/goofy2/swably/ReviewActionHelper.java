@@ -31,6 +31,7 @@ public class ReviewActionHelper {
 	public View btnLike;
 	public View btnUnlike;
 	public View btnShareReview;
+	public View viewAppBtn;
 	
 	
 	public ReviewActionHelper(final CloudActivity activity, JSONObject review){
@@ -111,6 +112,10 @@ public class ReviewActionHelper {
 				if(callback != null) callback.run();
 			}
         });
+
+		if(holder == null) viewAppBtn = container.findViewById(R.id.viewAppBtn);
+		else viewAppBtn = holder.getViewAppBtn();
+	
 	}
 
 	public void bind() {
@@ -123,6 +128,11 @@ public class ReviewActionHelper {
 //	    		btnUnlike.setVisibility(View.GONE);
 //	    	}
 //		}
+		if(mReview.optJSONObject("app") == null){
+			viewAppBtn.setVisibility(View.GONE);
+		}else{
+			viewAppBtn.setVisibility(View.VISIBLE);
+		}
 	}
 
 	static public interface ViewHolder{
@@ -130,5 +140,6 @@ public class ReviewActionHelper {
 //		View getBtnLike();
 //		View getBtnUnlike();
 		View getBtnShareReview();
+		View getViewAppBtn();
 	}
 }

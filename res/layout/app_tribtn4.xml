@@ -3,7 +3,7 @@
 	android:layout_height="fill_parent"
 	android:layout_weight="1"
 	>
-	<LinearLayout android:id="@+id/btnDownload" style="@style/inplaceBtn" >
+	<LinearLayout android:id="@+id/btnDownload" style="@style/inplaceBtn" android:visibility="gone" >
 		<ImageView android:id="@+id/imgDownload" android:src="@drawable/hover_download" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 	</LinearLayout>
 	<LinearLayout android:id="@+id/btnUpload" style="@style/inplaceBtn" android:visibility="gone" >

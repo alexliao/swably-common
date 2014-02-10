@@ -442,48 +442,47 @@ public class ReviewProfile extends WithHeaderActivity {
 					}
 					
 				});
-				
-				if(getInreplytoUser(mReview) != null) bindInreplyto();
-				
-				final ImageView imgThumbnail = (ImageView)findViewById(R.id.imgThumbnail);
-				final ImageView imgImage = (ImageView)findViewById(R.id.imgImage);
-				final View loadingImage = findViewById(R.id.loadingImage);
-				String imageUrl = mReview.optString("image", null);
-				if(imageUrl != null){
-					imgThumbnail.setVisibility(View.VISIBLE);
-					imgImage.setVisibility(View.VISIBLE);
-					loadingImage.setVisibility(View.VISIBLE);
+			}
+			if(getInreplytoUser(mReview) != null) bindInreplyto();
+			
+			final ImageView imgThumbnail = (ImageView)findViewById(R.id.imgThumbnail);
+			final ImageView imgImage = (ImageView)findViewById(R.id.imgImage);
+			final View loadingImage = findViewById(R.id.loadingImage);
+			String imageUrl = mReview.optString("image", null);
+			if(imageUrl != null){
+				imgThumbnail.setVisibility(View.VISIBLE);
+				imgImage.setVisibility(View.VISIBLE);
+				loadingImage.setVisibility(View.VISIBLE);
 
-					// disable thumbnail for now
+				// disable thumbnail for now
 //					String thumbnailUrl = mReview.optString("thumbnail", null);
 //					new AsyncImageLoader(this, imgThumbnail, 1, null).loadUrl(thumbnailUrl);
-					new AsyncImageLoader(this, imgImage, 1).setRequestSize(Const.SCREEN_WIDTH, Const.SCREEN_HEIGHT).setCallback(new Runnable(){
-						@Override
-						public void run() {
-							loadingImage.setVisibility(View.GONE);
-						}
-					})
-					.loadUrl(imageUrl);
+				new AsyncImageLoader(this, imgImage, 1).setRequestSize(Const.SCREEN_WIDTH, Const.SCREEN_HEIGHT).setCallback(new Runnable(){
+					@Override
+					public void run() {
+						loadingImage.setVisibility(View.GONE);
+					}
+				})
+				.loadUrl(imageUrl);
 
-					imgImage.setOnClickListener(new View.OnClickListener(){
-						@Override
-						public void onClick(View v) {
-							if(imgImage.getDrawable() != null){ // image saved
-								String imageUrl = mReview.optString("image", null);
-								Intent intent = new Intent("android.intent.action.VIEW");  
-							    intent.addCategory("android.intent.category.DEFAULT");  
-							    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
-							    Uri uri = Uri.fromFile(new File(Utils.getImageFileName(imageUrl)));  
-							    intent.setDataAndType(uri, "image/*");
-							    startActivity(intent);
-							}
+				imgImage.setOnClickListener(new View.OnClickListener(){
+					@Override
+					public void onClick(View v) {
+						if(imgImage.getDrawable() != null){ // image saved
+							String imageUrl = mReview.optString("image", null);
+							Intent intent = new Intent("android.intent.action.VIEW");  
+						    intent.addCategory("android.intent.category.DEFAULT");  
+						    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
+						    Uri uri = Uri.fromFile(new File(Utils.getImageFileName(imageUrl)));  
+						    intent.setDataAndType(uri, "image/*");
+						    startActivity(intent);
 						}
-					});
-				}else{
-					imgThumbnail.setVisibility(View.VISIBLE);
-					imgImage.setVisibility(View.GONE);
-					loadingImage.setVisibility(View.GONE);
-				}
+					}
+				});
+			}else{
+				imgThumbnail.setVisibility(View.VISIBLE);
+				imgImage.setVisibility(View.GONE);
+				loadingImage.setVisibility(View.GONE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

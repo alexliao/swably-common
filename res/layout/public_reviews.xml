@@ -26,10 +26,9 @@
             
 			<include android:id="@+id/loading"	layout="@layout/loading" /> 
             <ImageButton
-                android:id="@+id/btnOptionsMenu"
+                android:id="@+id/btnAdd"
                 style="@style/titleBtn"
-                android:src="@drawable/header_triangle"
-                android:visibility="gone" 
+                android:src="@drawable/add"
                 />
 			/>
         </LinearLayout>
@@ -97,12 +96,5 @@
 	        android:src="@drawable/cancel_email"
             />
 	</RelativeLayout>    
-
-	<ImageButton
-        android:id="@+id/btnAdd"
-        style="@style/addBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        />
 
 </goofy2.utils.RevealLayout>

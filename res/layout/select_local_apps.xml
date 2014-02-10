@@ -40,17 +40,30 @@
 	    android:background="#d4d4d4"
 	    />
 	
-	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" android:visibility="gone">
-	    <TextView android:id="@+id/btnRequest"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
+	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+		<LinearLayout android:id="@+id/btnRequest" 
+		    android:orientation="horizontal" 
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
 	        android:background="@drawable/action_row"
-	        android:text="@string/request_an_app"
-	        android:drawableLeft="@drawable/add"
-	        android:drawablePadding="@dimen/padding"
 	        android:clickable="true"
-	        style="@style/title"
+	        android:paddingLeft="@dimen/padding"
 	        android:gravity="center_vertical"
-	        />
+		    >
+		    <ImageView 
+		        android:layout_width="32dp"
+		        android:layout_height="32dp"
+		        android:src="@drawable/question"
+		        />
+		     <TextView 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:text="@string/request_an_app"
+		        style="@style/title"
+		        android:clickable="false"
+		        android:gravity="left"
+		        />
+		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

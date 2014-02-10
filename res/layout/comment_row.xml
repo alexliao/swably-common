@@ -48,20 +48,36 @@
 		    android:layout_marginTop="5dp"
 		    android:layout_marginBottom="5dp"
 		    />
-		<TextView android:id="@+id/txtContent" 
-			style="@style/content"
+		<LinearLayout android:id="@+id/viewContent"
+		    android:orientation="horizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
 			android:layout_marginRight="12dp"
 			android:layout_toRightOf="@id/avatar"
 			android:layout_below="@id/imgScreenshot"
 		    android:paddingBottom="5dp"
-		/>
+		    >
+			<TextView android:id="@+id/txtContent" 
+				style="@style/content"
+				android:layout_width="fill_parent"
+				android:layout_weight="1"
+			/>
+			<ImageView android:id="@+id/imgQuestion"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/question"
+			    android:layout_marginTop="3dp"
+			    android:layout_marginBottom="10dp"
+			    />
+		    		    
+		</LinearLayout>
 		<ImageView
 		    android:id="@+id/icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
 		    android:layout_marginRight="@dimen/padding"
 		    android:layout_toRightOf="@id/avatar"
-		    android:layout_below="@id/txtContent"
+		    android:layout_below="@id/viewContent"
 		    android:clickable="true"
 		    />
 	    <TextView android:id="@+id/txtAppName" 

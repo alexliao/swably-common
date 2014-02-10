@@ -36,18 +36,20 @@
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:background="@drawable/row"
+				android:gravity="center_vertical"
+				android:layout_marginBottom="@dimen/padding"
 				>
 				<ImageView android:id="@+id/icon"
-					android:src="@drawable/add"
+					android:src="@drawable/question"
 					style="@style/avatar"
 					android:layout_marginRight="@dimen/padding"
-					android:layout_marginBottom="@dimen/padding"
 				/>
 				<TextView android:id="@+id/txtAppName"
 					android:singleLine="true"
 					style="@style/name"
 					android:textColor="@color/header"
 					android:textSize="20sp"
+					android:text="@string/request_an_app"
 				/>
 			</LinearLayout>
 			<LinearLayout 

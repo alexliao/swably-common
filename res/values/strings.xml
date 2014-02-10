@@ -186,7 +186,7 @@
     <string name="about_cap">ABOUT</string>
     <string name="shuffle">SHUFFLE</string>
     <string name="copied">Text copied to clipboard</string>
-    <string name="request_an_app">Request an app</string>
+    <string name="request_an_app">Help me to find an app</string>
     <string name="request_an_app_hint">What kind of app would you like?</string>
     <string name="err_no_content">Content is required</string>
     <string name="trending_apps">Active</string>

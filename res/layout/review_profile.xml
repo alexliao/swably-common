@@ -130,7 +130,7 @@
 					/>
 				</RelativeLayout>
 				<ImageView android:id="@+id/btnTriangleApp" style="@style/btnTriangle" android:layout_alignBottom="@id/viewApp" android:visibility="gone" />
-				<LinearLayout android:id="@+id/dividerApp"  style="@style/divider" android:layout_below="@id/viewApp" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+				<View android:id="@+id/dividerApp"  style="@style/divider" android:layout_below="@id/viewApp" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
 				<FrameLayout android:id="@+id/inplacePanelApp" style="@style/inplacePanel" android:layout_below="@id/viewApp" >
 				    <include layout="@layout/app_inplace_actions" />"
 				</FrameLayout>
@@ -188,7 +188,7 @@
 				android:src="@drawable/hover_reply" 
 				style="@style/inplaceBtn"
 			/>
-			<include android:id="@+id/tribtn" layout="@layout/app_tribtn4" />
+			<include android:id="@+id/viewAppBtn" layout="@layout/app_tribtn4" />
 			<ImageButton  android:id="@+id/btnShareReview"
 				android:src="@drawable/hover_share" 
 				style="@style/inplaceBtn"
