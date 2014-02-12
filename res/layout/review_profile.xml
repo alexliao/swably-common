@@ -71,7 +71,8 @@
 				    <include layout="@layout/user_inplace_actions" />
 				</FrameLayout>
 		
-				<RelativeLayout android:id="@+id/viewContent"  
+				<LinearLayout android:id="@+id/viewContent"  
+				    android:orientation="horizontal"
 					android:layout_width="fill_parent" 
 					android:layout_height="wrap_content"
 					android:minHeight="72dp"
@@ -79,8 +80,9 @@
 					android:layout_below="@id/inplacePanelUser"
 					>
 					<TextView android:id="@+id/txtContent" 
-						android:layout_width="wrap_content"
+						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
+						android:layout_weight="1"
 						style="@style/content"
 						android:textSize="20sp"
 						android:paddingLeft="@dimen/padding"
@@ -90,19 +92,49 @@
 						android:textIsSelectable="true"
 						android:clickable="true"
 					/>
-				</RelativeLayout>
+					<ImageView android:id="@+id/imgQuestion"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:src="@drawable/question"
+					    android:layout_marginTop="3dp"
+					    android:layout_marginBottom="10dp"
+					    />
+				</LinearLayout>
 				<ImageView android:id="@+id/btnTriangleContent" style="@style/btnTriangle" android:layout_alignBottom="@id/viewContent" android:visibility="gone" />
 				<LinearLayout style="@style/divider" android:layout_below="@id/viewContent" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
 				<FrameLayout android:id="@+id/inplacePanelContent" style="@style/inplacePanel" android:layout_below="@id/viewContent" android:layout_marginTop="1dp">
 				    <include layout="@layout/content_inplace_actions" />
 				</FrameLayout>
+				<LinearLayout android:id="@+id/btnAdd"
+				    android:orientation="horizontal"
+					android:layout_width="fill_parent" 
+					android:layout_height="wrap_content"
+					android:padding="@dimen/padding"
+					android:background="@drawable/row"
+					android:clickable="true"
+					android:gravity="center_vertical"
+					android:layout_below="@id/inplacePanelContent"
+					>
+					<ImageView 
+						android:layout_width="32dp"
+						android:layout_height="32dp"
+						android:src="@drawable/add_pressed"
+						android:layout_marginRight="5dp"
+						android:layout_marginLeft="@dimen/padding"
+					/>
+					<TextView 
+						style="@style/name"
+						android:text="@string/add_an_app"
+						android:layout_marginRight="@dimen/padding"
+					/>
+				</LinearLayout>
 				<RelativeLayout android:id="@+id/viewApp"
 					android:layout_width="fill_parent" 
 					android:layout_height="wrap_content"
 					android:padding="@dimen/padding"
 					android:background="@drawable/row"
 					android:clickable="true"
-					android:layout_below="@id/inplacePanelContent"
+					android:layout_below="@id/btnAdd"
 					>
 					<ImageView android:id="@+id/icon"
 						android:layout_width="48dp"
@@ -189,6 +221,10 @@
 				style="@style/inplaceBtn"
 			/>
 			<include android:id="@+id/viewAppBtn" layout="@layout/app_tribtn4" />
+			<ImageButton  android:id="@+id/btnAddApp"
+				android:src="@drawable/add" 
+				style="@style/inplaceBtn"
+			/>
 			<ImageButton  android:id="@+id/btnShareReview"
 				android:src="@drawable/hover_share" 
 				style="@style/inplaceBtn"

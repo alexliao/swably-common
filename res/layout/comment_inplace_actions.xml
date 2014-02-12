@@ -13,6 +13,9 @@
 			<ImageView android:src="@drawable/hover_reply" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
 		<include android:id="@+id/viewAppBtn" layout="@layout/app_tribtn4" />
+		<LinearLayout android:id="@+id/btnAddApp" style="@style/inplaceBtn" >
+			<ImageView android:src="@drawable/add" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		</LinearLayout>
 		<LinearLayout android:id="@+id/btnShareReview" style="@style/inplaceBtn" >
 			<ImageView android:src="@drawable/hover_share" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>

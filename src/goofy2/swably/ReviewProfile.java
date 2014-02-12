@@ -298,6 +298,9 @@ public class ReviewProfile extends WithHeaderActivity {
 	        appActionHelper.init(bottomBar, null);
 	        appActionHelper.bind();
 
+        }else{
+     	   TextView txtTitle = (TextView) findViewById(R.id.txtTitle);
+     	   txtTitle.setText(getString(R.string.a_request));
         }
         
         reviewActionHelper = new ReviewActionHelper(this, mReview);
@@ -311,9 +314,6 @@ public class ReviewProfile extends WithHeaderActivity {
 //    		btnDelete.setVisibility(View.GONE);
 ////    		btnRetweet.setVisibility(View.VISIBLE);
 //    	}
-		
-        if(mReview.optJSONObject("app") != null){
-       }
 
 //    	String InreplytoId = mReview.optString("in_reply_to_id", null);
 //        if(mInreplyto == null && InreplytoId != null){
@@ -406,16 +406,31 @@ public class ReviewProfile extends WithHeaderActivity {
 //			View dividerApp = findViewById(R.id.dividerApp);
 			View inplacePanelApp = findViewById(R.id.inplacePanelApp);
 			View dividerApp = findViewById(R.id.dividerApp);
+			View imgQuestion = findViewById(R.id.imgQuestion);
+			View btnAdd = findViewById(R.id.btnAdd);
 			if(app.getJSON() == null){
 				viewApp.setVisibility(View.GONE);
 				btnTriangleApp.setVisibility(View.GONE);
 				inplacePanelApp.setVisibility(View.GONE);
 				dividerApp.setVisibility(View.GONE);
+				imgQuestion.setVisibility(View.VISIBLE);
+				btnAdd.setVisibility(View.VISIBLE);
+				
+				btnAdd.setOnClickListener(new View.OnClickListener(){
+					@Override
+					public void onClick(View v) {
+						selectAppToReply(mReview, null);
+					}
+				});
+				
 			}else{
 				viewApp.setVisibility(View.VISIBLE);
 //				btnTriangleApp.setVisibility(View.VISIBLE);
 				inplacePanelApp.setVisibility(View.VISIBLE);
 				dividerApp.setVisibility(View.VISIBLE);
+				imgQuestion.setVisibility(View.GONE);
+				btnAdd.setVisibility(View.GONE);
+				
 				iv = (ImageView) findViewById(R.id.icon);
 				if(app.getIcon() != null){
 					url = app.getIcon();

@@ -32,7 +32,7 @@ public class ReviewActionHelper {
 	public View btnUnlike;
 	public View btnShareReview;
 	public View viewAppBtn;
-	
+	public View btnAddApp;
 	
 	public ReviewActionHelper(final CloudActivity activity, JSONObject review){
 		mActivity = activity;
@@ -116,6 +116,16 @@ public class ReviewActionHelper {
 		if(holder == null) viewAppBtn = container.findViewById(R.id.viewAppBtn);
 		else viewAppBtn = holder.getViewAppBtn();
 	
+		if(holder == null) btnAddApp = container.findViewById(R.id.btnAddApp);
+		else btnAddApp = holder.getBtnAddApp();
+        if(btnAddApp != null) btnAddApp.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+//				mActivity.sendOutReview(mReview);
+				mActivity.selectAppToReply(mReview, null);
+				if(callback != null) callback.run();
+			}
+        });
 	}
 
 	public void bind() {
@@ -130,8 +140,12 @@ public class ReviewActionHelper {
 //		}
 		if(mReview.optJSONObject("app") == null){
 			viewAppBtn.setVisibility(View.GONE);
+			btnAddApp.setVisibility(View.VISIBLE);
+			btnReply.setVisibility(View.GONE);
 		}else{
 			viewAppBtn.setVisibility(View.VISIBLE);
+			btnAddApp.setVisibility(View.GONE);
+			btnReply.setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -141,5 +155,6 @@ public class ReviewActionHelper {
 //		View getBtnUnlike();
 		View getBtnShareReview();
 		View getViewAppBtn();
+		View getBtnAddApp();
 	}
 }

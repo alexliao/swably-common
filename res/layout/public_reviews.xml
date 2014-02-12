@@ -18,7 +18,7 @@
                 android:id="@+id/btnMenu"
                 style="@style/titleBtn"
                 android:src="@drawable/menu" />
-
+            <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
             <TextView
                 android:id="@+id/txtTitle"
                 style="@style/title"

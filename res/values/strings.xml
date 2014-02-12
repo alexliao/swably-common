@@ -81,7 +81,7 @@
     <string name="terms_no">Decline</string>
     <string name="select_account">SIGN IN WITH</string>
     <string name="sign_out">Sign out</string>
-    <string name="pick_app">YOUR APPS</string>
+    <string name="pick_app">CHOOSE AN APP</string>
     <string name="pick_app_to_review">Pick an app to review</string>
     <string name="add_review">+ Review</string>
     <string name="no_review_for_app">Oops, no review for %s yet.\nBe the first one to review it!</string>
@@ -186,7 +186,7 @@
     <string name="about_cap">ABOUT</string>
     <string name="shuffle">SHUFFLE</string>
     <string name="copied">Text copied to clipboard</string>
-    <string name="request_an_app">Help me to find an app</string>
+    <string name="request_an_app">Give me an app</string>
     <string name="request_an_app_hint">What kind of app would you like?</string>
     <string name="err_no_content">Content is required</string>
     <string name="trending_apps">Active</string>
@@ -260,5 +260,8 @@
     <string name="submit_email">Submit email to activate notifications</string>
    	<string name="err_invalid_email">It is not a valid Email address</string>
     
-    
+    <string name="a_request">A Request</string>
+    <string name="add_an_app">Add an app</string>
+    <string name="menu_requests">Requests</string>
+    	
 </resources>

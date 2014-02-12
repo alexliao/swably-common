@@ -284,6 +284,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		holder.txtAppName = (TextView) convertView.findViewById(R.id.txtAppName);
 		holder.imgQuestion = (ImageView) convertView.findViewById(R.id.imgQuestion);
 		holder.viewAppBtn = convertView.findViewById(R.id.viewAppBtn);
+		holder.btnAddApp = convertView.findViewById(R.id.btnAddApp);
 
 		holder.btnTriangle = convertView.findViewById(R.id.btnTriangle);
 		holder.inplacePanel = convertView.findViewById(R.id.inplacePanel);
@@ -307,6 +308,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		ImageView icon;
 		ImageView imgScreenshot;
 		ImageView imgQuestion;
+		View btnAddApp;
 		TextView txtAppName;
 		View btnTriangle;
 		View inplacePanel;
@@ -362,6 +364,10 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		@Override
 		public View getViewAppBtn() {
 			return viewAppBtn;
+		}
+		@Override
+		public View getBtnAddApp() {
+			return btnAddApp;
 		}
 	}
 	

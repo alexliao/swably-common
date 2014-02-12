@@ -33,16 +33,24 @@ public class SelectLocalAppToReview extends LocalApps {
 //    	Drawable d = this.getResources().getDrawable(R.drawable.add);
 //    	d.setBounds(0, 0, d.getMinimumWidth(), d.getMinimumHeight());
 //        txtTitle.setCompoundDrawables(d, null, null, null);
-        View btnRequest = findViewById(R.id.btnRequest);
-        btnRequest.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				Intent i = new Intent(SelectLocalAppToReview.this, PostReview.class);
-				i.putExtra("image", mImagePath);
-				startActivity(i);
-				finish();
-			}
-        });
+        
+        if(getIntent().getStringExtra(Const.KEY_REVIEW) == null){ 
+        	findViewById(R.id.viewBottomBar).setVisibility(View.VISIBLE);
+	        View btnRequest = findViewById(R.id.btnRequest);
+	        btnRequest.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View arg0) {
+					Intent i = new Intent(SelectLocalAppToReview.this, PostReview.class);
+					i.putExtra("image", mImagePath);
+					i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
+					i.putExtra("content", getIntent().getStringExtra("content"));
+					startActivity(i);
+					finish();
+				}
+	        });
+        }else{ // reply can not be question
+        	findViewById(R.id.viewBottomBar).setVisibility(View.GONE);
+        }
         
         // get picture from ACTION_SEND intent
         Uri imageUri = null;
@@ -66,9 +74,12 @@ public class SelectLocalAppToReview extends LocalApps {
 
     @Override
 	protected void onCloudAction(JSONObject json){
-		Intent i = new Intent(SelectLocalAppToReview.this, PostReview.class);
+
+        Intent i = new Intent(SelectLocalAppToReview.this, PostReview.class);
 		i.putExtra(Const.KEY_APP, json.toString());
 		i.putExtra("image", mImagePath);
+		i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
+		i.putExtra("content", getIntent().getStringExtra("content"));
 		startActivity(i);
 		finish();
     }

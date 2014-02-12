@@ -53,7 +53,7 @@
 		    <ImageView 
 		        android:layout_width="32dp"
 		        android:layout_height="32dp"
-		        android:src="@drawable/question"
+		        android:src="@drawable/add"
 		        />
 		     <TextView 
 		        android:layout_width="fill_parent"
@@ -61,6 +61,7 @@
 		        android:layout_weight="1"
 		        android:text="@string/request_an_app"
 		        style="@style/title"
+		        android:textAllCaps="false"
 		        android:clickable="false"
 		        android:gravity="left"
 		        />

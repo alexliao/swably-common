@@ -71,20 +71,16 @@ public class PostReview extends WithHeaderActivity {
         if(redirectAnonymous()) return;
         
         Intent i = getIntent();
-        String str = i.getStringExtra(Const.KEY_APP);
         try {
-        	if(str == null){
-            	//mApp = new AppHelper(this).getApp(packageName);
-                String strInReplyTo = i.getStringExtra(Const.KEY_REVIEW);
-                if(strInReplyTo == null){
-//                	selectApp();
-                }else{
-	                mInReplyTo = new JSONObject(strInReplyTo);
-	        		header.setApp(new App(mInReplyTo.optJSONObject("app")));
-                }
-        	}
-        	else
-        		header.setApp(new App(new JSONObject(str)));
+        	//mApp = new AppHelper(this).getApp(packageName);
+            String strInReplyTo = i.getStringExtra(Const.KEY_REVIEW);
+            if(strInReplyTo != null){
+                mInReplyTo = new JSONObject(strInReplyTo);
+        		header.setApp(new App(mInReplyTo.optJSONObject("app")));
+            }
+
+            String str = i.getStringExtra(Const.KEY_APP);
+        	if(str != null)	header.setApp(new App(new JSONObject(str)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,8 +92,11 @@ public class PostReview extends WithHeaderActivity {
 		btnMore.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				if(noApp()) ; //selectApp();
-				else{
+				if(noApp()){
+					//selectApp();
+					selectAppToReply(mInReplyTo, editContent.getText().toString());
+					finish();
+				}else{
 					openApp(header.getApp().getJSON());
 				}
 			}
@@ -211,7 +210,7 @@ public class PostReview extends WithHeaderActivity {
 	private void bind() {
 		if(noApp()){
 			editContent.setHint(R.string.request_an_app_hint);
-			btnMore.setEnabled(false);
+			btnMore.setEnabled((getIntent().getStringExtra(Const.KEY_REVIEW) != null)); // disable when init a request
 		}else{
 			editContent.setHint(R.string.post_review_hint);
 			btnMore.setEnabled(true);
