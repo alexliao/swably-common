@@ -18,14 +18,19 @@
                 android:id="@+id/btnMenu"
                 style="@style/titleBtn"
                 android:src="@drawable/menu" />
-
+            <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
             <TextView
                 android:id="@+id/txtTitle"
                 style="@style/title"
                 android:text="@string/following_cap" />
 
 			<include android:id="@+id/loading"	layout="@layout/loading" />
-        </LinearLayout>
+            <ImageButton
+                android:id="@+id/btnAdd"
+                style="@style/titleBtn"
+                android:src="@drawable/add"
+                />
+		</LinearLayout>
         <include layout="@layout/header_bottom" />
         
         
@@ -41,10 +46,11 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/btnAdd"
+        android:id="@+id/backup_btnAdd"
         style="@style/addBtn"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:visibility="gone"
         />
 
 </goofy2.utils.RevealLayout>
