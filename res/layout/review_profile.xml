@@ -166,20 +166,16 @@
 				<ImageView android:id="@+id/btnTriangleApp" style="@style/btnTriangle" android:layout_alignBottom="@id/viewApp" android:visibility="gone" />
 				<View android:id="@+id/dividerApp"  style="@style/divider" android:layout_below="@id/viewApp" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
 				<FrameLayout android:id="@+id/inplacePanelApp" style="@style/inplacePanel" android:layout_below="@id/viewApp" >
-				    <include layout="@layout/app_inplace_actions" />"
+				    <include layout="@layout/app_inplace_actions" />
 				</FrameLayout>
 	
 				<LinearLayout android:id="@+id/viewInreplyto"
 				    android:orientation="horizontal"
-					android:layout_width="fill_parent" 
+					android:layout_width="150dp" 
 					android:layout_height="wrap_content"
-					android:gravity="right"
-					android:minHeight="72dp"
 					android:padding="@dimen/padding"
 					android:background="@drawable/row"
 					android:clickable="true"
-					android:layout_below="@id/inplacePanelApp"
-					android:layout_marginTop="1dp"
 					android:visibility="gone"
 					>
 					<TextView android:id="@+id/txtInreplyto" 
@@ -189,21 +185,21 @@
 						style="@style/desc"
 					/>
 				    <TextView android:id="@+id/txtInreplytoName" 
-						android:layout_width="wrap_content"
+						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
+						android:layout_weight="1"
 						style="@style/desc"
-						android:textColor="@color/content"
-						android:gravity="right"
+						android:singleLine="true"
 					/>
 				</LinearLayout>
 				<goofy2.utils.FitXImageView android:id="@+id/imgThumbnail"
 				    style="@style/fill"
 					android:layout_margin="@dimen/padding"
-					android:layout_below="@id/viewInreplyto"
+					android:layout_below="@id/inplacePanelApp"
 				    />
 				<ProgressBar android:id="@+id/loadingImage"
 					style="@style/ProgressBar"
-					android:layout_below="@id/viewInreplyto"
+					android:layout_below="@id/inplacePanelApp"
 					android:layout_marginRight="@dimen/padding"
 					android:layout_marginLeft="@dimen/padding"
 					android:layout_marginTop="19dp"
@@ -212,7 +208,7 @@
 				    style="@style/fill"
 					android:layout_margin="@dimen/padding"
 					android:clickable="true"
-					android:layout_below="@id/viewInreplyto"
+					android:layout_below="@id/inplacePanelApp"
 				    />
 			</RelativeLayout>
 		</ScrollView>
