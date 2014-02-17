@@ -2,6 +2,7 @@ package goofy2.swably;
 
 import goofy2.swably.R;
 import goofy2.swably.data.App;
+import goofy2.swably.fragment.ReviewBelowFragment;
 import goofy2.utils.AsyncImageLoader;
 
 import java.io.File;
@@ -11,6 +12,8 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -50,6 +53,7 @@ public class ReviewProfile extends WithHeaderActivity {
 	private ViewGroup viewContent;
 	private View viewInreplyto;
 	private View viewLoadingInreplyto;
+	private ViewGroup viewBelow;
 	 
 	static int POSITION_USER = 0;
 	static int POSITION_CONTENT = 1;
@@ -112,71 +116,6 @@ public class ReviewProfile extends WithHeaderActivity {
 				openUser(header.getUser());
 			}
         });
-//        btnReply.setOnClickListener(new OnClickListener(){
-//			@Override
-//			public void onClick(View arg0) {
-////				Intent i = new Intent(ReviewProfile.this, PostReview.class);
-////				i.putExtra(Const.KEY_REVIEW, mReview.toString());
-//////				i.putExtra("sync_sns", Utils.getCurrentUser(ReviewProfile.this).optString("signup_sns"));
-////				i.putExtra("content", "@"+mReview.optJSONObject("user").optString("screen_name")+" ");
-////				startActivity(i);
-//				replyReview(mReview);
-//			}
-//        });
-//        btnRetweet.setOnClickListener(new OnClickListener(){
-//			@Override
-//			public void onClick(View arg0) {
-//				Intent i = new Intent(ReviewProfile.this, PostReview.class);
-//				i.putExtra(Const.KEY_REVIEW, mReview.toString());
-////				i.putExtra("sync_sns", Utils.getCurrentUser(ReviewProfile.this).optString("signup_sns"));
-//				i.putExtra("content", "\"@"+mReview.optJSONObject("user").optString("screen_name")+": "+mReview.optString("content")+"\"");
-//				startActivity(i);
-//			}
-//        });
-//        btnDelete.setOnClickListener(new OnClickListener(){
-//			@Override
-//			public void onClick(View arg0) {
-//				confirm(getString(R.string.delete_review),  new DialogInterface.OnClickListener(){
-//					public void onClick(DialogInterface dialog, int which)
-//					{
-////						if(deleteReviewInWeb(mReview.optString("id"))){
-//						new Thread() {
-//							public void run(){
-//								deleteReviewInWeb(mReview.optString("id"));
-//							}
-//						}.start();
-//						Animation anim = AnimationUtils.loadAnimation(ReviewProfile.this, R.anim.shrink_out_to_bottom);
-//						anim.setDuration(1000);
-//						anim.setFillAfter(true);
-//						anim.setAnimationListener(new AnimationListener(){
-//							@Override
-//							public void onAnimationEnd(Animation animation) {
-//								finish();
-//							}
-//							@Override
-//							public void onAnimationRepeat(Animation animation) {}
-//							@Override
-//							public void onAnimationStart(Animation animation) {}
-//						});
-//						viewReview.setPersistentDrawingCache(ViewGroup.PERSISTENT_ANIMATION_CACHE);
-//						viewReview.startAnimation(anim);
-//						Intent intent = new Intent(Const.BROADCAST_REVIEW_DELETED);
-//						intent.putExtra(Const.KEY_ID, mReview.optString("id"));
-//						sendBroadcast(intent);
-//						clearCache();
-////						finish();
-////				    	overridePendingTransition(R.anim.grow_fade_in_center, R.anim.shrink_out_to_bottom_right);
-//					}       
-//				});
-//			}
-//        });
-//        btnShareReview.setOnClickListener(new OnClickListener(){
-//			@Override
-//			public void onClick(View arg0) {
-//				Utils.shareReview(ReviewProfile.this, mReview);
-//			}
-//
-//       });
 
         View btnCopy = findViewById(R.id.txtContent);
         btnCopy.setOnClickListener(new OnClickListener(){
@@ -188,14 +127,6 @@ public class ReviewProfile extends WithHeaderActivity {
 //				mHelper.hideActionsAnim();
 			}
         });
-//        View btnShareContent = findViewById(R.id.btnShareContent);
-//        btnShareContent.setOnClickListener(new OnClickListener(){
-//			@Override
-//			public void onClick(View arg0) {
-//		    	share(getString(R.string.tell_friends_via), mReview.optString("content"));
-//				mHelper.hideActionsAnim();
-//			}
-//	    });
         
         final View inplacePanelUser = findViewById(R.id.inplacePanelUser);
 		mHelper.hideActions(inplacePanelUser);
@@ -211,15 +142,6 @@ public class ReviewProfile extends WithHeaderActivity {
 			}
         });
         
-//        followBtn = new FollowBtn(this, header, viewUser);
-//		followBtn.init(new Runnable(){
-//			@Override
-//			public void run() {
-//				mHelper.hideActionsAnim();
-//			}
-//		});
-        
-
         final View inplacePanelContent = findViewById(R.id.inplacePanelContent);
 		mHelper.hideActions(inplacePanelContent);
         btnTriangleContent = this.findViewById(R.id.btnTriangleContent);
@@ -240,6 +162,8 @@ public class ReviewProfile extends WithHeaderActivity {
         
         if(mId != null)
     		loadReview(mId);
+        
+        viewBelow = (ViewGroup) this.findViewById(R.id.viewBelow);
     }
 
 	@Override
@@ -252,6 +176,17 @@ public class ReviewProfile extends WithHeaderActivity {
 
     protected void bind(){
 		hideLoading();
+
+		Bundle bundle = new Bundle();
+		bundle.putString(Const.KEY_REVIEW, mReview.toString());
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		ReviewBelowFragment belowFragment = new ReviewBelowFragment();
+		belowFragment.setArguments(bundle);
+		fragmentTransaction.add(R.id.viewBelow, belowFragment);
+		fragmentTransaction.commit();
+
+		
 //		viewBody.setVisibility(View.VISIBLE);
 //		tribtn.init(this, new App(mReview.optJSONObject("app")));
 

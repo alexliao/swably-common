@@ -130,6 +130,7 @@
 						android:layout_marginRight="@dimen/padding"
 					/>
 				</LinearLayout>
+				<View android:id="@+id/dividerBtnAdd"  style="@style/divider" android:layout_below="@id/btnAdd" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
 				<RelativeLayout android:id="@+id/viewApp"
 					android:layout_width="fill_parent" 
 					android:layout_height="wrap_content"
@@ -210,7 +211,14 @@
 					android:clickable="true"
 					android:layout_below="@id/inplacePanelApp"
 				    />
-			</RelativeLayout>
+	            <LinearLayout android:id="@+id/viewBelow"
+	                android:orientation="vertical"
+	                android:layout_width="fill_parent"
+					android:layout_height="5000dp"
+					android:layout_below="@id/imgImage"
+					android:layout_marginTop="1dp"
+	                />
+				</RelativeLayout>
 		</ScrollView>
 			
 		<LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
