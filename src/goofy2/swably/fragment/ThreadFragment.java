@@ -45,7 +45,7 @@ public abstract class ThreadFragment extends PeopleReviewsFragment{
 
 	@Override
 	protected String getUrl() {
-		return super.getUrl() + "&count=100";
+		return super.getUrl() + "&count=10";
 	}
 
 	@Override
