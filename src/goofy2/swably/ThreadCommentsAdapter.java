@@ -30,7 +30,7 @@ public class ThreadCommentsAdapter extends CommentsAdapter {
 	@Override
 	public View newView(ViewGroup parent) {
 		View ret = null;
-		int resId = R.layout.thread_comment_row;
+		int resId = R.layout.review_thread_row;
 		ret = mInflater.inflate(resId, parent, false);
 		return ret;
 	}

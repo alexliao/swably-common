@@ -33,12 +33,19 @@
 				android:layout_height="wrap_content"
 				android:paddingBottom="@dimen/padding"
 				>
+				<LinearLayout android:id="@+id/viewAbove"
+	                android:orientation="vertical"
+	                android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="1dp"
+	                />
 			    <RelativeLayout android:id="@+id/viewUser"  
 					android:layout_width="fill_parent" 
 					android:layout_height="wrap_content"
 					android:background="@drawable/row"
 					android:padding="@dimen/padding"
 					android:clickable="true"
+					android:layout_below="@id/viewAbove"
 					>
 					<goofy2.utils.Avatar android:id="@+id/avatar"
 						style="@style/avatar"
@@ -178,6 +185,7 @@
 					android:background="@drawable/row"
 					android:clickable="true"
 					android:visibility="gone"
+					android:layout_below="@id/viewAbove"
 					>
 					<TextView android:id="@+id/txtInreplyto" 
 						android:layout_width="wrap_content"

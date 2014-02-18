@@ -2,6 +2,7 @@ package goofy2.swably;
 
 import goofy2.swably.R;
 import goofy2.swably.data.App;
+import goofy2.swably.fragment.ReviewAboveFragment;
 import goofy2.swably.fragment.ReviewBelowFragment;
 import goofy2.utils.AsyncImageLoader;
 
@@ -165,20 +166,36 @@ public class ReviewProfile extends WithHeaderActivity {
 //    		loadReview(mId);
         if(mReview != null){
         	loadBelow();
+        	loadAbove();
         }else if(mId != null){
     		loadReview(mId);
         }
     }
 
-    void loadBelow(){
+    void loadAbove(){
+		Log.d(Const.APP_NAME, Const.APP_NAME + " ReviewProfile - loadAbove start");
 		Bundle bundle = new Bundle();
 		bundle.putString(Const.KEY_REVIEW, mReview.toString());
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		ReviewBelowFragment belowFragment = new ReviewBelowFragment();
-		belowFragment.setArguments(bundle);
-		fragmentTransaction.add(R.id.viewBelow, belowFragment);
+		ReviewAboveFragment fragment = new ReviewAboveFragment();
+		fragment.setArguments(bundle);
+		fragmentTransaction.add(R.id.viewAbove, fragment);
 		fragmentTransaction.commit();
+		Log.d(Const.APP_NAME, Const.APP_NAME + " ReviewProfile - loadAbove end");
+    }
+
+    void loadBelow(){
+		Log.d(Const.APP_NAME, Const.APP_NAME + " ReviewProfile - loadBelow start");
+		Bundle bundle = new Bundle();
+		bundle.putString(Const.KEY_REVIEW, mReview.toString());
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		ReviewBelowFragment fragment = new ReviewBelowFragment();
+		fragment.setArguments(bundle);
+		fragmentTransaction.add(R.id.viewBelow, fragment);
+		fragmentTransaction.commit();
+		Log.d(Const.APP_NAME, Const.APP_NAME + " ReviewProfile - loadBelow end");
     }
     
 	@Override
@@ -539,6 +556,7 @@ public class ReviewProfile extends WithHeaderActivity {
 		    	if(mRet != null){
 		    		mReview = mRet;
 		    		loadBelow();
+		        	loadAbove();
 		    		bind(); 
 		    		cacheData(mRet.toString());
 		    	}
