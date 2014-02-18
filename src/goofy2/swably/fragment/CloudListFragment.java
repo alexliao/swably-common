@@ -112,7 +112,7 @@ public abstract class CloudListFragment extends CloudFragment {
 	protected HashMap<String, Integer> mLoadingImages = new HashMap<String, Integer>();
 	private View viewFooter;
 	// protected View footerDivider;
-	private View loadingMore;
+	protected View loadingMore;
 	private TextView txtMore;
 	private TextView txtNoMore;
 	private boolean mIsScrolling = false;

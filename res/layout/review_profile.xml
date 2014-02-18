@@ -211,10 +211,11 @@
 					android:clickable="true"
 					android:layout_below="@id/inplacePanelApp"
 				    />
-	            <LinearLayout android:id="@+id/viewBelow"
+				<View android:id="@+id/dividerImage"  style="@style/divider" android:layout_below="@id/imgImage" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+				<LinearLayout android:id="@+id/viewBelow"
 	                android:orientation="vertical"
 	                android:layout_width="fill_parent"
-					android:layout_height="5000dp"
+					android:layout_height="wrap_content"
 					android:layout_below="@id/imgImage"
 					android:layout_marginTop="1dp"
 	                />

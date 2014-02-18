@@ -160,12 +160,27 @@ public class ReviewProfile extends WithHeaderActivity {
 		final View inplacePanelApp = findViewById(R.id.inplacePanelApp);
 		mHelper.hideActions(inplacePanelApp);
         
-        if(mId != null)
-    		loadReview(mId);
-        
         viewBelow = (ViewGroup) this.findViewById(R.id.viewBelow);
+//        if(mId != null)
+//    		loadReview(mId);
+        if(mReview != null){
+        	loadBelow();
+        }else if(mId != null){
+    		loadReview(mId);
+        }
     }
 
+    void loadBelow(){
+		Bundle bundle = new Bundle();
+		bundle.putString(Const.KEY_REVIEW, mReview.toString());
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		ReviewBelowFragment belowFragment = new ReviewBelowFragment();
+		belowFragment.setArguments(bundle);
+		fragmentTransaction.add(R.id.viewBelow, belowFragment);
+		fragmentTransaction.commit();
+    }
+    
 	@Override
     public void onStart(){
     	super.onStart();
@@ -177,16 +192,6 @@ public class ReviewProfile extends WithHeaderActivity {
     protected void bind(){
 		hideLoading();
 
-		Bundle bundle = new Bundle();
-		bundle.putString(Const.KEY_REVIEW, mReview.toString());
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		ReviewBelowFragment belowFragment = new ReviewBelowFragment();
-		belowFragment.setArguments(bundle);
-		fragmentTransaction.add(R.id.viewBelow, belowFragment);
-		fragmentTransaction.commit();
-
-		
 //		viewBody.setVisibility(View.VISIBLE);
 //		tribtn.init(this, new App(mReview.optJSONObject("app")));
 
@@ -533,6 +538,7 @@ public class ReviewProfile extends WithHeaderActivity {
             protected void onPostExecute(Long result) {
 		    	if(mRet != null){
 		    		mReview = mRet;
+		    		loadBelow();
 		    		bind(); 
 		    		cacheData(mRet.toString());
 		    	}
