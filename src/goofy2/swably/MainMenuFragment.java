@@ -29,6 +29,8 @@ import android.widget.TextView;
 
 public class MainMenuFragment extends CloudFragment {
 	private View viewHome;
+	private View viewShares;
+	private View viewRequests;
 	private View viewApps;
 	private View viewMe;
 	private View viewFindPeople;
@@ -53,6 +55,24 @@ public class MainMenuFragment extends CloudFragment {
 			public void onClick(View arg0) {
 //				ca().showAbove();
 				if(!(a() instanceof Home)) ca().goHome();
+				else ca().showAbove();
+			}
+        });
+    	viewShares = v.findViewById(R.id.viewShares);
+    	((TextView)viewShares).setTypeface(ca().mNormalFont);
+    	viewShares.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				if(!(a() instanceof SharingPosts)) startActivity(new Intent(a(), SharingPosts.class));
+				else ca().showAbove();
+			}
+        });
+    	viewRequests = v.findViewById(R.id.viewRequests);
+    	((TextView)viewRequests).setTypeface(ca().mNormalFont);
+    	viewRequests.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				if(!(a() instanceof HelpRequests)) startActivity(new Intent(a(), HelpRequests.class));
 				else ca().showAbove();
 			}
         });

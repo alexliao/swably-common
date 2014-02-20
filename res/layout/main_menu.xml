@@ -32,7 +32,13 @@
 		</LinearLayout>
 		
 		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
-		<TextView android:id="@+id/viewHome" android:text="@string/stream" android:drawableLeft="@drawable/hover_ic_menu_home" style="@style/menu_row" />
+		<TextView android:id="@+id/viewHome" android:text="@string/stream" android:drawableLeft="@drawable/hover_ic_menu_public" style="@style/menu_row" />
+		
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
+		<TextView android:id="@+id/viewShares" android:text="@string/menu_shares" android:drawableLeft="@drawable/hover_ic_menu_shares" style="@style/menu_row" />
+		
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
+		<TextView android:id="@+id/viewRequests" android:text="@string/menu_requests" android:drawableLeft="@drawable/hover_ic_menu_requests" style="@style/menu_row" />
 		
 		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent" android:visibility="gone"/>
 		<TextView android:id="@+id/viewApps" android:text="@string/local_apps" android:drawableLeft="@drawable/ic_menu_apps" style="@style/menu_row" android:visibility="gone"/>

@@ -2,6 +2,7 @@
 	android:layout_width="fill_parent" 
 	android:layout_height="wrap_content"
 	android:paddingBottom="1px"
+	android:background="@color/back"
 	>
     <RelativeLayout android:id="@+id/row"  
 		android:layout_width="fill_parent" 
@@ -66,7 +67,7 @@
 		</RelativeLayout> -->
 	</RelativeLayout>		
 	<ImageView android:id="@+id/btnTriangle" style="@style/btnTriangle" android:layout_alignBottom="@id/row" />
-	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" />
 	<FrameLayout android:id="@+id/inplacePanel" style="@style/inplacePanel" android:layout_below="@id/row" >
 		<include layout="@layout/app_inplace_actions" />
 	</FrameLayout>

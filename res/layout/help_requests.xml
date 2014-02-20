@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<goofy2.utils.RevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/viewHeaderBar"
+            style="@style/titleBar" >
+
+            <ImageButton
+                android:id="@+id/btnMenu"
+                style="@style/titleBtn"
+                android:src="@drawable/menu" />
+            <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
+            <TextView
+                android:id="@+id/txtTitle"
+                style="@style/title"
+                android:text="@string/menu_requests" />
+
+			<include android:id="@+id/loading"	layout="@layout/loading" />
+            <ImageButton
+                android:id="@+id/btnAdd"
+                style="@style/titleBtn"
+                android:src="@drawable/add"
+                />
+		</LinearLayout>
+        <include layout="@layout/header_bottom" />
+        
+        
+        <RelativeLayout style="@style/fill" >
+
+            <fragment
+                android:name="goofy2.swably.fragment.HelpRequestsFragment"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                tools:layout="@layout/list_fragment" 
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+</goofy2.utils.RevealLayout>

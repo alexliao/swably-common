@@ -227,8 +227,8 @@
     <string name="skip">Skip</string>
     <string name="search">Search</string>
     <string name="delete">Delete</string>
-    <string name="stream">Stream</string>
-    <string name="stream_cap">STREAM</string>
+    <string name="stream">Public timeline</string>
+    <string name="stream_cap">PUBLIC TIMELINE</string>
     <string name="claimed_apps">Claimed Apps</string>
     <string name="share_no_app_x">You don\'t have %s installed</string>
     <string name="share_title">Share to</string>
@@ -262,6 +262,7 @@
     
     <string name="a_request">A Request</string>
     <string name="add_an_app">Add an app</string>
-    <string name="menu_requests">Requests</string>
+    <string name="menu_requests">Help requests</string>
+    <string name="menu_shares">Sharing posts</string>
     	
 </resources>
