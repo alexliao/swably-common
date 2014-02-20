@@ -16,8 +16,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.text.ClipboardManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -107,6 +109,15 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			str = mReview.optString("content");
 			tv.setText(str);
 			tv.setTypeface(mContext.mLightFont);
+
+	        tv.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View arg0) {
+					ClipboardManager cbm = (ClipboardManager) mContext.getSystemService(mContext.CLIPBOARD_SERVICE);
+					cbm.setText(mReview.optString("content"));		
+					Utils.showToast(mContext, mContext.getString(R.string.copied));
+				}
+	        });
 
 			double dTime = mReview.getDouble("created_at");
 			String time = Utils.formatTimeDistance(mContext, new Date((long) (dTime*1000)));
@@ -232,11 +243,11 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 				@Override
 				public void onClick(View v) {
 					if(Build.VERSION.SDK_INT >= 11)
-						mListView.smoothScrollToPositionFromTop(position-1, 50);
+						mListView.smoothScrollToPositionFromTop(position-1, 70);
 					else if(Build.VERSION.SDK_INT >= 8)
 						mListView.smoothScrollToPosition(position-1);
 					else
-						mListView.setSelectionFromTop(position-1, 50);
+						mListView.setSelectionFromTop(position-1, 70);
 				}
 			});
 		} catch (Exception e) {
