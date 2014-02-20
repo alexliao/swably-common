@@ -158,12 +158,12 @@ public abstract class CloudListFragment extends CloudFragment {
 		View vt = getRowTop();
 		if (vt != null)
 			mList.addHeaderView(vt);
-		View vb = getRowBottom();
-		if (vb != null)
-			mList.addFooterView(vb);
 		viewFooter = LayoutInflater.from(this.getActivity()).inflate(
 				R.layout.list_footer, null);
 		mList.addFooterView(viewFooter);
+		View vb = getRowBottom();
+		if (vb != null)
+			mList.addFooterView(vb);
 		// footerDivider = (View) viewFooter.findViewById(R.id.footerDivider);
 		loadingMore = (View) viewFooter.findViewById(R.id.loadingMore);
 		txtMore = (TextView) viewFooter.findViewById(R.id.txtMore);
@@ -218,6 +218,7 @@ public abstract class CloudListFragment extends CloudFragment {
 //        mList.setLayoutAnimation(controller);
 		
 		mList.setAdapter(mAdapter);
+		mAdapter.setListView(mList);
 //		hideRoundBorder();
 		
 

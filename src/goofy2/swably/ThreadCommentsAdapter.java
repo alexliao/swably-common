@@ -1,21 +1,11 @@
 package goofy2.swably;
 
 import goofy2.swably.R;
-import goofy2.swably.data.App;
-import goofy2.utils.AsyncImageLoader;
-
-import java.util.Date;
 import java.util.HashMap;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class ThreadCommentsAdapter extends CommentsAdapter {
 

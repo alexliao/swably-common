@@ -4,6 +4,7 @@ import goofy2.swably.R;
 import goofy2.swably.data.App;
 import goofy2.swably.fragment.ReviewAboveFragment;
 import goofy2.swably.fragment.ReviewBelowFragment;
+import goofy2.swably.fragment.ReviewProfileFragment;
 import goofy2.utils.AsyncImageLoader;
 
 import java.io.File;
@@ -55,6 +56,7 @@ public class ReviewProfile extends WithHeaderActivity {
 	private View viewInreplyto;
 	private View viewLoadingInreplyto;
 	private ViewGroup viewBelow;
+	private ViewGroup viewList;
 	 
 	static int POSITION_USER = 0;
 	static int POSITION_CONTENT = 1;
@@ -99,105 +101,26 @@ public class ReviewProfile extends WithHeaderActivity {
 				e.printStackTrace();
 			}
 		}
-        viewReview = (ViewGroup) this.findViewById(R.id.viewReview);
-        viewUser = (ViewGroup) this.findViewById(R.id.viewUser);
-        viewApp = (ViewGroup) this.findViewById(R.id.viewApp);
-        viewContent = (ViewGroup) this.findViewById(R.id.viewContent);
-        viewInreplyto = this.findViewById(R.id.viewInreplyto);
-//        viewLoadingInreplyto = this.findViewById(R.id.viewLoadingInreplyto);
-        btnUser = this.findViewById(R.id.avatar);
-//        btnReply = this.findViewById(R.id.btnReply);
-//        btnRetweet = this.findViewById(R.id.btnRetweet);
-//        btnDelete = this.findViewById(R.id.btnDelete);
-//        btnShareReview = this.findViewById(R.id.btnShareReview);
         
-        btnUser.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				openUser(header.getUser());
-			}
-        });
-
-        View btnCopy = findViewById(R.id.txtContent);
-        btnCopy.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				ClipboardManager cbm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-				cbm.setText(mReview.optString("content"));		
-				Utils.showToast(ReviewProfile.this, getString(R.string.copied));
-//				mHelper.hideActionsAnim();
-			}
-        });
-        
-        final View inplacePanelUser = findViewById(R.id.inplacePanelUser);
-		mHelper.hideActions(inplacePanelUser);
-        btnTriangleUser = this.findViewById(R.id.btnTriangleUser);
-        btnTriangleUser.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				boolean isOpened = (mHelper.mLastExpandedPosition == POSITION_USER);  
-				mHelper.hideActionsAnim();
-				if(!isOpened){
-					mHelper.showActionsAnim(inplacePanelUser, POSITION_USER);
-				}
-			}
-        });
-        
-        final View inplacePanelContent = findViewById(R.id.inplacePanelContent);
-		mHelper.hideActions(inplacePanelContent);
-        btnTriangleContent = this.findViewById(R.id.btnTriangleContent);
-        btnTriangleContent.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				boolean isOpened = (mHelper.mLastExpandedPosition == POSITION_CONTENT);  
-				mHelper.hideActionsAnim();
-				if(!isOpened){
-					mHelper.showActionsAnim(inplacePanelContent, POSITION_CONTENT);
-				}
-			}
-        });
-		
-        btnTriangleApp = this.findViewById(R.id.btnTriangleApp);
-		final View inplacePanelApp = findViewById(R.id.inplacePanelApp);
-		mHelper.hideActions(inplacePanelApp);
-        
-        viewBelow = (ViewGroup) this.findViewById(R.id.viewBelow);
-//        if(mId != null)
-//    		loadReview(mId);
+        viewList = (ViewGroup) this.findViewById(R.id.viewList);
         if(mReview != null){
-        	loadBelow();
-        	loadAbove();
+        	loadList();
         }else if(mId != null){
     		loadReview(mId);
         }
     }
 
-    void loadAbove(){
-		Log.d(Const.APP_NAME, Const.APP_NAME + " ReviewProfile - loadAbove start");
+    void loadList(){
 		Bundle bundle = new Bundle();
 		bundle.putString(Const.KEY_REVIEW, mReview.toString());
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		ReviewAboveFragment fragment = new ReviewAboveFragment();
+		ReviewProfileFragment fragment = new ReviewProfileFragment();
 		fragment.setArguments(bundle);
-		fragmentTransaction.add(R.id.viewAbove, fragment);
+		fragmentTransaction.add(R.id.viewList, fragment);
 		fragmentTransaction.commit();
-		Log.d(Const.APP_NAME, Const.APP_NAME + " ReviewProfile - loadAbove end");
     }
 
-    void loadBelow(){
-		Log.d(Const.APP_NAME, Const.APP_NAME + " ReviewProfile - loadBelow start");
-		Bundle bundle = new Bundle();
-		bundle.putString(Const.KEY_REVIEW, mReview.toString());
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		ReviewBelowFragment fragment = new ReviewBelowFragment();
-		fragment.setArguments(bundle);
-		fragmentTransaction.add(R.id.viewBelow, fragment);
-		fragmentTransaction.commit();
-		Log.d(Const.APP_NAME, Const.APP_NAME + " ReviewProfile - loadBelow end");
-    }
-    
 	@Override
     public void onStart(){
     	super.onStart();
@@ -209,48 +132,18 @@ public class ReviewProfile extends WithHeaderActivity {
     protected void bind(){
 		hideLoading();
 
-//		viewBody.setVisibility(View.VISIBLE);
-//		tribtn.init(this, new App(mReview.optJSONObject("app")));
-
         header.setUser(mReview.optJSONObject("user"));
         header.setUserFromCache(header.getUserId());
-        if(header.isMe())
-        	btnTriangleUser.setVisibility(View.GONE);
-        else{
+        if(!header.isMe()){
     		btnOptionsMenu = findViewById(R.id.btnOptionsMenu);
         	btnOptionsMenu.setVisibility(View.INVISIBLE);
-//        	followBtn.bind();
         }
-        bindReview();
 
         if(mReview.optJSONObject("app") != null){
 	//		tribtn.setStatus(new App(mReview.optJSONObject("app")));
 			appHeader.setApp(new App(mReview.optJSONObject("app")));
 			appHeader.setAppFromCache(appHeader.getAppId());
 		
-//			final View inplacePanelApp = findViewById(R.id.inplacePanelApp);
-//	        btnTriangleApp.setOnClickListener(new OnClickListener(){
-//				@Override
-//				public void onClick(View arg0) {
-//					boolean isOpened = (mHelper.mLastExpandedPosition == POSITION_APP);  
-//					mHelper.hideActionsAnim();
-//					if(!isOpened){
-//						mHelper.showActionsAnim(inplacePanelApp, POSITION_APP);
-//					}
-//				}
-//	        });
-//
-//	        appActionHelper.init(inplacePanelApp, new Runnable(){
-//				@Override
-//				public void run() {
-//					mHelper.hideActionsAnim();
-//				}
-//			});
-//
-//			// hide some buttons
-//	        inplacePanelApp.findViewById(R.id.btnShare).setVisibility(View.GONE);
-//	        inplacePanelApp.findViewById(R.id.btnReview).setVisibility(View.GONE);
-
 			final View bottomBar = findViewById(R.id.bottomBar);
 	        appActionHelper.init(bottomBar, null);
 	        appActionHelper.bind();
@@ -264,268 +157,8 @@ public class ReviewProfile extends WithHeaderActivity {
         reviewActionHelper.init(findViewById(R.id.viewBody));
 		reviewActionHelper.bind();
 		
-//		if(mReview.optJSONObject("user").optString("id").equalsIgnoreCase(Utils.getCurrentUserId(this))){
-//    		btnDelete.setVisibility(View.VISIBLE);
-////    		btnRetweet.setVisibility(View.GONE);
-//    	}else{
-//    		btnDelete.setVisibility(View.GONE);
-////    		btnRetweet.setVisibility(View.VISIBLE);
-//    	}
-
-//    	String InreplytoId = mReview.optString("in_reply_to_id", null);
-//        if(mInreplyto == null && InreplytoId != null){
-//    		String strCache = loadCache(InreplytoId);
-//    		if(strCache != null){
-//    			try {
-//    				mInreplyto = new JSONObject(strCache);
-//    				bindInreplyto(mInreplyto);
-//    			} catch (JSONException e) {
-//    				e.printStackTrace();
-//    			}
-//    		}
-//    		loadInreplyto(InreplytoId);
-//        }
     }
-//	protected void bindIcons() {
-//		String id = Utils.getCurrentUser(this).optString("signup_sns");
-//    	Drawable d;
-//    	d = this.getResources().getDrawable((Integer) Utils.getSnsResource(id, "btnReply"));
-//    	d.setBounds(0, 0, d.getMinimumWidth(), d.getMinimumHeight());
-//		btnReply.setCompoundDrawables(d, null, null, null);
-//    	d = this.getResources().getDrawable((Integer) Utils.getSnsResource(id, "btnRetweet"));
-//    	d.setBounds(0, 0, d.getMinimumWidth(), d.getMinimumHeight());
-//    	btnRetweet.setCompoundDrawables(d, null, null, null);
-//    	d = this.getResources().getDrawable((Integer) Utils.getSnsResource(id, "btnDelete"));
-//    	d.setBounds(0, 0, d.getMinimumWidth(), d.getMinimumHeight());
-//    	btnDelete.setCompoundDrawables(d, null, null, null);
-//	}
     
-	protected void bindReview() {
-		try {
-			ImageView iv;
-			TextView tv;
-			Bitmap bm = null;
-			String url = null;
-			
-			View viewUser = findViewById(R.id.viewUser);
-
-			tv = (TextView)findViewById(R.id.txtUserName);
-			tv.setText(header.getUser().optString("name"));
-			tv.setTypeface(mBoldFont);
-
-			if(!header.getUser().isNull("avatar_mask")){
-				String mask = header.getUser().optString("avatar_mask", "");
-				url = mask.replace("[size]", "bi");
-//				bm = Utils.getImageFromFile(this, url); 
-			}
-			iv = (ImageView)findViewById(R.id.avatar);
-//			if(bm == null)  Utils.asyncLoadImage(this, 0, url, null);
-//			if(bm != null) iv.setImageBitmap(bm);
-			iv.setImageResource(R.drawable.noname);
-			new AsyncImageLoader(this, iv, 0).loadUrl(url);
-
-			viewUser.setOnClickListener(new View.OnClickListener(){
-				@Override
-				public void onClick(View v) {
-					openUser(header.getUser());
-				}
-				
-			});
-			
-			String str;
-			View viewContent = findViewById(R.id.viewContent);
-			
-			tv = (TextView) findViewById(R.id.txtContent);
-			str = mReview.optString("content");
-//			if(str.equals("")){
-//				tv.setVisibility(View.GONE);
-//			}else{
-//				tv.setVisibility(View.VISIBLE);
-				tv.setText(str);
-				tv.setTypeface(mLightFont);
-//			}
-
-			double dTime = mReview.getDouble("created_at");
-			String time = Utils.formatTimeDistance(this, new Date((long) (dTime*1000)));
-			tv = (TextView) findViewById(R.id.txtTime);
-			tv.setText(time);
-			tv.setTypeface(mLightFont);
-
-			str = mReview.optString("model");
-			if(str != null){
-				tv = (TextView) findViewById(R.id.txtModel);
-				tv.setText(str);
-				tv.setTypeface(mLightFont);
-			}
-
-			final App app = new App(mReview.optJSONObject("app"));
-			View viewApp = findViewById(R.id.viewApp);
-//			View dividerApp = findViewById(R.id.dividerApp);
-			View inplacePanelApp = findViewById(R.id.inplacePanelApp);
-			View dividerApp = findViewById(R.id.dividerApp);
-			View imgQuestion = findViewById(R.id.imgQuestion);
-			View btnAdd = findViewById(R.id.btnAdd);
-			if(app.getJSON() == null){
-				viewApp.setVisibility(View.GONE);
-				btnTriangleApp.setVisibility(View.GONE);
-				inplacePanelApp.setVisibility(View.GONE);
-				dividerApp.setVisibility(View.GONE);
-				imgQuestion.setVisibility(View.VISIBLE);
-				btnAdd.setVisibility(View.VISIBLE);
-				
-				btnAdd.setOnClickListener(new View.OnClickListener(){
-					@Override
-					public void onClick(View v) {
-						selectAppToReply(mReview, null);
-					}
-				});
-				
-			}else{
-				viewApp.setVisibility(View.VISIBLE);
-//				btnTriangleApp.setVisibility(View.VISIBLE);
-				inplacePanelApp.setVisibility(View.VISIBLE);
-				dividerApp.setVisibility(View.VISIBLE);
-				imgQuestion.setVisibility(View.GONE);
-				btnAdd.setVisibility(View.GONE);
-				
-				iv = (ImageView) findViewById(R.id.icon);
-				if(app.getIcon() != null){
-					url = app.getIcon();
-//					bm = Utils.getImageFromFile(this, url); 
-//					if(bm == null) Utils.asyncLoadImage(this, 0, url, null);
-//					if(bm != null) iv.setImageBitmap(bm);
-//					else iv.setImageResource(R.drawable.noimage);
-					new AsyncImageLoader(this, iv, 1).loadUrl(url);
-				}
-				tv = (TextView) findViewById(R.id.txtAppName);
-				tv.setText(app.getName());
-				tv.setTypeface(mBoldFont);
-//				tv = (TextView) findViewById(R.id.txtAppVersion);
-//				tv.setText(app.getVersionName());
-//				tv.setTypeface(mNormalFont);
-				tv = (TextView) findViewById(R.id.txtAppSize);
-				tv.setText(String.format(getString(R.string.app_size_short), app.getCloudSize()/1048576.0));
-				tv.setTypeface(mLightFont);
-	
-				viewApp.setOnClickListener(new View.OnClickListener(){
-					@Override
-					public void onClick(View v) {
-						openApp(app.getJSON());
-					}
-					
-				});
-			}
-			if(getInreplytoUser(mReview) != null) bindInreplyto();
-			
-			final ImageView imgThumbnail = (ImageView)findViewById(R.id.imgThumbnail);
-			final ImageView imgImage = (ImageView)findViewById(R.id.imgImage);
-			final View loadingImage = findViewById(R.id.loadingImage);
-			String imageUrl = mReview.optString("image", null);
-			if(imageUrl != null){
-				imgThumbnail.setVisibility(View.VISIBLE);
-				imgImage.setVisibility(View.VISIBLE);
-				loadingImage.setVisibility(View.VISIBLE);
-
-				// disable thumbnail for now
-//					String thumbnailUrl = mReview.optString("thumbnail", null);
-//					new AsyncImageLoader(this, imgThumbnail, 1, null).loadUrl(thumbnailUrl);
-				new AsyncImageLoader(this, imgImage, 1).setRequestSize(Const.SCREEN_WIDTH, Const.SCREEN_HEIGHT).setCallback(new Runnable(){
-					@Override
-					public void run() {
-						loadingImage.setVisibility(View.GONE);
-					}
-				})
-				.loadUrl(imageUrl);
-
-				imgImage.setOnClickListener(new View.OnClickListener(){
-					@Override
-					public void onClick(View v) {
-						if(imgImage.getDrawable() != null){ // image saved
-							String imageUrl = mReview.optString("image", null);
-							Intent intent = new Intent("android.intent.action.VIEW");  
-						    intent.addCategory("android.intent.category.DEFAULT");  
-						    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
-						    Uri uri = Uri.fromFile(new File(Utils.getImageFileName(imageUrl)));  
-						    intent.setDataAndType(uri, "image/*");
-						    startActivity(intent);
-						}
-					}
-				});
-			}else{
-				imgThumbnail.setVisibility(View.VISIBLE);
-				imgImage.setVisibility(View.GONE);
-				loadingImage.setVisibility(View.GONE);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-    
-	protected void bindInreplyto() {
-		viewInreplyto.setVisibility(View.VISIBLE);
-		try {
-			String str;
-			ImageView iv;
-			TextView tv;
-			JSONObject user = getInreplytoUser(mReview);
-			
-			tv = (TextView) findViewById(R.id.txtInreplyto);
-			tv.setTypeface(mLightFont);
-			tv = (TextView) findViewById(R.id.txtInreplytoName);
-			str = user.optString("name");
-			tv.setText(str);
-			tv.setTypeface(mLightFont);
-//
-//			Bitmap bm = null;
-//			String url = null;
-//			if(!user.isNull("avatar_mask")){
-//				String mask = user.optString("avatar_mask", "");
-//				url = mask.replace("[size]", "bi");
-//				bm = Utils.getImageFromFile(this, url); 
-//			}
-//			if(bm == null)  Utils.asyncLoadImage(this, 0, url, null);
-//			iv = (ImageView) findViewById(R.id.imgInreplyto);
-//			iv.setImageBitmap(bm);
-//
-			viewInreplyto.setOnClickListener(new View.OnClickListener(){
-				@Override
-				public void onClick(View v) {
-					Intent i = new Intent(ReviewProfile.this, ReviewProfile.class);
-					i.setData(Uri.parse(Const.HTTP_PREFIX+"/r/"+mReview.optString("in_reply_to_id")));
-					startActivity(i);
-				}
-			});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public JSONObject getInreplytoUser(JSONObject review){
-		String str = review.optString("in_reply_to_user", "");
-		JSONObject ret = null;
-		if(!Utils.isEmpty(str))
-			try {
-				ret = new JSONObject(str);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			} 
-		return ret;
-	}
-
-	//	  @Override
-//	  public boolean onCreateOptionsMenu(Menu menu) {
-//	      mMenu = menu;
-//	      // Inflate the currently selected menu XML resource.
-//	      MenuInflater inflater = getMenuInflater();
-//	      inflater.inflate(R.menu.common, menu);
-//	      //setNoticeMenu();        		
-//	      return true;
-//	  }
-//    @Override
-//	protected void onDataChanged(int item){
-//		bind();
-//	}
-
     private String getIdFromUrl(Intent intent){
     	String ret = null;
     	Uri data = intent.getData();
@@ -555,8 +188,7 @@ public class ReviewProfile extends WithHeaderActivity {
             protected void onPostExecute(Long result) {
 		    	if(mRet != null){
 		    		mReview = mRet;
-		    		loadBelow();
-		        	loadAbove();
+		        	loadList();
 		    		bind(); 
 		    		cacheData(mRet.toString());
 		    	}
@@ -568,36 +200,6 @@ public class ReviewProfile extends WithHeaderActivity {
         };
         loadTask.execute();
     }
-
-//    private void loadInreplyto(final String id){
-//    	AsyncTask<Void, Void, Long> loadTask = new AsyncTask<Void, Void, Long>() {
-//			private String mErr = null;
-//			private JSONObject mRet = null;
-//			protected void onPreExecute() {
-//				viewLoadingInreplyto.setVisibility(View.VISIBLE);
-//			}
-//			protected Long doInBackground(Void... params) {
-//				try {
-//					mRet = Utils.getReviewInfo(ReviewProfile.this, id);
-////					Log.d("", Const.APP_NAME + " loadInreplyto: "+mRet.toString());
-//				} catch (Exception e) {
-//					mErr = e.getMessage();
-//					Log.d("", Const.APP_NAME + " loadInreplyto error: "+mErr);
-//					clearCache(id);
-//				}
-//				return null;
-//			}
-//            protected void onPostExecute(Long result) {
-//		    	if(mRet != null){
-//		    		mInreplyto = mRet;
-//		    		bindInreplyto(mInreplyto); 
-//		    		cacheData(mRet.toString(), mInreplyto.optString("id"));
-//		    	}else viewInreplyto.setVisibility(View.GONE);
-//				viewLoadingInreplyto.setVisibility(View.GONE);
-//            }
-//        };
-//        loadTask.execute();
-//    }
 
     static public String cacheId(String id){
 //    	if(app == null) return null; // in case opened from share link

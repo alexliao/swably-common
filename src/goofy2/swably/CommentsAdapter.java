@@ -46,7 +46,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		handleDivider(viewInfo);
 		
 		ViewHolder holder = (ViewHolder) viewInfo.getTag();
-
+		
 		final View ib1 = holder.avatar;
 		if(ib1 != null){
 			Utils.setTouchAnim(mContext, ib1);

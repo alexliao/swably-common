@@ -20,10 +20,11 @@ public abstract class CloudBaseAdapter extends BaseAdapter {
 	protected LayoutInflater mInflater;
 	protected JSONArray mListData;
 	protected HashMap<String, Integer> mLoadingImages;
-	private boolean mIsFirst = false;
-	private boolean mIsLast = false;
+	protected boolean mIsFirst = false;
+	protected boolean mIsLast = false;
 	protected int mPosition = -1;
 	ExecutorService mLoadImageThreadPool = Executors.newFixedThreadPool(Const.MULITI_DOWNLOADING);
+	protected ListView mListView;
 
 	public CloudBaseAdapter(CloudActivity context, JSONArray list, HashMap<String, Integer> loadingImages){
 		this.mContext = context;
@@ -103,5 +104,9 @@ public abstract class CloudBaseAdapter extends BaseAdapter {
 
 	public void setData(JSONArray data) {
 		mListData = data;
+	}
+
+	public void setListView(ListView listView) {
+		mListView = listView;		
 	}
 }
