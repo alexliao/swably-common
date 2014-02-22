@@ -185,7 +185,7 @@ public abstract class CloudCommentsFragment extends CloudListFragment {
 //        return false;
 //    }
 
-    public class ReviewDeletedBroadcastReceiver extends BroadcastReceiver {
+	public class ReviewDeletedBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals(Const.BROADCAST_REVIEW_DELETED)){
@@ -212,7 +212,7 @@ public abstract class CloudCommentsFragment extends CloudListFragment {
 					review = new JSONObject(intent.getStringExtra(Const.KEY_REVIEW));
 	            	JSONArray arr = new JSONArray();
 	            	arr.put(review);
-	            	mListData = JSONUtils.appendArray(arr, mListData);
+	            	mListData = addNewReviewToList(mListData, arr);
 					mAdapter.setData(mListData);
 //					mAdapter.notifyDataSetChanged();
 					onDataChanged(-1);
@@ -224,7 +224,12 @@ public abstract class CloudCommentsFragment extends CloudListFragment {
         }
     }
 
-//    @Override
+
+	protected JSONArray addNewReviewToList(JSONArray list, JSONArray newReviews){
+		return JSONUtils.appendArray(newReviews, list);
+	}
+
+	//    @Override
 //    protected void cacheItems(final JSONArray loaded) {
 //		new Thread() {
 //			public void run(){

@@ -6,7 +6,9 @@ import goofy2.swably.Const;
 import goofy2.swably.R;
 import goofy2.swably.ReviewProfileAdapter;
 import goofy2.swably.ThreadCommentsAdapter;
+import goofy2.utils.JSONUtils;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
@@ -104,4 +106,9 @@ public class ReviewProfileFragment extends PeopleReviewsFragment{
 		return 600*1000;
 	}
     
+	@Override
+	protected JSONArray addNewReviewToList(JSONArray list, JSONArray newReviews){
+		return JSONUtils.appendArray(list, newReviews);
+	}
+	
 }

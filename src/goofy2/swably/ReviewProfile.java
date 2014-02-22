@@ -44,28 +44,16 @@ public class ReviewProfile extends WithHeaderActivity {
 //	protected AppTribtn tribtn = new AppTribtn(); 
 	JSONObject mInreplyto;
 	String mId;
-	private View btnUser;
-	private View btnRetweet;
-	private View btnReply;
-	private View btnShareReview;
-//	private View btnDelete;
-	private ViewGroup viewReview;
-	private ViewGroup viewUser;
-	private ViewGroup viewApp;
-	private ViewGroup viewContent;
-	private View viewInreplyto;
-	private View viewLoadingInreplyto;
-	private ViewGroup viewBelow;
 	private ViewGroup viewList;
 	 
-	static int POSITION_USER = 0;
-	static int POSITION_CONTENT = 1;
-	static int POSITION_APP = 2;
-	InplaceActionsHelper mHelper = new InplaceActionsHelper(this);
-	View btnTriangleUser;
-	View btnTriangleApp;
-	View btnTriangleContent;
-	protected FollowBtn followBtn;
+//	static int POSITION_USER = 0;
+//	static int POSITION_CONTENT = 1;
+//	static int POSITION_APP = 2;
+//	InplaceActionsHelper mHelper = new InplaceActionsHelper(this);
+//	View btnTriangleUser;
+//	View btnTriangleApp;
+//	View btnTriangleContent;
+//	protected FollowBtn followBtn;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -258,8 +246,8 @@ public class ReviewProfile extends WithHeaderActivity {
 						@Override
 						public void onAnimationStart(Animation animation) {}
 					});
-					viewReview.setPersistentDrawingCache(ViewGroup.PERSISTENT_ANIMATION_CACHE);
-					viewReview.startAnimation(anim);
+			        viewList.setPersistentDrawingCache(ViewGroup.PERSISTENT_ANIMATION_CACHE);
+			        viewList.startAnimation(anim);
 					Intent intent = new Intent(Const.BROADCAST_REVIEW_DELETED);
 					intent.putExtra(Const.KEY_ID, mReview.optString("id"));
 					sendBroadcast(intent);
