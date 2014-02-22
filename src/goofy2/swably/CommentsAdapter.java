@@ -257,8 +257,52 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 				holder.imgQuestion.setVisibility(View.GONE);
 			}
 			
+			bindReplies(holder, review);
+
 		} catch (Exception e) {
 			Log.d(Const.APP_NAME, Const.APP_NAME + " CommentsAdapter - bind err: " + e.getMessage());
+		}
+	}
+	
+	void bindReplies(ViewHolder holder, JSONObject review) throws JSONException{
+		App app = new App(review.optJSONObject("app"));
+		if(app.getJSON() != null){
+			holder.viewReplies.setVisibility(View.GONE);
+			return;
+		}
+		
+		String belowStr = review.optString("below_json");
+		if(belowStr.equals("")) belowStr = "{}";
+		JSONObject belowJson = new JSONObject(belowStr);
+		int repliesCount = belowJson.optInt("replies_count");
+		JSONArray appIcons = belowJson.optJSONArray("app_icons");
+		if(repliesCount == 0){
+			holder.viewReplies.setVisibility(View.GONE);
+		}else{
+			holder.viewReplies.setVisibility(View.VISIBLE);
+			holder.imgReply1.setVisibility(View.GONE);
+			holder.imgReply2.setVisibility(View.GONE);
+			holder.imgReply3.setVisibility(View.GONE);
+			holder.txtReplies.setVisibility(View.GONE);
+			if(repliesCount >= 1){
+				holder.imgReply1.setVisibility(View.VISIBLE);
+				holder.imgReply1.setImageResource(R.drawable.noimage);
+				new AsyncImageLoader(mContext, holder.imgReply1, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(appIcons.getString(1-1));
+			}
+			if(repliesCount >= 2){
+				holder.imgReply2.setVisibility(View.VISIBLE);
+				holder.imgReply2.setImageResource(R.drawable.noimage);
+				new AsyncImageLoader(mContext, holder.imgReply2, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(appIcons.getString(2-1));
+			}
+			if(repliesCount >= 3){
+				holder.imgReply3.setVisibility(View.VISIBLE);
+				holder.imgReply3.setImageResource(R.drawable.noimage);
+				new AsyncImageLoader(mContext, holder.imgReply3, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(appIcons.getString(3-1));
+			}
+			if(repliesCount >= 4){
+				holder.txtReplies.setVisibility(View.VISIBLE);
+				holder.txtReplies.setText(String.format(mContext.getString(R.string.replies_count_x), repliesCount));
+			}
 		}
 	}
 	
@@ -296,6 +340,12 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		holder.btnUpload = convertView.findViewById(R.id.btnUpload);
 		holder.btnPlay = convertView.findViewById(R.id.btnPlay);
 		holder.btnInstall = convertView.findViewById(R.id.btnInstall);
+		
+		holder.viewReplies = convertView.findViewById(R.id.viewReplies);
+		holder.imgReply1 = (ImageView) convertView.findViewById(R.id.imgReply1);
+		holder.imgReply2 = (ImageView) convertView.findViewById(R.id.imgReply2);
+		holder.imgReply3 = (ImageView) convertView.findViewById(R.id.imgReply3);
+		holder.txtReplies = (TextView) convertView.findViewById(R.id.txtReplies);
 		return holder;
 	}
 	
@@ -321,6 +371,11 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		View btnPlay;
 		View btnInstall;
 		View viewAppBtn;
+		View viewReplies;
+		ImageView imgReply1;
+		ImageView imgReply2;
+		ImageView imgReply3;
+		TextView txtReplies;
 		@Override
 		public View getBtnDownload() {
 			return btnDownload;

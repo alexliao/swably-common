@@ -1,9 +1,14 @@
 package goofy2.swably;
 
 import goofy2.swably.R;
+import goofy2.swably.CommentsAdapter.ViewHolder;
+
 import java.util.HashMap;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,4 +30,7 @@ public class ThreadCommentsAdapter extends CommentsAdapter {
 		return ret;
 	}
 	
+	@Override
+	void bindReplies(ViewHolder holder, JSONObject review) throws JSONException{
+	}
 }

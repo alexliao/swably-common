@@ -99,6 +99,44 @@
 			android:layout_below="@id/txtAppName"
 			android:visibility="gone"
 		/>
+		<LinearLayout android:id="@+id/viewReplies"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:gravity="center_vertical"
+		    android:background="@drawable/row"
+		    android:layout_below="@id/viewContent" 
+		    android:layout_alignLeft="@id/viewContent"
+			android:visibility="gone"
+		    >
+			<ImageView android:id="@+id/imgReply1"
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				android:layout_marginRight="10dp"
+				android:tag="reply1"
+				android:src="@drawable/noimage"
+				android:visibility="gone"
+			/>
+			<ImageView android:id="@+id/imgReply2"
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				android:layout_marginRight="10dp"
+				android:tag="reply2"
+				android:src="@drawable/noimage"
+				android:visibility="gone"
+			/>
+			<ImageView android:id="@+id/imgReply3"
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				android:layout_marginRight="10dp"
+				android:tag="reply3"
+				android:src="@drawable/noimage"
+				android:visibility="gone"
+			/>
+			<TextView android:id="@+id/txtReplies"
+				style="@style/desc"
+			    />
+		</LinearLayout>
 	</RelativeLayout>	
 	<ImageView android:id="@+id/btnTriangle" style="@style/btnTriangle" android:layout_alignBottom="@id/row" />
 	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
