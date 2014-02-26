@@ -4,5 +4,17 @@
         android:id="@+id/about"
         android:title="@string/about"
         />
+    <item
+        android:id="@+id/claim"
+        android:title="@string/claim"
+        />
+    <item
+        android:id="@+id/flag"
+        android:title="@string/flag"
+        />
+    <item
+        android:id="@+id/uninstall"
+        android:title="@string/uninstall"
+        />
     
 </menu>

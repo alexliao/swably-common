@@ -119,14 +119,14 @@ public class AppAbout extends WithHeaderActivity {
         getMenuInflater().inflate(getMenu(), menu);
 
     	goofy2.swably.data.App app = header.getApp();
-        int localVersion = app.getLocalVersionCode(this);
-		if(!app.isSameSignature(this)) localVersion = -1; // not exactly the same app
-		if(localVersion < 0)
-			menu.removeItem(R.id.uninstall);
+//        int localVersion = app.getLocalVersionCode(this);
+//		if(!app.isSameSignature(this)) localVersion = -1; // not exactly the same app
+//		if(localVersion < 0)
+//			menu.removeItem(R.id.uninstall);
 
 		final JSONObject dev = app.getDev(); 
 		if(dev != null && dev.optString("id").equals(Utils.getCurrentUserId(this))){ // current user is the developer
-			menu.removeItem(R.id.claim);
+//			menu.removeItem(R.id.claim);
 		}else{
 			menu.removeItem(R.id.manage);
 		}
@@ -164,52 +164,31 @@ public class AppAbout extends WithHeaderActivity {
 			});
 			ad.show();
 	    	return true;
-	    }else if (item.getItemId() == R.id.claim) {
-			new AlertDialog.Builder(this)
-				.setTitle(getString(R.string.claim_title))
-				.setMessage(getString(R.string.claim_instruction))
-				.setNegativeButton(R.string.ok, null)
-				.show();
-	    	return true;
-	    }else if (item.getItemId() == R.id.flag) {
-	    	flag(header.getApp());
-	    	return true;
-	    }else if (item.getItemId() == R.id.uninstall) {
-//	    	goofy2.swably.data.App app = header.getApp();
-//			int localVersion = app.getLocalVersionCode(this);
-//			if(!app.isSameSignature(this)) localVersion = -1; // not exactly the same app
-//	
-//			if(localVersion >= 0){
-				Uri packageUri = Uri.parse("package:"+header.getApp().getPackage());
-	            Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageUri);
-	            startActivity(uninstallIntent);
-//			}
-	    	return true;
+//	    }else if (item.getItemId() == R.id.claim) {
+//			new AlertDialog.Builder(this)
+//				.setTitle(getString(R.string.claim_title))
+//				.setMessage(getString(R.string.claim_instruction))
+//				.setNegativeButton(R.string.ok, null)
+//				.show();
+//	    	return true;
+//	    }else if (item.getItemId() == R.id.flag) {
+//	    	flag(header.getApp());
+//	    	return true;
+//	    }else if (item.getItemId() == R.id.uninstall) {
+////	    	goofy2.swably.data.App app = header.getApp();
+////			int localVersion = app.getLocalVersionCode(this);
+////			if(!app.isSameSignature(this)) localVersion = -1; // not exactly the same app
+////	
+////			if(localVersion >= 0){
+//				Uri packageUri = Uri.parse("package:"+header.getApp().getPackage());
+//	            Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageUri);
+//	            startActivity(uninstallIntent);
+////			}
+//	    	return true;
 		}else {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-    
-    void flag(final App app){
-		Utils.confirm(AppAbout.this, getString(R.string.report_title), getString(R.string.report_desc), new OnClickListener(){
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				final Handler handler = new Handler(); 
-				new Thread(new Runnable(){
-					@Override
-					public void run() {
-						Utils.reportWarez(AppAbout.this, app);
-						handler.post(new Runnable(){
-							@Override
-							public void run() {
-								Utils.showToast(AppAbout.this, getString(R.string.report_sent));
-							}
-						});
-					}
-				}).start();
-			}
-		});
-    }
     
     void renounce(final App app){
 		Utils.confirm(AppAbout.this, getString(R.string.renounce_title), getString(R.string.renounce_desc), new OnClickListener(){

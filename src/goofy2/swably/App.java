@@ -5,14 +5,19 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import goofy2.swably.fragment.AppAboutFragment;
@@ -124,6 +129,27 @@ public class App extends WithHeaderActivity
     	return R.menu.app_reviews;
     }
     
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(getMenu(), menu);
+
+    	goofy2.swably.data.App app = header.getApp();
+        int localVersion = app.getLocalVersionCode(this);
+		if(!app.isSameSignature(this)) localVersion = -1; // not exactly the same app
+		if(localVersion < 0)
+			menu.removeItem(R.id.uninstall);
+
+		final JSONObject dev = app.getDev(); 
+		if(dev != null && dev.optString("id").equals(Utils.getCurrentUserId(this))){ // current user is the developer
+			menu.removeItem(R.id.claim);
+		}else{
+//			menu.removeItem(R.id.manage);
+		}
+        
+
+		return true;
+    }
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    if (item.getItemId() == R.id.about) {
@@ -132,11 +158,53 @@ public class App extends WithHeaderActivity
 //	    }else if (item.getItemId() == R.id.share) {
 //			sendOutApp(header.getApp());
 //	    	return true;
+	    }else if (item.getItemId() == R.id.claim) {
+			new AlertDialog.Builder(this)
+				.setTitle(getString(R.string.claim_title))
+				.setMessage(getString(R.string.claim_instruction))
+				.setNegativeButton(R.string.ok, null)
+				.show();
+	    	return true;
+	    }else if (item.getItemId() == R.id.flag) {
+	    	flag(header.getApp());
+	    	return true;
+	    }else if (item.getItemId() == R.id.uninstall) {
+//	    	goofy2.swably.data.App app = header.getApp();
+//			int localVersion = app.getLocalVersionCode(this);
+//			if(!app.isSameSignature(this)) localVersion = -1; // not exactly the same app
+//	
+//			if(localVersion >= 0){
+				Uri packageUri = Uri.parse("package:"+header.getApp().getPackage());
+	            Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageUri);
+	            startActivity(uninstallIntent);
+//			}
+	    	return true;
 		}else {
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
+    void flag(final goofy2.swably.data.App app){
+		Utils.confirm(App.this, getString(R.string.report_title), getString(R.string.report_desc), new OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				final Handler handler = new Handler(); 
+				new Thread(new Runnable(){
+					@Override
+					public void run() {
+						Utils.reportWarez(App.this, app);
+						handler.post(new Runnable(){
+							@Override
+							public void run() {
+								Utils.showToast(App.this, getString(R.string.report_sent));
+							}
+						});
+					}
+				}).start();
+			}
+		});
+    }
+    
 	public class RefreshAppBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {

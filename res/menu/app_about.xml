@@ -5,20 +5,8 @@
         android:title="@string/google_btn"
         />
     <item
-        android:id="@+id/claim"
-        android:title="@string/claim"
-        />
-    <item
         android:id="@+id/manage"
         android:title="@string/manage"
-        />
-    <item
-        android:id="@+id/flag"
-        android:title="@string/flag"
-        />
-    <item
-        android:id="@+id/uninstall"
-        android:title="@string/uninstall"
         />
     
 </menu>

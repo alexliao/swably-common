@@ -141,11 +141,11 @@ public class ReviewActionHelper {
 		if(mReview.optJSONObject("app") == null){
 			viewAppBtn.setVisibility(View.GONE);
 			btnAddApp.setVisibility(View.VISIBLE);
-			btnReply.setVisibility(View.GONE);
+//			btnReply.setVisibility(View.GONE);
 		}else{
 			viewAppBtn.setVisibility(View.VISIBLE);
 			btnAddApp.setVisibility(View.GONE);
-			btnReply.setVisibility(View.VISIBLE);
+//			btnReply.setVisibility(View.VISIBLE);
 		}
 	}
 
