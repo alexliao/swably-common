@@ -182,6 +182,60 @@
 				android:layout_below="@id/viewApp"
 			    />
 			<View android:id="@+id/dividerImage"  style="@style/divider" android:layout_below="@id/imgImage" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
+			<LinearLayout android:id="@+id/viewWatchers"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+				android:layout_marginLeft="@dimen/padding"
+				android:paddingLeft="@dimen/padding"
+			    android:orientation="horizontal"
+			    android:gravity="center_vertical"
+			    android:background="@drawable/row"
+			    android:layout_below="@id/dividerImage" 
+			    >
+				<goofy2.utils.Avatar
+					style="@style/avatar"
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					app:radius="12"
+					android:layout_marginRight="10dp"
+					android:tag="watcher1"
+					android:src="@drawable/noimage"
+					android:visibility="gone"
+				/>
+				<goofy2.utils.Avatar
+					style="@style/avatar"
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					app:radius="12"
+					android:layout_marginRight="10dp"
+					android:tag="watcher2"
+					android:src="@drawable/noimage"
+					android:visibility="gone"
+				/>
+				<goofy2.utils.Avatar
+					style="@style/avatar"
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					app:radius="12"
+					android:layout_marginRight="10dp"
+					android:tag="watcher3"
+					android:src="@drawable/noimage"
+					android:visibility="gone"
+				/>
+				<View android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"/>
+				<TextView android:id="@+id/btnAddWatcher"
+				    android:text="@string/add_watcher"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/row"
+					android:padding="@dimen/padding"
+					android:layout_marginRight="@dimen/padding"
+					android:textColor="@color/content"
+					android:textSize="16sp"
+					android:clickable="true"
+				    />
+			</LinearLayout>
+			<View android:id="@+id/dividerWatchers"  style="@style/divider" android:layout_below="@id/viewWatchers" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
 		</RelativeLayout>
 	</LinearLayout>
 </RelativeLayout>

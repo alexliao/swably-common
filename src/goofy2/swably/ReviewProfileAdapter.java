@@ -1,5 +1,6 @@
 package goofy2.swably;
 
+import goofy2.swably.CommentsAdapter.ViewHolder;
 import goofy2.swably.data.App;
 import goofy2.utils.AsyncImageLoader;
 
@@ -68,13 +69,13 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			mIsLast = (position == getCount()-1);
 			mPosition = position;
 		}
-		bindCurrentReview(convertView);
+		bindCurrentReview(convertView, (JSONObject)getItem(position));
 		return convertView;
 	}
 
-	private void bindCurrentReview(View v) {
+	private void bindCurrentReview(View v, final JSONObject review) {
 		try {
-			final JSONObject user = mReview.optJSONObject("user");
+			final JSONObject user = review.optJSONObject("user");
 			ImageView iv;
 			TextView tv;
 			Bitmap bm = null;
@@ -106,7 +107,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			View viewContent = v.findViewById(R.id.viewContent);
 			
 			tv = (TextView) v.findViewById(R.id.txtContent);
-			str = mReview.optString("content");
+			str = review.optString("content");
 			tv.setText(str);
 			tv.setTypeface(mContext.mLightFont);
 
@@ -114,47 +115,47 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 				@Override
 				public void onClick(View arg0) {
 					ClipboardManager cbm = (ClipboardManager) mContext.getSystemService(mContext.CLIPBOARD_SERVICE);
-					cbm.setText(mReview.optString("content"));		
+					cbm.setText(review.optString("content"));		
 					Utils.showToast(mContext, mContext.getString(R.string.copied));
 				}
 	        });
 
-			double dTime = mReview.getDouble("created_at");
+			double dTime = review.getDouble("created_at");
 			String time = Utils.formatTimeDistance(mContext, new Date((long) (dTime*1000)));
 			tv = (TextView) v.findViewById(R.id.txtTime);
 			tv.setText(time);
 			tv.setTypeface(mContext.mLightFont);
 
-			str = mReview.optString("model");
+			str = review.optString("model");
 			if(str != null){
 				tv = (TextView) v.findViewById(R.id.txtModel);
 				tv.setText(str);
 				tv.setTypeface(mContext.mLightFont);
 			}
 
-			final App app = new App(mReview.optJSONObject("app"));
+			final App app = new App(review.optJSONObject("app"));
 			View viewApp = v.findViewById(R.id.viewApp);
-//			View dividerApp = v.findViewById(R.id.dividerApp);
+			View dividerApp = v.findViewById(R.id.dividerApp);
 			View imgQuestion = v.findViewById(R.id.imgQuestion);
-			View btnAdd = v.findViewById(R.id.btnAdd);
+//			View btnAdd = v.findViewById(R.id.btnAdd);
 			if(app.getJSON() == null){
 				viewApp.setVisibility(View.GONE);
-//				dividerApp.setVisibility(View.GONE);
+				dividerApp.setVisibility(View.GONE);
 				imgQuestion.setVisibility(View.VISIBLE);
-				btnAdd.setVisibility(View.VISIBLE);
-				
-				btnAdd.setOnClickListener(new View.OnClickListener(){
-					@Override
-					public void onClick(View v) {
-						mContext.selectAppToReply(mReview, null);
-					}
-				});
+//				btnAdd.setVisibility(View.VISIBLE);
+//				
+//				btnAdd.setOnClickListener(new View.OnClickListener(){
+//					@Override
+//					public void onClick(View v) {
+//						mContext.selectAppToReply(review, null);
+//					}
+//				});
 				
 			}else{
 				viewApp.setVisibility(View.VISIBLE);
-//				dividerApp.setVisibility(View.VISIBLE);
+				dividerApp.setVisibility(View.VISIBLE);
 				imgQuestion.setVisibility(View.GONE);
-				btnAdd.setVisibility(View.GONE);
+//				btnAdd.setVisibility(View.GONE);
 				
 				iv = (ImageView) v.findViewById(R.id.icon);
 				if(app.getIcon() != null){
@@ -180,11 +181,13 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			final ImageView imgThumbnail = (ImageView)v.findViewById(R.id.imgThumbnail);
 			final ImageView imgImage = (ImageView)v.findViewById(R.id.imgImage);
 			final View loadingImage = v.findViewById(R.id.loadingImage);
-			String imageUrl = mReview.optString("image", null);
+			View dividerImage = v.findViewById(R.id.dividerImage);
+			String imageUrl = review.optString("image", null);
 			if(imageUrl != null){
 				imgThumbnail.setVisibility(View.VISIBLE);
 				imgImage.setVisibility(View.VISIBLE);
 				loadingImage.setVisibility(View.VISIBLE);
+				dividerImage.setVisibility(View.VISIBLE);
 
 				new AsyncImageLoader(mContext, imgImage, 1).setRequestSize(Const.SCREEN_WIDTH, Const.SCREEN_HEIGHT).setCallback(new Runnable(){
 					@Override
@@ -198,7 +201,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 					@Override
 					public void onClick(View v) {
 						if(imgImage.getDrawable() != null){ // image saved
-							String imageUrl = mReview.optString("image", null);
+							String imageUrl = review.optString("image", null);
 							Intent intent = new Intent("android.intent.action.VIEW");  
 						    intent.addCategory("android.intent.category.DEFAULT");  
 						    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
@@ -212,23 +215,45 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 				imgThumbnail.setVisibility(View.GONE);
 				imgImage.setVisibility(View.GONE);
 				loadingImage.setVisibility(View.GONE);
+				dividerImage.setVisibility(View.GONE);
 			}
 			
-			if(getInreplytoUser(mReview) != null) bindInreplyto(v);
+			if(getInreplytoUser(review) != null) bindInreplyto(v, review);
+			
+			bindWatchers(v, review);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	protected void bindInreplyto(View v) {
+	void bindWatchers(View v, JSONObject review) throws JSONException{
+		JSONArray watchers = review.optJSONArray("recent_watchers");
+		
+		for(int i=0; i<watchers.length(); i++){
+			JSONObject user = watchers.optJSONObject(i);
+			ImageView iv = (ImageView) v.findViewWithTag("watcher"+(i+1));
+			if(iv != null){
+				iv.setVisibility(View.VISIBLE);
+				if(!user.isNull("avatar_mask")){
+					String mask = user.optString("avatar_mask", "");
+					String url = mask.replace("[size]", "sq");
+//					iv.setImageResource(R.drawable.noname);
+					new AsyncImageLoader(mContext, iv, 0).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+				}
+			}
+		}
+
+	}
+	
+	protected void bindInreplyto(View v, JSONObject review) {
         View viewInreplyto = v.findViewById(R.id.viewInreplyto);
 		viewInreplyto.setVisibility(View.VISIBLE);
 		try {
 			String str;
 			ImageView iv;
 			TextView tv;
-			JSONObject user = getInreplytoUser(mReview);
+			JSONObject user = getInreplytoUser(review);
 			
 			tv = (TextView) v.findViewById(R.id.txtInreplyto);
 			tv.setTypeface(mContext.mLightFont);

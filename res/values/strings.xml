@@ -265,5 +265,7 @@
     <string name="menu_requests">Help requests</string>
     <string name="menu_shares">Sharing posts</string>
 	<string name="replies_count_x">%d replies</string>   
-	 	
+    
+    <string name="add_watcher">+ FRIENDS</string>
+		 	
 </resources>
