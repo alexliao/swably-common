@@ -243,7 +243,14 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 				}
 			}
 		}
-
+		
+		View btnAddWatcher = v.findViewById(R.id.btnAddWatcher);
+		btnAddWatcher.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mContext.startActivity(new Intent(mContext, AddWatcher.class));
+			}
+		});
 	}
 	
 	protected void bindInreplyto(View v, JSONObject review) {

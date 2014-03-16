@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <goofy2.utils.RevealLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
@@ -11,9 +12,7 @@
         android:layout_height="fill_parent"
         >
 		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
-			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
-            <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
-			<TextView android:id="@+id/txtTitle" android:text="@string/search_apps" style="@style/title"/>
+			<TextView android:id="@+id/txtTitle" android:text="@string/mention" style="@style/title" android:gravity="left"/>
 			<include android:id="@+id/loading"	layout="@layout/loading" />
 			<ImageButton  android:id="@+id/btnSearch" 
 			    android:src="@drawable/search" 
@@ -21,8 +20,12 @@
 			    />
 		</LinearLayout>
 		<include layout="@layout/header_bottom" />
-		<goofy2.utils.PullToRefreshListView android:id="@+id/list" 
-			style="@style/list.app"
-		/>
+        <RelativeLayout android:id="@+id/fragment" style="@style/fill" >
+	    </RelativeLayout>
     </LinearLayout>
+	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+		<LinearLayout android:id="@+id/btnDone" android:orientation="vertical" style="@style/inplaceBtn">
+			<TextView android:text="@string/done" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/title"/>
+		</LinearLayout>
+	</LinearLayout>
 </goofy2.utils.RevealLayout>

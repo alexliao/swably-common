@@ -267,5 +267,6 @@
 	<string name="replies_count_x">%d replies</string>   
     
     <string name="add_watcher">+ FRIENDS</string>
-		 	
+    <string name="mention">MENTION</string>
+    		 	
 </resources>
