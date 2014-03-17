@@ -15,10 +15,11 @@
 		    android:orientation="horizontal"
 			android:layout_width="fill_parent" 
 			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
 			>
 			<goofy2.utils.Avatar android:id="@+id/avatar"
-			    android:background="@drawable/noname" 
 				style="@style/avatar"
+				app:radius="26"
 				android:layout_marginRight="10dp"
 			/>
 			<LinearLayout 

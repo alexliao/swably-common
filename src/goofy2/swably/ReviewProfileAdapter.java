@@ -250,7 +250,6 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			public void onClick(View v) {
 				Intent i = new Intent(mContext, AddWatcher.class);
 				i.putExtra(Const.KEY_REVIEW, review.toString());
-//				mContext.startActivityForResult(i, AddWatcher.REQUEST_CODE);
 				mContext.startActivity(i);
 			}
 		});

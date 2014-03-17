@@ -2,6 +2,7 @@ package goofy2.swably.fragment;
 
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.Const;
+import goofy2.swably.LocalAppsFragment;
 import goofy2.swably.MentionedFriendsAdapter;
 import goofy2.swably.UsersAdapter;
 
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 public class MyMentionedFriendsFragment extends UserUsersFragment {
 	JSONObject mReview;
+	boolean needRefresh = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,12 @@ public class MyMentionedFriendsFragment extends UserUsersFragment {
     	super.onCreate(savedInstanceState);
     }
 
-    @Override
+	@Override
+    protected void loadMore(){
+		// disable auto load
+	}
+
+	@Override
 	protected String getAPI() {
 		return "/users/mentioned_friends/";
 	}
@@ -48,5 +55,26 @@ public class MyMentionedFriendsFragment extends UserUsersFragment {
 //		ca().openUser(user);
 		
 	}
+
+    @Override
+    public String getCacheId(){
+    	return cacheId();
+    }
+
+    static public String cacheId(){
+    	return ReviewProfileFragment.class.getName();
+    }
+
+    @Override
+	protected void onDataChanged(int item) {
+    	needRefresh = true;
+	}
+
+    @Override
+	public void onStart() {
+    	super.onStart();
+    	if(needRefresh) this.refresh();
+    	needRefresh = false;
+    }
 
 }

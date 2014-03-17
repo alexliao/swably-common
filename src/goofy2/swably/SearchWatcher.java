@@ -2,6 +2,7 @@ package goofy2.swably;
 
 import java.net.URLEncoder;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.SearchManager;
@@ -15,8 +16,27 @@ import android.widget.TextView;
 public class SearchWatcher extends CloudUsersActivity {
 	View viewNoResult;
 	private String mQuery;
+	JSONObject mReview;
 
-	@Override
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+		Intent i = getIntent();
+		try {
+			mReview = new JSONObject(i.getStringExtra(Const.KEY_REVIEW));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+        super.onCreate(savedInstanceState);
+        View btnDone = findViewById(R.id.btnDone);
+    	btnDone.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+    }
+
+    @Override
 	public void onPostCreate(Bundle savedInstanceState) {
 	    super.onPostCreate(savedInstanceState);
 	    viewNoResult = LayoutInflater.from(this).inflate(R.layout.search_no_result, null, false);
@@ -83,8 +103,16 @@ public class SearchWatcher extends CloudUsersActivity {
     	else return Const.HTTP_PREFIX + "/users/find" + "?count="+getListSize()+"&format=json&name="+URLEncoder.encode(mQuery)+"&"+getLoginParameters() + "&" + getClientParameters();
 	}
 
-//	protected int getListSize(){
-//		return 10;
-//	}
+	@Override
+	protected CloudBaseAdapter getAdapter() {
+		return new MentionedFriendsAdapter(this, mListData, mLoadingImages, mReview);
+	}
 
+	@Override
+	protected void onClickItem(final int position) throws JSONException {
+
+    	JSONObject user = mListData.getJSONObject(position);
+//		ca().openUser(user);
+		
+	}
 }

@@ -67,7 +67,9 @@ public class AddWatcher extends WithHeaderActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(AddWatcher.this, SearchWatcher.class));
+				Intent i = new Intent(AddWatcher.this, SearchWatcher.class);
+				i.putExtra(Const.KEY_REVIEW, mReview.toString());
+				startActivityForResult(i, 0);
 			}
 		});
 

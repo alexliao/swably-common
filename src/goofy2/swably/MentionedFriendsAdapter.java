@@ -1,6 +1,7 @@
 package goofy2.swably;
 
 import goofy2.swably.UsersAdapter.ViewHolder;
+import goofy2.swably.fragment.MyMentionedFriendsFragment;
 import goofy2.utils.AsyncImageLoader;
 
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import goofy2.swably.AddWatcher;
 
 public class MentionedFriendsAdapter extends UsersAdapter {
 	JSONObject mReview;
@@ -58,26 +60,27 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 
 			boolean isFollowed = info.optBoolean("is_followed", false); 
 			setStatus(btnFollow, btnUnfollow, isFollowed);
-			btnUnfollow.setOnClickListener(new View.OnClickListener(){
-				@Override
-				public void onClick(View v) {
-			        if(mContext.redirectAnonymous(false)) return;
-			        mContext.transitWidth(btnUnfollow, btnFollow);
-					Api.watch(mContext, mReview.optString("id"), info.optString("id"), false, null);
-					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
-					try {
-						info.put("is_followed", false);
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				}
-			});
+//			btnUnfollow.setOnClickListener(new View.OnClickListener(){
+//				@Override
+//				public void onClick(View v) {
+//			        if(mContext.redirectAnonymous(false)) return;
+//			        mContext.transitWidth(btnUnfollow, btnFollow);
+//					Api.watch(mContext, mReview.optString("id"), info.optString("id"), false, null);
+//					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
+//					try {
+//						info.put("is_followed", false);
+//					} catch (JSONException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			});
 			btnFollow.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v) {
 			        if(mContext.redirectAnonymous(false)) return;
 			        mContext.transitWidth(btnFollow, btnUnfollow);
 					Api.watch(mContext, mReview.optString("id"), info.optString("id"), true, null);
+					Utils.clearCache(mContext, MyMentionedFriendsFragment.cacheId());
 					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
 					try {
 						info.put("is_followed", true);

@@ -20,6 +20,7 @@ import android.view.View;
 
 public class ReviewProfileFragment extends PeopleReviewsFragment{
 	JSONObject mReview;
+	boolean needRefresh = false;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,8 +112,16 @@ public class ReviewProfileFragment extends PeopleReviewsFragment{
 		return JSONUtils.appendArray(list, newReviews);
 	}
 	
-	@Override
+    @Override
 	protected void onDataChanged(int item) {
-		this.refreshWithoutLoading();
+    	needRefresh = true;
 	}
+
+    @Override
+	public void onStart() {
+    	super.onStart();
+    	if(needRefresh) this.refresh();
+    	needRefresh = false;
+    }
+
 }
