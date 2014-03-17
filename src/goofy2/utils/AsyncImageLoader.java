@@ -34,11 +34,13 @@ public class AsyncImageLoader {
 	int mReqWidth = 0;
 	int mReqHeight = 0;
 	Runnable mCallback = null;
+	Object mOldTag;
 	
 	public AsyncImageLoader(Context context, ImageView iv, int initPosition){
 		mContext = context;
 		mInitPosition = initPosition;
 		mImageView = iv;
+		mOldTag = iv.getTag();
 		iv.setTag(initPosition);
 	}
 
@@ -132,6 +134,7 @@ public class AsyncImageLoader {
 		Bitmap bm = Utils.getImageFromFile(mContext, pathName, mReqWidth, mReqHeight);
 		if(bm != null){
 			mImageView.setImageBitmap(bm);
+			mImageView.setTag(mOldTag);
 			if(mCallback != null) mCallback.run();
 		}else{
 			final Handler handler = new Handler();
@@ -141,6 +144,7 @@ public class AsyncImageLoader {
             		int position = (Integer) mImageView.getTag();
 //		        			Utils.logV(AsyncImageLoader.this, "position:" + position + " initPosition:" + mInitPosition);
             		if(position == mInitPosition){
+            			mImageView.setTag(mOldTag);
     					final Bitmap bm = Utils.getImageFromFile(mContext, pathName, mReqWidth, mReqHeight);
     					if(bm != null){
     						handler.post(new Runnable(){

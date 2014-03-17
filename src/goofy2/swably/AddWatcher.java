@@ -22,12 +22,19 @@ import android.widget.TextView;
 
 public class AddWatcher extends WithHeaderActivity {
 	protected UserHeader header = new UserHeader(this);
-
+	JSONObject mReview;
+	static final int REQUEST_CODE = 8385;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	JSONObject user = Utils.getCurrentUser(this);
 		Intent i = getIntent();
 		i.putExtra(Const.KEY_USER, user.toString());
+		try {
+			mReview = new JSONObject(i.getStringExtra(Const.KEY_REVIEW));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
         super.onCreate(savedInstanceState);
 //    	enableSlidingMenu();
     	setContentView(R.layout.add_watcher);
@@ -42,6 +49,7 @@ public class AddWatcher extends WithHeaderActivity {
 
         Bundle bundle = new Bundle();
 		bundle.putString(Const.KEY_USER, header.getUser().toString());
+		bundle.putString(Const.KEY_REVIEW, mReview.toString());
 		
 		FragmentManager fm = this.getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();	

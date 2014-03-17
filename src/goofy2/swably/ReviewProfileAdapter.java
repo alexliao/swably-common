@@ -227,7 +227,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 		}
 	}
 
-	void bindWatchers(View v, JSONObject review) throws JSONException{
+	void bindWatchers(View v, final JSONObject review) throws JSONException{
 		JSONArray watchers = review.optJSONArray("recent_watchers");
 		
 		for(int i=0; i<watchers.length(); i++){
@@ -239,7 +239,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 					String mask = user.optString("avatar_mask", "");
 					String url = mask.replace("[size]", "sq");
 //					iv.setImageResource(R.drawable.noname);
-					new AsyncImageLoader(mContext, iv, 0).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+					new AsyncImageLoader(mContext, iv, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
 				}
 			}
 		}
@@ -248,7 +248,10 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 		btnAddWatcher.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mContext.startActivity(new Intent(mContext, AddWatcher.class));
+				Intent i = new Intent(mContext, AddWatcher.class);
+				i.putExtra(Const.KEY_REVIEW, review.toString());
+//				mContext.startActivityForResult(i, AddWatcher.REQUEST_CODE);
+				mContext.startActivity(i);
 			}
 		});
 	}

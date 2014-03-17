@@ -111,4 +111,8 @@ public class ReviewProfileFragment extends PeopleReviewsFragment{
 		return JSONUtils.appendArray(list, newReviews);
 	}
 	
+	@Override
+	protected void onDataChanged(int item) {
+		this.refreshWithoutLoading();
+	}
 }

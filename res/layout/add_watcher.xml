@@ -12,7 +12,7 @@
         android:layout_height="fill_parent"
         >
 		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
-			<TextView android:id="@+id/txtTitle" android:text="@string/mention" style="@style/title" android:gravity="left"/>
+			<TextView android:id="@+id/txtTitle" android:text="@string/mention_title" style="@style/title" android:gravity="left"/>
 			<include android:id="@+id/loading"	layout="@layout/loading" />
 			<ImageButton  android:id="@+id/btnSearch" 
 			    android:src="@drawable/search" 
@@ -25,7 +25,7 @@
     </LinearLayout>
 	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
 		<LinearLayout android:id="@+id/btnDone" android:orientation="vertical" style="@style/inplaceBtn">
-			<TextView android:text="@string/done" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/title"/>
+			<TextView android:text="@string/done" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/title" android:clickable="false"/>
 		</LinearLayout>
 	</LinearLayout>
 </goofy2.utils.RevealLayout>

@@ -20,10 +20,12 @@ import android.text.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -261,4 +263,13 @@ public class ReviewProfile extends WithHeaderActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == AddWatcher.REQUEST_CODE && resultCode == RESULT_OK) {
+        	
+    	}
+    }
+
 }
