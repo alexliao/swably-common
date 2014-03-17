@@ -22,10 +22,10 @@
 		<include layout="@layout/header_bottom" />
         <RelativeLayout android:id="@+id/fragment" style="@style/fill" >
 	    </RelativeLayout>
-    </LinearLayout>
-	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
-		<LinearLayout android:id="@+id/btnDone" android:orientation="vertical" style="@style/inplaceBtn">
-			<TextView android:text="@string/done" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/title" android:clickable="false"/>
+		<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+			<LinearLayout android:id="@+id/btnDone" android:orientation="vertical" style="@style/inplaceBtn">
+				<TextView android:text="@string/done" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/title" android:clickable="false"/>
+			</LinearLayout>
 		</LinearLayout>
-	</LinearLayout>
+    </LinearLayout>
 </goofy2.utils.RevealLayout>

@@ -58,7 +58,7 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 			final View btnFollow = holder.btnFollow;
 			final View btnUnfollow = holder.btnUnfollow;
 
-			boolean isFollowed = info.optBoolean("is_followed", false); 
+			boolean isFollowed = info.optBoolean("is_watching", false); 
 			setStatus(btnFollow, btnUnfollow, isFollowed);
 //			btnUnfollow.setOnClickListener(new View.OnClickListener(){
 //				@Override
@@ -68,7 +68,7 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 //					Api.watch(mContext, mReview.optString("id"), info.optString("id"), false, null);
 //					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
 //					try {
-//						info.put("is_followed", false);
+//						info.put("is_watching", false);
 //					} catch (JSONException e) {
 //						e.printStackTrace();
 //					}
@@ -80,10 +80,10 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 			        if(mContext.redirectAnonymous(false)) return;
 			        mContext.transitWidth(btnFollow, btnUnfollow);
 					Api.watch(mContext, mReview.optString("id"), info.optString("id"), true, null);
-					Utils.clearCache(mContext, MyMentionedFriendsFragment.cacheId());
+					Utils.clearCache(mContext, MyMentionedFriendsFragment.cacheId(mReview.optString("id")));
 					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
 					try {
-						info.put("is_followed", true);
+						info.put("is_watching", true);
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}

@@ -38,9 +38,9 @@ public class MyMentionedFriendsFragment extends UserUsersFragment {
 		// disable auto load
 	}
 
-	@Override
-	protected String getAPI() {
-		return "/users/mentioned_friends/";
+    @Override
+	protected String getUrl() {
+		return Const.HTTP_PREFIX + "/users/mentioned_friends/" + header.getUserId() + ".json?review_id=" + mReview.optInt("id") + "&" + ca().getLoginParameters();
 	}
 
 	@Override
@@ -58,11 +58,11 @@ public class MyMentionedFriendsFragment extends UserUsersFragment {
 
     @Override
     public String getCacheId(){
-    	return cacheId();
+    	return cacheId(mReview.optString("id"));
     }
 
-    static public String cacheId(){
-    	return ReviewProfileFragment.class.getName();
+    static public String cacheId(String reviewId){
+    	return MyMentionedFriendsFragment.class.getName()+reviewId;
     }
 
     @Override
@@ -76,5 +76,11 @@ public class MyMentionedFriendsFragment extends UserUsersFragment {
     	if(needRefresh) this.refresh();
     	needRefresh = false;
     }
+
+	@Override
+	protected String getAPI() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
