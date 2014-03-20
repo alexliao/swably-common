@@ -56,8 +56,8 @@ public class ReviewProfileFragment extends PeopleReviewsFragment{
 	protected void refreshListView() {
 		super.refreshListView();
     	if(mListData.length() > 1){ // has thread
-//			mList.setSelectionFromTop(getCurrentReviewPosition(), 10);
-			mList.setSelection(getCurrentReviewPosition());
+			mList.setSelectionFromTop(getCurrentReviewPosition(), 20);
+//			mList.setSelection(getCurrentReviewPosition());
 		}
 	}
 
