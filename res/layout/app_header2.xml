@@ -95,22 +95,33 @@
 		android:layout_marginTop="18dp"
 	    />
 	<LinearLayout android:id="@+id/viewEmpty"
-		style="@style/tip_bubble"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
 		android:visibility="gone"
 		android:layout_below="@id/bottomDivider"
 		>
-		<TextView android:id="@+id/txtEmpty"
-			android:layout_width="fill_parent"
+		<LinearLayout android:id="@+id/btnAdd"
+		    android:orientation="horizontal"
+			android:layout_width="fill_parent" 
 			android:layout_height="wrap_content"
-			android:text="@string/no_review_for_app"
-			style="@style/content"
-		/>
-		<Button android:id="@+id/btnAdd"
-			android:text="@string/add_review"
-			android:layout_gravity="right"
-			style="@style/holoBtn.blue"
-			android:layout_marginTop="5dp"
-		/>
+			android:padding="@dimen/padding"
+			android:background="@drawable/row"
+			android:clickable="true"
+			android:gravity="center_vertical"
+			>
+			<ImageView 
+				android:layout_width="32dp"
+				android:layout_height="32dp"
+				android:src="@drawable/add_pressed"
+				android:layout_marginRight="5dp"
+			/>
+			<TextView 
+				style="@style/name"
+				android:text="@string/add_a_review"
+			/>
+		</LinearLayout>
+		<View android:id="@+id/dividerEmpty" style="@style/divider"/>
 	</LinearLayout>
 </RelativeLayout>
 	

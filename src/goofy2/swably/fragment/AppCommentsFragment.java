@@ -165,8 +165,8 @@ public class AppCommentsFragment extends CloudCommentsFragment {
 			}
 		}
 
-		TextView tv = (TextView) v.findViewById(R.id.txtEmpty);
-		tv.setText(String.format(getString(R.string.no_review_for_app), header.getApp().getName()));
+//		TextView tv = (TextView) v.findViewById(R.id.txtEmpty);
+//		tv.setText(String.format(getString(R.string.no_review_for_app), header.getApp().getName()));
 
 		View btnAdd = v.findViewById(R.id.btnAdd);
 		btnAdd.setOnClickListener(new View.OnClickListener(){
