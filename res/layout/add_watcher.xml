@@ -14,13 +14,36 @@
 		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
 			<TextView android:id="@+id/txtTitle" android:text="@string/mention_title" style="@style/title" android:gravity="left"/>
 			<include android:id="@+id/loading"	layout="@layout/loading" />
-			<ImageButton  android:id="@+id/btnSearch" 
-			    android:src="@drawable/search" 
-			    style="@style/titleBtn"
-			    />
 		</LinearLayout>
 		<include layout="@layout/header_bottom" />
-        <RelativeLayout android:id="@+id/fragment" style="@style/fill" >
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" 
+	        android:background="@color/highlight_light"
+	        android:padding="@dimen/padding"
+	        android:gravity="center_horizontal"
+	        >
+	        <EditText android:id="@+id/editQuery" 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+	            android:textSize="@dimen/main_text"
+				android:textColor="@color/content"
+				android:hint="@string/search_users_hint"
+				android:singleLine="true"
+				android:inputType="textPersonName"
+				android:imeOptions="actionSearch"
+	            />
+	        <ImageView android:id="@+id/btnSearch"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/search"
+		        android:clickable="true"
+		        android:visibility="gone"
+	            />
+	   	</LinearLayout>
+		<RelativeLayout android:id="@+id/fragment" style="@style/fill" >
 	    </RelativeLayout>
 		<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
 			<ImageButton  android:id="@+id/btnDone"	android:src="@drawable/ok" style="@style/inplaceBtn"/>

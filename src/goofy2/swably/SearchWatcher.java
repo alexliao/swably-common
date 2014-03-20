@@ -51,14 +51,14 @@ public class SearchWatcher extends CloudUsersActivity {
 	}
 
 	private void handleIntent(Intent intent) {
-	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-	      mQuery = intent.getStringExtra(SearchManager.QUERY);
-	      refresh();
-	      TextView tv = (TextView) findViewById(R.id.txtTitle);
-	      tv.setText(String.format(getString(R.string.search_query), mQuery));
-	      tv = (TextView) viewNoResult.findViewById(R.id.txtNoResult);
-	      tv.setText(String.format(getString(R.string.search_no_result), mQuery));
-	    }
+//	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			mQuery = intent.getStringExtra(SearchManager.QUERY);
+			refresh();
+			TextView tv = (TextView) findViewById(R.id.txtTitle);
+			tv.setText(String.format(getString(R.string.search_query), mQuery));
+			tv = (TextView) viewNoResult.findViewById(R.id.txtNoResult);
+			tv.setText(String.format(getString(R.string.search_no_result), mQuery));
+//	    }
 	}
 	
 	protected void setContent(){
