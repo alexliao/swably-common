@@ -31,6 +31,7 @@ public class MainMenuFragment extends CloudFragment {
 	private View viewHome;
 	private View viewShares;
 	private View viewRequests;
+	private View viewNotifications;
 	private View viewApps;
 	private View viewMe;
 	private View viewFindPeople;
@@ -73,6 +74,15 @@ public class MainMenuFragment extends CloudFragment {
 			@Override
 			public void onClick(View arg0) {
 				if(!(a() instanceof HelpRequests)) startActivity(new Intent(a(), HelpRequests.class));
+				else ca().showAbove();
+			}
+        });
+    	viewNotifications = v.findViewById(R.id.viewNotifications);
+    	((TextView)viewNotifications).setTypeface(ca().mNormalFont);
+    	viewNotifications.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				if(!(a() instanceof MyFollowingReviews)) startActivity(new Intent(a(), MyFollowingReviews.class));
 				else ca().showAbove();
 			}
         });
