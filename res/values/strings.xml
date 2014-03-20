@@ -266,7 +266,7 @@
     <string name="menu_shares">Sharing posts</string>
 	<string name="replies_count_x">%d replies</string>   
     
-    <string name="add_watcher">+ FRIENDS</string>
+    <string name="add_watcher">+ MENTION</string>
     <string name="mention_title">MENTION</string>
     <string name="mention">Mention</string>
     <string name="menu_notifications">Notifications</string>
