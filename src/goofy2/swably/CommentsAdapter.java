@@ -286,17 +286,17 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			holder.txtReplies.setVisibility(View.GONE);
 			if(repliesCount >= 1){
 				holder.imgReply1.setVisibility(View.VISIBLE);
-				holder.imgReply1.setImageResource(R.drawable.noimage);
+				holder.imgReply1.setImageResource(R.drawable.bubble);
 				new AsyncImageLoader(mContext, holder.imgReply1, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(appIcons.getString(1-1));
 			}
 			if(repliesCount >= 2){
 				holder.imgReply2.setVisibility(View.VISIBLE);
-				holder.imgReply2.setImageResource(R.drawable.noimage);
+				holder.imgReply2.setImageResource(R.drawable.bubble);
 				new AsyncImageLoader(mContext, holder.imgReply2, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(appIcons.getString(2-1));
 			}
 			if(repliesCount >= 3){
 				holder.imgReply3.setVisibility(View.VISIBLE);
-				holder.imgReply3.setImageResource(R.drawable.noimage);
+				holder.imgReply3.setImageResource(R.drawable.bubble);
 				new AsyncImageLoader(mContext, holder.imgReply3, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(appIcons.getString(3-1));
 			}
 			if(repliesCount >= 4){
