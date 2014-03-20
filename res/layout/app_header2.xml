@@ -88,6 +88,7 @@
 	    />
 	<ImageButton android:id="@+id/btnUnlike" 
 	    style="@style/roundBtnLight"
+	    android:background="@color/none"
 	    android:src="@drawable/starred"
 	    android:layout_alignParentRight="true"
 		android:layout_marginRight="15dp"

@@ -26,6 +26,7 @@
 		    />
 		<ImageButton android:id="@+id/btnUnfollow" 
 		    style="@style/roundBtnLight"
+		    android:background="@color/none"
 		    android:src="@drawable/followed"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content" 

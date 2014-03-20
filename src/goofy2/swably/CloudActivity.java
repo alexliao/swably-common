@@ -833,7 +833,7 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
 		Utils.goHome(this);
 	}
 
-	public void transitWidth(final View first, final View second){
+	public void transitWidth(final View first, final View second, final Runnable callback){
 		first.setVisibility(View.INVISIBLE);
 		second.setVisibility(View.VISIBLE);
 		
@@ -848,6 +848,7 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
 			public void onAnimationEnd(Animator animation) {
 //				first.setVisibility(View.INVISIBLE);
 //				second.setVisibility(View.VISIBLE);
+				if(callback != null) callback.run();
 			}
 			@Override public void onAnimationStart(Animator animation) {}
 			@Override public void onAnimationCancel(Animator animation) {}

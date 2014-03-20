@@ -77,7 +77,13 @@ public class AppActionHelper {
 	//							if(callback != null) callback.run();
 	//						}
 	//					});
-						mActivity.transitWidth(btnLike, btnUnlike);
+						btnUnlike.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.round_btn_light));
+						mActivity.transitWidth(btnLike, btnUnlike, new Runnable(){
+							@Override
+							public void run() {
+								btnUnlike.setBackgroundColor(mActivity.getResources().getColor(R.color.none));
+							}
+						});
 						Utils.starApp(mActivity, app.getCloudId(), true, null);
 						app.getJSON().put(App.IS_LIKED, true);
 						mHeader.setApp(app);
@@ -107,7 +113,7 @@ public class AppActionHelper {
 //							if(callback != null) callback.run();
 //						}
 //					});
-					mActivity.transitWidth(btnUnlike, btnLike);
+					mActivity.transitWidth(btnUnlike, btnLike, null);
 					Utils.starApp(mActivity, app.getCloudId(), false, null);
 					app.getJSON().put(App.IS_LIKED, false);
 					mHeader.setApp(app);

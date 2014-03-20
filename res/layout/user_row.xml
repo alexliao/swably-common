@@ -51,7 +51,8 @@
 				    />
 				<ImageView  android:id="@+id/btnUnfollow" 
 				    style="@style/roundBtnLight"
-				    android:src="@drawable/followed_light"
+				    android:background="@color/none"
+				    android:src="@drawable/followed"
 				    android:layout_alignParentRight="true"
 				    />
 			</RelativeLayout>

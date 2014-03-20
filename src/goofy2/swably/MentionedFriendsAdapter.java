@@ -78,7 +78,13 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 				@Override
 				public void onClick(View v) {
 			        if(mContext.redirectAnonymous(false)) return;
-			        mContext.transitWidth(btnFollow, btnUnfollow);
+			        btnUnfollow.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.round_btn_light));
+			        mContext.transitWidth(btnFollow, btnUnfollow, new Runnable(){
+						@Override
+						public void run() {
+							btnUnfollow.setBackgroundColor(mContext.getResources().getColor(R.color.none));
+						}
+					});
 					Api.watch(mContext, mReview.optString("id"), info.optString("id"), true, null);
 					Utils.clearCache(mContext, MyMentionedFriendsFragment.cacheId(mReview.optString("id")));
 					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
