@@ -141,6 +141,7 @@ public class AsyncImageLoader {
 			ParamRunnable pr = new ParamRunnable(){
 		    	public void run() {
 		    		loader.load(uri);
+		    		if(mImageView == null) return; // The object mImageView pointed to may be invalid at this moment.
             		int position = (Integer) mImageView.getTag();
 //		        			Utils.logV(AsyncImageLoader.this, "position:" + position + " initPosition:" + mInitPosition);
             		if(position == mInitPosition){
