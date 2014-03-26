@@ -72,7 +72,7 @@ public class Cover extends CloudActivity {
 			}
 		});
 
-        tryCacheApps();
+//        tryCacheApps();
 		
 //        mTimerNext = new Timer();
 //        mTimerNext.schedule(new TimerTask(){

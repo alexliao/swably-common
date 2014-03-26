@@ -248,6 +248,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 		btnAddWatcher.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(mContext.redirectAnonymous()) return;
 				Intent i = new Intent(mContext, AddWatcher.class);
 				i.putExtra(Const.KEY_REVIEW, review.toString());
 				mContext.startActivity(i);

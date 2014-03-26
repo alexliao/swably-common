@@ -162,27 +162,49 @@ public class Main extends Activity {
 //    		startActivity(i);
 //    	}else{
 	    	//setHeader();
-    		if(Utils.getPrefString(this, "terms_accepted", "false").equals("true")){
-				Utils.goHome(this);
-		    	if(Utils.getCurrentUser(this) != null){
-		    		Timer timer = new Timer();
-		        	timer.schedule(new TimerTask(){
-		        		@Override
-		        		public void run(){
-		    	            if(Checker.isNoticeOn(Main.this)) startService(new Intent(Main.this, Checker.class));
-		    	            // update my status
-		    				try {
-		    					JSONObject me = Utils.getUserInfo(Main.this, Utils.getCurrentUserId(Main.this));
-		    		    		if(me != null) Utils.setCurrentUser(Main.this, me);
-		    				} catch (Exception e) {
-		    					e.printStackTrace();
-		    				}
-		        		}
-		        	}, 10*1000); // delay execution
-		    	}
-		    }else{
-				startActivity(new Intent(Main.this, Cover.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-	    	}
+
+//    		if(Utils.getPrefString(this, "terms_accepted", "false").equals("true")){
+//				Utils.goHome(this);
+//		    	if(Utils.getCurrentUser(this) != null){
+//		    		Timer timer = new Timer();
+//		        	timer.schedule(new TimerTask(){
+//		        		@Override
+//		        		public void run(){
+//		    	            if(Checker.isNoticeOn(Main.this)) startService(new Intent(Main.this, Checker.class));
+//		    	            // update my status
+//		    				try {
+//		    					JSONObject me = Utils.getUserInfo(Main.this, Utils.getCurrentUserId(Main.this));
+//		    		    		if(me != null) Utils.setCurrentUser(Main.this, me);
+//		    				} catch (Exception e) {
+//		    					e.printStackTrace();
+//		    				}
+//		        		}
+//		        	}, 10*1000); // delay execution
+//		    	}
+//		    }else{
+//				startActivity(new Intent(Main.this, Cover.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+//	    	}
+    		
+    	if(Utils.getCurrentUser(this) == null){
+			startActivity(new Intent(Main.this, Cover.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    	}else{
+			Utils.goHome(this);
+    		Timer timer = new Timer();
+        	timer.schedule(new TimerTask(){
+        		@Override
+        		public void run(){
+    	            if(Checker.isNoticeOn(Main.this)) startService(new Intent(Main.this, Checker.class));
+    	            // update my status
+    				try {
+    					JSONObject me = Utils.getUserInfo(Main.this, Utils.getCurrentUserId(Main.this));
+    		    		if(me != null) Utils.setCurrentUser(Main.this, me);
+    				} catch (Exception e) {
+    					e.printStackTrace();
+    				}
+        		}
+        	}, 10*1000); // delay execution
+    	}
+    		
 //    	}
 		finish();
     }

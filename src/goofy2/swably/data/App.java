@@ -293,6 +293,7 @@ public class App {
 
 	public void mergeLocalApp(App localApp){
 		try {
+			if(mJson == null) mJson = new JSONObject();
 			mJson.put(App.PACKAGE, localApp.getPackage());
 			mJson.put(App.SIGNATURE, localApp.getSignature());
 			mJson.put(App.VERSION_CODE, localApp.getVersionCode());

@@ -6,6 +6,12 @@
     android:layout_height="fill_parent"
     android:background="@color/header"
     >
+    <ImageView
+	    android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:src="@drawable/wallpaper"
+    	android:scaleType="centerCrop"
+        />
 	<LinearLayout
 	    android:orientation="vertical"
 	    android:layout_width="fill_parent"
@@ -15,13 +21,14 @@
 	    >
 	    <ImageView android:id="@+id/imgLogo"
 	   		android:src="@drawable/swanity"
-	   		android:layout_width="wrap_content"
-	   		android:layout_height="wrap_content"
+	   		android:layout_width="160dp"
+	   		android:layout_height="160dp"
 	   	/>
 	   	<TextView android:id="@+id/txtSlogon"
 	   	    android:text="@string/slogon"
 	   		android:layout_width="wrap_content"
 	   		android:layout_height="wrap_content"
+	   		android:gravity="center_horizontal"
 	   		android:textColor="@color/back"
 	   		android:textSize="24sp"
 	   		android:layout_marginTop="45dp"
@@ -29,12 +36,15 @@
 	   		android:layout_alignParentBottom="true" 
 	   	    />
 	</LinearLayout>
-   	<ImageView android:id="@+id/imgAppName"
-   		android:src="@drawable/swably"
+   	<TextView android:id="@+id/txtAppName"
+   	    android:text="@string/app_name"
    		android:layout_width="wrap_content"
    		android:layout_height="wrap_content"
+   		android:gravity="center_horizontal"
+   		android:textColor="#00a1e9"
+   		android:textSize="36sp"
    		android:layout_centerHorizontal="true"
    		android:layout_alignParentBottom="true"
-   		android:layout_marginBottom="25dp" 
-   	/>
+   		android:layout_marginBottom="20dp" 
+   	    />
 </RelativeLayout>

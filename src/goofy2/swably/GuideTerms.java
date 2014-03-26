@@ -67,7 +67,12 @@ public class GuideTerms extends CloudActivity {
 //				finish();
 //			}
 //        });
-        
+		if(Utils.getPrefString(this, "terms_accepted", "false").equals("true")){
+			startActivity(new Intent(GuideTerms.this, Const.START_ACTIVITY));
+			finish();
+		}else{
+	        tryCacheApps();
+		}
     }
     
 }
