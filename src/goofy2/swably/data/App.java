@@ -62,7 +62,7 @@ public class App {
 	public static final int STATUS_UPLOADING = 1;
 	
 
-	private JSONObject mJson = new JSONObject();
+	private JSONObject mJson = null;
 	
 	public boolean isLocalNew(Context context){
 		return (getLocalVersionCode(context) > getVersionCode());
@@ -224,6 +224,7 @@ public class App {
 	
 	public void setBy(PackageManager pm, PackageInfo info){
 		try {
+			if(mJson == null) mJson = new JSONObject();
 			mJson.put(PACKAGE, info.packageName);
 			mJson.put(VERSION_CODE, info.versionCode);
 			mJson.put(VERSION_NAME, info.versionName);

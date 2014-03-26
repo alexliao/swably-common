@@ -26,23 +26,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CommentsAdapter extends CloudInplaceActionsAdapter {
-	boolean mHideUser = false;
-	boolean mHideApp = false;
+//	boolean mHideUser = false;
+//	boolean mHideApp = false;
 	ReviewActionHelper mActionHelper;
 
 	public CommentsAdapter(CloudActivity context, JSONArray stream,	HashMap<String, Integer> loadingImages) {
 		super(context, stream, loadingImages);
 	}
 
-	public CommentsAdapter(CloudActivity context, JSONArray stream,	HashMap<String, Integer> loadingImages, boolean hideUser, boolean hideApp) {
-		super(context, stream, loadingImages);
-		mHideUser = hideUser;
-		mHideApp = hideApp;
-	}
+//	public CommentsAdapter(CloudActivity context, JSONArray stream,	HashMap<String, Integer> loadingImages, boolean hideUser, boolean hideApp) {
+//		super(context, stream, loadingImages);
+//		mHideUser = hideUser;
+//		mHideApp = hideApp;
+//	}
 
 	public void bindView(final View viewInfo, final JSONObject info) {
 		super.bindView(viewInfo, info);
-		bind(viewInfo, mContext, info, mHideUser, mHideApp);
+//		bind(viewInfo, mContext, info, mHideUser, mHideApp);
+		bind(viewInfo, mContext, info);
 		handleDivider(viewInfo);
 		
 		ViewHolder holder = (ViewHolder) viewInfo.getTag();
@@ -145,7 +146,8 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 //		});
 //	}
 
-	public void bind(View v, final CloudActivity context, JSONObject review, boolean hideUser, boolean hideApp) {
+//	public void bind(View v, final CloudActivity context, JSONObject review, boolean hideUser, boolean hideApp) {
+	public void bind(View v, final CloudActivity context, JSONObject review) {
 		try {
 			String str;
 			final JSONObject user = review.optJSONObject("user");
@@ -155,7 +157,8 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 //			View viewApp = v.findViewById(R.id.viewApp);
 //			View viewContent = v.findViewById(R.id.viewContent);
 			ViewHolder holder = (ViewHolder) v.getTag();
-			if(hideUser || user == null){
+//			if(hideUser || user == null){
+			if(user == null){
 //				iv.setVisibility(View.GONE);
 //				tv.setVisibility(View.GONE);
 			}else{
@@ -215,7 +218,8 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 
 
 			
-			if(hideApp || app.getJSON() == null){
+//			if(hideApp || app.getJSON() == null){
+			if(app.getJSON() == null){
 //				viewApp.setVisibility(View.GONE);
 				iv = holder.icon;
 				iv.setVisibility(View.GONE);

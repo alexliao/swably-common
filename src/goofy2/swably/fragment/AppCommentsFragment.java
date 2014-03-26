@@ -188,7 +188,8 @@ public class AppCommentsFragment extends CloudCommentsFragment {
 
 	@Override
 	protected CloudBaseAdapter getAdapter() {
-		return new CommentsAdapter(ca(), mListData, mLoadingImages, false, false);
+//		return new CommentsAdapter(ca(), mListData, mLoadingImages, false, false);
+		return new CommentsAdapter(ca(), mListData, mLoadingImages);
 	}
 
 	@Override

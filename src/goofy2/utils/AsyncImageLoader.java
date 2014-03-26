@@ -140,28 +140,32 @@ public class AsyncImageLoader {
 			final Handler handler = new Handler();
 			ParamRunnable pr = new ParamRunnable(){
 		    	public void run() {
-		    		loader.load(uri);
-		    		if(mImageView == null) return; // The object mImageView pointed to may be invalid at this moment.
-            		int position = (Integer) mImageView.getTag();
-//		        			Utils.logV(AsyncImageLoader.this, "position:" + position + " initPosition:" + mInitPosition);
-            		if(position == mInitPosition){
-            			mImageView.setTag(mOldTag);
-    					final Bitmap bm = Utils.getImageFromFile(mContext, pathName, mReqWidth, mReqHeight);
-    					if(bm != null){
-    						handler.post(new Runnable(){
-    							@Override
-    							public void run() {
-    		            			mImageView.setImageBitmap(bm);
-    		            			Animation anim = new AlphaAnimation(0.3f, 1f);
-    		            			anim.setDuration(mContext.getResources().getInteger(R.integer.config_mediumAnimTime));
-    		            			mImageView.startAnimation(anim);
-    		            			if(mCallback != null) mCallback.run();
-    							}
-    						});
-    					}
-            		}
-//            		else
-//            			Utils.logV(AsyncImageLoader.this, "position changed");
+		    		try{
+			    		loader.load(uri);
+	//		    		if(mImageView == null) return; // The object mImageView pointed to may be invalid at this moment.
+	            		int position = (Integer) mImageView.getTag();
+	//		        			Utils.logV(AsyncImageLoader.this, "position:" + position + " initPosition:" + mInitPosition);
+	            		if(position == mInitPosition){
+	            			mImageView.setTag(mOldTag);
+	    					final Bitmap bm = Utils.getImageFromFile(mContext, pathName, mReqWidth, mReqHeight);
+	    					if(bm != null){
+	    						handler.post(new Runnable(){
+	    							@Override
+	    							public void run() {
+	    		            			mImageView.setImageBitmap(bm);
+	    		            			Animation anim = new AlphaAnimation(0.3f, 1f);
+	    		            			anim.setDuration(mContext.getResources().getInteger(R.integer.config_mediumAnimTime));
+	    		            			mImageView.startAnimation(anim);
+	    		            			if(mCallback != null) mCallback.run();
+	    							}
+	    						});
+	    					}
+	            		}
+	//            		else
+	//            			Utils.logV(AsyncImageLoader.this, "position changed");
+		    		}catch(Exception e){
+		    			Log.e(Const.APP_NAME, "AsyncImageLoader.load error: " + e.getMessage());
+		    		}
 		    	}
 			};
 			getThreadPool().execute(pr);
