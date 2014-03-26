@@ -33,12 +33,14 @@ import org.json.JSONObject;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
+import goofy2.swably.CloudActivity;
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.CloudInplaceActionsAdapter;
 import goofy2.swably.Const;
 import goofy2.swably.R;
 import goofy2.swably.Utils;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
@@ -56,6 +58,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -97,6 +100,7 @@ import goofy2.swably.CloudActivity.OnClickListener_btnSnap;
 import goofy2.swably.R.id;
 import goofy2.swably.R.layout;
 import goofy2.swably.R.string;
+import goofy2.swably.fragment.CloudFragment.ImageMessageBroadcastReceiver;
 import goofy2.utils.JSONUtils;
 import goofy2.utils.ParamRunnable;
 import goofy2.utils.PullToRefreshListView;
@@ -121,6 +125,7 @@ public abstract class CloudListFragment extends CloudFragment {
 	protected int mFirstVisibleItem = 0;
 	protected int mVisibleItemCount = 1000;
 	private View mListHeader;
+	protected Back2TopBroadcastReceiver mBack2TopReceiver = new Back2TopBroadcastReceiver();
 	
 	ArrayList<AsyncTask<Void, Void, Long>> mLoadTasks = new ArrayList<AsyncTask<Void, Void, Long>>();   
 
@@ -133,6 +138,7 @@ public abstract class CloudListFragment extends CloudFragment {
 //						.getString("list") == null)) {
 //			loadData();
 //		}
+        a().registerReceiver(mBack2TopReceiver, new IntentFilter(Const.BROADCAST_BACK2TOP));
     }
 
     @Override
@@ -248,7 +254,8 @@ public abstract class CloudListFragment extends CloudFragment {
     	for(AsyncTask<Void, Void, Long> task : mLoadTasks){
     		task.cancel(true);
     	}
-    	super.onDestroy();
+        a().unregisterReceiver(mBack2TopReceiver);
+        super.onDestroy();
     }
     
     protected void loadData(){
@@ -734,4 +741,22 @@ public abstract class CloudListFragment extends CloudFragment {
 		else
 			mList.setVisibility(View.GONE);
 	}
+
+    protected class Back2TopBroadcastReceiver extends BroadcastReceiver {
+    	//private Feeds mUI;
+
+    	//public ImageMessageBroadcastReceiver(Feeds ui){
+    	//	mUI = ui;
+    	//}
+        @SuppressLint("NewApi")
+		@Override
+        public void onReceive(Context context, Intent intent) {
+        	if(mList == null) return;
+			if(Build.VERSION.SDK_INT >= 8)
+				mList.smoothScrollToPosition(0);
+			else
+				mList.setSelection(0);
+        }
+    }
+
 }

@@ -46,6 +46,7 @@ public class Const {
 	public static  String BROADCAST_REFRESH_APP = "goofy2.swably.REVIEW_APP";
 	public static  String BROADCAST_REFRESH_USER = "goofy2.swably.REVIEW_USER";
 	public static  String BROADCAST_FINISH = "goofy2.swably.FINISH";
+	public static  String BROADCAST_BACK2TOP = "goofy2.swably.BACK2TOP";
 	public static final String KEY_PERCENT = "percent";
 	public static final String KEY_PACKAGE = "package";
 	public static final String KEY_APP = "app";

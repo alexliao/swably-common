@@ -54,12 +54,12 @@ public class WithHeaderActivity extends CloudActivity {
         TextView tv = (TextView) findViewById(R.id.txtTitle);
         if(tv != null){
 			tv.setTypeface(mHeaderFont);
-//        	tv.setOnClickListener(new OnClickListener(){
-//				@Override
-//				public void onClick(View arg0) {
-//					goHome();
-//				}
-//		    });
+        	tv.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View arg0) {
+					sendBroadcast(new Intent(Const.BROADCAST_BACK2TOP));
+				}
+		    });
         }
         
 //      final View btnHome = this.findViewById(R.id.btnHome);
