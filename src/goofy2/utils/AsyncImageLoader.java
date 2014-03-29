@@ -21,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -142,11 +143,11 @@ public class AsyncImageLoader {
 		    	public void run() {
 		    		try{
 			    		loader.load(uri);
-	//		    		if(mImageView == null) return; // The object mImageView pointed to may be invalid at this moment.
 	            		int position = (Integer) mImageView.getTag();
 	//		        			Utils.logV(AsyncImageLoader.this, "position:" + position + " initPosition:" + mInitPosition);
 	            		if(position == mInitPosition){
 	            			mImageView.setTag(mOldTag);
+				    		if(mImageView.getVisibility() != View.VISIBLE) return; // The object mImageView pointed to may be set invisible at this moment.
 	    					final Bitmap bm = Utils.getImageFromFile(mContext, pathName, mReqWidth, mReqHeight);
 	    					if(bm != null){
 	    						handler.post(new Runnable(){

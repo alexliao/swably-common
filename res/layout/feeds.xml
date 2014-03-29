@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<goofy2.utils.RevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/viewHeaderBar"
+            style="@style/titleBar" >
+
+            <ImageButton
+                android:id="@+id/btnMenu"
+                style="@style/titleBtn"
+                android:src="@drawable/menu" />
+            <TextView
+                android:id="@+id/txtTitle"
+                style="@style/title"
+                android:text="@string/notification" />
+
+			<include android:id="@+id/loading"	layout="@layout/loading" />
+		</LinearLayout>
+        <include layout="@layout/header_bottom" />
+        
+        <RelativeLayout android:id="@+id/fragment" style="@style/fill" >
+	    </RelativeLayout>
+    </LinearLayout>
+
+</goofy2.utils.RevealLayout>

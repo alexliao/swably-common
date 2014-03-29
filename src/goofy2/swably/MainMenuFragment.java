@@ -82,7 +82,7 @@ public class MainMenuFragment extends CloudFragment {
     	viewNotifications.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
-				if(!(a() instanceof MyFollowingReviews)) startActivity(new Intent(a(), MyFollowingReviews.class));
+				if(!(a() instanceof Feeds)) startActivity(new Intent(a(), Feeds.class));
 				else ca().showAbove();
 			}
         });

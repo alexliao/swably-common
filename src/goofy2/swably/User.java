@@ -1,5 +1,7 @@
 package goofy2.swably;
 
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,6 +12,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -19,11 +23,28 @@ import android.view.View;
 import android.widget.TextView;
 
 public class User extends WithHeaderActivity {
+	String mId = null;
 	protected UserHeader header = new UserHeader(this);
 	protected RefreshUserBroadcastReceiver mRefreshUserReceiver = new RefreshUserBroadcastReceiver();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Intent i = getIntent();
+        mId = getIdFromUrl(i);
+    	if(mId != null){
+    		JSONObject json = new JSONObject();
+    		try {
+				json.put("id", mId);
+	    		String str = loadCache(User.cacheId(mId));
+	    		if(str != null){
+	    			i.putExtra(Const.KEY_USER, str);
+	    		}else{
+		    		i.putExtra(Const.KEY_USER, json.toString());
+	    		}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+    	}
         super.onCreate(savedInstanceState);
     	enableSlidingMenu();
     	setContentView(R.layout.user);
@@ -32,12 +53,9 @@ public class User extends WithHeaderActivity {
         header.setUserFromCache(header.getUserId());
 
         registerReceiver(mRefreshUserReceiver, new IntentFilter(Const.BROADCAST_REFRESH_USER));
+        
     }
-    @Override
-    public void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        bind();
-
+    private void loadList() {
         Bundle bundle = new Bundle();
 		bundle.putString(Const.KEY_USER, header.getUser().toString());
 		
@@ -47,6 +65,18 @@ public class User extends WithHeaderActivity {
 		fragment.setArguments(bundle);
 		ft.add(R.id.fragment, fragment);
 		ft.commit();
+	}
+	@Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        bind();
+
+        if(header.getUser() != null){
+        	loadList();
+        }else if(mId != null){
+    		loadUser(mId);
+        }
+        
     }
 
     @Override
@@ -95,6 +125,52 @@ public class User extends WithHeaderActivity {
 		}
 	}
 
+    private String getIdFromUrl(Intent intent){
+    	String ret = null;
+    	Uri data = intent.getData();
+    	if(data != null){
+	    	List<String> params = data.getPathSegments();
+	    	//String action = params.get(0); // "u"
+	    	if("http".equalsIgnoreCase(data.getScheme())) ret = params.get(1);
+    	}
+    	return ret;
+    }
+    
+    static public String cacheId(String userId){
+    	return User.class.getName()+userId;
+    }
+
+    private void loadUser(final String id){
+    	AsyncTask<Void, Void, Long> loadTask = new AsyncTask<Void, Void, Long>() {
+			private String mErr = null;
+			private JSONObject mRet = null;
+			protected void onPreExecute() {
+				showLoading();
+			}
+			protected Long doInBackground(Void... params) {
+				try {
+					mRet = Utils.getUserInfo(User.this, id);
+				} catch (Exception e) {
+					mErr = e.getMessage();
+				}
+				return null;
+			}
+            protected void onPostExecute(Long result) {
+		    	if(mRet != null){
+		    		header.setUser(mRet);
+		        	loadList();
+		    		bind(); 
+		    		cacheData(mRet.toString());
+		    	}
+		    	if(mErr != null){
+		    		Utils.showToastLong(User.this, mErr);
+		    	}
+		    	hideLoading();
+            }
+        };
+        loadTask.execute();
+    }
+	
     protected class RefreshUserBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {

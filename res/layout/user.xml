@@ -14,7 +14,7 @@
 		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
 			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
             <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
-			<TextView android:id="@+id/txtTitle" style="@style/title" android:text="@string/user"/>
+			<TextView android:id="@+id/txtTitle" style="@style/title" android:text="@string/notification"/>
 			<include android:id="@+id/loading"	layout="@layout/loading" />
             <ImageButton
                 android:id="@+id/btnOptionsMenu"

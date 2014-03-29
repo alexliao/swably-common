@@ -220,12 +220,17 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			
 //			if(hideApp || app.getJSON() == null){
 			if(app.getJSON() == null){
+				Log.d(Const.APP_NAME, "CommentsAdapter icon gone - review id:" + review.optInt("id"));
 //				viewApp.setVisibility(View.GONE);
-				iv = holder.icon;
-				iv.setVisibility(View.GONE);
-				tv = holder.txtAppName;
-				tv.setVisibility(View.GONE);
+//				iv = holder.icon;
+//				iv.setVisibility(View.GONE);
+//				tv = holder.txtAppName;
+//				tv.setVisibility(View.GONE);
+				holder.icon.setVisibility(View.GONE);
+				holder.txtAppName.setVisibility(View.GONE);
+				Log.d(Const.APP_NAME, "CommentsAdapter icon visibility: " + holder.icon.getVisibility());
 			}else{
+				Log.d(Const.APP_NAME, "CommentsAdapter icon show - review id:" + review.optInt("id"));
 //				viewApp.setVisibility(View.VISIBLE);
 				iv = holder.icon;
 				iv.setVisibility(View.VISIBLE);
@@ -264,7 +269,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			bindReplies(holder, review);
 
 		} catch (Exception e) {
-			Log.d(Const.APP_NAME, Const.APP_NAME + " CommentsAdapter - bind err: " + e.getMessage());
+			Log.e(Const.APP_NAME, Const.APP_NAME + " CommentsAdapter - bind err: " + e.getMessage());
 		}
 	}
 	
