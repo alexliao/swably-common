@@ -271,5 +271,7 @@
     <string name="mention">Mention</string>
     <string name="menu_notifications">Notifications</string>
     <string name="add_a_review">Add a review</string>
+
+    <string name="new_feeds_count">%d new messages</string>
     		 	
 </resources>

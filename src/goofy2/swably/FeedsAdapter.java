@@ -9,6 +9,7 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,11 +83,24 @@ public class FeedsAdapter extends CloudBaseAdapter {
 			tv.setText(time);
 			tv.setTypeface(context.mLightFont);
 			
+			setRead(context, feed, holder, feed.optBoolean("read", false));
 		} catch (Exception e) {
 			Log.e(Const.APP_NAME, Const.APP_NAME + " FeedsAdapter - bind err: " + e.getMessage());
 		}
 	}
 	
+	
+	void setRead(Context context, JSONObject feed, ViewHolder holder, boolean read){
+		if(read){
+			int color = context.getResources().getColor(R.color.desc);
+			holder.txtUserName.setTextColor(color);
+			holder.txtFeedTitle.setTextColor(color);
+		}else{
+			int color = context.getResources().getColor(R.color.content);
+			holder.txtUserName.setTextColor(color);
+			holder.txtFeedTitle.setTextColor(color);
+		}
+	}
 	
 	public View newView(ViewGroup parent) {
 		View ret = null;

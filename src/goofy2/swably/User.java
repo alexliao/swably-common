@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import goofy2.swably.fragment.Back_User.RefreshUserBroadcastReceiver;
+import goofy2.swably.fragment.FeedsFragment;
 import goofy2.swably.fragment.UserReviewsFragment;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
@@ -44,6 +45,7 @@ public class User extends WithHeaderActivity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+    		FeedsFragment.setAllRead(this); // in case user tap the notification of single feed
     	}
         super.onCreate(savedInstanceState);
     	enableSlidingMenu();

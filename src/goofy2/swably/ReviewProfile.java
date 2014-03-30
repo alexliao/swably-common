@@ -2,6 +2,7 @@ package goofy2.swably;
 
 import goofy2.swably.R;
 import goofy2.swably.data.App;
+import goofy2.swably.fragment.FeedsFragment;
 import goofy2.swably.fragment.ReviewAboveFragment;
 import goofy2.swably.fragment.ReviewBelowFragment;
 import goofy2.swably.fragment.ReviewProfileFragment;
@@ -97,6 +98,7 @@ public class ReviewProfile extends WithHeaderActivity {
         	loadList();
         }else if(mId != null){
     		loadReview(mId);
+    		FeedsFragment.setAllRead(this); // in case user tap the notification of single feed
         }
     }
 

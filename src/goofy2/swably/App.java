@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import goofy2.swably.fragment.AppAboutFragment;
 import goofy2.swably.fragment.AppCommentsFragment;
+import goofy2.swably.fragment.FeedsFragment;
 import goofy2.swably.fragment.UserReviewsFragment;
 import goofy2.swably.fragment.Back_App.RefreshAppBroadcastReceiver;
 
@@ -51,6 +52,7 @@ public class App extends WithHeaderActivity
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+    		FeedsFragment.setAllRead(this); // in case user tap the notification of single feed
     	}
         super.onCreate(savedInstanceState);
     	enableSlidingMenu();

@@ -231,7 +231,7 @@ public class Utils {
 		return pref.getString(key, defaultValue);
 	}
 
-	protected static void setUserPrefString(Context context, String key, String value){
+	public static void setUserPrefString(Context context, String key, String value){
 		String user_id = getCurrentUserId(context);
 		SharedPreferences pref = context.getSharedPreferences(Const.PREFS+user_id, Activity.MODE_APPEND);
 		SharedPreferences.Editor editor = pref.edit();

@@ -1,6 +1,7 @@
 package goofy2.swably;
 
 import goofy2.swably.R;
+import goofy2.swably.fragment.FeedsFragment;
 import goofy2.utils.JSONUtils;
 
 import java.text.SimpleDateFormat;
@@ -39,7 +40,7 @@ import android.os.SystemClock;
 import android.util.Log;
 
 public class Checker extends CloudAlarmService {
-	public static final int NOTIFICATION_ID = 1;
+	public static final int NOTIFICATION_ID = 3827;
 	public static int MIN_INTERVAL = 20*1000;
 	public static int MAX_INTERVAL = 5*60*1000;
 	public static final String MESSAGE_RECEIVED = "goofy2.swably.MESSAGE_RECEIVED";
@@ -197,8 +198,8 @@ public class Checker extends CloudAlarmService {
 		String strResult = null;
 		JSONObject json = null;
 		try{
-			String params = "?format=json&user_id="+currentUser.getString("id")+"&user_key="+currentUser.getString("key")+"&since="+getLastFetchTime(this)+"&"+Utils.getClientParameters(this);
-			HttpGet httpReq = new HttpGet(Const.HTTP_PREFIX+"/feeds/fetch"+params);
+			String params = "?format=json&user_id="+currentUser.getString("id")+"&user_key="+currentUser.getString("key")+"&since="+FeedsFragment.getLastReadTime(this)+"&"+Utils.getClientParameters(this);
+			HttpGet httpReq = new HttpGet(Const.HTTP_PREFIX+"/feeds/fetch2"+params);
 			HttpParams httpParameters = new BasicHttpParams();
 			HttpConnectionParams.setConnectionTimeout(httpParameters, Const.HTTP_TIMEOUT);
 			httpReq.setParams(httpParameters);
@@ -211,10 +212,11 @@ public class Checker extends CloudAlarmService {
 				setLastFetchTime(this, fetch_time);
 				if(count > 0){
 					Log.d(Const.APP_NAME, Const.APP_NAME + " Checker - fetch: " + count);
-					sumUnreadCount(json.getInt("reviews_count"), json.getInt("follows_count"));
+//					sumUnreadCount(json.getInt("reviews_count"), json.getInt("follows_count"));
 					sendBroadcast(new Intent(MESSAGE_RECEIVED));
-					notifyReviews(json);
-					notifyFollows(json);
+//					notifyReviews(json);
+//					notifyFollows(json);
+					notify(json);
 					resetInterval(this);
 				}
 			}else{
@@ -228,10 +230,10 @@ public class Checker extends CloudAlarmService {
     	if(err != null) Log.d(Const.APP_NAME, Const.APP_NAME + " Checker - fetch: " + err);
     }
     
-	private void sumUnreadCount(int reviewCount, int followCount) {
-		Utils.setUnreadReviewsCount(this, Utils.getUnreadReviewsCount(this)+reviewCount);
-		Utils.setUnreadFollowsCount(this, Utils.getUnreadFollowsCount(this)+followCount);
-	}
+//	private void sumUnreadCount(int reviewCount, int followCount) {
+//		Utils.setUnreadReviewsCount(this, Utils.getUnreadReviewsCount(this)+reviewCount);
+//		Utils.setUnreadFollowsCount(this, Utils.getUnreadFollowsCount(this)+followCount);
+//	}
 
 	private boolean updated(){
 		Log.d(Const.APP_NAME, Const.APP_NAME + " Checker: check if updated");
@@ -263,36 +265,110 @@ public class Checker extends CloudAlarmService {
     }
 
 
-    private void notifyReviews(JSONObject json) throws JSONException{
+//    private void notifyReviews(JSONObject json) throws JSONException{
+//		if(!isNoticeOn(this)) return;
+//    	int unreadCount = Utils.getUnreadReviewsCount(this);
+//    	int thisCount = json.getInt("reviews_count");
+//    	if(thisCount == 0) return;
+//    	
+//		String text;
+//		String expandedText;
+//		String expandedTitle;
+//		Intent i;
+//    	if(thisCount == 1){
+//    		JSONObject review = json.getJSONObject("recent_review");
+//    		JSONObject jsonApp = review.optJSONObject("app");
+//    		if(jsonApp == null)	text = review.getJSONObject("user").getString("name") + ": " + review.getString("content");
+//    		else text = review.getJSONObject("user").getString("name") + ": #" +  jsonApp.getString("name") + " " + review.getString("content");	
+//    		expandedTitle = review.getJSONObject("user").getString("name");
+//    		if(jsonApp == null) expandedText = review.getString("content");
+//    		else expandedText = "#" +  review.getJSONObject("app").getString("name") + " " + review.getString("content");
+//    		i = new Intent(this, ReviewProfile.class);
+//    		i.putExtra(Const.KEY_REVIEW, review.toString());
+////    		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//    	}else{
+//    		text = String.format(getString(R.string.new_reviews_count), thisCount);
+//    		expandedTitle = String.format(getString(R.string.new_reviews_count), thisCount);
+//    		expandedText = json.getString("review_names");
+////    		i = new Intent(this, Home.class);
+////    		i.setData(Uri.parse("following")); // initial at following tab
+////    		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//    		i = new Intent(this, MyFollowingReviews.class);
+//    		
+//    	}
+//    	
+//		NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//		Notification notification = Utils.getDefaultNotification(text);
+//		//if(BannkaSettings.getSound(this)) notification.sound = Uri.parse(BannkaSettings.getRingtone(this));
+//		//if(BannkaSettings.getVibration(this)) notification.defaults = Notification.DEFAULT_VIBRATE;
+////		Intent i = new Intent(this, MyFollowingReviews.class);
+//		PendingIntent launchIntent = PendingIntent.getActivity(this, json.hashCode(), i, PendingIntent.FLAG_ONE_SHOT);
+//		notification.setLatestEventInfo(this, expandedTitle, expandedText, launchIntent);
+//		nm.notify(NOTIFICATION_ID, notification);
+//    }
+//
+//    private void notifyFollows(JSONObject json) throws JSONException{
+//		if(!isNoticeOn(this)) return;
+//    	int unreadCount = Utils.getUnreadFollowsCount(this);
+//    	int thisCount = json.getInt("follows_count");
+//    	if(thisCount == 0) return;
+//
+//    	String text;
+//		String expandedText;
+//		String expandedTitle;
+//		Intent i;
+//    	if(thisCount == 1){
+//    		JSONObject user = json.getJSONObject("recent_follower"); 
+//        	text = String.format(getString(R.string.following_noti_title), user.optString("name"));
+//    		expandedTitle = text;
+//    		expandedText = "";
+//    		i = new Intent(this, User.class);
+//    		i.putExtra(Const.KEY_USER, user.toString());
+//    	}else{
+//        	text = String.format(getString(R.string.new_follows_count), thisCount);
+//        	expandedTitle = text;
+//        	expandedText = json.getString("follow_names");
+////    		i = new Intent(this, Me.class);
+////    		i.setData(Uri.parse("followers")); // initial at followers tab
+//    		i = new Intent(this, UserFollowers.class);
+//        	i.putExtra(Const.KEY_USER, Utils.getCurrentUser(this).toString());
+//    	}
+////		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//    	NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//		Notification notification = Utils.getDefaultNotification(text);
+//		//if(BannkaSettings.getSound(this)) notification.sound = Uri.parse(BannkaSettings.getRingtone(this));
+//		//if(BannkaSettings.getVibration(this)) notification.defaults = Notification.DEFAULT_VIBRATE;
+////		Intent i = new Intent(this, UserFollowers.class);
+////		i.putExtra(Const.KEY_USER, Utils.getCurrentUser(this).toString());
+//		PendingIntent launchIntent = PendingIntent.getActivity(this, json.hashCode(), i, PendingIntent.FLAG_ONE_SHOT);
+//		notification.setLatestEventInfo(this, expandedTitle, expandedText, launchIntent);
+//		nm.notify(NOTIFICATION_ID+1, notification);
+//    }
+
+    private void notify(JSONObject json) throws JSONException{
 		if(!isNoticeOn(this)) return;
-    	int unreadCount = Utils.getUnreadReviewsCount(this);
-    	int thisCount = json.getInt("reviews_count");
-    	if(thisCount == 0) return;
+    	int unreadCount = json.getInt("count");
+    	if(unreadCount == 0) return;
     	
 		String text;
 		String expandedText;
 		String expandedTitle;
 		Intent i;
-    	if(thisCount == 1){
-    		JSONObject review = json.getJSONObject("recent_review");
-    		JSONObject jsonApp = review.optJSONObject("app");
-    		if(jsonApp == null)	text = review.getJSONObject("user").getString("name") + ": " + review.getString("content");
-    		else text = review.getJSONObject("user").getString("name") + ": #" +  jsonApp.getString("name") + " " + review.getString("content");	
-    		expandedTitle = review.getJSONObject("user").getString("name");
-    		if(jsonApp == null) expandedText = review.getString("content");
-    		else expandedText = "#" +  review.getJSONObject("app").getString("name") + " " + review.getString("content");
-    		i = new Intent(this, ReviewProfile.class);
-    		i.putExtra(Const.KEY_REVIEW, review.toString());
+    	if(unreadCount == 1){
+    		JSONObject feed = json.getJSONObject("recent_feed");
+    		text = feed.getJSONObject("producer").getString("name") + " " + feed.getString("title");
+    		expandedTitle = text;
+    		expandedText = feed.getString("content");
+//    		i = new Intent(this, Feeds.class);
+//    		i.putExtra(Const.KEY_REVIEW, review.toString());
 //    		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    		i = FeedsFragment.getFeedIntent(this, feed);
     	}else{
-    		text = String.format(getString(R.string.new_reviews_count), thisCount);
-    		expandedTitle = String.format(getString(R.string.new_reviews_count), thisCount);
-    		expandedText = json.getString("review_names");
-//    		i = new Intent(this, Home.class);
-//    		i.setData(Uri.parse("following")); // initial at following tab
-//    		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    		i = new Intent(this, MyFollowingReviews.class);
-    		
+    		text = String.format(getString(R.string.new_feeds_count), unreadCount);
+    		expandedTitle = String.format(getString(R.string.new_feeds_count), unreadCount);
+    		expandedText = json.getString("names");
+    		i = new Intent(this, Feeds.class);
     	}
     	
 		NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
@@ -304,46 +380,7 @@ public class Checker extends CloudAlarmService {
 		notification.setLatestEventInfo(this, expandedTitle, expandedText, launchIntent);
 		nm.notify(NOTIFICATION_ID, notification);
     }
-
-    private void notifyFollows(JSONObject json) throws JSONException{
-		if(!isNoticeOn(this)) return;
-    	int unreadCount = Utils.getUnreadFollowsCount(this);
-    	int thisCount = json.getInt("follows_count");
-    	if(thisCount == 0) return;
-
-    	String text;
-		String expandedText;
-		String expandedTitle;
-		Intent i;
-    	if(thisCount == 1){
-    		JSONObject user = json.getJSONObject("recent_follower"); 
-        	text = String.format(getString(R.string.following_noti_title), user.optString("name"));
-    		expandedTitle = text;
-    		expandedText = "";
-    		i = new Intent(this, User.class);
-    		i.putExtra(Const.KEY_USER, user.toString());
-    	}else{
-        	text = String.format(getString(R.string.new_follows_count), thisCount);
-        	expandedTitle = text;
-        	expandedText = json.getString("follow_names");
-//    		i = new Intent(this, Me.class);
-//    		i.setData(Uri.parse("followers")); // initial at followers tab
-    		i = new Intent(this, UserFollowers.class);
-        	i.putExtra(Const.KEY_USER, Utils.getCurrentUser(this).toString());
-    	}
-//		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-    	NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-		Notification notification = Utils.getDefaultNotification(text);
-		//if(BannkaSettings.getSound(this)) notification.sound = Uri.parse(BannkaSettings.getRingtone(this));
-		//if(BannkaSettings.getVibration(this)) notification.defaults = Notification.DEFAULT_VIBRATE;
-//		Intent i = new Intent(this, UserFollowers.class);
-//		i.putExtra(Const.KEY_USER, Utils.getCurrentUser(this).toString());
-		PendingIntent launchIntent = PendingIntent.getActivity(this, json.hashCode(), i, PendingIntent.FLAG_ONE_SHOT);
-		notification.setLatestEventInfo(this, expandedTitle, expandedText, launchIntent);
-		nm.notify(NOTIFICATION_ID+1, notification);
-    }
-
+    
     public double getLastFetchTime(Context context){
 		String strTime = Utils.getUserPrefString(context, Utils.getCurrentUserId(context) + "lastFetchTime", null);
 		double time;

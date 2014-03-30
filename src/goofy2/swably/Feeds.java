@@ -36,6 +36,7 @@ public class Feeds extends WithHeaderActivity {
     	
         Bundle bundle = new Bundle();
 		bundle.putString(Const.KEY_USER, user.toString());
+		bundle.putInt("lastReadAt", FeedsFragment.getLastReadTime(this));
 		
 		FragmentManager fm = this.getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();	

@@ -75,7 +75,7 @@ public abstract class CloudAlarmService extends IntentService {
 	}
 
     public void resetInterval(Context context) {
-    	setNextInterval(context, 1);
+    	setNextInterval(context, 5);
 	}
 
     public void setNextRun(Class<?> cls){
