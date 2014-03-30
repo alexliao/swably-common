@@ -21,7 +21,7 @@ public class Settings extends WithHeaderActivity {
         super.onCreate(savedInstanceState);
     	enableSlidingMenu();
         setContentView(R.layout.settings);
-		this.showBehind();
+//		this.showBehind();
     }
     
     @Override

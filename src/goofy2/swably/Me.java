@@ -13,7 +13,7 @@ public class Me extends User {
 		Intent i = getIntent();
 		i.putExtra(Const.KEY_USER, user.toString());
 		super.onCreate(savedInstanceState);
-		this.showBehind();
+//		this.showBehind();
     }
 
     @Override
