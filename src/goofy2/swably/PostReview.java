@@ -92,12 +92,17 @@ public class PostReview extends WithHeaderActivity {
 		btnMore.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				if(noApp()){
-					//selectApp();
+//				if(noApp()){
+//					selectAppToReply(mInReplyTo, editContent.getText().toString());
+//					finish();
+//				}else{
+//					openApp(header.getApp().getJSON());
+//				}
+				if(mInReplyTo == null){
+					openApp(header.getApp().getJSON());
+				}else{
 					selectAppToReply(mInReplyTo, editContent.getText().toString());
 					finish();
-				}else{
-					openApp(header.getApp().getJSON());
 				}
 			}
 		});

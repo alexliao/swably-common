@@ -40,7 +40,7 @@
 				>
 				<ImageView android:id="@+id/icon"
 					android:src="@drawable/question"
-					style="@style/icon"
+					style="@style/app_icon"
 					android:layout_marginRight="@dimen/padding"
 				/>
 				<TextView android:id="@+id/txtAppName"
