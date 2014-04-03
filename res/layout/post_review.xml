@@ -15,8 +15,7 @@
 		android:layout_weight="1"
 		>
 		<LinearLayout style="@style/titleBar" >
-            <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
-			<TextView android:id="@+id/txtTitle" android:text="@string/editing" style="@style/title" />
+			<TextView android:id="@+id/txtTitle" android:text="@string/editing" style="@style/title" android:gravity="left"/>
 			<ImageButton  android:id="@+id/btnPost"
 				android:src="@drawable/hover_send" 
 				style="@style/titleBtn"
@@ -41,7 +40,7 @@
 				>
 				<ImageView android:id="@+id/icon"
 					android:src="@drawable/question"
-					style="@style/avatar"
+					style="@style/icon"
 					android:layout_marginRight="@dimen/padding"
 				/>
 				<TextView android:id="@+id/txtAppName"
@@ -71,26 +70,7 @@
 					style="@style/field"
 					android:textSize="20sp"
 				/>
-				<ImageButton android:id="@+id/btnImage"
-				    android:src="@drawable/hover_add_image"
-				    android:layout_width="48dp"
-				    android:layout_height="48dp"
-				    android:layout_marginBottom="10dp"
-				    android:layout_alignParentRight="true"
-				    android:layout_alignParentBottom="true"
-				    android:background="@color/none"
-				    />
-				<ImageView android:id="@+id/imgImage"
-				    android:layout_width="96dp"
-				    android:layout_height="96dp"
-				    android:layout_marginRight="4dp"
-				    android:layout_marginBottom="15dp"
-				    android:layout_alignParentRight="true"
-				    android:layout_alignParentBottom="true"
-				    android:background="@drawable/icon_clickable"
-				    android:clickable="true"
-				    />
-				</RelativeLayout>
+			</RelativeLayout>
 			<goofy2.utils.HeightListView android:id="@+id/listNetworks"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
@@ -102,17 +82,35 @@
 				android:scrollbars="none"
 				android:visibility="gone"
 			/>
-			<CheckBox android:id="@+id/chkSync"
-				style="@style/content"
-				android:textColor="@color/header"
-				android:button="@drawable/check_sync_twitter" 
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="10dp"
-				android:checked="false"
-				android:layout_alignParentTop="true"
-				android:layout_alignParentRight="false"
-			/>
+			<RelativeLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    >
+				<CheckBox android:id="@+id/chkSync"
+					style="@style/content"
+					android:textColor="@color/header"
+					android:button="@drawable/check_sync_twitter" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:checked="false"
+				/>
+				<ImageButton android:id="@+id/btnImage"
+				    android:src="@drawable/hover_add_image"
+				    android:layout_width="48dp"
+				    android:layout_height="48dp"
+				    android:layout_alignParentRight="true"
+				    android:background="@color/none"
+				    />
+				<ImageView android:id="@+id/imgImage"
+				    android:layout_width="48dp"
+				    android:layout_height="48dp"
+				    android:scaleType="centerCrop"
+				    android:layout_alignParentRight="true"
+				    android:background="@drawable/icon_clickable"
+				    android:clickable="true"
+				    />
+			</RelativeLayout>
 		</LinearLayout>
 	</LinearLayout>	
 	<LinearLayout
