@@ -18,7 +18,6 @@ import android.widget.TextView;
 import goofy2.swably.fragment.AppAboutFragment;
 import goofy2.swably.fragment.AppCommentsFragment;
 import goofy2.swably.fragment.AppHistoryFragment;
-import goofy2.swably.fragment.AppUploadersFragment;
 import goofy2.swably.fragment.UserReviewsFragment;
 import goofy2.swably.fragment.Back_App.RefreshAppBroadcastReceiver;
 

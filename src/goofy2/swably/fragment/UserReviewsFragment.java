@@ -3,7 +3,6 @@ package goofy2.swably.fragment;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import goofy2.swably.AppUploaders;
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.CommentsAdapter;
 import goofy2.swably.Const;

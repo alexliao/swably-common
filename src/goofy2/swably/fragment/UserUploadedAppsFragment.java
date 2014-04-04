@@ -20,7 +20,7 @@ public class UserUploadedAppsFragment extends UserAppsFragment {
 	
 	@Override
 	protected String getIdName(){
-		return "share_id";
+		return "upload_id";
 	}
 
 }

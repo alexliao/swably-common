@@ -6,7 +6,6 @@ import goofy2.swably.AppHeader;
 import goofy2.swably.AppHelper;
 import goofy2.swably.AppHistoryAdapter;
 import goofy2.swably.AppProfile;
-import goofy2.swably.AppUploaders;
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.CommentsAdapter;
 import goofy2.swably.Const;
@@ -132,7 +131,7 @@ public class AppHistoryFragment extends CloudListFragment {
 
 	@Override
 	protected String getIdName(){
-		return "share_id";
+		return "upload_id";
 	}
 
 	@Override
