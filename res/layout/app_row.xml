@@ -30,7 +30,9 @@
 				>
 				<TextView android:id="@+id/txtName" 
 					style="@style/name"
-					android:layout_height="40dp"
+				/>
+				<TextView android:id="@+id/txtUpdatedAt"
+					style="@style/desc"
 				/>
 				<TextView android:id="@+id/txtError"
 					style="@style/content"

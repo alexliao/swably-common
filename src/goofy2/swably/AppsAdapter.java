@@ -162,6 +162,13 @@ public class AppsAdapter extends CloudInplaceActionsAdapter {
 				tv.setVisibility(View.GONE);
 			}
 			
+
+			double dTime = app.getUpdatedAt();
+			String time = Utils.formatTimeDistance(mContext, new Date((long) (dTime*1000)));
+			tv = holder.txtUpdatedAt;
+			tv.setText(time);
+			tv.setTypeface(mContext.mLightFont);
+			
 //			View ib = view.findViewById(R.id.btnCancel);
 //			ib.setOnClickListener(new View.OnClickListener(){
 //				@Override
@@ -225,6 +232,7 @@ public class AppsAdapter extends CloudInplaceActionsAdapter {
 		holder.txtSizeSent = (TextView) convertView.findViewById(R.id.txtSizeSent);
 		holder.txtError = (TextView) convertView.findViewById(R.id.txtError);
 		holder.txtReviewsCount = (TextView) convertView.findViewById(R.id.txtReviewsCount);
+		holder.txtUpdatedAt = (TextView) convertView.findViewById(R.id.txtUpdatedAt);
 		
 		holder.btnTriangle = convertView.findViewById(R.id.btnTriangle);
 		holder.inplacePanel = convertView.findViewById(R.id.inplacePanel);
@@ -249,6 +257,7 @@ public class AppsAdapter extends CloudInplaceActionsAdapter {
 		TextView txtSizeSent;
 		TextView txtError;
 		TextView txtReviewsCount;
+		TextView txtUpdatedAt;
 
 		View btnTriangle;
 		View inplacePanel;

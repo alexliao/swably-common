@@ -1,4 +1,5 @@
 package goofy2.swably;
+import goofy2.swably.AppsAdapter.ViewHolder;
 import goofy2.swably.data.App;
 import goofy2.utils.AsyncImageLoader;
 
@@ -58,4 +59,11 @@ public class LocalAppsAdapter extends AppsAdapter {
 		}
 		return ret;
 	}
+	
+	@Override
+	public void bindView(View view, final JSONObject jsonApp) {
+		super.bindView(view, jsonApp);
+		ViewHolder holder = (ViewHolder) view.getTag();
+		holder.txtUpdatedAt.setVisibility(View.GONE);
+	}	
 }
