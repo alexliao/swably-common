@@ -752,9 +752,9 @@ public abstract class CloudListFragment extends CloudFragment {
 		@Override
         public void onReceive(Context context, Intent intent) {
         	if(mList == null) return;
-			if(Build.VERSION.SDK_INT >= 8)
-				mList.smoothScrollToPosition(0);
-			else
+//			if(Build.VERSION.SDK_INT >= 8)
+//				mList.smoothScrollToPosition(0);
+//			else
 				mList.setSelection(0);
         }
     }
