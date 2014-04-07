@@ -18,7 +18,7 @@ public class Home extends PublicReviews {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		this.showBehind();
+//		this.showBehind();
 
         Timer timer = new Timer();
     	timer.schedule(new TimerTask(){
@@ -58,7 +58,7 @@ public class Home extends PublicReviews {
     @Override
     public void onResume(){
     	super.onResume();
-    	postShowAbove();
+//    	postShowAbove();
     }
 
 }

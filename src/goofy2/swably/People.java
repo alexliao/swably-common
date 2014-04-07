@@ -69,7 +69,7 @@ public class People extends TabStripActivity
     @Override
     public void onResume(){
     	super.onResume();
-    	postShowAbove();
+//    	postShowAbove();
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Apps extends TabStripActivity {
         super.onCreate(savedInstanceState);
     	enableSlidingMenu();
         setContentView(R.layout.apps);
-		this.showBehind();
+//		this.showBehind();
     }
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class Apps extends TabStripActivity {
     @Override
     public void onResume(){
     	super.onResume();
-    	postShowAbove();
+//    	postShowAbove();
     }
     
     @Override

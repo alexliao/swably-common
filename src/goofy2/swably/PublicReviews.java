@@ -100,23 +100,23 @@ public class PublicReviews extends PeopleReviews {
         setContentView(R.layout.public_reviews);
     }
 
-  @Override
-  public int getMenu() {
-//      return R.menu.home;
-      return 0;
-  }
-
-    @Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-//	    if (item.getItemId() == R.id.home) {
-//	    	Utils.goHome(this);
-//	    	return true;
-		if (item.getItemId() == R.id.menu_my_following_reviews) {
-			startActivity(new Intent(this, MyFollowingReviews.class));
-			return true;
-		}else {
-			return super.onOptionsItemSelected(item);
-		}
-	}
+//  @Override
+//  public int getMenu() {
+////      return R.menu.home;
+//      return 0;
+//  }
+//
+//    @Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+////	    if (item.getItemId() == R.id.home) {
+////	    	Utils.goHome(this);
+////	    	return true;
+//		if (item.getItemId() == R.id.menu_my_following_reviews) {
+//			startActivity(new Intent(this, MyFollowingReviews.class));
+//			return true;
+//		}else {
+//			return super.onOptionsItemSelected(item);
+//		}
+//	}
     
 }

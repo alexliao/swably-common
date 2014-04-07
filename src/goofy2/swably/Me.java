@@ -19,6 +19,6 @@ public class Me extends User {
     @Override
     public void onResume(){
     	super.onResume();
-    	postShowAbove();
+//    	postShowAbove();
     }
 }

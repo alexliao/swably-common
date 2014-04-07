@@ -95,7 +95,7 @@ public class Settings extends WithHeaderActivity {
     @Override
     public void onResume(){
     	super.onResume();
-    	postShowAbove();
+//    	postShowAbove();
     }
 
 	static public boolean getNotification(Context context){
