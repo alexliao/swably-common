@@ -65,7 +65,12 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			ib2.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					CloudActivity.openApp(mContext, info.optJSONObject("app"));
+					try{
+						CloudActivity.openApp(mContext, info.optJSONObject("app"));
+					}catch(Exception e){
+//						Log.e(Const.APP_NAME, e.getMessage());
+						e.printStackTrace();
+					}
 				}
 			});
 		}
