@@ -50,7 +50,7 @@ public abstract class PeopleReviews extends WithHeaderActivity {
 		btnAdd.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(), SelectLocalAppToReview.class));
+				startActivity(new Intent(getApplicationContext(), AddApp.class));
 //    				startActivity(new Intent(PublicReviews.this, PostReview.class));
 			}
 		});

@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -48,7 +49,9 @@ import goofy2.swably.AppHelper;
 import goofy2.swably.CloudActivity;
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.CloudInplaceActionsAdapter;
+import goofy2.swably.CloudWithLocalAppsAdapter;
 import goofy2.swably.Const;
+import goofy2.swably.LocalApps;
 import goofy2.swably.LocalAppsAdapter;
 import goofy2.swably.R;
 import goofy2.swably.UploadApp;
@@ -75,10 +78,15 @@ public class OldLocalAppsFragment extends CloudListFragment {
 	private ProgressBar progressBar;
 	private TextView txtSizeSent;
 //	UploadingApp.UploaderExServiceConnection mConnection;
+
+   	Cursor cursor;
+	SQLiteDatabase db;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
 //        if(getCloudActivity().redirectAnonymous()) return;
+    	AppHelper helper = new AppHelper(a());
+    	db = helper.getHelper().getReadableDatabase();
         super.onCreate(savedInstanceState);
     	a().registerReceiver(mUploadProgressReceiver, new IntentFilter(Const.BROADCAST_UPLOAD_PROGRESS));
         a().registerReceiver(mCacheProgressReceiver, new IntentFilter(Const.BROADCAST_CACHE_APPS_PROGRESS));
@@ -86,7 +94,9 @@ public class OldLocalAppsFragment extends CloudListFragment {
         Intent intent = new Intent(getActivity(), UploaderEx.class);
 //        mConnection = new UploadingApp.UploaderExServiceConnection();
 //        getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-		getCloudActivity().tryCacheApps();
+//		getCloudActivity().tryCacheApps();
+
+
     }
     
     @Override
@@ -105,6 +115,7 @@ public class OldLocalAppsFragment extends CloudListFragment {
         
 		return v;
     }
+
 
     @Override
     public void onDestroy(){
@@ -177,27 +188,47 @@ public class OldLocalAppsFragment extends CloudListFragment {
 //        }
 //    }
     
+//    @Override
+//	protected String loadStream(String url, String lastId) {
+//		Log.d(Const.APP_NAME, Const.APP_NAME + " LocalAppsFragment loadStream lastId: " + lastId);
+//    	if(lastId == null){
+//    		mLoadingImages.clear();
+//    		mListData = new JSONArray();
+//    	}else{
+//    		//url += "&max_id=" + lastId;
+//    	}
+//		String err = null;
+//		try{
+//			AppHelper helper = new AppHelper(getActivity());
+//			mListData = JSONUtils.appendArray(mListData, helper.getApps());
+////			setStatus();
+//		}catch (Exception e){
+////	    	Utils.alertTitle(this, getString(R.string.err_no_network_title), e.getMessage());
+//			err = e.getMessage();
+//			Log.e(Const.APP_NAME, Const.APP_NAME + " LocalAppsFragment loadStream err: " + err);
+//		}
+//		return err;
+//	}
+
     @Override
 	protected String loadStream(String url, String lastId) {
-		Log.d(Const.APP_NAME, Const.APP_NAME + " LocalAppsFragment loadStream lastId: " + lastId);
-    	if(lastId == null){
-    		mLoadingImages.clear();
-    		mListData = new JSONArray();
-    	}else{
-    		//url += "&max_id=" + lastId;
-    	}
+		Log.d(Const.APP_NAME, Const.APP_NAME + " LocalApps loadStream lastId: " + lastId);
 		String err = null;
 		try{
-			AppHelper helper = new AppHelper(getActivity());
-			mListData = JSONUtils.appendArray(mListData, helper.getApps());
-//			setStatus();
+			AppHelper helper = new AppHelper(a());
+			cursor = helper.getApps(db);
 		}catch (Exception e){
-//	    	Utils.alertTitle(this, getString(R.string.err_no_network_title), e.getMessage());
 			err = e.getMessage();
-			Log.e(Const.APP_NAME, Const.APP_NAME + " LocalAppsFragment loadStream err: " + err);
+			Log.e(Const.APP_NAME, Const.APP_NAME + " LocalApps loadStream err: " + err);
 		}
 		return err;
 	}
+
+
+	@Override
+    protected void setData(){
+		((LocalAppsAdapter) mAdapter).setData(cursor);
+    }
 
 	@Override
 	protected String getUrl() {
@@ -324,11 +355,12 @@ public class OldLocalAppsFragment extends CloudListFragment {
 
 	@Override
 	protected void refresh(){
-		new Thread() {
-			public void run(){
-				Utils.cacheAppsStatus(a(), mListData);
-			}
-		}.start();
+//		new Thread() {
+//			public void run(){
+//				Utils.cacheAppsStatus(a(), mListData);
+//			}
+//		}.start();
+		refreshWithoutLoading();
 	}
 
     @Override
@@ -344,44 +376,11 @@ public class OldLocalAppsFragment extends CloudListFragment {
 	protected void loadMore(){
 		// disable auto loading
 	}	
-	@Override
-    protected void loadedMore(boolean succeeded){
-		//txtHeader.setText(String.format(getString(R.string.app_count), mListData.length()));
-    }
-
-//    public void loadListImagesEx(final JSONArray jsonList){
-//    	final ExecutorService threadPool = Executors.newFixedThreadPool(Const.MULITI_DOWNLOADING);
-//        threadPool.execute(new Runnable(){
-//        	public void run() {
-//        	   	final PackageManager mPackageManager = getActivity().getPackageManager();
-//				for(int i=0; i < jsonList.length() ; i++){
-//					JSONObject item;
-//					try {
-//						item = jsonList.getJSONObject(i);
-//						ParamRunnable pr = new ParamRunnable(){
-//				        	public void run() {
-//				        		App app = (App)param;
-//								File f = new File(app.getIconPath());
-//								if(!f.exists())
-//									if(Utils.saveLocalApkIcon(mPackageManager, app.getPackage()))
-//										getActivity().sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
-//										
-//				        	}
-//						};
-//						pr.param = new App(item);
-//						threadPool.execute(pr);
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//        	}
-//        });  
+//	@Override
+//    protected void loadedMore(boolean succeeded){
+//		//txtHeader.setText(String.format(getString(R.string.app_count), mListData.length()));
 //    }
 
-//    @Override
-//	protected String getImageUrl(JSONObject item, int index) throws JSONException {
-//		return item.getString(App.ICON);
-//	}
 
 	@Override
 	protected CloudBaseAdapter getAdapter() {
@@ -453,23 +452,6 @@ public class OldLocalAppsFragment extends CloudListFragment {
     protected void onCloudAction(CloudActivity activity, JSONObject json){
     	activity.openApp(json);
 	}
-//	protected void sendOutReview(JSONObject json){
-//		try {
-//	    	App app = new App(json);
-//	    	if(app.getStatus() != App.STATUS_UPLOADING){
-//	    		json.put(Const.KEY_FAILED, null);
-//		    	json.put(App.STATUS, App.STATUS_UPLOADING);
-//				json.put(Const.KEY_PERCENT, 0);
-//				json.put(Const.KEY_SIZE_TRANSFERRED, 0);
-//		    	Intent i = new Intent(CloudLocalAppsActivity.this, Uploader.class);
-//				i.setData(Uri.parse(app.getPackage()));
-//				startService(i);
-//	    	}
-//	    	mAdapter.notifyDataSetChanged();
-//		} catch (JSONException e) {
-//			e.printStackTrace();
-//		}
-//	}
 	
 	protected HashMap<String, Integer> getIndex(){
     	// create index at first time
@@ -524,26 +506,6 @@ public class OldLocalAppsFragment extends CloudListFragment {
         }
     }
 
-//    private class OnClickListener_btnShare implements Button.OnClickListener {
-//		@Override
-//		public void onClick(View v) {
-//			int count = 0;
-//			for(int i=0; i<mListData.length(); i++){
-//				JSONObject json = mListData.optJSONObject(i);
-//				App app = new App(json);
-//				if(!app.isSharedByMe() && json.optBoolean(Const.KEY_CHECKED, true)){
-//					count ++;
-//					share(json);
-//					viewShare.setVisibility(View.GONE);
-//					btnNext.setVisibility(View.VISIBLE);
-//				}
-//			}
-//			if(count == 0)
-//				Utils.showToast(CloudLocalAppsActivity.this, getString(R.string.not_select_app));
-//		}
-//		
-//	}
-    
     public class RefreshAppBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -567,6 +529,6 @@ public class OldLocalAppsFragment extends CloudListFragment {
 
     @Override
 	public long getCacheExpiresIn(){
-		return 3600*24*1000; 
+		return 0; 
 	}
 }

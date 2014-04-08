@@ -276,7 +276,8 @@ public abstract class CloudListFragment extends CloudFragment {
 //							loadingMore.setVisibility(View.GONE);
 							try {
 								if (strCache != null) {
-									mAdapter.setData(mListData);
+//									mAdapter.setData(mListData);
+									setData();
 									refreshListView();
 	//								loadListImagesEx(mListData);
 								}
@@ -425,8 +426,8 @@ public abstract class CloudListFragment extends CloudFragment {
 					// mAdapter.notifyDataSetChanged();
 					if (getCacheId() != null)
 						cacheData(mListData.toString());
-//					onDataChanged(-1);
-					mAdapter.setData(mListData);
+//					mAdapter.setData(mListData);
+					setData();
 					refreshListView();
 					loadedMore(true);
 					// FeedHelper.loadUpdateImages(CloudListFragment.this,
@@ -452,6 +453,10 @@ public abstract class CloudListFragment extends CloudFragment {
 		loadTask.execute();
 	}
 
+    protected void setData(){
+		mAdapter.setData(mListData);
+    }
+    
 	protected String loadStream(String url, String lastId) {
 		Log.d(Const.APP_NAME, Const.APP_NAME + " CloudListFragment loadStream: " + lastId);
 		if (lastId != null)

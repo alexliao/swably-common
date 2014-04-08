@@ -59,7 +59,7 @@ public class AppHelper {
 		mContext = context;
 	}
 
-	CloudHelper getHelper(){
+	public CloudHelper getHelper(){
 		return CloudHelper.getHelper(mContext);
 	}
 
