@@ -12,12 +12,12 @@
         >
 		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
 			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn.wide"/>
-			<include layout="@layout/vdivider" />
 			<TextView android:id="@+id/txtTitle" android:text="@string/apps" style="@style/title"/>
 			<include android:id="@+id/loading"	layout="@layout/loading" />
 			<ImageButton  android:id="@+id/btnSearch" 
 			    android:src="@drawable/search" 
 			    style="@style/titleBtn"
+			    android:visibility="gone"
 			    />
 		</LinearLayout>
 		<include layout="@layout/header_bottom" />

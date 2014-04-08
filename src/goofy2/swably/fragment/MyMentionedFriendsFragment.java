@@ -2,7 +2,6 @@ package goofy2.swably.fragment;
 
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.Const;
-import goofy2.swably.LocalAppsFragment;
 import goofy2.swably.MentionedFriendsAdapter;
 import goofy2.swably.UsersAdapter;
 

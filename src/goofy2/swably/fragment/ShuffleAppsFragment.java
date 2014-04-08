@@ -1,6 +1,6 @@
-package goofy2.swably;
+package goofy2.swably.fragment;
 
-import goofy2.swably.fragment.CloudAppsFragment;
+import goofy2.swably.Const;
 
 import org.json.JSONArray;
 import org.json.JSONException;

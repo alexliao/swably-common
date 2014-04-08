@@ -227,7 +227,7 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
 		return ret;
     }
 
-    protected void tryCacheApps(){
+    public void tryCacheApps(){
     	if(Utils.isCaching) return;
 		new Thread() {
 			public void run(){

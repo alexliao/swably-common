@@ -24,7 +24,7 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 
-public class Home extends TabStripActivity {
+public class OldHome extends TabStripActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,9 @@ public class Home extends TabStripActivity {
     	timer.schedule(new TimerTask(){
     		@Override
     		public void run(){
-    	    	long lastCheckTime = Long.parseLong(Utils.getPrefString(Home.this, "check_version_time", "0"));
+    	    	long lastCheckTime = Long.parseLong(Utils.getPrefString(OldHome.this, "check_version_time", "0"));
     	    	if(System.currentTimeMillis() - lastCheckTime > 3600*8*1000){
-    	    		if(Utils.checkVersion(Home.this))	notifyNewVersion();	
+    	    		if(Utils.checkVersion(OldHome.this))	notifyNewVersion();	
     	    	}
     		}
     	}, 10*1000); // delay execution
@@ -52,7 +52,7 @@ public class Home extends TabStripActivity {
 		btnAdd.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(Home.this, SelectLocalAppToReview.class));
+				startActivity(new Intent(OldHome.this, SelectLocalAppToReview.class));
 //    				startActivity(new Intent(PublicReviews.this, PostReview.class));
 			}
 		});
@@ -83,7 +83,7 @@ public class Home extends TabStripActivity {
     
 	protected void notifyNewVersion(){
     	try{
-			String s = Utils.getPrefString(Home.this, "version_changes", null);
+			String s = Utils.getPrefString(OldHome.this, "version_changes", null);
 			JSONArray changes = new JSONArray(s);
 			Log.d(Const.APP_NAME, Const.APP_NAME + " CloudActitivy get " + changes.length() + " new version");
 			if(changes.length() > 0){

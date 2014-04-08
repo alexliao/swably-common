@@ -17,8 +17,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 
-import goofy2.swably.LocalAppsFragment.RefreshAppBroadcastReceiver;
 import goofy2.swably.data.App;
+import goofy2.swably.fragment.OldLocalAppsFragment.RefreshAppBroadcastReceiver;
 
 public abstract class CloudWithLocalAppsListActivity extends CloudGridActivity {
 //	protected ProgressBroadcastReceiver mProgressReceiver = new ProgressBroadcastReceiver();

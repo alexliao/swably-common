@@ -1,6 +1,7 @@
 package goofy2.swably;
 
 import goofy2.swably.R;
+import goofy2.swably.fragment.OldLocalAppsFragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -75,7 +76,7 @@ public class People extends TabStripActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //    	LocalAppsFragment frag = (LocalAppsFragment) getSupportFragmentManager().findFragmentByTag("apps");
-    	LocalAppsFragment frag = (LocalAppsFragment) mPagerAdapter.getItem(0);
+    	OldLocalAppsFragment frag = (OldLocalAppsFragment) mPagerAdapter.getItem(0);
     	if(frag != null) frag.onActivityResult(this, requestCode, resultCode, data);
     }
     

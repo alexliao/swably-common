@@ -1,4 +1,4 @@
-package goofy2.swably;
+package goofy2.swably.fragment;
 
 
 import java.io.File;
@@ -44,15 +44,26 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import goofy2.swably.AppHelper;
+import goofy2.swably.CloudActivity;
+import goofy2.swably.CloudBaseAdapter;
+import goofy2.swably.CloudInplaceActionsAdapter;
+import goofy2.swably.Const;
+import goofy2.swably.LocalAppsAdapter;
 import goofy2.swably.R;
-import goofy2.swably.DownloadingApp.OnClickListener_btnCancel;
+import goofy2.swably.UploadApp;
+import goofy2.swably.UploaderEx;
+import goofy2.swably.UploadingApp;
+import goofy2.swably.Utils;
+import goofy2.swably.R.id;
+import goofy2.swably.R.layout;
+import goofy2.swably.R.string;
 import goofy2.swably.UploadingApp.UploaderExServiceConnection;
 import goofy2.swably.data.App;
-import goofy2.swably.fragment.CloudListFragment;
 import goofy2.utils.JSONUtils;
 import goofy2.utils.ParamRunnable;
 
-public class LocalAppsFragment extends CloudListFragment {
+public class OldLocalAppsFragment extends CloudListFragment {
 //	private ImageButton btnRefresh;
 	protected CacheProgressBroadcastReceiver mCacheProgressReceiver = new CacheProgressBroadcastReceiver();
 	protected UploadProgressBroadcastReceiver mUploadProgressReceiver = new UploadProgressBroadcastReceiver();
@@ -326,7 +337,7 @@ public class LocalAppsFragment extends CloudListFragment {
     }
 
     static public String cacheId(){
-    	return LocalAppsFragment.class.getName();
+    	return OldLocalAppsFragment.class.getName();
     }
 
     @Override
@@ -533,7 +544,7 @@ public class LocalAppsFragment extends CloudListFragment {
 //		
 //	}
     
-    protected class RefreshAppBroadcastReceiver extends BroadcastReceiver {
+    public class RefreshAppBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals(Const.BROADCAST_REFRESH_APP)){

@@ -60,8 +60,8 @@ public class Const {
 	public static final String KEY_CHECKED = "checked";
 	public static final String KEY_ID = "id";
 	public static final String KEY_PATH = "path";
-	protected static final String KEY_LOADING = "loading";
-	protected static final String KEY_LOADED = "loaded";
+	public static final String KEY_LOADING = "loading";
+	public static final String KEY_LOADED = "loaded";
 	public static final String KEY_USER = "user";
 	public static final String KEY_REVIEW = "review";
 	public static final String KEY_UNREAD_REVIEWS_COUNT = "unread_reviews_count";
