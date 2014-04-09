@@ -1,10 +1,17 @@
 package goofy2.swably;
 
 import goofy2.swably.R;
+import goofy2.swably.LocalApps.CacheProgressBroadcastReceiver;
+import goofy2.swably.fragment.LocalAppsFragment;
+import goofy2.swably.fragment.OldLocalAppsFragment;
+import goofy2.swably.fragment.ShuffleAppsFragment;
+import goofy2.swably.fragment.UserLikedAppsFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
@@ -12,6 +19,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.view.LayoutInflater;
@@ -19,22 +27,39 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 
-public class AddApp extends LocalApps {
+public class AddApp extends TabStripActivity
+	implements LocalAppsFragment.OnClickListener
+{
+	private ImageButton btnRefresh;
+//	protected View btnSearch;
 	String mImagePath = null;
+	private View viewProgress;
+	private ProgressBar progressBar;
+	private TextView txtSizeSent;
+	protected CacheProgressBroadcastReceiver mCacheProgressReceiver = new CacheProgressBroadcastReceiver();
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
     	super.onCreate(savedInstanceState);
         disableSliding();
-//    	this.getWindow().setBackgroundDrawableResource(R.drawable.panel_background);
-//        TextView txtTitle = (TextView) this.findViewById(R.id.txtTitle);
-//        txtTitle.setText(getString(R.string.pick_app));
-//    	Drawable d = this.getResources().getDrawable(R.drawable.add);
-//    	d.setBounds(0, 0, d.getMinimumWidth(), d.getMinimumHeight());
-//        txtTitle.setCompoundDrawables(d, null, null, null);
+        setContentView(R.layout.add_app);
         
-        if(getIntent().getStringExtra(Const.KEY_REVIEW) == null){ 
+    	viewProgress = this.findViewById(R.id.viewProgress);
+        progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
+        txtSizeSent = (TextView) this.findViewById(R.id.txtSizeSent);
+
+    	registerReceiver(mCacheProgressReceiver, new IntentFilter(Const.BROADCAST_CACHE_APPS_PROGRESS));
+
+    	View btnRefresh = findViewById(R.id.btnRefresh);
+    	btnRefresh.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				sendBroadcast(new Intent(Const.BROADCAST_START_CACHE_APP));
+			}
+		});
+
+    	if(getIntent().getStringExtra(Const.KEY_REVIEW) == null){ 
         	findViewById(R.id.viewBottomBar).setVisibility(View.VISIBLE);
 	        View btnRequest = findViewById(R.id.btnRequest);
 	        btnRequest.setOnClickListener(new OnClickListener(){
@@ -63,41 +88,49 @@ public class AddApp extends LocalApps {
         if(imageUri != null){
         	mImagePath = getRealPathFromURI(imageUri);
         }
-   	
-        
-        
-    }
-
-    protected void setContent(){
-	    setContentView(R.layout.select_local_apps);
     }
 
     @Override
-	protected void onCloudAction(JSONObject json){
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
 
-        Intent i = new Intent(AddApp.this, PostReview.class);
-		i.putExtra(Const.KEY_APP, json.toString());
-		i.putExtra("image", mImagePath);
-		i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
-		i.putExtra("content", getIntent().getStringExtra("content"));
-		startActivity(i);
-		finish();
+//        btnSearch = findViewById(R.id.btnSearch);
+//        btnSearch.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				onSearchRequested();
+//			}
+//		});
+//        
+//		mPagerAdapter.addTab("shuffle", getString(R.string.shuffle), ShuffleAppsFragment.class, null);
+        mPagerAdapter.addTab("installed", getString(R.string.installed), LocalAppsFragment.class, null);
+//		Bundle args = new Bundle();
+//		args.putString(Const.KEY_USER, Utils.getCurrentUser(this).toString());
+//        mPagerAdapter.addTab("starred", getString(R.string.starred), UserLikedAppsFragment.class, args);
+		mViewPager.setCurrentItem(0);
     }
 
     @Override
-	protected View getRowTop() {
-		return null;
-	}
-    @Override
-	protected View getRowBottom() {
-		return null;
-	}
-    
-//	@Override
-//	protected CloudBaseAdapter getAdapter() {
-//		return new SelectLocalAppAdapter(this, mListData, mLoadingImages);
-//	}
+    public void onDestroy(){
+    	try{
+    		unregisterReceiver(mCacheProgressReceiver);
+    	}catch (Exception e){
+    		e.printStackTrace();
+    	}
+    	super.onDestroy();
+    }
 
+//    @Override
+//	protected void onCloudAction(JSONObject json){
+//
+//        Intent i = new Intent(AddApp.this, PostReview.class);
+//		i.putExtra(Const.KEY_APP, json.toString());
+//		i.putExtra("image", mImagePath);
+//		i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
+//		i.putExtra("content", getIntent().getStringExtra("content"));
+//		startActivity(i);
+//		finish();
+//    }
 
     private String getRealPathFromURI(Uri uri){
     	if("content".equalsIgnoreCase(uri.getScheme())){
@@ -113,6 +146,59 @@ public class AddApp extends LocalApps {
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         return cursor.getString(column_index);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	LocalAppsFragment frag = (LocalAppsFragment) mPagerAdapter.getItem(0);
+    	if(frag != null) frag.onActivityResult(this, requestCode, resultCode, data);
+    }
+
+	@Override
+	public void onClick(JSONObject json) {
+        Intent i = new Intent(AddApp.this, PostReview.class);
+		i.putExtra(Const.KEY_APP, json.toString());
+		i.putExtra("image", mImagePath);
+		i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
+		i.putExtra("content", getIntent().getStringExtra("content"));
+		startActivity(i);
+		finish();
+	}
+
+    public class CacheProgressBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(Const.BROADCAST_CACHE_APPS_PROGRESS)){
+            	int count = intent.getIntExtra(Const.KEY_COUNT, 0);
+            	int total = intent.getIntExtra(Const.KEY_TOTAL, 1);
+        		boolean finished = intent.getBooleanExtra(Const.KEY_FINISHED, false);
+        		boolean loading = intent.getBooleanExtra(Const.KEY_LOADING, false);
+        		boolean loaded = intent.getBooleanExtra(Const.KEY_LOADED, false);
+        		
+        		if(loading){
+        			viewProgress.setVisibility(View.VISIBLE);
+        		}else if(loaded){
+        			sendBroadcast(new Intent(Const.BROADCAST_REFRESH_APP));
+        			if(progressBar.isIndeterminate()){
+            			viewProgress.setVisibility(View.GONE);
+        			}
+        		}else if(finished){
+        			sendBroadcast(new Intent(Const.BROADCAST_REFRESH_APP));
+        			viewProgress.setVisibility(View.GONE);
+        		}else{
+        			viewProgress.setVisibility(View.VISIBLE);
+        			int percent = count*100/total;
+        			if(percent >= 100){
+	        			progressBar.setIndeterminate(true);
+	            		txtSizeSent.setText(getString(R.string.refreshing_app_status));
+        			}else{
+	        			progressBar.setIndeterminate(false);
+	        			progressBar.setProgress(percent);
+	            		txtSizeSent.setText(String.format(getString(R.string.caching_progress), count, total));
+        			}
+        		}
+            }
+        }
     }
 
 }

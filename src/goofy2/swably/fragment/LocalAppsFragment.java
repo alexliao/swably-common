@@ -32,18 +32,22 @@ import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.CloudInplaceActionsAdapter;
 import goofy2.swably.Const;
 import goofy2.swably.LocalAppsAdapter;
+import goofy2.swably.PostReview;
 import goofy2.swably.R;
+import goofy2.swably.SelectLocalAppToReview;
 import goofy2.swably.UploadApp;
 import goofy2.swably.UploaderEx;
 import goofy2.swably.UploadingApp;
 import goofy2.swably.Utils;
 import goofy2.swably.data.App;
+import goofy2.swably.fragment.AppCommentsFragment.OnAboutListener;
 
 public class LocalAppsFragment extends CloudGridFragment {
 //	private ImageButton btnRefresh;
-	protected CacheProgressBroadcastReceiver mCacheProgressReceiver = new CacheProgressBroadcastReceiver();
+//	protected CacheProgressBroadcastReceiver mCacheProgressReceiver = new CacheProgressBroadcastReceiver();
 //	protected UploadProgressBroadcastReceiver mUploadProgressReceiver = new UploadProgressBroadcastReceiver();
 	protected RefreshAppBroadcastReceiver mRefreshAppProgressReceiver = new RefreshAppBroadcastReceiver();
+	protected StartCacheAppBroadcastReceiver mStartCacheAppBroadcastReceiver = new StartCacheAppBroadcastReceiver();
 	private HashMap<String, Integer> mIndex = null;
 
 	//protected JSONArray mMyApps = new JSONArray();
@@ -55,6 +59,8 @@ public class LocalAppsFragment extends CloudGridFragment {
    	Cursor cursor;
 	SQLiteDatabase db;
 	
+	OnClickListener mClickListener;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
 //        if(getCloudActivity().redirectAnonymous()) return;
@@ -62,8 +68,9 @@ public class LocalAppsFragment extends CloudGridFragment {
     	db = helper.getHelper().getReadableDatabase();
         super.onCreate(savedInstanceState);
 //    	a().registerReceiver(mUploadProgressReceiver, new IntentFilter(Const.BROADCAST_UPLOAD_PROGRESS));
-        a().registerReceiver(mCacheProgressReceiver, new IntentFilter(Const.BROADCAST_CACHE_APPS_PROGRESS));
+//        a().registerReceiver(mCacheProgressReceiver, new IntentFilter(Const.BROADCAST_CACHE_APPS_PROGRESS));
         a().registerReceiver(mRefreshAppProgressReceiver, new IntentFilter(Const.BROADCAST_REFRESH_APP));
+        a().registerReceiver(mStartCacheAppBroadcastReceiver, new IntentFilter(Const.BROADCAST_START_CACHE_APP));
         Intent intent = new Intent(getActivity(), UploaderEx.class);
         mConnection = new UploadingApp.UploaderExServiceConnection();
         getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
@@ -87,9 +94,10 @@ public class LocalAppsFragment extends CloudGridFragment {
     @Override
     public void onDestroy(){
     	try{
+    		a().unregisterReceiver(mStartCacheAppBroadcastReceiver);
     		a().unregisterReceiver(mRefreshAppProgressReceiver);
 //    		a().unregisterReceiver(mUploadProgressReceiver);
-    		a().unregisterReceiver(mCacheProgressReceiver);
+//    		a().unregisterReceiver(mCacheProgressReceiver);
     	}catch (Exception e){
     		e.printStackTrace();
     	}
@@ -238,58 +246,58 @@ public class LocalAppsFragment extends CloudGridFragment {
 		if(mAdapter instanceof CloudInplaceActionsAdapter) ((CloudInplaceActionsAdapter) mAdapter).mHelper.hideActionsAnim();
 	}
 	
-    protected class CacheProgressBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if(intent.getAction().equals(Const.BROADCAST_CACHE_APPS_PROGRESS)){
-            	int count = intent.getIntExtra(Const.KEY_COUNT, 0);
-            	int total = intent.getIntExtra(Const.KEY_TOTAL, 1);
-        		//if(count > 0) txtHeader.setText(String.format(getString(R.string.app_count), count));
-        		boolean finished = intent.getBooleanExtra(Const.KEY_FINISHED, false);
-        		//boolean refresh = intent.getBooleanExtra(Const.KEY_REFRESH, false);
-        		boolean loading = intent.getBooleanExtra(Const.KEY_LOADING, false);
-        		boolean loaded = intent.getBooleanExtra(Const.KEY_LOADED, false);
-        		
-        		if(loading){
-        			viewProgress.setVisibility(View.VISIBLE);
-        		}else if(loaded){
-        			refreshWithoutLoading();
-        			if(progressBar.isIndeterminate()){
-            			viewProgress.setVisibility(View.GONE);
-        			}
-        		}else if(finished){
-        			refreshWithoutLoading();
-        			//loading.setVisibility(View.GONE);
-        			//txtHeader.setVisibility(View.GONE);
-        			viewProgress.setVisibility(View.GONE);
-        		}else{
-        			//loading.setVisibility(View.VISIBLE);
-        			//txtHeader.setVisibility(View.VISIBLE);
-        			viewProgress.setVisibility(View.VISIBLE);
-        			int percent = count*100/total;
-        			if(percent >= 100){
-	        			progressBar.setIndeterminate(true);
-	            		txtSizeSent.setText(getString(R.string.refreshing_app_status));
-        			}else{
-	        			progressBar.setIndeterminate(false);
-	        			progressBar.setProgress(percent);
-	            		txtSizeSent.setText(String.format(getString(R.string.caching_progress), count, total));
-        			}
-//        			try {
-//						JSONObject json = new JSONObject(intent.getStringExtra(Const.KEY_APP));
-//						JSONArray left = new JSONArray();
-//						left.put(json);
-//						mListData = JSONUtils.appendArray(left, mListData);
-//						mAdapter.setData(mListData);
-//						refreshListView();
-//					} catch (JSONException e) {
-//						e.printStackTrace();
-//					}
-        		}
-            }
-        }
-    }
-
+//    protected class CacheProgressBroadcastReceiver extends BroadcastReceiver {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            if(intent.getAction().equals(Const.BROADCAST_CACHE_APPS_PROGRESS)){
+//            	int count = intent.getIntExtra(Const.KEY_COUNT, 0);
+//            	int total = intent.getIntExtra(Const.KEY_TOTAL, 1);
+//        		//if(count > 0) txtHeader.setText(String.format(getString(R.string.app_count), count));
+//        		boolean finished = intent.getBooleanExtra(Const.KEY_FINISHED, false);
+//        		//boolean refresh = intent.getBooleanExtra(Const.KEY_REFRESH, false);
+//        		boolean loading = intent.getBooleanExtra(Const.KEY_LOADING, false);
+//        		boolean loaded = intent.getBooleanExtra(Const.KEY_LOADED, false);
+//        		
+//        		if(loading){
+//        			viewProgress.setVisibility(View.VISIBLE);
+//        		}else if(loaded){
+//        			refreshWithoutLoading();
+//        			if(progressBar.isIndeterminate()){
+//            			viewProgress.setVisibility(View.GONE);
+//        			}
+//        		}else if(finished){
+//        			refreshWithoutLoading();
+//        			//loading.setVisibility(View.GONE);
+//        			//txtHeader.setVisibility(View.GONE);
+//        			viewProgress.setVisibility(View.GONE);
+//        		}else{
+//        			//loading.setVisibility(View.VISIBLE);
+//        			//txtHeader.setVisibility(View.VISIBLE);
+//        			viewProgress.setVisibility(View.VISIBLE);
+//        			int percent = count*100/total;
+//        			if(percent >= 100){
+//	        			progressBar.setIndeterminate(true);
+//	            		txtSizeSent.setText(getString(R.string.refreshing_app_status));
+//        			}else{
+//	        			progressBar.setIndeterminate(false);
+//	        			progressBar.setProgress(percent);
+//	            		txtSizeSent.setText(String.format(getString(R.string.caching_progress), count, total));
+//        			}
+////        			try {
+////						JSONObject json = new JSONObject(intent.getStringExtra(Const.KEY_APP));
+////						JSONArray left = new JSONArray();
+////						left.put(json);
+////						mListData = JSONUtils.appendArray(left, mListData);
+////						mAdapter.setData(mListData);
+////						refreshListView();
+////					} catch (JSONException e) {
+////						e.printStackTrace();
+////					}
+//        		}
+//            }
+//        }
+//    }
+//
 	@Override
 	protected CharSequence getListTitle() {
 		// TODO Auto-generated method stub
@@ -436,10 +444,10 @@ public class LocalAppsFragment extends CloudGridFragment {
     }
     
     protected void onCloudAction(CloudActivity activity, JSONObject json){
-    	activity.openApp(json);
+    	this.mClickListener.onClick(json);
 	}
-	
-	protected HashMap<String, Integer> getIndex(){
+
+    protected HashMap<String, Integer> getIndex(){
     	// create index at first time
     	if(mIndex == null){
     		mIndex = new HashMap<String, Integer>();
@@ -501,6 +509,15 @@ public class LocalAppsFragment extends CloudGridFragment {
         }
     }
 
+    public class StartCacheAppBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(Const.BROADCAST_START_CACHE_APP)){
+            	refreshDb();
+            }
+        }
+    }
+
     public void onActivityResult(CloudActivity activity, int requestCode, int resultCode, Intent data) {
     	if(resultCode == Activity.RESULT_OK && data != null){
     		JSONObject json;
@@ -517,4 +534,25 @@ public class LocalAppsFragment extends CloudGridFragment {
 	public long getCacheExpiresIn(){
 		return 0; 
 	}
+    
+    // Container Activity must implement this interface
+    public interface OnClickListener {
+        public void onClick(JSONObject app);
+    }
+    
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mClickListener = (OnClickListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnClickListener");
+        }
+    }
+    
+    
 }

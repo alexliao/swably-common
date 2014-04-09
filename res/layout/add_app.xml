@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        >
+	    <LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
+			<TextView android:id="@+id/txtTitle" android:text="@string/pick_app" style="@style/title" android:gravity="left"/>
+	        <ImageButton
+	            android:id="@+id/btnRefresh"
+	            style="@style/titleBtn"
+	            android:src="@drawable/hover_refresh" />
+		</LinearLayout>
+    	<LinearLayout android:id="@+id/viewProgress" 
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="-2dp"
+			android:visibility="gone"
+			>
+			<ProgressBar android:id="@+id/progressBar" 
+				style="@style/ProgressBar"
+			/>
+			<TextView android:id="@+id/txtSizeSent"
+				android:text="@string/refreshing_app_status"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="12sp"
+				android:textColor="@color/back"
+				android:visibility="gone"
+			/>
+		</LinearLayout>
+	</RelativeLayout>
+    <RelativeLayout style="@style/fill">
+	    <android.support.v4.view.ViewPager android:id="@+id/pager" style="@style/fill">
+        	<android.support.v4.view.PagerTabStripEx style="@style/TabStrip"/>
+		</android.support.v4.view.ViewPager>
+		<include layout="@layout/tab_strip_decoration" />
+    </RelativeLayout>
+	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+		<LinearLayout android:id="@+id/btnRequest" 
+		    android:orientation="horizontal" 
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+	        android:background="@drawable/action_row"
+	        android:clickable="true"
+	        android:paddingLeft="@dimen/padding"
+	        android:gravity="center_vertical"
+		    >
+		    <ImageView 
+		        android:layout_width="32dp"
+		        android:layout_height="32dp"
+		        android:src="@drawable/add"
+		        />
+		     <TextView 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:text="@string/request_an_app"
+		        style="@style/title"
+		        android:textAllCaps="false"
+		        android:clickable="false"
+		        android:gravity="left"
+		        />
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
+
