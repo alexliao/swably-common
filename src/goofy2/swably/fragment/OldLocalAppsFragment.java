@@ -50,6 +50,7 @@ import goofy2.swably.CloudActivity;
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.CloudInplaceActionsAdapter;
 import goofy2.swably.CloudWithLocalAppsAdapter;
+import goofy2.swably.CloudWithLocalAppsListActivity;
 import goofy2.swably.Const;
 import goofy2.swably.LocalApps;
 import goofy2.swably.LocalAppsAdapter;
@@ -69,7 +70,7 @@ import goofy2.utils.ParamRunnable;
 public class OldLocalAppsFragment extends CloudListFragment {
 //	private ImageButton btnRefresh;
 	protected CacheProgressBroadcastReceiver mCacheProgressReceiver = new CacheProgressBroadcastReceiver();
-	protected UploadProgressBroadcastReceiver mUploadProgressReceiver = new UploadProgressBroadcastReceiver();
+//	protected UploadProgressBroadcastReceiver mUploadProgressReceiver = new UploadProgressBroadcastReceiver();
 	protected RefreshAppBroadcastReceiver mRefreshAppProgressReceiver = new RefreshAppBroadcastReceiver();
 	private HashMap<String, Integer> mIndex = null;
 
@@ -77,7 +78,7 @@ public class OldLocalAppsFragment extends CloudListFragment {
 	private View viewProgress;
 	private ProgressBar progressBar;
 	private TextView txtSizeSent;
-//	UploadingApp.UploaderExServiceConnection mConnection;
+	UploadingApp.UploaderExServiceConnection mConnection;
 
    	Cursor cursor;
 	SQLiteDatabase db;
@@ -88,12 +89,12 @@ public class OldLocalAppsFragment extends CloudListFragment {
     	AppHelper helper = new AppHelper(a());
     	db = helper.getHelper().getReadableDatabase();
         super.onCreate(savedInstanceState);
-    	a().registerReceiver(mUploadProgressReceiver, new IntentFilter(Const.BROADCAST_UPLOAD_PROGRESS));
+//    	a().registerReceiver(mUploadProgressReceiver, new IntentFilter(Const.BROADCAST_UPLOAD_PROGRESS));
         a().registerReceiver(mCacheProgressReceiver, new IntentFilter(Const.BROADCAST_CACHE_APPS_PROGRESS));
         a().registerReceiver(mRefreshAppProgressReceiver, new IntentFilter(Const.BROADCAST_REFRESH_APP));
         Intent intent = new Intent(getActivity(), UploaderEx.class);
-//        mConnection = new UploadingApp.UploaderExServiceConnection();
-//        getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+        mConnection = new UploadingApp.UploaderExServiceConnection();
+        getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
 //		getCloudActivity().tryCacheApps();
 
 
@@ -121,12 +122,12 @@ public class OldLocalAppsFragment extends CloudListFragment {
     public void onDestroy(){
     	try{
     		a().unregisterReceiver(mRefreshAppProgressReceiver);
-    		a().unregisterReceiver(mUploadProgressReceiver);
+//    		a().unregisterReceiver(mUploadProgressReceiver);
     		a().unregisterReceiver(mCacheProgressReceiver);
     	}catch (Exception e){
     		e.printStackTrace();
     	}
-//    	if(mConnection.getService() != null) getActivity().unbindService(mConnection);
+    	if(mConnection.getService() != null) getActivity().unbindService(mConnection);
 //    	try{
 //    		getActivity().unregisterReceiver(mProgressReceiver);
 //    	}catch (Exception e){
@@ -257,7 +258,7 @@ public class OldLocalAppsFragment extends CloudListFragment {
 		if(Utils.isCaching) return;
 		//showDialog(0);
 //		final Handler handler = new Handler();
-		mListData = new JSONArray();
+//		mListData = new JSONArray();
 		new Thread() {
 			public void run(){
 				Utils.cacheMyApps(getActivity());
@@ -271,30 +272,6 @@ public class OldLocalAppsFragment extends CloudListFragment {
 		if(mAdapter instanceof CloudInplaceActionsAdapter) ((CloudInplaceActionsAdapter) mAdapter).mHelper.hideActionsAnim();
 	}
 	
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        mMenu = menu;
-//        // Inflate the currently selected menu XML resource.
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.refresh, menu);
-//        //menu.add(Utils.getCurrentUserId(this)+Utils.getCurrentUser(this).optString("name"));
-//        //setNoticeMenu();        		
-//        return true;
-//    }
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//    	switch (item.getItemId()) {
-//            case R.id.refresh:
-//            	refreshDb();
-//                return true;
-//            default:
-//            	if(super.onOptionsItemSelected(item)) return true;
-//                break;
-//        }
-//        
-//        return false;
-//    }
-    
     protected class CacheProgressBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -332,16 +309,16 @@ public class OldLocalAppsFragment extends CloudListFragment {
 	        			progressBar.setProgress(percent);
 	            		txtSizeSent.setText(String.format(getString(R.string.caching_progress), count, total));
         			}
-        			try {
-						JSONObject json = new JSONObject(intent.getStringExtra(Const.KEY_APP));
-						JSONArray left = new JSONArray();
-						left.put(json);
-						mListData = JSONUtils.appendArray(left, mListData);
-						mAdapter.setData(mListData);
-						refreshListView();
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
+//        			try {
+//						JSONObject json = new JSONObject(intent.getStringExtra(Const.KEY_APP));
+//						JSONArray left = new JSONArray();
+//						left.put(json);
+//						mListData = JSONUtils.appendArray(left, mListData);
+//						mAdapter.setData(mListData);
+//						refreshListView();
+//					} catch (JSONException e) {
+//						e.printStackTrace();
+//					}
         		}
             }
         }
@@ -387,27 +364,66 @@ public class OldLocalAppsFragment extends CloudListFragment {
 		return new LocalAppsAdapter(getCloudActivity(), mListData, mLoadingImages, true);
 	}
 
+//	protected void onClickItem(int position) throws JSONException {
+////		if(Utils.isCaching) return;
+//    	JSONObject json = mListData.optJSONObject(position);
+//    	App app = new App(json);
+//		if(app.getStatus() == App.STATUS_UPLOADING){
+//			Intent i = new Intent(getActivity(), UploadingApp.class);
+//			i.setData(Uri.parse(app.getPackage()));
+//			i.putExtra(Const.KEY_APP, json.toString());
+//			startActivity(i);
+//		}else{
+//	        if(!app.isInCloud()){
+//	        	if(Utils.HttpTest(getActivity())) checkStatus(app);
+//	        }else if(app.isLocalNew(getActivity())){
+//				onNotUploaded(app);
+//	        }else{
+//	        	 onCloudAction(getCloudActivity(), app.getJSON());
+//	        }
+//		}
+//	}
+
 	protected void onClickItem(int position) throws JSONException {
-		if(Utils.isCaching) return;
-    	JSONObject json = mListData.optJSONObject(position);
+//		if(Utils.isCaching) return;
+//    	JSONObject json = mListData.optJSONObject(position);
+		JSONObject json = (JSONObject) ((LocalAppsAdapter) mAdapter).getItem(position);
     	App app = new App(json);
-		if(app.getStatus() == App.STATUS_UPLOADING){
-			Intent i = new Intent(getActivity(), UploadingApp.class);
+//		if(app.getStatus() == App.STATUS_UPLOADING){
+		if(isUploading(app)){
+			Intent i = new Intent(a(), UploadingApp.class);
 			i.setData(Uri.parse(app.getPackage()));
 			i.putExtra(Const.KEY_APP, json.toString());
+			i.putExtra(Const.KEY_PERCENT, getProgress(app));
 			startActivity(i);
 		}else{
 	        if(!app.isInCloud()){
-	        	if(Utils.HttpTest(getActivity())) checkStatus(app);
-	        }else if(app.isLocalNew(getActivity())){
+	        	if(Utils.HttpTest(a())) checkStatus(app);
+	        }else if(app.isLocalNew(a())){
 				onNotUploaded(app);
 	        }else{
-	        	 onCloudAction(getCloudActivity(), app.getJSON());
+	        	 onCloudAction(ca(), app.getJSON());
 	        }
 		}
 	}
 
-    private void checkStatus(final App app){
+	private boolean isUploading(App app){
+		boolean result = false;
+		UploaderEx service = mConnection.getService();
+		if(service != null)
+    		result = service.isUploading(app.getPackage());
+		return result;
+	}
+	
+	private int getProgress(App app){
+		int result = 0;
+		UploaderEx service = mConnection.getService();
+		if(service != null)
+    		result = service.getProgress(app.getPackage());
+		return result;
+	}
+
+	private void checkStatus(final App app){
     	AsyncTask<Void, Void, Long> loadTask = new AsyncTask<Void, Void, Long>() {
 			private String mErr = null;
 			private JSONObject mRet = null;
@@ -465,46 +481,46 @@ public class OldLocalAppsFragment extends CloudListFragment {
     	return mIndex;
 	}
 	
-    protected class UploadProgressBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-//    		Log.d(Const.APP_NAME, Const.APP_NAME + " ProgressBroadcastReceiver onReceive: " + intent.toString());
-        	if(mIsLoading) return;
-            if(intent.getAction().equals(Const.BROADCAST_UPLOAD_PROGRESS)){
-    			try {
-                	String strPackage = intent.getStringExtra(Const.KEY_PACKAGE);
-                	int index = getIndex().get(strPackage);
-    				JSONObject json = mListData.optJSONObject(index);
-            		int percent = intent.getIntExtra(Const.KEY_PERCENT, 0);
-            		long sizeSent = intent.getLongExtra(Const.KEY_SIZE_TRANSFERRED, 0);
-            		if(percent > 0 ){
-            			json.put(App.STATUS, App.STATUS_UPLOADING);
-            			json.put(Const.KEY_PERCENT, percent);
-            			json.put(Const.KEY_SIZE_TRANSFERRED, sizeSent);
-            			onDataChanged(index);
-            		}
-//            		if(progressBar.getProgress()>=100) progressBar.setIndeterminate(true);
-            		String errMsg = intent.getStringExtra(Const.KEY_FAILED);
-            		if(errMsg != null){
-//            			json.put(Const.KEY_FAILED, errMsg);
-            			json.put(Const.KEY_FAILED, getString(R.string.err_upload_failed));
-            			json.put(App.STATUS, 0);
-            			onDataChanged(index);
-            		}else{
-	            		boolean finished = intent.getBooleanExtra(Const.KEY_FINISHED, false);
-	            		if(finished){
-//							json.put(App.IS_SHARED_BY_ME, true);
-//	            			json.put(App.STATUS, 0);
-//	            			onDataChanged(index);
-	            			refreshWithoutLoading();
-	            		}
-            		}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-            }
-        }
-    }
+//    protected class UploadProgressBroadcastReceiver extends BroadcastReceiver {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+////    		Log.d(Const.APP_NAME, Const.APP_NAME + " ProgressBroadcastReceiver onReceive: " + intent.toString());
+//        	if(mIsLoading) return;
+//            if(intent.getAction().equals(Const.BROADCAST_UPLOAD_PROGRESS)){
+//    			try {
+//                	String strPackage = intent.getStringExtra(Const.KEY_PACKAGE);
+//                	int index = getIndex().get(strPackage);
+//    				JSONObject json = mListData.optJSONObject(index);
+//            		int percent = intent.getIntExtra(Const.KEY_PERCENT, 0);
+//            		long sizeSent = intent.getLongExtra(Const.KEY_SIZE_TRANSFERRED, 0);
+//            		if(percent > 0 ){
+//            			json.put(App.STATUS, App.STATUS_UPLOADING);
+//            			json.put(Const.KEY_PERCENT, percent);
+//            			json.put(Const.KEY_SIZE_TRANSFERRED, sizeSent);
+//            			onDataChanged(index);
+//            		}
+////            		if(progressBar.getProgress()>=100) progressBar.setIndeterminate(true);
+//            		String errMsg = intent.getStringExtra(Const.KEY_FAILED);
+//            		if(errMsg != null){
+////            			json.put(Const.KEY_FAILED, errMsg);
+//            			json.put(Const.KEY_FAILED, getString(R.string.err_upload_failed));
+//            			json.put(App.STATUS, 0);
+//            			onDataChanged(index);
+//            		}else{
+//	            		boolean finished = intent.getBooleanExtra(Const.KEY_FINISHED, false);
+//	            		if(finished){
+////							json.put(App.IS_SHARED_BY_ME, true);
+////	            			json.put(App.STATUS, 0);
+////	            			onDataChanged(index);
+//	            			refreshWithoutLoading();
+//	            		}
+//            		}
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//            }
+//        }
+//    }
 
     public class RefreshAppBroadcastReceiver extends BroadcastReceiver {
         @Override
