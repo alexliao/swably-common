@@ -120,7 +120,7 @@ public abstract class CloudListFragmentBase extends CloudFragment {
 	
 	ArrayList<AsyncTask<Void, Void, Long>> mLoadTasks = new ArrayList<AsyncTask<Void, Void, Long>>();   
 
-    abstract protected AbsListView prepareList();
+    abstract protected AbsListView prepareList(View parent);
     abstract protected void setAdpater(AbsListView list, BaseAdapter adapter);
     abstract void loadedMore(boolean successed);
 
@@ -184,7 +184,7 @@ public abstract class CloudListFragmentBase extends CloudFragment {
 //			}
 //		});
 
-        mList = prepareList();
+        mList = prepareList(v);
 		mAdapter = getAdapter();
 		setAdpater(mList, mAdapter);
 

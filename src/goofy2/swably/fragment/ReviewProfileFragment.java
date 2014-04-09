@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ListView;
 
 public class ReviewProfileFragment extends PeopleReviewsFragment{
 	JSONObject mReview;
@@ -56,7 +57,7 @@ public class ReviewProfileFragment extends PeopleReviewsFragment{
 	protected void refreshListView() {
 		super.refreshListView();
     	if(mListData.length() > 1){ // has thread
-			mList.setSelectionFromTop(getCurrentReviewPosition(), 20);
+			((ListView) mList).setSelectionFromTop(getCurrentReviewPosition(), 20);
 //			mList.setSelection(getCurrentReviewPosition());
 		}
 	}
