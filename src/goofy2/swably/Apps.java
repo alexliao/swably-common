@@ -1,6 +1,7 @@
 package goofy2.swably;
 
 import goofy2.swably.R;
+import goofy2.swably.fragment.LocalAppsFragment;
 import goofy2.swably.fragment.OldLocalAppsFragment;
 import goofy2.swably.fragment.ShuffleAppsFragment;
 import goofy2.swably.fragment.UserLikedAppsFragment;
@@ -38,7 +39,8 @@ public class Apps extends TabStripActivity {
 			}
 		});
         
-        mPagerAdapter.addTab("installed", getString(R.string.installed), OldLocalAppsFragment.class, null);
+//        mPagerAdapter.addTab("installed", getString(R.string.installed), OldLocalAppsFragment.class, null);
+        mPagerAdapter.addTab("installed", getString(R.string.installed), LocalAppsFragment.class, null);
 //		mPagerAdapter.addTab("trending", getString(R.string.trending_apps), TrendingAppsFragment.class, null);
 		mPagerAdapter.addTab("shuffle", getString(R.string.shuffle), ShuffleAppsFragment.class, null);
 		if(Utils.getCurrentUser(this) != null){

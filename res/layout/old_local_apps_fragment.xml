@@ -7,13 +7,9 @@
  	android:id="@+id/viewBack"
 	android:background="@color/back"
 	>
-	<GridView  android:id="@+id/list"
+	<goofy2.utils.PullToRefreshListView android:id="@+id/list" 
 		style="@style/list.app"
-	    android:numColumns="2"
-	    android:verticalSpacing="-1px"
-	    android:horizontalSpacing="1dp"
-	    android:background="#d4d4d4"
-	    />
+	/>
 	<LinearLayout android:id="@+id/viewProgress" 
 		android:orientation="vertical"
 		style="@style/bottomBar"

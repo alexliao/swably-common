@@ -119,7 +119,7 @@ public class LocalApps extends CloudWithLocalAppsListActivity {
     
     protected void setContent(){
     	enableSlidingMenu();
-	    setContentView(R.layout.local_apps_fragment);
+	    setContentView(R.layout.old_local_apps_fragment);
     }
 
     @Override

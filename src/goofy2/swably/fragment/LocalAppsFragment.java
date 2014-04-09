@@ -1,19 +1,8 @@
 package goofy2.swably.fragment;
 
 
-import java.io.File;
 import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,49 +14,32 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import goofy2.swably.AppHelper;
 import goofy2.swably.CloudActivity;
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.CloudInplaceActionsAdapter;
-import goofy2.swably.CloudWithLocalAppsAdapter;
-import goofy2.swably.CloudWithLocalAppsListActivity;
 import goofy2.swably.Const;
-import goofy2.swably.LocalApps;
 import goofy2.swably.LocalAppsAdapter;
 import goofy2.swably.R;
 import goofy2.swably.UploadApp;
 import goofy2.swably.UploaderEx;
 import goofy2.swably.UploadingApp;
 import goofy2.swably.Utils;
-import goofy2.swably.R.id;
-import goofy2.swably.R.layout;
-import goofy2.swably.R.string;
-import goofy2.swably.UploadingApp.UploaderExServiceConnection;
 import goofy2.swably.data.App;
-import goofy2.utils.JSONUtils;
-import goofy2.utils.ParamRunnable;
 
-public class OldLocalAppsFragment extends CloudListFragment {
+public class LocalAppsFragment extends CloudGridFragment {
 //	private ImageButton btnRefresh;
 	protected CacheProgressBroadcastReceiver mCacheProgressReceiver = new CacheProgressBroadcastReceiver();
 //	protected UploadProgressBroadcastReceiver mUploadProgressReceiver = new UploadProgressBroadcastReceiver();
@@ -103,12 +75,6 @@ public class OldLocalAppsFragment extends CloudListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     	View v = super.onCreateView(inflater, container, savedInstanceState);
-        if(mListContainer != null) mListContainer.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshDb();
-            }
-        });
 
     	viewProgress = v.findViewById(R.id.viewProgress);
         progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
@@ -160,7 +126,7 @@ public class OldLocalAppsFragment extends CloudListFragment {
     }
 
     protected void setContent(){
-	    setContentView(R.layout.old_local_apps_fragment);
+	    setContentView(R.layout.local_apps_fragment);
     }
 
 //    private void setStatus(){
@@ -346,13 +312,17 @@ public class OldLocalAppsFragment extends CloudListFragment {
     }
 
     static public String cacheId(){
-    	return OldLocalAppsFragment.class.getName();
+    	return LocalAppsFragment.class.getName();
     }
 
-    @Override
 	protected void loadMore(){
 		// disable auto loading
 	}	
+	
+	@Override
+    protected void loadedMore(boolean succeeded){
+    }
+	
 //	@Override
 //    protected void loadedMore(boolean succeeded){
 //		//txtHeader.setText(String.format(getString(R.string.app_count), mListData.length()));
