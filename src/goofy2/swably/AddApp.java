@@ -5,11 +5,13 @@ import goofy2.swably.LocalApps.CacheProgressBroadcastReceiver;
 import goofy2.swably.fragment.LocalAppsFragment;
 import goofy2.swably.fragment.OldLocalAppsFragment;
 import goofy2.swably.fragment.ShuffleAppsFragment;
+import goofy2.swably.fragment.SystemAppsFragment;
 import goofy2.swably.fragment.UserLikedAppsFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +34,7 @@ public class AddApp extends TabStripActivity
 {
 	private ImageButton btnRefresh;
 //	protected View btnSearch;
-	String mImagePath = null;
+//	String mImagePath = null;
 	private View viewProgress;
 	private ProgressBar progressBar;
 	private TextView txtSizeSent;
@@ -55,7 +57,8 @@ public class AddApp extends TabStripActivity
     	btnRefresh.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				sendBroadcast(new Intent(Const.BROADCAST_START_CACHE_APP));
+//				sendBroadcast(new Intent(Const.BROADCAST_START_CACHE_APP));
+				refreshDb();
 			}
 		});
 
@@ -66,7 +69,7 @@ public class AddApp extends TabStripActivity
 				@Override
 				public void onClick(View arg0) {
 					Intent i = new Intent(AddApp.this, PostReview.class);
-					i.putExtra("image", mImagePath);
+					i.putExtra("image", getIntent().getStringExtra("image"));
 					i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
 					i.putExtra("content", getIntent().getStringExtra("content"));
 					startActivity(i);
@@ -86,7 +89,7 @@ public class AddApp extends TabStripActivity
     		imageUri = (Uri)o;
     	}
         if(imageUri != null){
-        	mImagePath = getRealPathFromURI(imageUri);
+        	it.putExtra("image", getRealPathFromURI(imageUri));
         }
     }
 
@@ -103,11 +106,12 @@ public class AddApp extends TabStripActivity
 //		});
 //        
 //		mPagerAdapter.addTab("shuffle", getString(R.string.shuffle), ShuffleAppsFragment.class, null);
-        mPagerAdapter.addTab("installed", getString(R.string.installed), LocalAppsFragment.class, null);
+        mPagerAdapter.addTab("system", getString(R.string.system_apps), SystemAppsFragment.class, null);
+        mPagerAdapter.addTab("installed", getString(R.string.installed_apps), LocalAppsFragment.class, null);
 //		Bundle args = new Bundle();
 //		args.putString(Const.KEY_USER, Utils.getCurrentUser(this).toString());
 //        mPagerAdapter.addTab("starred", getString(R.string.starred), UserLikedAppsFragment.class, args);
-		mViewPager.setCurrentItem(0);
+		mViewPager.setCurrentItem(1);
     }
 
     @Override
@@ -150,21 +154,35 @@ public class AddApp extends TabStripActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	LocalAppsFragment frag = (LocalAppsFragment) mPagerAdapter.getItem(0);
-    	if(frag != null) frag.onActivityResult(this, requestCode, resultCode, data);
+//    	LocalAppsFragment frag = (LocalAppsFragment) mPagerAdapter.getItem(0);
+//    	if(frag != null) frag.onActivityResult(this, requestCode, resultCode, data);
+    	
+    	if(resultCode == Activity.RESULT_OK && data != null){
+    		JSONObject json;
+			try {
+				json = new JSONObject(data.getStringExtra(Const.KEY_APP));
+				ReviewApp(json);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+    	}
+    	
     }
 
 	@Override
 	public void onClick(JSONObject json) {
+		ReviewApp(json);
+	}
+
+	void ReviewApp(JSONObject json){
         Intent i = new Intent(AddApp.this, PostReview.class);
 		i.putExtra(Const.KEY_APP, json.toString());
-		i.putExtra("image", mImagePath);
+		i.putExtra("image", getIntent().getStringExtra("image"));
 		i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
 		i.putExtra("content", getIntent().getStringExtra("content"));
 		startActivity(i);
 		finish();
 	}
-
     public class CacheProgressBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -201,4 +219,14 @@ public class AddApp extends TabStripActivity
         }
     }
 
+    
+	protected void refreshDb(){
+		if(Utils.isCaching) return;
+		new Thread() {
+			public void run(){
+				Utils.cacheMyApps(AddApp.this);
+			}
+		}.start();
+	}
+    
 }

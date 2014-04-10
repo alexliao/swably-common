@@ -51,6 +51,8 @@ public class AppHelper {
 	public static final String DETAILS = "details";
 	//public static final String IS_CLOUDED = "is_clouded";
 	public static final String IS_SHARED = "is_shared";
+	public static final String IS_SYSTEM = "is_system";
+	public static final String IS_SHAREABLE = "is_shareable";
 	
 	
 	protected Context mContext;
@@ -74,21 +76,27 @@ public class AppHelper {
 		values.put(PACKAGE, app.getPackage());
 		values.put(NAME, app.getName());
 		values.put(DETAILS, app.getJSON().toString());
+//		values.put(IS_SHARED, app.isSharedByMe() ? 1 : 0);
+//		values.put(IS_SYSTEM, app.isSystem() ? 1 : 0);
+//		values.put(IS_SHAREABLE, app.isShareable() ? 1 : 0);
 		values.put(IS_SHARED, app.isSharedByMe());
+		values.put(IS_SYSTEM, app.isSystem());
+		values.put(IS_SHAREABLE, app.isShareable());
 		long ret = db.insertOrThrow(TABLE_NAME, null, values);
 		return ret;
 	}
 
-	public Cursor getApps(SQLiteDatabase db){
+	public Cursor getApps(SQLiteDatabase db, boolean isSystem){
 		//Cursor ret = db.query(TABLE_NAME, null, null, null, null, null, IS_SHARED + "," + NAME + "," + PACKAGE);
-		Cursor ret = db.query(TABLE_NAME, null, null, null, null, null, NAME + "," + PACKAGE);
+//		Cursor ret = db.query(TABLE_NAME, null, null, null, null, null, NAME + "," + PACKAGE);
+		Cursor ret = db.query(TABLE_NAME, null, IS_SYSTEM + "=" + (isSystem ? 1 : 0), null, null, null, NAME + "," + PACKAGE);
 		return ret;
 	}
 
-	public JSONArray getApps(){
+	public JSONArray getApps(boolean isSystem){
 		JSONArray ret = new JSONArray();
 		SQLiteDatabase db = getHelper().getReadableDatabase();
-		Cursor cursor = getApps(db);
+		Cursor cursor = getApps(db, isSystem);
 		while (cursor.moveToNext()){
 			try {
 				JSONObject json = new JSONObject(cursor.getString(cursor.getColumnIndexOrThrow(DETAILS)));
@@ -137,7 +145,12 @@ public class AppHelper {
 		values.put(PACKAGE, app.getPackage());
 		values.put(NAME, app.getName());
 		values.put(DETAILS, app.getJSON().toString());
+//		values.put(IS_SHARED, app.isSharedByMe() ? 1 : 0);
+//		values.put(IS_SYSTEM, app.isSystem() ? 1 : 0);
+//		values.put(IS_SHAREABLE, app.isShareable() ? 1 : 0);
 		values.put(IS_SHARED, app.isSharedByMe());
+		values.put(IS_SYSTEM, app.isSystem());
+		values.put(IS_SHAREABLE, app.isShareable());
 		int ret = db.update(TABLE_NAME, values, PACKAGE + "='" + app.getPackage() + "'", null);
 		if(ret == 0) addApp(db, app);
 	}

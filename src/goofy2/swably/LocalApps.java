@@ -136,7 +136,7 @@ public class LocalApps extends CloudWithLocalAppsListActivity {
 			AppHelper helper = new AppHelper(LocalApps.this);
 ////			mListData = JSONUtils.appendArray(mListData, helper.getApps());
 //			mListData = helper.getApps();
-			cursor = helper.getApps(db);
+			cursor = helper.getApps(db, false);
 //			setStatus();
 		}catch (Exception e){
 //	    	Utils.alertTitle(this, getString(R.string.err_no_network_title), e.getMessage());

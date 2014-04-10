@@ -19,7 +19,7 @@ import static android.provider.BaseColumns._ID;
 
 public class CloudHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = Const.APP_NAME+".db";
-	private static final int DATABASE_VERSION = 6;
+	private static final int DATABASE_VERSION = 7;
 	private static CloudHelper mInstance; // singleton instance to avoid sqlite database locked error
 	
 	//protected SQLiteDatabase mDb;
@@ -36,6 +36,8 @@ public class CloudHelper extends SQLiteOpenHelper {
 				+ AppHelper.NAME +" text, " 
 				+ AppHelper.PACKAGE +" text, " 
 				+ AppHelper.IS_SHARED + " integer default 0, " 
+				+ AppHelper.IS_SYSTEM + " integer default 0, " 
+				+ AppHelper.IS_SHAREABLE + " integer default 1, " 
 				+ AppHelper.DETAILS + " text" 
 				+" );" 
 				+"create index fi1 on " + AppHelper.TABLE_NAME + "(" + AppHelper.NAME + "," + AppHelper.PACKAGE + ");"

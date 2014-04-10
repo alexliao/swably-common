@@ -101,7 +101,7 @@ public class PostReview extends WithHeaderActivity {
 				if(mInReplyTo == null){
 					openApp(header.getApp().getJSON());
 				}else{
-					selectAppToReply(mInReplyTo, editContent.getText().toString());
+					selectAppToReply(mInReplyTo, editContent.getText().toString(), mImagePath);
 					finish();
 				}
 			}
@@ -195,10 +195,10 @@ public class PostReview extends WithHeaderActivity {
 
     }
     
-    protected void selectApp(){
-		Intent i = new Intent(PostReview.this, SelectLocalAppToPick.class);
-		startActivityForResult(i, 0);
-    }
+//    protected void selectApp(){
+//		Intent i = new Intent(PostReview.this, SelectLocalAppToPick.class);
+//		startActivityForResult(i, 0);
+//    }
     
 //    @Override
 //    protected void onNewIntent(Intent intent){

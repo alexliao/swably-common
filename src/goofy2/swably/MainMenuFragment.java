@@ -202,7 +202,7 @@ public class MainMenuFragment extends CloudFragment {
 			@Override
 			public void onClick(View v) {
 //				ca().showAbove();
-				startActivity(new Intent(a(), SelectLocalAppToReview.class));
+				startActivity(new Intent(a(), AddApp.class));
 //				a().overridePendingTransition(R.anim.slide_in_bottom, R.anim.nothing);
 			}
 		});

@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -57,6 +58,8 @@ public class App {
 	public static final String REVIEWS_COUNT = "reviews_count";
 	private static final String UPLOADS_COUNT = "uploaders_count";
 	//public static final String IS_CLOUDED = "is_clouded";
+	public static final String IS_SYSTEM = "is_system";
+	public static final String IS_SHAREABLE = "is_shareable";
 	// temperary status
 	public static final String STATUS = "status";
 	public static final int STATUS_UPLOADING = 1;
@@ -106,6 +109,14 @@ public class App {
 	
 	public boolean isSharedByMe(){
 		return mJson.optBoolean(IS_SHARED_BY_ME);
+	}
+
+	public boolean isSystem(){
+		return mJson.optBoolean(IS_SYSTEM);
+	}
+
+	public boolean isShareable(){
+		return mJson.optBoolean(IS_SHAREABLE);
 	}
 
 	public boolean isLiked(){
@@ -233,6 +244,19 @@ public class App {
 			mJson.put(SIGNATURE, getShortSignature(info));
 //			Log.d(Const.APP_NAME, Const.APP_NAME + " "+getName()+" - sign: "+getSignature());
 		    mJson.put(ICON, saveIcon(pm, info));
+		    
+//	    	if( ((appInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0
+//	        		|| (appInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0 )
+//	        		&& (appInfo.flags & ApplicationInfo.FLAG_STOPPED) == 0 
+//	        		) {
+//	        		result = true;
+//	        	}
+		    if((info.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0 && (info.applicationInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) == 0)
+		    	mJson.put(IS_SYSTEM, true);
+		    if((info.applicationInfo.flags & ApplicationInfo.FLAG_STOPPED) == 0)
+		    	mJson.put(IS_SHAREABLE, true);
+		    	
+		    
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -301,6 +325,9 @@ public class App {
 			mJson.put(App.NAME, localApp.getName());
 			mJson.put(App.PATH, localApp.getApkPath());
 			mJson.put(App.ICON, localApp.getIcon());
+			mJson.put(App.IS_SHARED_BY_ME, localApp.isSharedByMe());
+			mJson.put(App.IS_SYSTEM, localApp.isSystem());
+			mJson.put(App.IS_SHAREABLE, localApp.isShareable());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

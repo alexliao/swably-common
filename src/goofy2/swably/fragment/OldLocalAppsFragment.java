@@ -217,7 +217,7 @@ public class OldLocalAppsFragment extends CloudListFragment {
 		String err = null;
 		try{
 			AppHelper helper = new AppHelper(a());
-			cursor = helper.getApps(db);
+			cursor = helper.getApps(db, false);
 		}catch (Exception e){
 			err = e.getMessage();
 			Log.e(Const.APP_NAME, Const.APP_NAME + " LocalApps loadStream err: " + err);

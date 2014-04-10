@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 // use sqlite cursor as the data source
@@ -65,5 +66,15 @@ public class LocalAppsAdapter extends AppsAdapter {
 		super.bindView(view, jsonApp);
 		ViewHolder holder = (ViewHolder) view.getTag();
 		holder.txtUpdatedAt.setVisibility(View.GONE);
+
+//	not show the status, because it seems not accuracy		
+//		int color;
+//		if(jsonApp.optBoolean(App.IS_SHAREABLE)){
+//			color = mContext.getResources().getColor(R.color.content);
+//		}else{
+//			color = mContext.getResources().getColor(R.color.desc);
+//		}
+//		holder.txtName.setTextColor(color);
+		
 	}	
 }

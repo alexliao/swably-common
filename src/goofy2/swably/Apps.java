@@ -39,8 +39,7 @@ public class Apps extends TabStripActivity {
 			}
 		});
         
-//        mPagerAdapter.addTab("installed", getString(R.string.installed), OldLocalAppsFragment.class, null);
-        mPagerAdapter.addTab("installed", getString(R.string.installed), LocalAppsFragment.class, null);
+        mPagerAdapter.addTab("installed", getString(R.string.installed_apps), OldLocalAppsFragment.class, null);
 //		mPagerAdapter.addTab("trending", getString(R.string.trending_apps), TrendingAppsFragment.class, null);
 		mPagerAdapter.addTab("shuffle", getString(R.string.shuffle), ShuffleAppsFragment.class, null);
 		if(Utils.getCurrentUser(this) != null){

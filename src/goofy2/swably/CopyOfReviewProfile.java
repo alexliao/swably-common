@@ -376,7 +376,7 @@ public class CopyOfReviewProfile extends WithHeaderActivity {
 				btnAdd.setOnClickListener(new View.OnClickListener(){
 					@Override
 					public void onClick(View v) {
-						selectAppToReply(mReview, null);
+						selectAppToReply(mReview, null, null);
 					}
 				});
 				

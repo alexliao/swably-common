@@ -47,7 +47,7 @@ public class LocalAppsFragment extends CloudGridFragment {
 //	protected CacheProgressBroadcastReceiver mCacheProgressReceiver = new CacheProgressBroadcastReceiver();
 //	protected UploadProgressBroadcastReceiver mUploadProgressReceiver = new UploadProgressBroadcastReceiver();
 	protected RefreshAppBroadcastReceiver mRefreshAppProgressReceiver = new RefreshAppBroadcastReceiver();
-	protected StartCacheAppBroadcastReceiver mStartCacheAppBroadcastReceiver = new StartCacheAppBroadcastReceiver();
+//	protected StartCacheAppBroadcastReceiver mStartCacheAppBroadcastReceiver = new StartCacheAppBroadcastReceiver();
 	private HashMap<String, Integer> mIndex = null;
 
 	//protected JSONArray mMyApps = new JSONArray();
@@ -70,7 +70,7 @@ public class LocalAppsFragment extends CloudGridFragment {
 //    	a().registerReceiver(mUploadProgressReceiver, new IntentFilter(Const.BROADCAST_UPLOAD_PROGRESS));
 //        a().registerReceiver(mCacheProgressReceiver, new IntentFilter(Const.BROADCAST_CACHE_APPS_PROGRESS));
         a().registerReceiver(mRefreshAppProgressReceiver, new IntentFilter(Const.BROADCAST_REFRESH_APP));
-        a().registerReceiver(mStartCacheAppBroadcastReceiver, new IntentFilter(Const.BROADCAST_START_CACHE_APP));
+//        a().registerReceiver(mStartCacheAppBroadcastReceiver, new IntentFilter(Const.BROADCAST_START_CACHE_APP));
         Intent intent = new Intent(getActivity(), UploaderEx.class);
         mConnection = new UploadingApp.UploaderExServiceConnection();
         getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
@@ -94,7 +94,7 @@ public class LocalAppsFragment extends CloudGridFragment {
     @Override
     public void onDestroy(){
     	try{
-    		a().unregisterReceiver(mStartCacheAppBroadcastReceiver);
+//    		a().unregisterReceiver(mStartCacheAppBroadcastReceiver);
     		a().unregisterReceiver(mRefreshAppProgressReceiver);
 //    		a().unregisterReceiver(mUploadProgressReceiver);
 //    		a().unregisterReceiver(mCacheProgressReceiver);
@@ -191,7 +191,7 @@ public class LocalAppsFragment extends CloudGridFragment {
 		String err = null;
 		try{
 			AppHelper helper = new AppHelper(a());
-			cursor = helper.getApps(db);
+			cursor = helper.getApps(db, false);
 		}catch (Exception e){
 			err = e.getMessage();
 			Log.e(Const.APP_NAME, Const.APP_NAME + " LocalApps loadStream err: " + err);
@@ -228,23 +228,23 @@ public class LocalAppsFragment extends CloudGridFragment {
 		return null;
 	}
 
-	protected void refreshDb(){
-		if(Utils.isCaching) return;
-		//showDialog(0);
-//		final Handler handler = new Handler();
-//		mListData = new JSONArray();
-		new Thread() {
-			public void run(){
-				Utils.cacheMyApps(getActivity());
-//				handler.post(new Runnable(){
-//					public void run(){
-//						refreshWithoutLoading();
-//					}
-//				});
-			}
-		}.start();
-		if(mAdapter instanceof CloudInplaceActionsAdapter) ((CloudInplaceActionsAdapter) mAdapter).mHelper.hideActionsAnim();
-	}
+//	protected void refreshDb(){
+//		if(Utils.isCaching) return;
+//		//showDialog(0);
+////		final Handler handler = new Handler();
+////		mListData = new JSONArray();
+//		new Thread() {
+//			public void run(){
+//				Utils.cacheMyApps(getActivity());
+////				handler.post(new Runnable(){
+////					public void run(){
+////						refreshWithoutLoading();
+////					}
+////				});
+//			}
+//		}.start();
+//		if(mAdapter instanceof CloudInplaceActionsAdapter) ((CloudInplaceActionsAdapter) mAdapter).mHelper.hideActionsAnim();
+//	}
 	
 //    protected class CacheProgressBroadcastReceiver extends BroadcastReceiver {
 //        @Override
@@ -509,26 +509,26 @@ public class LocalAppsFragment extends CloudGridFragment {
         }
     }
 
-    public class StartCacheAppBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if(intent.getAction().equals(Const.BROADCAST_START_CACHE_APP)){
-            	refreshDb();
-            }
-        }
-    }
+//    public class StartCacheAppBroadcastReceiver extends BroadcastReceiver {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            if(intent.getAction().equals(Const.BROADCAST_START_CACHE_APP)){
+//            	refreshDb();
+//            }
+//        }
+//    }
 
-    public void onActivityResult(CloudActivity activity, int requestCode, int resultCode, Intent data) {
-    	if(resultCode == Activity.RESULT_OK && data != null){
-    		JSONObject json;
-			try {
-				json = new JSONObject(data.getStringExtra(Const.KEY_APP));
-	    		onCloudAction(activity, json);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-    	}
-    }
+//    public void onActivityResult(CloudActivity activity, int requestCode, int resultCode, Intent data) {
+//    	if(resultCode == Activity.RESULT_OK && data != null){
+//    		JSONObject json;
+//			try {
+//				json = new JSONObject(data.getStringExtra(Const.KEY_APP));
+//	    		onCloudAction(activity, json);
+//			} catch (JSONException e) {
+//				e.printStackTrace();
+//			}
+//    	}
+//    }
 
     @Override
 	public long getCacheExpiresIn(){

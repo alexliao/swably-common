@@ -122,7 +122,7 @@ public class ReviewActionHelper {
 			@Override
 			public void onClick(View arg0) {
 //				mActivity.sendOutReview(mReview);
-				mActivity.selectAppToReply(mReview, null);
+				mActivity.selectAppToReply(mReview, null, null);
 				if(callback != null) callback.run();
 			}
         });

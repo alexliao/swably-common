@@ -1011,12 +1011,13 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
 		startActivity(i);
     }
     
-    public void selectAppToReply(JSONObject review, String content){
+    public void selectAppToReply(JSONObject review, String content, String image){
     	String firstName = review.optJSONObject("user").optString("screen_name").split(" ")[0];
     	if(content == null) content = "@"+firstName+" ";
-		Intent i = new Intent(this, SelectLocalAppToReview.class);
+		Intent i = new Intent(this, AddApp.class);
 		i.putExtra(Const.KEY_REVIEW, review.toString());
 		i.putExtra("content", content);
+		i.putExtra("image", image);
 		startActivity(i);
     }
 

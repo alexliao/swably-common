@@ -396,7 +396,8 @@ public class Utils {
     		) {
     		result = true;
     	}
-		return result;
+//		return result;
+    	return true; // make all apps shareable
 	}
 	
     public static void cacheAppsStatus(final Context context, JSONArray apps){
