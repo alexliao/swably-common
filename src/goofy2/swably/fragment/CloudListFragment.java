@@ -14,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
+import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.Const;
 import goofy2.swably.R;
 import goofy2.utils.PullToRefreshListView;
@@ -169,6 +170,7 @@ public abstract class CloudListFragment extends CloudListFragmentBase {
 
 	protected void setAdpater(AbsListView list, BaseAdapter adapter){
 		((ListView)list).setAdapter(adapter);
+		((CloudBaseAdapter)adapter).setListView((ListView)list);
 	}
 	
 }
