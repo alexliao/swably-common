@@ -27,6 +27,8 @@ public class SearchWatcher extends CloudUsersActivity {
 			e.printStackTrace();
 		}
         super.onCreate(savedInstanceState);
+    	disableSliding();
+
         View btnDone = findViewById(R.id.btnDone);
     	btnDone.setOnClickListener(new View.OnClickListener() {
 			@Override

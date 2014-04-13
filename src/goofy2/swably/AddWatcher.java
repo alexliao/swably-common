@@ -40,7 +40,7 @@ public class AddWatcher extends WithHeaderActivity {
 			e.printStackTrace();
 		}
         super.onCreate(savedInstanceState);
-//    	enableSlidingMenu();
+    	disableSliding();
     	setContentView(R.layout.add_watcher);
 
         header.setUserFromIntent();
