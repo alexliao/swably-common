@@ -19,8 +19,18 @@ public class SearchApps extends CloudAppsActivity {
 	@Override
 	public void onPostCreate(Bundle savedInstanceState) {
 	    super.onPostCreate(savedInstanceState);
+
+        View btnSearch = findViewById(R.id.btnSearch);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onSearchRequested();
+			}
+		});
+	    
 	    viewNoResult = LayoutInflater.from(this).inflate(R.layout.search_no_result, null, false);
 	    handleIntent(getIntent());
+	    if(mQuery == null || mQuery.equals("")) onSearchRequested();
 	}
 
 	@Override
@@ -30,12 +40,13 @@ public class SearchApps extends CloudAppsActivity {
 	}
 
 	private void handleIntent(Intent intent) {
-	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+//	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 	    	mQuery = intent.getStringExtra(SearchManager.QUERY);
+			if(mQuery == null) return;
 	    	refresh();
 	    	TextView tv = (TextView) findViewById(R.id.txtTitle);
 	    	tv.setText(String.format(getString(R.string.search_query), mQuery));
-	    }
+//	    }
 	}
 	
 	@Override
@@ -48,16 +59,6 @@ public class SearchApps extends CloudAppsActivity {
 
 	protected void setContent(){
 	    setContentView(R.layout.search_apps);
-	    
-        View btnSearch = findViewById(R.id.btnSearch);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				onSearchRequested();
-			}
-		});
-        
-        onSearchRequested();
     }
 	
 	@Override

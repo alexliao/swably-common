@@ -43,8 +43,8 @@
 		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
 		<TextView android:id="@+id/viewNotifications" android:text="@string/menu_notifications" android:drawableLeft="@drawable/hover_ic_menu_notification" style="@style/menu_row" />
 		
-		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent" android:visibility="visible"/>
-		<TextView android:id="@+id/viewApps" android:text="@string/local_apps" android:drawableLeft="@drawable/ic_menu_apps" style="@style/menu_row" android:visibility="visible"/>
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent" android:visibility="gone"/>
+		<TextView android:id="@+id/viewApps" android:text="@string/local_apps" android:drawableLeft="@drawable/ic_menu_apps" style="@style/menu_row" android:visibility="gone"/>
 		
 		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent" android:visibility="gone"/>
 		<TextView android:id="@+id/viewFindPeople" android:text="@string/people" android:drawableLeft="@drawable/ic_menu_people" style="@style/menu_row" android:visibility="gone" />

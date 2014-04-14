@@ -3,10 +3,12 @@ package goofy2.swably;
 import goofy2.swably.R;
 import goofy2.swably.LocalApps.CacheProgressBroadcastReceiver;
 import goofy2.swably.fragment.LocalAppsFragment;
+import goofy2.swably.fragment.MyMentionedFriendsFragment;
 import goofy2.swably.fragment.OldLocalAppsFragment;
 import goofy2.swably.fragment.ShuffleAppsFragment;
 import goofy2.swably.fragment.SystemAppsFragment;
 import goofy2.swably.fragment.UserLikedAppsFragment;
+import goofy2.swably.fragment.UserRecentReviewedAppsFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +46,8 @@ public class AddApp extends TabStripActivity
     public void onCreate(Bundle savedInstanceState) {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
     	super.onCreate(savedInstanceState);
+        if(redirectAnonymous()) return;
+        
         disableSliding();
         setContentView(R.layout.add_app);
         
@@ -105,12 +109,12 @@ public class AddApp extends TabStripActivity
 //			}
 //		});
 //        
-//		mPagerAdapter.addTab("shuffle", getString(R.string.shuffle), ShuffleAppsFragment.class, null);
         mPagerAdapter.addTab("system", getString(R.string.system_apps), SystemAppsFragment.class, null);
         mPagerAdapter.addTab("installed", getString(R.string.installed_apps), LocalAppsFragment.class, null);
-//		Bundle args = new Bundle();
-//		args.putString(Const.KEY_USER, Utils.getCurrentUser(this).toString());
-//        mPagerAdapter.addTab("starred", getString(R.string.starred), UserLikedAppsFragment.class, args);
+		Bundle args = new Bundle();
+		args.putString(Const.KEY_USER, Utils.getCurrentUser(this).toString());
+        mPagerAdapter.addTab("swably", getString(R.string.swably_apps), UserRecentReviewedAppsFragment.class, args);
+
 		mViewPager.setCurrentItem(1);
     }
 

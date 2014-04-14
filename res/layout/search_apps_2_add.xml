@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<goofy2.utils.RevealLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+   	<LinearLayout
+	    android:id="@+id/body"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
+			<TextView android:id="@+id/txtTitle" android:text="@string/search_apps" style="@style/title" android:gravity="left"/>
+			<include android:id="@+id/loading"	layout="@layout/loading" />
+			<ImageButton  android:id="@+id/btnSearch" 
+			    android:src="@drawable/search" 
+			    style="@style/titleBtn"
+			    />
+		</LinearLayout>
+		<include layout="@layout/header_bottom" />
+		<goofy2.utils.PullToRefreshListView android:id="@+id/list" 
+			style="@style/list.app"
+		/>
+    </LinearLayout>
+	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+		<ImageButton  android:id="@+id/btnDone"	android:src="@drawable/ok" style="@style/inplaceBtn"/>
+	</LinearLayout>
+</goofy2.utils.RevealLayout>

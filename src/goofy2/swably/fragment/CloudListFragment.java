@@ -24,6 +24,7 @@ public abstract class CloudListFragment extends CloudListFragmentBase {
 	protected PullToRefreshListView mListContainer = null;
 	private View viewFooter;
 	// protected View footerDivider;
+	protected View listFooter;
 	protected View loadingMore;
 	private TextView txtMore;
 	private TextView txtNoMore;
@@ -63,6 +64,7 @@ public abstract class CloudListFragment extends CloudListFragmentBase {
 		View vb = getRowBottom();
 		if (vb != null)	result.addFooterView(vb);
 		
+		listFooter = (View) viewFooter.findViewById(R.id.listFooter);
 		loadingMore = (View) viewFooter.findViewById(R.id.loadingMore);
 		txtMore = (TextView) viewFooter.findViewById(R.id.txtMore);
 		txtNoMore = (TextView) viewFooter.findViewById(R.id.txtNoMore);

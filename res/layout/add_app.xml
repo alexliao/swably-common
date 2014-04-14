@@ -5,6 +5,7 @@
 	android:layout_height="fill_parent"
  	android:id="@+id/viewBack"
 	android:background="@color/back"
+	android:isScrollContainer="true"
 	>
     <RelativeLayout
         android:layout_width="fill_parent"
