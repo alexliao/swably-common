@@ -115,21 +115,18 @@
 				android:layout_width="24dp"
 				android:layout_height="24dp"
 				android:layout_marginRight="10dp"
-				android:tag="reply1"
 				android:visibility="gone"
 			/>
 			<ImageView android:id="@+id/imgReply2"
 				android:layout_width="24dp"
 				android:layout_height="24dp"
 				android:layout_marginRight="10dp"
-				android:tag="reply2"
 				android:visibility="gone"
 			/>
 			<ImageView android:id="@+id/imgReply3"
 				android:layout_width="24dp"
 				android:layout_height="24dp"
 				android:layout_marginRight="10dp"
-				android:tag="reply3"
 				android:visibility="gone"
 			/>
 			<TextView android:id="@+id/txtReplies"

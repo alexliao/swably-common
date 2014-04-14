@@ -228,21 +228,20 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 				Log.d(Const.APP_NAME, "CommentsAdapter icon gone - review id:" + review.optInt("id"));
 				holder.icon.setVisibility(View.GONE);
 				holder.txtAppName.setVisibility(View.GONE);
-				new AsyncImageLoader(mContext, iv, mPosition); // update position for the ImageView to avoid binding image unexpectedly
+				new AsyncImageLoader(mContext, holder.icon, mPosition); // update position for the ImageView to avoid binding image unexpectedly
 				Log.d(Const.APP_NAME, "CommentsAdapter icon visibility: " + holder.icon.getVisibility());
 			}else{
 				Log.d(Const.APP_NAME, "CommentsAdapter icon show - review id:" + review.optInt("id"));
 //				viewApp.setVisibility(View.VISIBLE);
-				iv = holder.icon;
-				iv.setVisibility(View.VISIBLE);
+				holder.icon.setVisibility(View.VISIBLE);
 				if(app.getIcon() != null){
 					String url = app.getIcon();
 //					Bitmap bm = Utils.getImageFromFile(context, url); 
 //					if(bm != null) iv.setImageBitmap(bm);
 //					else iv.setImageResource(R.drawable.noimage);
 //					iv.setTag(mPosition);
-					iv.setImageResource(R.drawable.noimage);
-					new AsyncImageLoader(mContext, iv, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+					holder.icon.setImageResource(R.drawable.noimage);
+					new AsyncImageLoader(mContext, holder.icon, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
 				}
 
 				tv = holder.txtAppName;

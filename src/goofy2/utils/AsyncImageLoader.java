@@ -35,13 +35,13 @@ public class AsyncImageLoader {
 	int mReqWidth = 0;
 	int mReqHeight = 0;
 	Runnable mCallback = null;
-	Object mOldTag;
+//	Object mOldTag;
 	
 	public AsyncImageLoader(Context context, ImageView iv, int initPosition){
 		mContext = context;
 		mInitPosition = initPosition;
 		mImageView = iv;
-		mOldTag = iv.getTag();
+//		mOldTag = iv.getTag();
 		iv.setTag(initPosition);
 	}
 
@@ -112,7 +112,7 @@ public class AsyncImageLoader {
 	public void loadApkPath(final String packageName, final PackageManager packageManager){
 		load(packageName, new Loader(){
 			@Override
-			public void load(String uri) {
+			public void run(String uri) {
 //				File f = new File(uri);
 //				if(!f.exists())
 					Utils.saveLocalApkIcon(packageManager, uri);
@@ -123,7 +123,7 @@ public class AsyncImageLoader {
 	public void loadUrl(final String url){
 		load(url, new Loader(){
 			@Override
-			public void load(String uri) {
+			public void run(String uri) {
 				Utils.saveImageToFile(mContext, uri, Const.HTTP_TIMEOUT);
 			}
 		});
@@ -135,18 +135,18 @@ public class AsyncImageLoader {
 		Bitmap bm = Utils.getImageFromFile(mContext, pathName, mReqWidth, mReqHeight);
 		if(bm != null){
 			mImageView.setImageBitmap(bm);
-			mImageView.setTag(mOldTag);
+//			mImageView.setTag(mOldTag);
 			if(mCallback != null) mCallback.run();
 		}else{
 			final Handler handler = new Handler();
 			ParamRunnable pr = new ParamRunnable(){
 		    	public void run() {
 		    		try{
-			    		loader.load(uri);
+			    		loader.run(uri);
 	            		int position = (Integer) mImageView.getTag();
 	//		        			Utils.logV(AsyncImageLoader.this, "position:" + position + " initPosition:" + mInitPosition);
 	            		if(position == mInitPosition){
-	            			mImageView.setTag(mOldTag);
+//	            			mImageView.setTag(mOldTag);
 				    		if(mImageView.getVisibility() != View.VISIBLE) return; // The object mImageView pointed to may be set invisible at this moment.
 	    					final Bitmap bm = Utils.getImageFromFile(mContext, pathName, mReqWidth, mReqHeight);
 	    					if(bm != null){
@@ -174,7 +174,7 @@ public class AsyncImageLoader {
 	}
 
 	static interface Loader{
-		public void load(String uri);
+		public void run(String uri);
 	}
 //	private static class LoadTask extends AsyncTask {
 //		Context mContext;
@@ -204,7 +204,7 @@ public class AsyncImageLoader {
 	public void loadContactAvatar(String url){
 		load(url, new Loader(){
 			@Override
-			public void load(String uri) {
+			public void run(String uri) {
 				try {
 					ContentResolver cr = mContext.getContentResolver();
 					long id = Long.parseLong(uri.substring(uri.lastIndexOf("/")+1));
