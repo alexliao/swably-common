@@ -192,33 +192,30 @@
 			    android:background="@drawable/row"
 			    android:layout_below="@id/dividerImage" 
 			    >
-				<goofy2.utils.Avatar
+				<goofy2.utils.Avatar android:id="@+id/imgWatcher1"
 					style="@style/avatar"
 					android:layout_width="24dp"
 					android:layout_height="24dp"
 					app:radius="12"
 					android:layout_marginRight="10dp"
-					android:tag="watcher1"
 					android:src="@drawable/noimage"
 					android:visibility="gone"
 				/>
-				<goofy2.utils.Avatar
+				<goofy2.utils.Avatar android:id="@+id/imgWatcher2"
 					style="@style/avatar"
 					android:layout_width="24dp"
 					android:layout_height="24dp"
 					app:radius="12"
 					android:layout_marginRight="10dp"
-					android:tag="watcher2"
 					android:src="@drawable/noimage"
 					android:visibility="gone"
 				/>
-				<goofy2.utils.Avatar
+				<goofy2.utils.Avatar android:id="@+id/imgWatcher3"
 					style="@style/avatar"
 					android:layout_width="24dp"
 					android:layout_height="24dp"
 					app:radius="12"
 					android:layout_marginRight="10dp"
-					android:tag="watcher3"
 					android:src="@drawable/noimage"
 					android:visibility="gone"
 				/>

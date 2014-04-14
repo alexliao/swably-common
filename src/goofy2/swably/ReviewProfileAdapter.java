@@ -230,21 +230,57 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 	void bindWatchers(View v, final JSONObject review) throws JSONException{
 		JSONArray watchers = review.optJSONArray("recent_watchers");
 		
-		for(int i=0; i<3; i++){
-			ImageView iv = (ImageView) v.findViewWithTag("watcher"+(i+1));
-			iv.setVisibility(View.GONE);
+//		for(int i=0; i<3; i++){
+//			ImageView iv = (ImageView) v.findViewWithTag("watcher"+(i+1));
+//			iv.setImageResource(R.drawable.noname);
+//			iv.setVisibility(View.GONE);
+//		}
+//		for(int i=0; i<watchers.length(); i++){
+//			JSONObject user = watchers.optJSONObject(i);
+//			ImageView iv = (ImageView) v.findViewWithTag("watcher"+(i+1));
+//			if(iv != null){
+//				iv.setVisibility(View.VISIBLE);
+//				if(!user.isNull("avatar_mask")){
+//					String mask = user.optString("avatar_mask", "");
+//					String url = mask.replace("[size]", "sq");
+////					iv.setImageResource(R.drawable.noname);
+//					new AsyncImageLoader(mContext, iv, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+//				}
+//			}
+//		}
+		
+		ImageView imgWatcher1 = (ImageView) v.findViewById(R.id.imgWatcher1);
+		ImageView imgWatcher2 = (ImageView) v.findViewById(R.id.imgWatcher2);
+		ImageView imgWatcher3 = (ImageView) v.findViewById(R.id.imgWatcher3);
+		imgWatcher1.setVisibility(View.GONE);
+		imgWatcher2.setVisibility(View.GONE);
+		imgWatcher3.setVisibility(View.GONE);
+		JSONObject user;
+		if(watchers.length() >= 1){
+			imgWatcher1.setVisibility(View.VISIBLE);
+			imgWatcher1.setImageResource(R.drawable.noname);
+			user = watchers.optJSONObject(1-1);
+			if(!user.isNull("avatar_mask")){
+				String url = user.optString("avatar_mask", "").replace("[size]", "sq");
+				new AsyncImageLoader(mContext, imgWatcher1, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+			}
 		}
-		for(int i=0; i<watchers.length(); i++){
-			JSONObject user = watchers.optJSONObject(i);
-			ImageView iv = (ImageView) v.findViewWithTag("watcher"+(i+1));
-			if(iv != null){
-				iv.setVisibility(View.VISIBLE);
-				if(!user.isNull("avatar_mask")){
-					String mask = user.optString("avatar_mask", "");
-					String url = mask.replace("[size]", "sq");
-//					iv.setImageResource(R.drawable.noname);
-					new AsyncImageLoader(mContext, iv, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
-				}
+		if(watchers.length() >= 2){
+			imgWatcher2.setVisibility(View.VISIBLE);
+			imgWatcher2.setImageResource(R.drawable.noname);
+			user = watchers.optJSONObject(2-1);
+			if(!user.isNull("avatar_mask")){
+				String url = user.optString("avatar_mask", "").replace("[size]", "sq");
+				new AsyncImageLoader(mContext, imgWatcher2, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+			}
+		}
+		if(watchers.length() >= 3){
+			imgWatcher3.setVisibility(View.VISIBLE);
+			imgWatcher3.setImageResource(R.drawable.noname);
+			user = watchers.optJSONObject(3-1);
+			if(!user.isNull("avatar_mask")){
+				String url = user.optString("avatar_mask", "").replace("[size]", "sq");
+				new AsyncImageLoader(mContext, imgWatcher3, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
 			}
 		}
 		
