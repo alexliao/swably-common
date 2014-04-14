@@ -213,11 +213,11 @@ public class AppTribtn {
 				btnPlay.setVisibility(View.GONE);
 				btnInstall.setVisibility(View.GONE);
 			}else{
-//				btnDownload.setVisibility(View.GONE);
-				btnDownload.setVisibility(View.VISIBLE);
+				btnDownload.setVisibility(View.GONE);
+//				btnDownload.setVisibility(View.VISIBLE);
 				btnUpload.setVisibility(View.GONE);
 				btnPlay.setVisibility(View.GONE);
-//				btnInstall.setVisibility(View.VISIBLE);
+				btnInstall.setVisibility(View.VISIBLE);
 			}
 		}else{
 			btnDownload.setVisibility(View.GONE);
