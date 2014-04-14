@@ -4,6 +4,7 @@ import goofy2.swably.UsersAdapter.ViewHolder;
 import goofy2.swably.fragment.MyMentionedFriendsFragment;
 import goofy2.utils.AsyncImageLoader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -20,6 +21,7 @@ import goofy2.swably.AddWatcher;
 
 public class MentionedFriendsAdapter extends UsersAdapter {
 	JSONObject mReview;
+	HashMap <String, Boolean> justMentioned = new HashMap <String, Boolean>();
 
 	public MentionedFriendsAdapter(CloudActivity context, JSONArray stream,	HashMap<String, Integer> loadingImages, JSONObject currentReview) {
 		super(context, stream, loadingImages);
@@ -60,20 +62,26 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 
 			boolean isFollowed = info.optBoolean("is_watching", false); 
 			setStatus(btnFollow, btnUnfollow, isFollowed);
-//			btnUnfollow.setOnClickListener(new View.OnClickListener(){
-//				@Override
-//				public void onClick(View v) {
-//			        if(mContext.redirectAnonymous(false)) return;
-//			        mContext.transitWidth(btnUnfollow, btnFollow);
-//					Api.watch(mContext, mReview.optString("id"), info.optString("id"), false, null);
-//					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
-//					try {
-//						info.put("is_watching", false);
-//					} catch (JSONException e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			});
+			btnUnfollow.setOnClickListener(new View.OnClickListener(){
+				@Override
+				public void onClick(View v) {
+			        if(mContext.redirectAnonymous(false)) return;
+			        if(!justMentioned.containsKey(info.optString("id"))){
+			        	Utils.showToast(mContext, mContext.getString(R.string.mention_effect));
+			        	return;
+			        }
+			        
+			        mContext.transitWidth(btnUnfollow, btnFollow, null);
+					Api.watch(mContext, mReview.optString("id"), info.optString("id"), false, null);
+					justMentioned.put(info.optString("id"), false);
+					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
+					try {
+						info.put("is_watching", false);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+			});
 			btnFollow.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v) {
@@ -86,6 +94,7 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 						}
 					});
 					Api.watch(mContext, mReview.optString("id"), info.optString("id"), true, null);
+					justMentioned.put(info.optString("id"), true);
 					Utils.clearCache(mContext, MyMentionedFriendsFragment.cacheId(mReview.optString("id")));
 					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
 					try {
