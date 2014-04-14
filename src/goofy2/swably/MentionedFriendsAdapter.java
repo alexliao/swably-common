@@ -66,7 +66,7 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 				@Override
 				public void onClick(View v) {
 			        if(mContext.redirectAnonymous(false)) return;
-			        if(!justMentioned.containsKey(info.optString("id"))){
+			        if(!info.optString("id").equals(Utils.getCurrentUserId(mContext)) && !justMentioned.containsKey(info.optString("id"))){
 			        	Utils.showToast(mContext, mContext.getString(R.string.mention_effect));
 			        	return;
 			        }
@@ -74,6 +74,7 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 			        mContext.transitWidth(btnUnfollow, btnFollow, null);
 					Api.watch(mContext, mReview.optString("id"), info.optString("id"), false, null);
 					justMentioned.put(info.optString("id"), false);
+					Utils.clearCache(mContext, MyMentionedFriendsFragment.cacheId(mReview.optString("id")));
 					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
 					try {
 						info.put("is_watching", false);

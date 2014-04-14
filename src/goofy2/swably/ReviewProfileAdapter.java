@@ -230,6 +230,10 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 	void bindWatchers(View v, final JSONObject review) throws JSONException{
 		JSONArray watchers = review.optJSONArray("recent_watchers");
 		
+		for(int i=0; i<3; i++){
+			ImageView iv = (ImageView) v.findViewWithTag("watcher"+(i+1));
+			iv.setVisibility(View.GONE);
+		}
 		for(int i=0; i<watchers.length(); i++){
 			JSONObject user = watchers.optJSONObject(i);
 			ImageView iv = (ImageView) v.findViewWithTag("watcher"+(i+1));
