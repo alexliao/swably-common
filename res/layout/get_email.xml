@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android" 
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="48dp"
+       android:clickable="true"
+    >
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:background="#ee78cdf3"
+        android:padding="@dimen/padding"
+        android:gravity="center_horizontal"
+        >
+        <TextView android:id="@+id/txtSubmitEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_email" 
+            android:textSize="@dimen/main_text"
+			android:textColor="@color/content"
+            />
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" 
+	        android:layout_marginTop="@dimen/padding"
+	        >
+	        <EditText android:id="@+id/editEmail" 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+	            android:textSize="@dimen/main_text"
+				android:textColor="@color/content"
+	            />
+	        <ImageView android:id="@+id/btnSubmitEmail"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/send"
+		        android:clickable="true"
+	            />
+        </LinearLayout>
+   	</LinearLayout>
+       <ImageButton android:id="@+id/btnCloseEmail"            
+           style="@style/titleBtn"
+           android:layout_width="32dp"
+           android:layout_height="32dp"
+        android:src="@drawable/cancel_email"
+           />
+</RelativeLayout>    

@@ -5,6 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import goofy2.swably.About;
 import goofy2.swably.Const;
@@ -30,10 +31,13 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public abstract class PeopleReviews extends WithHeaderActivity {
+public abstract class PeopleReviews extends TabStripActivity {
+	View viewEmail;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,53 @@ public abstract class PeopleReviews extends WithHeaderActivity {
     	enableSlidingMenu();
     	setContent();
 //		this.showBehind();
+		TextView tv = (TextView) findViewById(R.id.txtSubmitEmail);
+		tv.setTypeface(mNormalFont);
+		
+		viewEmail = findViewById(R.id.viewEmail);
+		View btnCloseEmail = findViewById(R.id.btnCloseEmail);
+		btnCloseEmail.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Utils.pushUp(PeopleReviews.this, viewEmail);
+			}
+		});
+		if(Utils.getCurrentUser(this) != null && Utils.isEmpty(Utils.getCurrentUser(this).optString("email"))){
+			viewEmail.setVisibility(View.VISIBLE);
+			View btnSubmitEmail = findViewById(R.id.btnSubmitEmail);
+			btnSubmitEmail.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					EditText editEmail = (EditText) findViewById(R.id.editEmail);
+					final String email = editEmail.getText().toString().trim();
+					if(email.length() > 0){
+						if(!Utils.isValidEmail(email)){
+							Utils.showToast(PeopleReviews.this, getString(R.string.err_invalid_email));
+							editEmail.requestFocus();
+						}else{
+							Utils.pushUp(PeopleReviews.this, viewEmail);
+							new Thread(new Runnable(){
+								@Override
+								public void run() {
+									try {
+										JSONObject user = Api.changeEmail(getApplicationContext(), email);
+										Utils.setCurrentUser(getApplicationContext(), user);
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}
+							}).start();
+						}
+						
+					}else{
+						editEmail.requestFocus();
+					}
+					
+				}
+			});
+			Utils.pullDown(this, viewEmail);
+		}
+		
 		
     }
     @Override

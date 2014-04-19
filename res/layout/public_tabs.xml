@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<goofy2.utils.RevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/viewHeaderBar"
+            style="@style/titleBar" >
+
+            <ImageButton
+                android:id="@+id/btnMenu"
+                style="@style/titleBtn"
+                android:src="@drawable/menu" />
+            <ImageButton style="@style/titleBtn" android:visibility="invisible"/> 
+            <TextView
+                android:id="@+id/txtTitle"
+                style="@style/title"
+                android:text="@string/stream_cap" />
+            
+			<include android:id="@+id/loading"	layout="@layout/loading" /> 
+            <ImageButton
+                android:id="@+id/btnAdd"
+                style="@style/titleBtn"
+                android:src="@drawable/add"
+                />
+			/>
+        </LinearLayout>
+        <include layout="@layout/header_bottom" />
+<!--         <include android:id="@+id/loading" layout="@layout/loading_bar"/> -->
+        
+	    <RelativeLayout style="@style/fill">
+		    <android.support.v4.view.ViewPager android:id="@+id/pager" style="@style/fill">
+	        	<android.support.v4.view.PagerTabStripEx style="@style/TabStrip"/>
+			</android.support.v4.view.ViewPager>
+			<include layout="@layout/tab_strip_decoration" />
+	    </RelativeLayout>
+    </LinearLayout>
+
+	<include android:id="@+id/viewEmail" layout="@layout/get_email"	android:visibility="gone" />
+
+</goofy2.utils.RevealLayout>

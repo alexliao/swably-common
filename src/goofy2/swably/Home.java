@@ -13,7 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-public class Home extends PublicReviews {
+public class Home extends PublicTabs {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

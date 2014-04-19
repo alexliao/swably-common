@@ -42,53 +42,6 @@ public class PublicReviews extends PeopleReviews {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		TextView tv = (TextView) findViewById(R.id.txtSubmitEmail);
-		tv.setTypeface(mNormalFont);
-		
-		viewEmail = findViewById(R.id.viewEmail);
-		View btnCloseEmail = findViewById(R.id.btnCloseEmail);
-		btnCloseEmail.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Utils.pushUp(PublicReviews.this, viewEmail);
-			}
-		});
-		if(Utils.getCurrentUser(this) != null && Utils.isEmpty(Utils.getCurrentUser(this).optString("email"))){
-			viewEmail.setVisibility(View.VISIBLE);
-			View btnSubmitEmail = findViewById(R.id.btnSubmitEmail);
-			btnSubmitEmail.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					EditText editEmail = (EditText) findViewById(R.id.editEmail);
-					final String email = editEmail.getText().toString().trim();
-					if(email.length() > 0){
-						if(!Utils.isValidEmail(email)){
-							Utils.showToast(PublicReviews.this, getString(R.string.err_invalid_email));
-							editEmail.requestFocus();
-						}else{
-							Utils.pushUp(PublicReviews.this, viewEmail);
-							new Thread(new Runnable(){
-								@Override
-								public void run() {
-									try {
-										JSONObject user = Api.changeEmail(getApplicationContext(), email);
-										Utils.setCurrentUser(getApplicationContext(), user);
-									} catch (Exception e) {
-										e.printStackTrace();
-									}
-								}
-							}).start();
-						}
-						
-					}else{
-						editEmail.requestFocus();
-					}
-					
-				}
-			});
-			Utils.pullDown(this, viewEmail);
-		}
-		
     }
     
     @Override

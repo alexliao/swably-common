@@ -278,4 +278,7 @@
     <string name="swably_apps">Swably</string>
 
     <string name="mention_effect">This mention is taken effect, can not be canceled</string>
+
+    <string name="all">All</string>
+    
 </resources>
