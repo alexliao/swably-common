@@ -123,7 +123,7 @@
     <string name="friends_on">Friends on %s</string>
     <string name="friends_on_swably">People you may know</string>
     <string name="friends_on_swably_cap">PEOPLE YOU MAY KNOW</string>
-    <string name="zero_friend">Oops, you don\'t have %s friends on Swably, invite them now.</string>
+    <string name="zero_friend">Oops, seems you don\'t have known friends on Swably.</string>
     <string name="contacts">Contacts</string>
     <string name="new_reviews_count">%d new reviews</string>
     <string name="new_follows_count">%d new followers</string>
@@ -281,4 +281,5 @@
 
     <string name="all">All</string>
     
+    <string name="recommend_friends">Recommend to follow</string>
 </resources>

@@ -1194,6 +1194,8 @@ i = new Intent(context, DownloaderEx.class);
 //		startActivity(new Intent(this, MyFollowingReviews.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 //		startActivity(new Intent(this, PublicReviews.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 		context.startActivity(new Intent(context, Home.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+//		context.startActivity(new Intent(context, GuideSnsFriends.class));
+//		context.startActivity(new Intent(context, GuideRecommendUsers.class));
 	}
 
 	protected static String[] getSignedIns(Context context){

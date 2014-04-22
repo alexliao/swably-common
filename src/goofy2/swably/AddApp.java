@@ -49,7 +49,7 @@ public class AddApp extends TabStripActivity
         if(redirectAnonymous()) return;
         
         disableSliding();
-        setContentView(R.layout.add_app);
+        setContent();
         
     	viewProgress = this.findViewById(R.id.viewProgress);
         progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
@@ -97,6 +97,10 @@ public class AddApp extends TabStripActivity
         }
     }
 
+    void setContent(){
+        setContentView(R.layout.add_app);
+    }
+    
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);

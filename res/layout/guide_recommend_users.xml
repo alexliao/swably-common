@@ -7,10 +7,10 @@
 	android:background="@color/back"
 	>
 	<LinearLayout style="@style/titleBar" >
-		<TextView android:id="@+id/txtTitle" style="@style/title" android:text="@string/friends_on_swably" android:gravity="left"/>
+		<TextView android:id="@+id/txtTitle" style="@style/title" android:text="@string/recommend_friends" android:gravity="left"/>
 		<include android:id="@+id/loading"	layout="@layout/loading" />
 		<ImageView
-		    android:src="@drawable/step1"
+		    android:src="@drawable/step2"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content" 
 		    />

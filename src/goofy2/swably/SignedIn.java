@@ -5,6 +5,7 @@ import goofy2.swably.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -68,7 +69,7 @@ public class SignedIn extends WithHeaderActivity {
         });
         bind();
         
-        btnNext.callOnClick(); // skip the page
+        //btnNext.callOnClick(); // skip the page
     }
 
     private void bind(){

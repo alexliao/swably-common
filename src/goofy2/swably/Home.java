@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -31,6 +32,11 @@ public class Home extends PublicTabs {
     		}
     	}, 10*1000); // delay execution
 		
+		JSONObject me = Utils.getCurrentUser(Home.this);
+		if(null != me && !me.optBoolean("guided")){
+	    	startActivity(new Intent(Home.this, GuideSnsFriends.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+			finish();
+		}
     }
 
 	protected void notifyNewVersion(){

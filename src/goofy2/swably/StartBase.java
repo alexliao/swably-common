@@ -253,9 +253,14 @@ public class StartBase extends WithHeaderActivity {
             protected void onPostExecute(Long result) {
 				removeDialog(0);
 		    	if(mRet != null){
-		    		Intent i = new Intent(StartBase.this, SignedIn.class);
-		    		i.putExtra(Const.KEY_USER, mRet.toString());
-		    		startActivity(i);
+//		    		Intent i = new Intent(StartBase.this, SignedIn.class);
+//		    		i.putExtra(Const.KEY_USER, mRet.toString());
+//		    		startActivity(i);
+		    		
+		    		setCurrentUser(mRet);
+		    		saveSignedIn(mRet.optString("name"), null);
+					sendBroadcast(new Intent(Const.BROADCAST_FINISH));
+		    		Utils.goHome(StartBase.this);
 		    		finish();
 		    	}else{
 					Utils.alert(StartBase.this, mErr);

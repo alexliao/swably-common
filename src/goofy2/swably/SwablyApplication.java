@@ -26,6 +26,7 @@ public class SwablyApplication extends Application {
 //		result = "172.24.1.100:3000";
 //		result = "zh.swably.com:3000";
 //		result = "117.121.10.138";
+//		result = "192.168.1.200:3000";
 		return result;
 	}
 	

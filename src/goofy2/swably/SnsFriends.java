@@ -39,16 +39,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class SnsFriends extends CloudUsersActivity {
+	String sns_id;
+	
+	
 	protected View btnFollow;
 //	protected View btnHeaderInvite;
 	protected View btnInvite;
 	protected View viewFollow;
 	protected View bottomLine;
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+	    sns_id = Utils.getCurrentUser(SnsFriends.this).optString("signup_sns");
+        super.onCreate(savedInstanceState);
+    }
+
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -66,9 +71,11 @@ public class SnsFriends extends CloudUsersActivity {
 	    btnFollow = this.findViewById(R.id.btnFollow);
 	    btnFollow.setOnClickListener(new OnClickListener_btnFollow());
 	    
-	    String name = getIntent().getStringExtra("name");
+    	final String name = (String) Utils.getSnsResource(sns_id, "name");
+
+//    	String name = getIntent().getStringExtra("name");
 	    TextView tv = (TextView) findViewById(R.id.txtTitle);
-    	final String sns_id = getIntent().getDataString();
+//    	final String sns_id = getIntent().getDataString();
 
 //    	int iconId = (Integer) Utils.getSnsResource(sns_id, "icon");
 //    	Drawable d = this.getResources().getDrawable(iconId);
@@ -86,7 +93,7 @@ public class SnsFriends extends CloudUsersActivity {
 //				i.setData(Uri.parse(sns_id));
 //				i.putExtra("name", title);
 //				startActivity(i);
-				startActivity(new Intent(SnsFriends.this, Invite.class));
+				startActivity(new Intent(SnsFriends.this, GuideRecommendUsers.class));
 			}
         };
         btnInvite = this.findViewById(R.id.btnInvite);
@@ -100,8 +107,8 @@ public class SnsFriends extends CloudUsersActivity {
     }
 
 	protected String getUrl() {
-    	String id = getIntent().getDataString();
-		return Const.HTTP_PREFIX + "/connections/find_friends/"+id+"?format=json&"+getLoginParameters() + "&" + getClientParameters();
+//    	String sns_id = getIntent().getDataString();
+		return Const.HTTP_PREFIX + "/connections/find_friends/"+sns_id+"?format=json&"+getLoginParameters() + "&" + getClientParameters();
 //		return Const.HTTP_PREFIX + "/connections/invite_friends/"+id+"?format=json&"+getLoginParameters();
 	}
 
@@ -195,7 +202,7 @@ public class SnsFriends extends CloudUsersActivity {
 		//txtHeader.setText(String.format(getString(R.string.app_count), mListData.length()));
 		View viewZero = findViewById(R.id.viewZero);
 //		View viewButtonBar = findViewById(R.id.viewButtonBar);
-		if(mListData.length() == 0){
+		if(mListData.length() <= 1){
 //if(mListData.length() != 0){
 			viewZero.setVisibility(View.VISIBLE);
 			viewFollow.setVisibility(View.GONE);
