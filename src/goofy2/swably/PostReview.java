@@ -365,6 +365,10 @@ public class PostReview extends WithHeaderActivity {
 					}
 				}.start();
 				finish();
+				if(getIntent().getBooleanExtra("guiding", false)){
+					sendBroadcast(new Intent(Const.BROADCAST_FINISH)); // close guide activities
+					Utils.goHome(PostReview.this);
+				}
 			}
 		}
     }

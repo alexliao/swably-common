@@ -72,11 +72,11 @@ public class AddApp extends TabStripActivity
 	        btnRequest.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View arg0) {
-					Intent i = new Intent(AddApp.this, PostReview.class);
-					i.putExtra("image", getIntent().getStringExtra("image"));
-					i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
-					i.putExtra("content", getIntent().getStringExtra("content"));
-					startActivity(i);
+//					Intent i = new Intent(AddApp.this, PostReview.class);
+//					i.putExtra("image", getIntent().getStringExtra("image"));
+//					i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
+//					i.putExtra("content", getIntent().getStringExtra("content"));
+					startActivity(getReviewIntent(null));
 					finish();
 				}
 	        });
@@ -183,13 +183,17 @@ public class AddApp extends TabStripActivity
 	}
 
 	void ReviewApp(JSONObject json){
+		startActivity(getReviewIntent(json));
+		finish();
+	}
+	
+	Intent getReviewIntent(JSONObject json){
         Intent i = new Intent(AddApp.this, PostReview.class);
-		i.putExtra(Const.KEY_APP, json.toString());
+		if(json != null) i.putExtra(Const.KEY_APP, json.toString());
 		i.putExtra("image", getIntent().getStringExtra("image"));
 		i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
 		i.putExtra("content", getIntent().getStringExtra("content"));
-		startActivity(i);
-		finish();
+		return i;
 	}
     public class CacheProgressBroadcastReceiver extends BroadcastReceiver {
         @Override

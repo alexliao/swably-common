@@ -46,7 +46,14 @@ public class GuideLocalApps extends AddApp {
 //		startActivity(i);
 //    }
 
-    @Override
+	@Override
+	Intent getReviewIntent(JSONObject json){
+		Intent i = super.getReviewIntent(json);
+		i.putExtra("guiding", true);
+		return i;
+	}
+
+	@Override
     public String getCacheId(){
     	return super.getCacheId();
     }
