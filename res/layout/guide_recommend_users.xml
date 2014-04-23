@@ -34,11 +34,12 @@
 		layout="@layout/zero_sns_users"
 		android:visibility="gone"
 	/>
-	<LinearLayout android:id="@+id/viewFollow" android:orientation="horizontal" style="@style/bottomBar" >
+	<LinearLayout android:id="@+id/viewFollow" android:orientation="horizontal" style="@style/bottomBar" android:visibility="gone" >
 		<LinearLayout android:id="@+id/btnFollow" 
 		    android:orientation="horizontal"
 		    style="@style/action_row"
 		    android:gravity="center"
+		    
 		    >
 	   		<TextView 
 	   		    android:layout_width="wrap_content"
