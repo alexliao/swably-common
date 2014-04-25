@@ -13,7 +13,7 @@
         >
 		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
 			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
-			<TextView android:id="@+id/txtTitle" android:text="@string/following_users" style="@style/title"/>
+			<TextView android:id="@+id/txtTitle" android:text="@string/starred_posts" style="@style/title"/>
 			<include android:id="@+id/loading"	layout="@layout/loading" />
 		</LinearLayout>
 		<include layout="@layout/header_bottom" />

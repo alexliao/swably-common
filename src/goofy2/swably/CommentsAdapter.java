@@ -343,8 +343,8 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		holder.inplacePanel = convertView.findViewById(R.id.inplacePanel);
 		holder.btnReply = convertView.findViewById(R.id.btnReply);
 		holder.btnShareReview = convertView.findViewById(R.id.btnShareReview);
-//		holder.btnLike = convertView.findViewById(R.id.btnDig);
-//		holder.btnUnlike = convertView.findViewById(R.id.btnUndig);
+		holder.btnLike = convertView.findViewById(R.id.btnStarPost);
+		holder.btnUnlike = convertView.findViewById(R.id.btnUnstarPost);
 		holder.btnDownload = convertView.findViewById(R.id.btnDownload);
 		holder.btnUpload = convertView.findViewById(R.id.btnUpload);
 		holder.btnPlay = convertView.findViewById(R.id.btnPlay);
@@ -373,8 +373,8 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		View inplacePanel;
 		View btnReply;
 		View btnShareReview;
-//		View btnLike;
-//		View btnUnlike;
+		View btnLike;
+		View btnUnlike;
 		View btnDownload;
 		View btnUpload;
 		View btnPlay;
@@ -413,14 +413,14 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		public View getBtnReply() {
 			return btnReply;
 		}
-//		@Override
-//		public View getBtnLike() {
-//			return btnLike;
-//		}
-//		@Override
-//		public View getBtnUnlike() {
-//			return btnUnlike;
-//		}
+		@Override
+		public View getBtnLike() {
+			return btnLike;
+		}
+		@Override
+		public View getBtnUnlike() {
+			return btnUnlike;
+		}
 		@Override
 		public View getBtnShareReview() {
 			return btnShareReview;

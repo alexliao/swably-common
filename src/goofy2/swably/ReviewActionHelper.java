@@ -56,51 +56,50 @@ public class ReviewActionHelper {
 			}
 		});
 
-//		if(holder == null) btnLike = container.findViewById(R.id.btnDig);
-//		else btnLike = holder.getBtnLike();
-//		if(btnLike != null) btnLike.setOnClickListener(new View.OnClickListener(){
-//			@Override
-//			public void onClick(View v) {
-//				try {
-//			        if(mActivity.redirectAnonymous(false)) return;
+		if(holder == null) btnLike = container.findViewById(R.id.btnStarPost);
+		else btnLike = holder.getBtnLike();
+		if(btnLike != null) btnLike.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				try {
+			        if(mActivity.redirectAnonymous(false)) return;
 //					mActivity.flipView(btnLike, btnUnlike, new Runnable(){
 //						@Override
 //						public void run() {
 //							if(callback != null) callback.run();
 //						}
 //					});
-//					Utils.dig(mActivity, mReview.optString("id"), true, null);
-//					mReview.put("is_digged", true);
-//					mActivity.cacheData(mReview.toString(), ReviewProfile.cacheId(mReview.optString("id")));
-//					bind();
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//		
-//		if(holder == null) btnUnlike = container.findViewById(R.id.btnUndig);
-//		else btnUnlike = holder.getBtnUnlike();
-//		if(btnUnlike != null) btnUnlike.setOnClickListener(new View.OnClickListener(){
-//			@Override
-//			public void onClick(View v) {
-//				try {
+					Utils.dig(mActivity, mReview.optString("id"), true, null);
+					mReview.put("is_digged", true);
+					mActivity.cacheData(mReview.toString(), ReviewProfile.cacheId(mReview.optString("id")));
+					bind();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		if(holder == null) btnUnlike = container.findViewById(R.id.btnUnstarPost);
+		else btnUnlike = holder.getBtnUnlike();
+		if(btnUnlike != null) btnUnlike.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				try {
 //					mActivity.flipView(btnUnlike, btnLike, new Runnable(){
 //						@Override
 //						public void run() {
 //							if(callback != null) callback.run();
 //						}
 //					});
-//					Utils.dig(mActivity, mReview.optString("id"), false, null);
-//					mReview.put("is_digged", false);
-//					mActivity.cacheData(mReview.toString(), ReviewProfile.cacheId(mReview.optString("id")));
-//					bind();
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-////				if(callback != null) callback.run();
-//			}
-//		});
+					Utils.dig(mActivity, mReview.optString("id"), false, null);
+					mReview.put("is_digged", false);
+					mActivity.cacheData(mReview.toString(), ReviewProfile.cacheId(mReview.optString("id")));
+					bind();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 		if(holder == null) btnShareReview = container.findViewById(R.id.btnShareReview);
 		else btnShareReview = holder.getBtnShareReview();
@@ -129,15 +128,15 @@ public class ReviewActionHelper {
 	}
 
 	public void bind() {
-//		if(btnLike != null && btnUnlike != null){
-//	    	if(mReview.optBoolean("is_digged")){
-//	    		btnLike.setVisibility(View.GONE);
-//	    		btnUnlike.setVisibility(View.VISIBLE);
-//	    	}else{
-//	    		btnLike.setVisibility(View.VISIBLE);
-//	    		btnUnlike.setVisibility(View.GONE);
-//	    	}
-//		}
+		if(btnLike != null && btnUnlike != null){
+	    	if(mReview.optBoolean("is_digged")){
+	    		btnLike.setVisibility(View.GONE);
+	    		btnUnlike.setVisibility(View.VISIBLE);
+	    	}else{
+	    		btnLike.setVisibility(View.VISIBLE);
+	    		btnUnlike.setVisibility(View.GONE);
+	    	}
+		}
 		if(mReview.optJSONObject("app") == null){
 			viewAppBtn.setVisibility(View.GONE);
 			btnAddApp.setVisibility(View.VISIBLE);
@@ -151,8 +150,8 @@ public class ReviewActionHelper {
 
 	static public interface ViewHolder{
 		View getBtnReply();
-//		View getBtnLike();
-//		View getBtnUnlike();
+		View getBtnLike();
+		View getBtnUnlike();
 		View getBtnShareReview();
 		View getViewAppBtn();
 		View getBtnAddApp();

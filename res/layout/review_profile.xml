@@ -30,36 +30,7 @@
         </RelativeLayout>
 							
 		<LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
-			<ImageButton  android:id="@+id/btnReply"
-				android:src="@drawable/hover_reply" 
-				style="@style/inplaceBtn"
-			/>
-			<include android:id="@+id/viewAppBtn" layout="@layout/app_tribtn4" />
-			<ImageButton  android:id="@+id/btnAddApp"
-				android:src="@drawable/add" 
-				style="@style/inplaceBtn"
-			/>
-			<ImageButton  android:id="@+id/btnShareReview"
-				android:src="@drawable/hover_share" 
-				style="@style/inplaceBtn"
-			/>
-			<LinearLayout android:visibility="gone" style="@style/fill">
-			    <ImageButton  android:id="@+id/btnDelete" 
-				    android:src="@drawable/delete" 
-				    style="@style/inplaceBtn"
-					android:visibility="gone"
-				    />
-				/>
-				<ImageButton  android:id="@+id/btnDig"
-					android:src="@drawable/like" 
-					style="@style/inplaceBtn"
-				/>
-				<ImageButton  android:id="@+id/btnUndig"
-					android:src="@drawable/liked" 
-					style="@style/inplaceBtn"
-					android:visibility="gone"
-				/>
-			</LinearLayout>
+			<include layout="@layout/comment_inplace_actions" />
 		</LinearLayout>
 	</LinearLayout>
 </RelativeLayout>

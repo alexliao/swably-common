@@ -80,7 +80,7 @@
 	</LinearLayout>
 	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/viewUploaders"/>
 	<Button android:id="@+id/btnLike"
-	    android:text="@string/bookmark"  
+	    android:text="@string/follow"  
 	    style="@style/roundBtnLight.text"
 	    android:layout_alignParentRight="true"
 		android:layout_marginRight="15dp"
@@ -89,7 +89,7 @@
 	<ImageButton android:id="@+id/btnUnlike" 
 	    style="@style/roundBtnLight"
 	    android:background="@color/none"
-	    android:src="@drawable/starred"
+	    android:src="@drawable/followed"
 	    android:layout_alignParentRight="true"
 		android:layout_marginRight="15dp"
 		android:layout_marginTop="18dp"

@@ -113,6 +113,9 @@ public class User extends WithHeaderActivity {
 	    if (item.getItemId() == R.id.starredApps) {
 			startActivity(new Intent(this, UserStarredApps.class).putExtra(Const.KEY_USER, header.getUser().toString()));
 	    	return true;
+	    }else if (item.getItemId() == R.id.starredPosts) {
+				startActivity(new Intent(this, UserStarredPosts.class).putExtra(Const.KEY_USER, header.getUser().toString()));
+		    	return true;
 	    }else if (item.getItemId() == R.id.following) {
 				startActivity(new Intent(this, UserFollowing.class).putExtra(Const.KEY_USER, header.getUser().toString()));
 		    	return true;

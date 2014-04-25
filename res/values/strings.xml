@@ -282,4 +282,9 @@
     <string name="all">All</string>
     
     <string name="recommend_friends">Recommend to follow</string>
+
+    <string name="following_apps">Following apps</string>
+    <string name="following_users">Following people</string>
+    <string name="starred_posts">Starred posts</string>
+    
 </resources>

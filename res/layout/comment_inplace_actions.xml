@@ -12,9 +12,15 @@
 		<LinearLayout android:id="@+id/btnReply" style="@style/inplaceBtn" >
 			<ImageView android:src="@drawable/hover_reply" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
-		<include android:id="@+id/viewAppBtn" layout="@layout/app_tribtn4" />
+		<include android:id="@+id/viewAppBtn" layout="@layout/app_tribtn4" android:visibility="gone"/>
 		<LinearLayout android:id="@+id/btnAddApp" style="@style/inplaceBtn" >
 			<ImageView android:src="@drawable/add" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		</LinearLayout>
+		<LinearLayout android:id="@+id/btnStarPost" android:orientation="vertical" style="@style/inplaceBtn" >
+			<ImageView android:src="@drawable/ic_action_not_important" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		</LinearLayout>
+		<LinearLayout android:id="@+id/btnUnstarPost" android:orientation="vertical" style="@style/inplaceBtn" android:visibility="gone" >
+			<ImageView android:src="@drawable/ic_action_important" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 		</LinearLayout>
 		<LinearLayout android:id="@+id/btnShareReview" style="@style/inplaceBtn" >
 			<ImageView android:src="@drawable/hover_share" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
