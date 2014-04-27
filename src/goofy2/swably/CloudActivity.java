@@ -513,7 +513,7 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
 //		}
 //    }
 
-    public JSONObject doReview(String appId, String content, String inReplyToId, String sync_sns, String imagePath){
+    public JSONObject doReview(String appId, String content, String inReplyToId, String sync_sns, String imagePath) throws Exception{
 		JSONObject ret = null ;
     	String actionURL = Const.HTTP_PREFIX+"/comments/create?format=json&"+getLoginParameters()+"&"+getClientParameters();
 		//get app info
@@ -574,12 +574,13 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
 			});
 			ret = new JSONObject(strResult);
 		} catch (final Exception e) {
-			String errMsg = null;
+//			String errMsg = null;
 			if(e.getClass() == CancellationException.class){
 //				errMsg = getString(R.string.err_upload_canceled); // no need to nofify user as an error
 			}else{
-				errMsg = getString(R.string.err_upload_failed) + ", MSG: " + e.getMessage();
-				e.printStackTrace();
+//				errMsg = getString(R.string.err_upload_failed) + ", MSG: " + e.getMessage();
+//				e.printStackTrace();
+				throw new Exception(e.getMessage());
 			}
 		}
 		return ret;

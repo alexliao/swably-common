@@ -333,34 +333,15 @@ public class PostReview extends WithHeaderActivity {
 //						}
 						String sync_sns = chkSync.isChecked() ? mSnsId : "";
 //						final JSONObject json = doReview(header.getApp().getCloudId(), content, inReplyToId, sync_sns);
-						final JSONObject json = doReview(header.getAppId(), content, inReplyToId, sync_sns, mImagePath);
-//						removeDialog(0);
-//						handler.post(new Runnable() {
-//							public void run(){
-//									if(json != null){
-//										if(getIntent().getBooleanExtra("simple", false)){
-//											goHome();
-//										}else{
-//											Intent i = new Intent(PostReview.this, ReviewProfile.class);
-//											i.putExtra(Const.KEY_REVIEW, json.toString());
-//											startActivity(i);
-//											Intent intent = new Intent(Const.BROADCAST_REVIEW_ADDED);
-//											intent.putExtra(Const.KEY_REVIEW, json.toString());
-//											sendBroadcast(intent);
-//										}
-//										finish();
-//									}else{
-//										Utils.alert(PostReview.this, getString(R.string.err_post_failed));
-//									}
-//							}
-//						});
-						mNotificationManager.cancel(notiCode);
-						if(json != null){
+						JSONObject json;
+						try {
+							json = doReview(header.getAppId(), content, inReplyToId, sync_sns, mImagePath);
+							mNotificationManager.cancel(notiCode);
 							Intent intent = new Intent(Const.BROADCAST_REVIEW_ADDED);
 							intent.putExtra(Const.KEY_REVIEW, json.toString());
 							sendBroadcast(intent);
-						}else{
-							notifyFailed(notiCode, content);
+						} catch (Exception e) {
+							notifyFailed(notiCode, content, e.getMessage());
 						}
 					}
 				}.start();
@@ -388,10 +369,10 @@ public class PostReview extends WithHeaderActivity {
 		return ret;
 	}
     
-	protected void notifyFailed(int notiCode, String content){
+	protected void notifyFailed(int notiCode, String content, String error){
 		String text = getString(R.string.err_post_failed);
-		String expandedText = getString(R.string.err_post_failed_desc);
-		String expandedTitle = getString(R.string.app_name);
+		String expandedText = error;
+		String expandedTitle = getString(R.string.err_post_failed_desc);
 		
 		Notification noti = Utils.getDefaultNotification(text);
 
