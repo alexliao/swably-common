@@ -182,21 +182,40 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			final ImageView imgImage = (ImageView)v.findViewById(R.id.imgImage);
 			final View loadingImage = v.findViewById(R.id.loadingImage);
 			View dividerImage = v.findViewById(R.id.dividerImage);
-			String imageUrl = review.optString("image", null);
+			final String imageUrl = review.optString("image", null);
 			if(imageUrl != null){
 				imgThumbnail.setVisibility(View.VISIBLE);
 				imgImage.setVisibility(View.VISIBLE);
 				loadingImage.setVisibility(View.VISIBLE);
 				dividerImage.setVisibility(View.VISIBLE);
 
-				new AsyncImageLoader(mContext, imgImage, 1).setRequestSize(Const.SCREEN_WIDTH, Const.SCREEN_HEIGHT).setCallback(new Runnable(){
+				String thumbnailUrl = review.optString("thumbnail");
+				new AsyncImageLoader(mContext, imgThumbnail, 1).setCallback(new Runnable(){
 					@Override
 					public void run() {
 						loadingImage.setVisibility(View.GONE);
 					}
 				})
-				.loadUrl(imageUrl);
+				.loadUrl(thumbnailUrl);
 
+//				new AsyncImageLoader(mContext, imgImage, 1).setRequestSize(Const.SCREEN_WIDTH, Const.SCREEN_HEIGHT).setCallback(new Runnable(){
+//					@Override
+//					public void run() {
+//						loadingImage.setVisibility(View.GONE);
+//					}
+//				})
+//				.loadUrl(imageUrl);
+//				downloadScreenshot(imageUrl, imgImage, loadingImage);
+				if(Utils.isWifi(mContext)) downloadScreenshot(imageUrl, imgImage, loadingImage);
+				else{
+					imgThumbnail.setOnClickListener(new View.OnClickListener(){
+						@Override
+						public void onClick(View v) {
+							downloadScreenshot(imageUrl, imgImage, loadingImage);
+						}
+					});
+				}
+				
 				imgImage.setOnClickListener(new View.OnClickListener(){
 					@Override
 					public void onClick(View v) {
@@ -211,6 +230,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 						}
 					}
 				});
+
 			}else{
 				imgThumbnail.setVisibility(View.GONE);
 				imgImage.setVisibility(View.GONE);
@@ -227,6 +247,17 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 		}
 	}
 
+	void downloadScreenshot(String imageUrl, ImageView imgImage, final View loadingImage){
+		loadingImage.setVisibility(View.VISIBLE);
+		new AsyncImageLoader(mContext, imgImage, 1).setRequestSize(Const.SCREEN_WIDTH, Const.SCREEN_HEIGHT).setCallback(new Runnable(){
+			@Override
+			public void run() {
+				loadingImage.setVisibility(View.GONE);
+			}
+		})
+		.loadUrl(imageUrl);
+	}
+	
 	void bindWatchers(View v, final JSONObject review) throws JSONException{
 		JSONArray watchers = review.optJSONArray("recent_watchers");
 		

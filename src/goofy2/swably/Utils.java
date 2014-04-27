@@ -1584,4 +1584,15 @@ i = new Intent(context, DownloaderEx.class);
         }
     }
 
+	 public static boolean isWifi(Context context) {   
+        ConnectivityManager connectivityManager = (ConnectivityManager) context   
+                .getSystemService(Context.CONNECTIVITY_SERVICE);   
+        NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();   
+        if (activeNetInfo != null   
+                && activeNetInfo.getType() == ConnectivityManager.TYPE_WIFI) {   
+            return true;   
+        }   
+        return false;   
+    }   
+
 }
