@@ -65,6 +65,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			ib2.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v) {
+					if(BuildConfig.DEBUG) Utils.showToast(mContext, "review id: "+ info.optString("id") + "; Visibility: "+ib2.getVisibility() + "; Tag: " + ib2.getTag());
 					try{
 						CloudActivity.openApp(mContext, info.optJSONObject("app"));
 					}catch(Exception e){

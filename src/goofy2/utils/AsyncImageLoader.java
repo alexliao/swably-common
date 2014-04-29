@@ -131,9 +131,13 @@ public class AsyncImageLoader {
 	
 	public void load(final String uri, final Loader loader){
 		if(uri == null) return;
+		
 		final String pathName = Utils.getImageFileName(uri);
 		Bitmap bm = Utils.getImageFromFile(mContext, pathName, mReqWidth, mReqHeight);
 		if(bm != null){
+			int position = (Integer) mImageView.getTag();
+			if(position != mInitPosition) return;
+			if(mImageView.getVisibility() != View.VISIBLE) return;
 			mImageView.setImageBitmap(bm);
 //			mImageView.setTag(mOldTag);
 			if(mCallback != null) mCallback.run();
