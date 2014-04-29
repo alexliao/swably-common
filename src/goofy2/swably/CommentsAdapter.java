@@ -59,7 +59,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			});
 		}
 		
-		final View ib2 = holder.icon;
+		final View ib2 = holder.imgAppIcon;
 		if(ib2 != null){
 			Utils.setTouchAnim(mContext, ib2);
 			ib2.setOnClickListener(new View.OnClickListener(){
@@ -226,22 +226,22 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 //			if(hideApp || app.getJSON() == null){
 			if(app.getJSON() == null){
 				Log.d(Const.APP_NAME, "CommentsAdapter icon gone - review id:" + review.optInt("id"));
-				holder.icon.setVisibility(View.GONE);
+				holder.imgAppIcon.setVisibility(View.GONE);
 				holder.txtAppName.setVisibility(View.GONE);
-				new AsyncImageLoader(mContext, holder.icon, mPosition); // update position for the ImageView to avoid binding image unexpectedly
-				Log.d(Const.APP_NAME, "CommentsAdapter icon visibility: " + holder.icon.getVisibility());
+				new AsyncImageLoader(mContext, holder.imgAppIcon, mPosition); // update position for the ImageView to avoid binding image unexpectedly
+				Log.d(Const.APP_NAME, "CommentsAdapter icon visibility: " + holder.imgAppIcon.getVisibility());
 			}else{
 				Log.d(Const.APP_NAME, "CommentsAdapter icon show - review id:" + review.optInt("id"));
 //				viewApp.setVisibility(View.VISIBLE);
-				holder.icon.setVisibility(View.VISIBLE);
+				holder.imgAppIcon.setVisibility(View.VISIBLE);
 				if(app.getIcon() != null){
 					String url = app.getIcon();
 //					Bitmap bm = Utils.getImageFromFile(context, url); 
 //					if(bm != null) iv.setImageBitmap(bm);
 //					else iv.setImageResource(R.drawable.noimage);
 //					iv.setTag(mPosition);
-					holder.icon.setImageResource(R.drawable.noimage);
-					new AsyncImageLoader(mContext, holder.icon, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
+					holder.imgAppIcon.setImageResource(R.drawable.noimage);
+					new AsyncImageLoader(mContext, holder.imgAppIcon, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(url);
 				}
 
 				tv = holder.txtAppName;
@@ -332,7 +332,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		holder.txtContent = (TextView) convertView.findViewById(R.id.txtContent);
 		holder.imgHasImage = (ImageView) convertView.findViewById(R.id.imgHasImage);
 		holder.txtTime = (TextView) convertView.findViewById(R.id.txtTime);
-		holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+		holder.imgAppIcon = (ImageView) convertView.findViewById(R.id.imgAppIcon);
 		holder.imgScreenshot = (ImageView) convertView.findViewById(R.id.imgScreenshot);
 		holder.txtAppName = (TextView) convertView.findViewById(R.id.txtAppName);
 		holder.imgQuestion = (ImageView) convertView.findViewById(R.id.imgQuestion);
@@ -364,7 +364,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		TextView txtContent;
 		TextView txtTime;
 		ImageView imgHasImage;
-		ImageView icon;
+		ImageView imgAppIcon;
 		ImageView imgScreenshot;
 		ImageView imgQuestion;
 		View btnAddApp;

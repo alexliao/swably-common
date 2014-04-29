@@ -78,7 +78,7 @@
 		    		    
 		</LinearLayout>
 		<ImageView
-		    android:id="@+id/icon"
+		    android:id="@+id/imgAppIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
 		    android:layout_marginRight="@dimen/padding"
@@ -90,14 +90,14 @@
 	    <TextView android:id="@+id/txtAppName" 
 			style="@style/name"
 			android:singleLine="true"
-			android:layout_toRightOf="@id/icon"
-			android:layout_alignTop="@id/icon"
+			android:layout_toRightOf="@id/imgAppIcon"
+			android:layout_alignTop="@id/imgAppIcon"
 		    android:visibility="gone"
 		/>
 		<TextView android:id="@+id/txtAppVersion" 
 			style="@style/content"
 			android:singleLine="true"
-			android:layout_toRightOf="@id/icon"
+			android:layout_toRightOf="@id/imgAppIcon"
 			android:layout_below="@id/txtAppName"
 			android:visibility="gone"
 		/>
