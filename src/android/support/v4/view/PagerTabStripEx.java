@@ -22,13 +22,13 @@ import android.widget.TextView;
 public class PagerTabStripEx extends PagerTitleStrip
 {
   private static final String TAG = "PagerTabStrip";
-  private static final int INDICATOR_HEIGHT = 6;
+  private static final int INDICATOR_HEIGHT = 4;
   private static final int MIN_PADDING_BOTTOM = 2;
   private static final int TAB_PADDING = 16;
   private static final int TAB_SPACING = 32;
-  private static final int MIN_TEXT_SPACING = 64;
-  private static final int FULL_UNDERLINE_HEIGHT = 2;
-  private static final int MIN_STRIP_HEIGHT = 32;
+  private static final int MIN_TEXT_SPACING = 32;
+  private static final int FULL_UNDERLINE_HEIGHT = 1;
+  private static final int MIN_STRIP_HEIGHT = 24;
   private static final int FADE_WIDTH = 32;
   
   private int mIndicatorColor;

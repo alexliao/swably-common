@@ -8,6 +8,7 @@
 		    android:layout_height="30dp"
 		    android:startColor="#ff222222"
 		    android:endColor="#00222222"
+		    android:visibility="gone"
 		    />
 		<goofy2.utils.LinearGradientView
 		    android:layout_width="32dp"
@@ -15,13 +16,15 @@
 		    android:endColor="#ff222222"
 		    android:startColor="#00222222"
 		    android:layout_alignParentRight="true"
+		    android:visibility="gone"
 		    />
 		<goofy2.utils.LinearGradientView
 		    android:layout_width="fill_parent"
-		    android:layout_height="@dimen/shadow_thick"
+		    android:layout_height="2dp"
 		    android:layout_marginTop="32dp"
 		    android:startColor="#66000000"
 		    android:orientation="vertical"
+		    android:visibility="gone"
 		    />
 </RelativeLayout>
 	

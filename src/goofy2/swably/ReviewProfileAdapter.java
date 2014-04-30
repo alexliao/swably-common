@@ -181,6 +181,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			final ImageView imgThumbnail = (ImageView)v.findViewById(R.id.imgThumbnail);
 			final ImageView imgImage = (ImageView)v.findViewById(R.id.imgImage);
 			final View loadingImage = v.findViewById(R.id.loadingImage);
+			final View txtThumbnailHint = v.findViewById(R.id.txtThumbnailHint);
 			View dividerImage = v.findViewById(R.id.dividerImage);
 			final String imageUrl = review.optString("image", null);
 			if(imageUrl != null){
@@ -194,6 +195,8 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 					@Override
 					public void run() {
 						loadingImage.setVisibility(View.GONE);
+						if(Utils.isWifi(mContext)) downloadScreenshot(imageUrl, imgImage, loadingImage);
+						else txtThumbnailHint.setVisibility(View.VISIBLE);
 					}
 				})
 				.loadUrl(thumbnailUrl);
@@ -206,8 +209,8 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 //				})
 //				.loadUrl(imageUrl);
 //				downloadScreenshot(imageUrl, imgImage, loadingImage);
-				if(Utils.isWifi(mContext)) downloadScreenshot(imageUrl, imgImage, loadingImage);
-				else{
+//				if(Utils.isWifi(mContext)) downloadScreenshot(imageUrl, imgImage, loadingImage);
+				if(!Utils.isWifi(mContext)){
 					imgThumbnail.setOnClickListener(new View.OnClickListener(){
 						@Override
 						public void onClick(View v) {

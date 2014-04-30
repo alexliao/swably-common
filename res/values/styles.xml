@@ -363,10 +363,12 @@
    		<item name="android:layout_width">fill_parent</item>
    		<item name="android:layout_height">32dp</item>
    		<item name="android:layout_gravity">top</item>
+        <item name="android:paddingLeft">@dimen/padding</item>
+        <item name="android:paddingRight">@dimen/padding</item>
    		<item name="android:gravity">center</item>
    		<item name="android:background">@color/tab_strip_back</item>
-   		<item name="android:textColor">#fff</item>
-   		<item name="android:textSize">12sp</item>
+   		<item name="android:textColor">@color/tab</item>
+   		<item name="android:textSize">16sp</item>
     </style>
     
     <style name="fill">

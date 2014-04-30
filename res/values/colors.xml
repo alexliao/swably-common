@@ -29,7 +29,7 @@
     <color name="focus">#24adde</color>
     
     <color name="tab">#24adde</color>
-    <color name="tab_strip_back">#222222</color>
+    <color name="tab_strip_back">#ffffff</color>
     <color name="shadow">#66000000</color>
     
     <color name="settings_desc">#979797</color>

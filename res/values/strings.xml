@@ -287,4 +287,5 @@
     <string name="following_users">Following people</string>
     <string name="starred_posts">Starred posts</string>
     
+    <string name="thumbnail_hint">Tap picture to open</string>
 </resources>
