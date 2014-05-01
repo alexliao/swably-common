@@ -288,4 +288,6 @@
     <string name="starred_posts">Starred posts</string>
     
     <string name="thumbnail_hint">Tap picture to open</string>
+    
+    <string name="in_reply_to_x">In reply to %s</string>
 </resources>

@@ -108,6 +108,10 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			
 			tv = (TextView) v.findViewById(R.id.txtContent);
 			str = review.optString("content");
+			JSONObject inreplytoUser = Utils.getInreplytoUser(review);
+			if(inreplytoUser != null){
+				str = str.replace(Utils.genAtInreplytoUser(inreplytoUser), "");
+			}
 			tv.setText(str);
 			tv.setTypeface(mContext.mLightFont);
 
@@ -241,7 +245,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 				dividerImage.setVisibility(View.GONE);
 			}
 			
-			if(getInreplytoUser(review) != null) bindInreplyto(v, review);
+			if(Utils.getInreplytoUser(review) != null) bindInreplyto(v, review);
 			
 			bindWatchers(v, review);
 			
@@ -337,7 +341,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			String str;
 			ImageView iv;
 			TextView tv;
-			JSONObject user = getInreplytoUser(review);
+			JSONObject user = Utils.getInreplytoUser(review);
 			
 			tv = (TextView) v.findViewById(R.id.txtInreplyto);
 			tv.setTypeface(mContext.mLightFont);
@@ -362,18 +366,6 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public JSONObject getInreplytoUser(JSONObject review){
-		String str = review.optString("in_reply_to_user", "");
-		JSONObject ret = null;
-		if(!Utils.isEmpty(str))
-			try {
-				ret = new JSONObject(str);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			} 
-		return ret;
 	}
 
 	int getCurrentReviewPosition(){

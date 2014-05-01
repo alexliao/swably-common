@@ -220,6 +220,10 @@ public class PostReview extends WithHeaderActivity {
 			editContent.setHint(R.string.post_review_hint);
 			btnMore.setEnabled(true);
 		}
+		if(mInReplyTo != null){
+			editContent.setHint(String.format(getString(R.string.in_reply_to_x), mInReplyTo.optJSONObject("user").optString("name")));
+		}
+
 		editContent.setTypeface(mLightFont);
 		if(mImagePath == null){
 			btnImage.setVisibility(View.VISIBLE);

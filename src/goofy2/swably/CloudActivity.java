@@ -1008,7 +1008,7 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
     	
 		Intent i = new Intent(this, PostReview.class);
 		i.putExtra(Const.KEY_REVIEW, review.toString());
-		i.putExtra("content", "@"+firstName+" ");
+//		i.putExtra("content", "@"+firstName+" ");
 		startActivity(i);
     }
     

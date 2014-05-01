@@ -1492,11 +1492,18 @@ i = new Intent(context, DownloaderEx.class);
 	}
 
 	static public String genReviewShareText(JSONObject review){
-    	String ret = review.optString("content") + " " + genReviewUrl(review) + " -- @"+review.optJSONObject("user").optString("screen_name");
+    	String ret = review.optString("content") + " " + genReviewUrl(review) + " -- " + genAtInreplytoUser(review.optJSONObject("user"));
     	if(review.optJSONObject("app") != null){
     		App app = new App(review.optJSONObject("app"));
     		ret = "#" + app.getName() + " " + ret;
     	}
+    	
+    	JSONObject inreplytoUser = Utils.getInreplytoUser(review);
+    	if(inreplytoUser != null){
+        	String atName = genAtInreplytoUser(inreplytoUser);
+        	if(!ret.contains(atName)) ret = atName + " " + ret;
+    	}
+    	
     	return ret;
     }
 
@@ -1595,4 +1602,23 @@ i = new Intent(context, DownloaderEx.class);
         return false;   
     }   
 
+	public static JSONObject getInreplytoUser(JSONObject review){
+		String str = review.optString("in_reply_to_user", "");
+		JSONObject ret = null;
+		if(!Utils.isEmpty(str))
+			try {
+				ret = new JSONObject(str);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} 
+		return ret;
+	}
+
+	public static String genAtInreplytoUser(JSONObject user){
+		String ret = null;
+		if(user != null){
+			ret = "@" + user.optString("screen_name");
+		}
+		return ret;
+	}
 }

@@ -10,17 +10,19 @@
 		android:background="@drawable/row"
 		android:padding="@dimen/padding"
 		>
-		<TextView android:id="@+id/txtInreplyto" 
+		<TextView android:id="@+id/txtPostHeader" 
 			style="@style/desc"
-			android:layout_marginLeft="62dp"
+			android:layout_marginLeft="63dp"
+			android:layout_marginBottom="4dp"
+			android:singleLine="true"
 			android:visibility="gone"
 		/>
-        <goofy2.utils.Avatar android:id="@+id/avatar"
+		<goofy2.utils.Avatar android:id="@+id/avatar"
 		    android:background="@drawable/noname"
 			style="@style/avatar"
 			android:layout_marginRight="@dimen/padding"
 			android:clickable="true"
-			android:layout_below="@id/txtInreplyto"
+			android:layout_below="@id/txtPostHeader"
 		/>
 		<TextView android:id="@+id/txtUserName" 
 			style="@style/name"

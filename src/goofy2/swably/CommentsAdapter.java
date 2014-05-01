@@ -163,6 +163,19 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 //			View viewApp = v.findViewById(R.id.viewApp);
 //			View viewContent = v.findViewById(R.id.viewContent);
 			ViewHolder holder = (ViewHolder) v.getTag();
+
+			tv = (TextView) v.findViewById(R.id.txtPostHeader);
+			JSONObject inreplyToUser = Utils.getInreplytoUser(review);
+			if(inreplyToUser != null){
+				tv.setVisibility(View.VISIBLE);
+				str = Utils.getInreplytoUser(review).optString("name");
+				tv.setText(String.format(context.getString(R.string.in_reply_to_x), str));
+				tv.setTypeface(mContext.mLightFont);
+			}else{
+				tv.setVisibility(View.GONE);
+			}
+			
+			
 //			if(hideUser || user == null){
 			if(user == null){
 //				iv.setVisibility(View.GONE);
@@ -197,6 +210,10 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			
 			tv = holder.txtContent;
 			str = review.optString("content");
+			JSONObject inreplytoUser = Utils.getInreplytoUser(review);
+			if(inreplytoUser != null){
+				str = str.replace(Utils.genAtInreplytoUser(inreplytoUser), "");
+			}
 			if(str.equals("")){
 				tv.setVisibility(View.GONE);
 			}else{
