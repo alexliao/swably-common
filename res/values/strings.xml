@@ -57,7 +57,7 @@
     <string name="checking_update">Checking update...</string>
     <string name="notification">Notification</string>
     <string name="notification_cap">NOTIFICATION</string>
-    <string name="notification_desc">Get notice when there are new updates from your following</string>
+    <string name="notification_desc">Get notice when there are new updates related to you</string>
     <string name="app_version">version %s</string>
     <string name="app_version_short">v %s</string>
     <string name="app_size">Size %.2fMB</string>
