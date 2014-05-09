@@ -110,7 +110,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			str = review.optString("content");
 			JSONObject inreplytoUser = Utils.getInreplytoUser(review);
 			if(inreplytoUser != null){
-				str = str.replace(Utils.genAtInreplytoUser(inreplytoUser), "");
+				str = str.replace(Utils.genAtInreplytoUser(inreplytoUser), "").trim();
 			}
 			tv.setText(str);
 			tv.setTypeface(mContext.mLightFont);

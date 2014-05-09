@@ -212,7 +212,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			str = review.optString("content");
 			JSONObject inreplytoUser = Utils.getInreplytoUser(review);
 			if(inreplytoUser != null){
-				str = str.replace(Utils.genAtInreplytoUser(inreplytoUser), "");
+				str = str.replace(Utils.genAtInreplytoUser(inreplytoUser), "").trim();
 			}
 			if(str.equals("")){
 				tv.setVisibility(View.GONE);

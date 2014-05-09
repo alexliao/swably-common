@@ -37,6 +37,7 @@
 			app:radius="26"
 			android:layout_centerHorizontal="true"
 			android:layout_marginBottom="10dp"
+			android:clickable="true"
 		/>
 		<TextView android:id="@+id/txtUsername" 
 			style="@style/name.shadow"

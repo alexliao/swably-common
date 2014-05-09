@@ -46,6 +46,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class PostReview extends WithHeaderActivity {
+	public final int POST_NOTIFICATION_ID = 394729;
 	public final int RESULT_LOAD_IMAGE = 2;
 	protected AppHeader header = new AppHeader(this);
 	private JSONObject mInReplyTo = null;
@@ -340,7 +341,8 @@ public class PostReview extends WithHeaderActivity {
 						JSONObject json;
 						try {
 							json = doReview(header.getAppId(), content, inReplyToId, sync_sns, mImagePath);
-							mNotificationManager.cancel(notiCode);
+//							mNotificationManager.cancel(notiCode);
+							notifyMention(notiCode, json);
 							Intent intent = new Intent(Const.BROADCAST_REVIEW_ADDED);
 							intent.putExtra(Const.KEY_REVIEW, json.toString());
 							sendBroadcast(intent);
@@ -368,11 +370,40 @@ public class PostReview extends WithHeaderActivity {
 		PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(), PendingIntent.FLAG_UPDATE_CURRENT);		
 		noti.setLatestEventInfo(this, expandedTitle, expandedText, contentIntent);
 		
-		int ret = (int) Math.round(Math.random()*1000000); 
+//		int ret = (int) Math.round(Math.random()*1000000); 
+		int ret = POST_NOTIFICATION_ID;
 		mNotificationManager.notify(ret, noti);
 		return ret;
 	}
     
+	protected int notifyMention(final int notificationId, JSONObject review){
+		String text = getString(R.string.post_success);
+		String expandedText = getString(R.string.prompt_to_mention);
+		String expandedTitle = text;
+		
+		Notification noti = Utils.getDefaultNotification(text);
+//		Intent i = new Intent(this, ReviewProfile.class);
+//		String http = "http://"+getString(R.string.host1);
+//		i.setData(Uri.parse(http+"/r/"+review.optString("id")));
+		Intent i = new Intent(this, AddWatcher.class);
+		i.putExtra(Const.KEY_REVIEW, review.toString());
+		
+		PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, i, PendingIntent.FLAG_UPDATE_CURRENT);		
+		noti.setLatestEventInfo(this, expandedTitle, expandedText, contentIntent);
+		
+		mNotificationManager.notify(notificationId, noti);
+		
+		Timer timer = new Timer();
+    	timer.schedule(new TimerTask(){
+    		@Override
+    		public void run(){
+				mNotificationManager.cancel(notificationId);
+    		}
+    	}, 30*1000); // delay execution
+    	
+		return notificationId;
+	}
+
 	protected void notifyFailed(int notiCode, String content, String error){
 		String text = getString(R.string.err_post_failed);
 		String expandedText = error;

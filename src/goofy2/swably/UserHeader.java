@@ -134,7 +134,18 @@ public class UserHeader {
 //		if(iv != null) new AsyncImageLoader(mActivity, iv, 0, null).loadUrl(url);
 
 		ImageView iv = (ImageView)container.findViewById(R.id.avatar);
-		if(iv != null) new AsyncImageLoader(mActivity, iv, 1).loadUrl(url);
+		if(iv != null){
+			new AsyncImageLoader(mActivity, iv, 1).loadUrl(url);
+			Utils.setTouchAnim(mActivity, iv);
+			iv.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					String userSnsProfile = getUser().optString("user_url");
+					if(Utils.isEmpty(userSnsProfile)) return;
+					mActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(userSnsProfile)));
+				}
+			});
+		}
 
 
 		tv = (TextView)container.findViewById(R.id.txtReviewsCount);

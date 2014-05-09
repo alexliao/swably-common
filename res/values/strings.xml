@@ -213,7 +213,7 @@
     <string name="upload_cap">UPLOAD</string>
     <string name="uploading_cap">UPLOADING</string>
     <string name="downloading_cap">DOWNLOADING</string>
-    <string name="slogon">What apps do you want?</string>
+    <string name="slogon">We never have too many apps</string>
     <string name="editing">EDITING</string>
     <string name="got_it">Got it</string>
     <string name="availability">AVAILABILITY</string>
@@ -262,8 +262,8 @@
     
     <string name="a_request">A Request</string>
     <string name="add_an_app">Add an app</string>
-    <string name="menu_requests">Help requests</string>
-    <string name="menu_shares">Sharing posts</string>
+    <string name="menu_requests">Requests</string>
+    <string name="menu_shares">Sharing</string>
 	<string name="replies_count_x">%d replies</string>   
     
     <string name="add_watcher">+ MENTION</string>
@@ -290,4 +290,7 @@
     <string name="thumbnail_hint">Tap picture to open</string>
     
     <string name="in_reply_to_x">In reply to %s</string>
+
+    <string name="post_success">Sent successfully</string>
+    <string name="prompt_to_mention">Tap to mention friends</string>
 </resources>
