@@ -498,7 +498,7 @@
 		<item name="android:focusable">false</item>
 		<item name="android:textColor">@color/frame_btn</item>
 	</style>
-	<style name="frameBtn.app">
+	<style name="frameBtn.small">
    		<item name="android:layout_width">65dp</item>
    		<item name="android:layout_height">20dp</item>
 		<item name="android:textSize">9sp</item>

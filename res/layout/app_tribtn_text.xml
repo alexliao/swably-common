@@ -2,10 +2,10 @@
 	android:layout_width="wrap_content" 
 	android:layout_height="wrap_content"
 	>
-	<TextView android:id="@+id/btnDownload" android:text="@string/btn_download" style="@style/frameBtn.app" android:visibility="visible" />
-	<TextView android:id="@+id/btnUpload" android:text="@string/btn_upload" style="@style/frameBtn.app" android:visibility="gone" />
-	<TextView android:id="@+id/btnPlay" android:text="@string/btn_open" style="@style/frameBtn.app" android:visibility="gone" />
-	<TextView android:id="@+id/btnInstall" android:text="@string/btn_install" style="@style/frameBtn.app" android:visibility="gone" />
-	<TextView android:id="@+id/btnUpload" android:text="@string/btn_upload" style="@style/frameBtn.app" android:visibility="gone" />
-	<TextView android:id="@+id/btnStop" android:text="@string/btn_stop" style="@style/frameBtn.app" android:visibility="gone" />
+	<TextView android:id="@+id/btnDownload" android:text="@string/btn_download" style="@style/frameBtn.small" android:visibility="visible" />
+	<TextView android:id="@+id/btnUpload" android:text="@string/btn_upload" style="@style/frameBtn.small" android:visibility="gone" />
+	<TextView android:id="@+id/btnPlay" android:text="@string/btn_open" style="@style/frameBtn.small" android:visibility="gone" />
+	<TextView android:id="@+id/btnInstall" android:text="@string/btn_install" style="@style/frameBtn.small" android:visibility="gone" />
+	<TextView android:id="@+id/btnUpload" android:text="@string/btn_upload" style="@style/frameBtn.small" android:visibility="gone" />
+	<TextView android:id="@+id/btnStop" android:text="@string/btn_stop" style="@style/frameBtn.small" android:visibility="gone" />
 </LinearLayout>
