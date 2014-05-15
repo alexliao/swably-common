@@ -266,9 +266,9 @@
     <string name="menu_shares">Sharing</string>
 	<string name="replies_count_x">%d replies</string>   
     
-    <string name="add_watcher">+ MENTION</string>
-    <string name="mention_title">MENTION</string>
-    <string name="mention">Mention</string>
+    <string name="add_watcher">+ Attention</string>
+    <string name="mention_title">ATTENTION</string>
+    <string name="mention">Attention</string>
     <string name="menu_notifications">Notifications</string>
     <string name="add_a_review">Add a review</string>
 
@@ -277,7 +277,7 @@
     <string name="system_apps">System</string>
     <string name="swably_apps">Swably</string>
 
-    <string name="mention_effect">This mention is taken effect, can not be canceled</string>
+    <string name="mention_effect">This attention is taken effect, can not be canceled</string>
 
     <string name="all">All</string>
     
@@ -292,5 +292,5 @@
     <string name="in_reply_to_x">In reply to %s</string>
 
     <string name="post_success">Sent successfully</string>
-    <string name="prompt_to_mention">Tap to mention friends</string>
+    <string name="prompt_to_mention">Tap to add attention</string>
 </resources>
