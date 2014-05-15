@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	>
+	<LinearLayout android:id="@+id/btnReply" style="@style/streamBtn">
+		<ImageView android:id="@+id/btnReply" android:src="@drawable/reply_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/btnAddApp" style="@style/streamBtn" android:visibility="gone">
+		<ImageView android:src="@drawable/add" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/btnStarPost" android:orientation="vertical" style="@style/streamBtn" >
+		<ImageView android:src="@drawable/star_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/btnUnstarPost" android:orientation="vertical" style="@style/streamBtn" android:visibility="gone" >
+		<ImageView android:src="@drawable/starred_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/btnShareReview" style="@style/streamBtn" >
+		<ImageView android:src="@drawable/share_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+</LinearLayout>

@@ -25,7 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class CommentsAdapter extends CloudInplaceActionsAdapter {
+public class CommentsAdapter extends CloudBaseAdapter {
 //	boolean mHideUser = false;
 //	boolean mHideApp = false;
 	ReviewActionHelper mActionHelper;
@@ -41,7 +41,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 //	}
 
 	public void bindView(final View viewInfo, final JSONObject info) {
-		super.bindView(viewInfo, info);
+//		super.bindView(viewInfo, info);
 //		bind(viewInfo, mContext, info, mHideUser, mHideApp);
 		bind(viewInfo, mContext, info);
 		handleDivider(viewInfo);
@@ -76,30 +76,46 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			});
 		}
 
-//    	View btn;
-
-//    	btn = holder.btnReply;
-//    	btn.setOnClickListener(new OnClickListener(){
-//			@Override
-//			public void onClick(View arg0) {
-//				mHelper.hideActionsAnim();
-//				mContext.replyReview(info);
-//			}
-//        });
-
-//    	btn = holder.btnShare;
-//    	btn.setOnClickListener(new OnClickListener(){
-//			@Override
-//			public void onClick(View arg0) {
-//				mHelper.hideActionsAnim();
-//				mContext.sendOutReview(info);
-//			}
-//        });
-    	
+		bindButtons(viewInfo, info);    	
 	}
 	
-	@Override
-	void onInplacePanelOpen(View view, JSONObject json){
+//	@Override
+//	void onInplacePanelOpen(View view, JSONObject json){
+//		// load cache for refreshing dig status
+//		String str = mContext.loadCache(ReviewProfile.cacheId(json.optString("id")));
+//		if(str != null)
+//			try {
+//				json = new JSONObject(str);
+//			} catch (JSONException e) {
+//				e.printStackTrace();
+//			}
+//			
+//		mActionHelper = new ReviewActionHelper(mContext, json);
+//		mActionHelper.init(view, new Runnable(){
+//			@Override
+//			public void run() {
+//				mHelper.hideActionsAnim();
+//			}
+//    	});
+//		mActionHelper.bind();
+//		
+//    	App app = new App(json.optJSONObject("app"));
+//    	if(app.getJSON() != null){
+//			AppHeader header = new AppHeader(mContext);
+//			header.setApp(app);
+//			header.setAppFromCache(header.getAppId());
+//	    	AppTribtn tribtn = new AppTribtn();
+//	    	tribtn.init(mContext, view, header.getApp(), new Runnable(){
+//				@Override
+//				public void run() {
+//					mHelper.hideActionsAnim();
+//				}
+//	    	});
+//	    	tribtn.setStatus(header.getApp());
+//    	}
+//	}
+
+	void bindButtons(View view, JSONObject json){
 		// load cache for refreshing dig status
 		String str = mContext.loadCache(ReviewProfile.cacheId(json.optString("id")));
 		if(str != null)
@@ -110,12 +126,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			}
 			
 		mActionHelper = new ReviewActionHelper(mContext, json);
-		mActionHelper.init(view, new Runnable(){
-			@Override
-			public void run() {
-				mHelper.hideActionsAnim();
-			}
-    	});
+		mActionHelper.init(view, null);
 		mActionHelper.bind();
 		
     	App app = new App(json.optJSONObject("app"));
@@ -123,17 +134,13 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			AppHeader header = new AppHeader(mContext);
 			header.setApp(app);
 			header.setAppFromCache(header.getAppId());
-	    	AppTribtn tribtn = new AppTribtn();
-	    	tribtn.init(mContext, view, header.getApp(), new Runnable(){
-				@Override
-				public void run() {
-					mHelper.hideActionsAnim();
-				}
-	    	});
+	    	AppTribtnText tribtn = new AppTribtnText();
+	    	tribtn.init(mContext, view, null);
 	    	tribtn.setStatus(header.getApp());
     	}
 	}
-
+	
+	
 //	private void setTouchAnim(final Context context, View v){
 //		v.setOnTouchListener(new View.OnTouchListener() {
 //			@Override
@@ -244,14 +251,12 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 //			if(hideApp || app.getJSON() == null){
 			if(app.getJSON() == null){
 				Log.d(Const.APP_NAME, "CommentsAdapter icon gone - review id:" + review.optInt("id"));
-				holder.imgAppIcon.setVisibility(View.GONE);
-				holder.txtAppName.setVisibility(View.GONE);
+				holder.viewApp.setVisibility(View.GONE);
 				new AsyncImageLoader(mContext, holder.imgAppIcon, mPosition); // update position for the ImageView to avoid binding image unexpectedly
-				Log.d(Const.APP_NAME, "CommentsAdapter icon visibility: " + holder.imgAppIcon.getVisibility());
+//				Log.d(Const.APP_NAME, "CommentsAdapter icon visibility: " + holder.imgAppIcon.getVisibility());
 			}else{
 				Log.d(Const.APP_NAME, "CommentsAdapter icon show - review id:" + review.optInt("id"));
-//				viewApp.setVisibility(View.VISIBLE);
-				holder.imgAppIcon.setVisibility(View.VISIBLE);
+				holder.viewApp.setVisibility(View.VISIBLE);
 				if(app.getIcon() != null){
 					String url = app.getIcon();
 //					Bitmap bm = Utils.getImageFromFile(context, url); 
@@ -263,7 +268,6 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 				}
 
 				tv = holder.txtAppName;
-				tv.setVisibility(View.VISIBLE);
 				tv.setText(app.getName());
 				tv.setTypeface(context.mBoldFont);
 //				tv = (TextView) v.findViewById(R.id.txtAppVersion);
@@ -278,11 +282,11 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 //				});
 			}
 			
-			if(app.getJSON() == null){
-				holder.imgQuestion.setVisibility(View.VISIBLE);
-			}else{
-				holder.imgQuestion.setVisibility(View.GONE);
-			}
+//			if(app.getJSON() == null){
+//				holder.imgQuestion.setVisibility(View.VISIBLE);
+//			}else{
+//				holder.imgQuestion.setVisibility(View.GONE);
+//			}
 			
 			bindReplies(holder, review);
 
@@ -298,19 +302,17 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 			return;
 		}
 		
+		holder.viewReplies.setVisibility(View.VISIBLE);
 		String belowStr = review.optString("below_json");
 		if(belowStr.equals("")) belowStr = "{}";
 		JSONObject belowJson = new JSONObject(belowStr);
 		int repliesCount = belowJson.optInt("replies_count");
 		JSONArray appIcons = belowJson.optJSONArray("app_icons");
-		if(repliesCount == 0){
-			holder.viewReplies.setVisibility(View.GONE);
-		}else{
-			holder.viewReplies.setVisibility(View.VISIBLE);
+		if(repliesCount > 0){
 			holder.imgReply1.setVisibility(View.GONE);
 			holder.imgReply2.setVisibility(View.GONE);
 			holder.imgReply3.setVisibility(View.GONE);
-			holder.txtReplies.setVisibility(View.GONE);
+//			holder.txtReplies.setVisibility(View.GONE);
 			if(repliesCount >= 1){
 				holder.imgReply1.setVisibility(View.VISIBLE);
 				holder.imgReply1.setImageResource(R.drawable.bubble);
@@ -327,8 +329,8 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 				new AsyncImageLoader(mContext, holder.imgReply3, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(appIcons.getString(3-1));
 			}
 			if(repliesCount >= 4){
-				holder.txtReplies.setVisibility(View.VISIBLE);
-				holder.txtReplies.setText(String.format(mContext.getString(R.string.replies_count_x), repliesCount));
+//				holder.txtReplies.setVisibility(View.VISIBLE);
+//				holder.txtReplies.setText(String.format(mContext.getString(R.string.replies_count_x), repliesCount));
 			}
 		}
 	}
@@ -368,6 +370,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		holder.btnPlay = convertView.findViewById(R.id.btnPlay);
 		holder.btnInstall = convertView.findViewById(R.id.btnInstall);
 		
+		holder.viewApp = convertView.findViewById(R.id.viewApp);
 		holder.viewReplies = convertView.findViewById(R.id.viewReplies);
 		holder.imgReply1 = (ImageView) convertView.findViewById(R.id.imgReply1);
 		holder.imgReply2 = (ImageView) convertView.findViewById(R.id.imgReply2);
@@ -376,7 +379,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		return holder;
 	}
 	
-	static class ViewHolder	implements ReviewActionHelper.ViewHolder, AppTribtn.ViewHolder, CloudInplaceActionsAdapter.ViewHolder {
+	static class ViewHolder	implements ReviewActionHelper.ViewHolder, AppTribtnText.ViewHolder, CloudInplaceActionsAdapter.ViewHolder {
 		ImageView avatar;
 		TextView txtUserName;
 		TextView txtContent;
@@ -398,6 +401,7 @@ public class CommentsAdapter extends CloudInplaceActionsAdapter {
 		View btnPlay;
 		View btnInstall;
 		View viewAppBtn;
+		View viewApp;
 		View viewReplies;
 		ImageView imgReply1;
 		ImageView imgReply2;

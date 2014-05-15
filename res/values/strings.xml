@@ -293,4 +293,14 @@
 
     <string name="post_success">Sent successfully</string>
     <string name="prompt_to_mention">Tap to add attention</string>
+    
+    <string name="btn_download">Download</string>
+    <string name="btn_upload">Upload</string>
+    <string name="btn_upadte">Update</string>
+    <string name="btn_install">Install</string>
+    <string name="btn_open">Open</string>
+    <string name="btn_stop">Disabled</string>
+    <string name="btn_add_app">Add an app</string>
+    
+    
 </resources>
