@@ -48,28 +48,6 @@
 			android:src="@drawable/noname"
 			android:visibility="gone"
 		/>
-		<goofy2.utils.Avatar
-			style="@style/avatar"
-			android:layout_width="24dp"
-			android:layout_height="24dp"
-			app:radius="12"
-			android:layout_centerHorizontal="true"
-			android:layout_marginRight="10dp"
-			android:tag="uploader4"
-			android:src="@drawable/noname"
-			android:visibility="gone"
-		/>
-		<goofy2.utils.Avatar
-			style="@style/avatar"
-			android:layout_width="24dp"
-			android:layout_height="24dp"
-			app:radius="12"
-			android:layout_centerHorizontal="true"
-			android:layout_marginRight="10dp"
-			android:tag="uploader5"
-			android:src="@drawable/noname"
-			android:visibility="gone"
-		/>
 		<TextView
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
@@ -80,7 +58,7 @@
 	</LinearLayout>
 	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/viewUploaders"/>
 	<Button android:id="@+id/btnLike"
-	    android:text="@string/follow"  
+	    android:text="@string/bookmark"  
 	    style="@style/roundBtnLight.text"
 	    android:layout_alignParentRight="true"
 		android:layout_marginRight="15dp"
@@ -89,7 +67,7 @@
 	<ImageButton android:id="@+id/btnUnlike" 
 	    style="@style/roundBtnLight"
 	    android:background="@color/none"
-	    android:src="@drawable/followed"
+	    android:src="@drawable/starred_blue"
 	    android:layout_alignParentRight="true"
 		android:layout_marginRight="15dp"
 		android:layout_marginTop="18dp"

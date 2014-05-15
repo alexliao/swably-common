@@ -222,7 +222,7 @@
     <string name="bookmark">Bookmark</string>
     <string name="following_cap">FOLLOWING</string>
     <string name="followers_cap">FOLLOWERS</string>
-    <string name="starred_apps_cap">STARRED APPS</string>
+    <string name="starred_apps">Starred apps</string>
     <string name="claimed_apps_cap">CLAIMED APPS</string>
     <string name="skip">Skip</string>
     <string name="search">Search</string>
@@ -285,7 +285,7 @@
 
     <string name="following_apps">Following apps</string>
     <string name="following_users">Following people</string>
-    <string name="starred_posts">Starred posts</string>
+    <string name="starred_posts">Liked posts</string>
     
     <string name="thumbnail_hint">Tap picture to open</string>
     

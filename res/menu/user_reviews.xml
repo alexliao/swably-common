@@ -6,7 +6,7 @@
         />
     <item
         android:id="@+id/starredApps"
-        android:title="@string/following_apps"
+        android:title="@string/starred_apps"
         />
     <item
         android:id="@+id/following"
