@@ -137,15 +137,13 @@ public class ReviewActionHelper {
 	    		btnUnlike.setVisibility(View.GONE);
 	    	}
 		}
-		if(mReview.optJSONObject("app") == null){
-			viewAppBtn.setVisibility(View.GONE);
-			btnAddApp.setVisibility(View.VISIBLE);
-//			btnReply.setVisibility(View.GONE);
-		}else{
-			viewAppBtn.setVisibility(View.VISIBLE);
-			btnAddApp.setVisibility(View.GONE);
-//			btnReply.setVisibility(View.VISIBLE);
-		}
+//		if(mReview.optJSONObject("app") == null){
+//			viewAppBtn.setVisibility(View.GONE);
+//			btnAddApp.setVisibility(View.VISIBLE);
+//		}else{
+//			viewAppBtn.setVisibility(View.VISIBLE);
+//			btnAddApp.setVisibility(View.GONE);
+//		}
 	}
 
 	static public interface ViewHolder{

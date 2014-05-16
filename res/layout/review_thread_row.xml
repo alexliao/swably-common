@@ -70,7 +70,7 @@
 				android:layout_width="fill_parent"
 				android:layout_weight="1"
 			/>
-			<ImageView android:id="@+id/imgQuestion"
+<!-- 			<ImageView android:id="@+id/imgQuestion"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:src="@drawable/question"
@@ -78,34 +78,43 @@
 			    android:layout_marginTop="3dp"
 			    android:layout_marginBottom="10dp"
 			    />
-		    		    
+ -->		    		    
 		</LinearLayout>
-		<ImageView
-		    android:id="@+id/imgAppIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-		    android:layout_marginRight="@dimen/padding"
+		<LinearLayout android:id="@+id/viewApp"
+		    android:orientation="horizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
 		    android:layout_toRightOf="@id/avatar"
 		    android:layout_below="@id/viewContent"
-		    android:clickable="true"
-		    />
-	    <TextView android:id="@+id/txtAppName" 
-			style="@style/name"
-			android:singleLine="true"
-			android:layout_toRightOf="@id/imgAppIcon"
-			android:layout_alignTop="@id/imgAppIcon"
-		/>
-		<TextView android:id="@+id/txtAppVersion" 
-			style="@style/content"
-			android:singleLine="true"
-			android:layout_toRightOf="@id/imgAppIcon"
-			android:layout_below="@id/txtAppName"
-			android:visibility="gone"
-		/>
+		    >
+			<ImageView
+			    android:id="@+id/imgAppIcon"
+	            android:layout_width="40dp"
+	            android:layout_height="40dp"
+			    android:layout_marginRight="@dimen/padding"
+			    android:clickable="true"
+			    />
+		    <TextView android:id="@+id/txtAppName" 
+				style="@style/name"
+				android:layout_width="fill_parent"
+				android:layout_weight="1"
+				android:singleLine="true"
+			    android:layout_marginRight="10dp"
+			/>
+			<TextView android:id="@+id/txtAppVersion" 
+				style="@style/content"
+				android:singleLine="true"
+				android:visibility="gone"
+			/>
+			<include android:id="@+id/viewAppBtn" 
+			    layout="@layout/app_tribtn_text_small" 
+			    />
+		</LinearLayout>
 	</RelativeLayout>	
-	<ImageView android:id="@+id/btnTriangle" style="@style/btnTriangle" android:layout_alignBottom="@id/row" />
+<!-- 	<ImageView android:id="@+id/btnTriangle" style="@style/btnTriangle" android:layout_alignBottom="@id/row" /> -->
 	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" android:layout_marginLeft="@dimen/padding" android:layout_marginRight="@dimen/padding"/>
-	<FrameLayout android:id="@+id/inplacePanel" style="@style/inplacePanel" android:layout_below="@id/row" >
+<!-- 	<FrameLayout android:id="@+id/inplacePanel" style="@style/inplacePanel" android:layout_below="@id/row" >
 		<include layout="@layout/comment_inplace_actions" />
 	</FrameLayout>
-</RelativeLayout>
+ --> 
+ </RelativeLayout>

@@ -490,13 +490,14 @@
 	</style>
 
 	<style name="frameBtn">
-   		<item name="android:layout_width">wrap_content</item>
-   		<item name="android:layout_height">wrap_content</item>
-		<item name="android:gravity">center</item>
+   		<item name="android:layout_width">95dp</item>
+   		<item name="android:layout_height">25dp</item>
+   		<item name="android:gravity">center</item>
    		<item name="android:background">@drawable/frame_btn</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">false</item>
 		<item name="android:textColor">@color/frame_btn</item>
+		<item name="android:textSize">16sp</item>
 	</style>
 	<style name="frameBtn.small">
    		<item name="android:layout_width">65dp</item>
@@ -507,11 +508,12 @@
    		<item name="android:layout_width">fill_parent</item>
    		<item name="android:layout_height">fill_parent</item>
    		<item name="android:layout_weight">1</item>
-		<item name="android:gravity">left</item>
+		<item name="android:gravity">center</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">false</item>
-		<item name="android:textColor">@color/hover_blue</item>
-		<item name="android:textSize">18sp</item>
 	</style>
-		    
+    <style name="streamBtn.left">
+		<item name="android:gravity">left</item>
+	</style>
+    		    
 </resources>

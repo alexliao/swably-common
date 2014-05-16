@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	>
+	<LinearLayout android:id="@+id/btnReply" style="@style/streamBtn.left">
+		<ImageView android:id="@+id/btnReply" android:src="@drawable/reply_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/btnStarPost" style="@style/streamBtn.left" >
+		<ImageView android:src="@drawable/heart_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/btnUnstarPost" style="@style/streamBtn.left" android:visibility="gone" >
+		<ImageView android:src="@drawable/hearted_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/btnShareReview" style="@style/streamBtn.left" >
+		<ImageView android:src="@drawable/share_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+</LinearLayout>

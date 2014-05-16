@@ -13,7 +13,7 @@
     <color name="panel">#235b98</color>
     <color name="divider">#cccccc</color>
     <color name="action_count">#02779e</color>
-    <color name="desc">#aaaaaa</color>
+    <color name="desc">#cccccc</color>
 	
     <color name="header">#222222</color>
     <color name="title">#ffffff</color>

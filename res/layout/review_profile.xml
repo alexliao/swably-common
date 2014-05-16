@@ -29,8 +29,9 @@
 
         </RelativeLayout>
 							
-		<LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+<!-- 		<LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
 			<include layout="@layout/comment_inplace_actions" />
 		</LinearLayout>
-	</LinearLayout>
+ -->
+ 	</LinearLayout>
 </RelativeLayout>

@@ -133,21 +133,21 @@ public class ReviewProfile extends WithHeaderActivity {
 
         if(mReview.optJSONObject("app") != null){
 	//		tribtn.setStatus(new App(mReview.optJSONObject("app")));
-			appHeader.setApp(new App(mReview.optJSONObject("app")));
-			appHeader.setAppFromCache(appHeader.getAppId());
-		
-			final View bottomBar = findViewById(R.id.bottomBar);
-	        appActionHelper.init(bottomBar, null);
-	        appActionHelper.bind();
+//			appHeader.setApp(new App(mReview.optJSONObject("app")));
+//			appHeader.setAppFromCache(appHeader.getAppId());
+//		
+//			final View bottomBar = findViewById(R.id.bottomBar);
+//	        appActionHelper.init(bottomBar, null);
+//	        appActionHelper.bind();
 
         }else{
      	   TextView txtTitle = (TextView) findViewById(R.id.txtTitle);
      	   txtTitle.setText(getString(R.string.a_request));
         }
         
-        reviewActionHelper = new ReviewActionHelper(this, mReview);
-        reviewActionHelper.init(findViewById(R.id.viewBody));
-		reviewActionHelper.bind();
+//        reviewActionHelper = new ReviewActionHelper(this, mReview);
+//        reviewActionHelper.init(findViewById(R.id.viewBody));
+//		reviewActionHelper.bind();
 		
     }
     

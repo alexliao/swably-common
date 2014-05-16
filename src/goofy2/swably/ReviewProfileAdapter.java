@@ -95,7 +95,8 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 			iv.setImageResource(R.drawable.noname);
 			new AsyncImageLoader(mContext, iv, 0).loadUrl(url);
 
-			viewUser.setOnClickListener(new View.OnClickListener(){
+			Utils.setTouchAnim(mContext, iv);
+			iv.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v) {
 					mContext.openUser(user);
@@ -139,16 +140,13 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 
 			final App app = new App(review.optJSONObject("app"));
 			View viewApp = v.findViewById(R.id.viewApp);
-			View dividerApp = v.findViewById(R.id.dividerApp);
-			View imgQuestion = v.findViewById(R.id.imgQuestion);
-//			View btnAdd = v.findViewById(R.id.btnAdd);
+			View viewAdd = v.findViewById(R.id.viewAdd);
+			View btnAddApp = v.findViewById(R.id.btnAddApp);
 			if(app.getJSON() == null){
+				viewAdd.setVisibility(View.VISIBLE);
 				viewApp.setVisibility(View.GONE);
-				dividerApp.setVisibility(View.GONE);
-				imgQuestion.setVisibility(View.VISIBLE);
-//				btnAdd.setVisibility(View.VISIBLE);
 //				
-//				btnAdd.setOnClickListener(new View.OnClickListener(){
+//				btnAddApp.setOnClickListener(new View.OnClickListener(){
 //					@Override
 //					public void onClick(View v) {
 //						mContext.selectAppToReply(review, null);
@@ -156,10 +154,8 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 //				});
 				
 			}else{
+				viewAdd.setVisibility(View.GONE);
 				viewApp.setVisibility(View.VISIBLE);
-				dividerApp.setVisibility(View.VISIBLE);
-				imgQuestion.setVisibility(View.GONE);
-//				btnAdd.setVisibility(View.GONE);
 				
 				iv = (ImageView) v.findViewById(R.id.icon);
 				if(app.getIcon() != null){
@@ -172,8 +168,9 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 				tv = (TextView) v.findViewById(R.id.txtAppSize);
 				tv.setText(String.format(mContext.getString(R.string.app_size_short), app.getCloudSize()/1048576.0));
 				tv.setTypeface(mContext.mLightFont);
-	
-				viewApp.setOnClickListener(new View.OnClickListener(){
+				
+				Utils.setTouchAnim(mContext, iv);
+				iv.setOnClickListener(new View.OnClickListener(){
 					@Override
 					public void onClick(View v) {
 						mContext.openApp(app.getJSON());
@@ -182,17 +179,15 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 				});
 			}
 			
+			View viewImage = v.findViewById(R.id.viewImage);
 			final ImageView imgThumbnail = (ImageView)v.findViewById(R.id.imgThumbnail);
 			final ImageView imgImage = (ImageView)v.findViewById(R.id.imgImage);
 			final View loadingImage = v.findViewById(R.id.loadingImage);
 			final View txtThumbnailHint = v.findViewById(R.id.txtThumbnailHint);
-			View dividerImage = v.findViewById(R.id.dividerImage);
+//			View dividerImage = v.findViewById(R.id.dividerImage);
 			final String imageUrl = review.optString("image", null);
 			if(imageUrl != null){
-				imgThumbnail.setVisibility(View.VISIBLE);
-				imgImage.setVisibility(View.VISIBLE);
-				loadingImage.setVisibility(View.VISIBLE);
-				dividerImage.setVisibility(View.VISIBLE);
+				viewImage.setVisibility(View.VISIBLE);
 
 				String thumbnailUrl = review.optString("thumbnail");
 				new AsyncImageLoader(mContext, imgThumbnail, 1).setCallback(new Runnable(){
@@ -239,15 +234,28 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 				});
 
 			}else{
-				imgThumbnail.setVisibility(View.GONE);
-				imgImage.setVisibility(View.GONE);
-				loadingImage.setVisibility(View.GONE);
-				dividerImage.setVisibility(View.GONE);
+				viewImage.setVisibility(View.GONE);
+//				dividerImage.setVisibility(View.GONE);
 			}
 			
 			if(Utils.getInreplytoUser(review) != null) bindInreplyto(v, review);
 			
 			bindWatchers(v, review);
+
+			// bind tribtn
+	    	if(app.getJSON() != null){
+				AppHeader header = new AppHeader(mContext);
+				header.setApp(app);
+				header.setAppFromCache(header.getAppId());
+		    	AppTribtnText tribtn = new AppTribtnText();
+		    	tribtn.init(mContext, v, null);
+		    	tribtn.setStatus(header.getApp());
+	    	}
+	    	
+	    	// bind review actions
+			ReviewActionHelper reviewActionHelper = new ReviewActionHelper(mContext, review);
+	        reviewActionHelper.init(v);
+			reviewActionHelper.bind();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
