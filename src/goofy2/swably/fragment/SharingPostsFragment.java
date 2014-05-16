@@ -9,7 +9,7 @@ public class SharingPostsFragment extends PeopleReviewsFragment{
 
 	@Override
 	protected String getAPI() {
-		return "/comments/shares";
+		return "/comments/posts";
 	}
 
     @Override

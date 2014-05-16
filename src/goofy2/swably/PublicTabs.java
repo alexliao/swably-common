@@ -19,11 +19,11 @@ public class PublicTabs extends PeopleReviews
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         
-		mPagerAdapter.addTab("shares", getString(R.string.menu_shares), SharingPostsFragment.class, null);
+		mPagerAdapter.addTab("posts", getString(R.string.menu_posts), SharingPostsFragment.class, null);
 		mPagerAdapter.addTab("all", getString(R.string.all), PublicReviewsFragment.class, null);
-		mPagerAdapter.addTab("requests", getString(R.string.menu_requests), HelpRequestsFragment.class, null);
+//		mPagerAdapter.addTab("requests", getString(R.string.menu_requests), HelpRequestsFragment.class, null);
 
-		mViewPager.setCurrentItem(1);
+		mViewPager.setCurrentItem(0);
     }
 
 

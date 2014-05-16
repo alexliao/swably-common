@@ -264,7 +264,7 @@
     <string name="add_an_app">Add an app</string>
     <string name="menu_requests">Requests</string>
     <string name="menu_shares">Sharing</string>
-	<string name="replies_count_x">%d replies</string>   
+    <string name="replies_count_x">%d replies</string>   
     
     <string name="add_watcher">+ Attention</string>
     <string name="mention_title">ATTENTION</string>
@@ -302,5 +302,6 @@
     <string name="btn_stop">Disabled</string>
     <string name="btn_add_app">Add an app</string>
     
+    <string name="menu_posts">Posts</string>
     
 </resources>

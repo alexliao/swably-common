@@ -22,7 +22,7 @@
             <TextView
                 android:id="@+id/txtTitle"
                 style="@style/title"
-                android:text="@string/menu_shares" />
+                android:text="@string/menu_posts" />
 
 			<include android:id="@+id/loading"	layout="@layout/loading" />
             <ImageButton
