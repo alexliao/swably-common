@@ -19,7 +19,7 @@
 		android:layout_height="wrap_content"
 		android:paddingLeft="@dimen/padding"
 		android:paddingRight="@dimen/padding"
-		android:paddingBottom="10dp"
+		android:paddingBottom="5dp"
 		>
 		<goofy2.utils.Avatar android:id="@+id/avatar"
 		    android:background="@drawable/noname"
@@ -156,7 +156,8 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 		android:layout_marginLeft="75dp"
-	    android:layout_marginBottom="10dp"
+		android:layout_marginRight="40dp"
+	    android:layout_marginBottom="5dp"
 	    >
 		<include layout="@layout/comment_actions_small" />
 	</FrameLayout>
