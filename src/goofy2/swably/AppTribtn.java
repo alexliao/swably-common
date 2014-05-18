@@ -205,10 +205,12 @@ public class AppTribtn {
 			if(downloaded.length() == 0 || !app.getEnabled()){
 				btnDownload.setVisibility(View.VISIBLE);
 				ImageView imgDownload = (ImageView) btnDownload.findViewById(R.id.imgDownload);
-				if(app.getEnabled())
-					imgDownload.setImageResource(R.drawable.hover_download);
-				else
-					imgDownload.setImageResource(R.drawable.hover_stop);
+				if(imgDownload != null){
+					if(app.getEnabled())
+						imgDownload.setImageResource(R.drawable.hover_download);
+					else
+						imgDownload.setImageResource(R.drawable.hover_stop);
+				}
 				btnUpload.setVisibility(View.GONE);
 				btnPlay.setVisibility(View.GONE);
 				btnInstall.setVisibility(View.GONE);
