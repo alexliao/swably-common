@@ -5,6 +5,9 @@ import goofy2.swably.data.App;
 
 import java.io.File;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,18 +20,20 @@ import android.widget.TextView;
 public class AppTribtnText {
 	protected CloudActivity mActivity;
 	protected App mApp;
+	JSONObject insideReview;
 	protected TextView btnDownload;
 	protected TextView btnUpload;
 	protected TextView btnPlay;
 	protected TextView btnInstall;
 	
-	public void init(final CloudActivity activity, View container, App app){
-		init(activity, container, app, null);
+	public void init(final CloudActivity activity, View container, App app, JSONObject review){
+		init(activity, container, app, review, null);
 	}
 
-	public void init(final CloudActivity activity, View container, App app, final Runnable callback){
+	public void init(final CloudActivity activity, View container, App app, JSONObject review, final Runnable callback){
 		mActivity = activity;
 		mApp = app;
+		insideReview = review;
 		ViewHolder holder = (ViewHolder) container.getTag();
 		
 		if(holder == null) btnDownload = (TextView) container.findViewById(R.id.btnDownload);
@@ -37,6 +42,12 @@ public class AppTribtnText {
 			@Override
 			public void onClick(View v) {
 				if(mApp.getEnabled()){
+					if(null != insideReview)
+						try {
+							mApp.getJSON().put("review_id", insideReview.optInt("id"));
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
 					Utils.startDownloading(mActivity, mApp);
 				}else{
 					Utils.showToast(mActivity, mActivity.getString(R.string.downloading_disabled_prompt));

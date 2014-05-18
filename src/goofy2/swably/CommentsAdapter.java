@@ -135,7 +135,7 @@ public class CommentsAdapter extends CloudBaseAdapter {
 			header.setApp(app);
 			header.setAppFromCache(header.getAppId());
 	    	AppTribtnText tribtn = new AppTribtnText();
-	    	tribtn.init(mContext, view, null);
+	    	tribtn.init(mContext, view, null, json);
 	    	tribtn.setStatus(header.getApp());
     	}
 	}

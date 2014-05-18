@@ -160,8 +160,10 @@ public class DownloaderEx extends Service {
 			Intent i = new Intent(Const.BROADCAST_DOWNLOAD_PROGRESS);
 			try {
 				if(app.getCloudApk() == null) throw new Exception("apk path is null");
-				URL url = new URL(app.getCloudApk() + "&" + Utils.getLoginParameters(DownloaderEx.this));
-				HttpURLConnection con = (HttpURLConnection)url.openConnection();
+				String url = app.getCloudApk();
+				if(app.getJSON().optInt("review_id") > 0) url += "&review_id=" + app.getJSON().optInt("review_id");
+				url += "&" + Utils.getLoginParameters(DownloaderEx.this);
+				HttpURLConnection con = (HttpURLConnection)(new URL(url)).openConnection();
 				InputStream in = con.getInputStream();
 				int totalSize = con.getContentLength();
 				FileOutputStream out = new FileOutputStream(tmpFile);

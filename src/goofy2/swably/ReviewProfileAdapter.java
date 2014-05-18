@@ -248,7 +248,7 @@ public class ReviewProfileAdapter extends ThreadCommentsAdapter {
 				header.setApp(app);
 				header.setAppFromCache(header.getAppId());
 		    	AppTribtnText tribtn = new AppTribtnText();
-		    	tribtn.init(mContext, v, null);
+		    	tribtn.init(mContext, v, null, review);
 		    	tribtn.setStatus(header.getApp());
 	    	}
 	    	
