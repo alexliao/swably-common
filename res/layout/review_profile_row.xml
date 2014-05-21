@@ -48,7 +48,7 @@
 				/>
 				<LinearLayout android:id="@+id/viewInreplyto"
 				    android:orientation="horizontal"
-					android:layout_width="150dp" 
+					android:layout_width="140dp" 
 					android:layout_height="wrap_content"
 					android:background="@drawable/row"
 					android:clickable="true"
