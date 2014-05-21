@@ -66,8 +66,8 @@ public class UploadApp extends WithHeaderActivity {
 //			tv.setTypeface(mHeaderFont);
 //		}
     	header.bindAppHeader(viewBack);
-    	findViewById(R.id.txtReviewsCount).setVisibility(View.GONE);
-    	findViewById(R.id.txtSize).setVisibility(View.VISIBLE);
+//    	findViewById(R.id.txtReviewsCount).setVisibility(View.GONE);
+//    	findViewById(R.id.txtSize).setVisibility(View.VISIBLE);
     	
     	tv = (TextView) findViewById(R.id.txtPrompt1);
     	tv.setText(String.format(getString(R.string.not_in_cloud), header.mApp.getName()));

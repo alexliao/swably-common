@@ -161,10 +161,18 @@ public class AppHeader {
 			tv.setTypeface(mActivity.mLightFont);
 		}
 
-		tv = (TextView)container.findViewById(R.id.txtReviewsCount);
+//		tv = (TextView)container.findViewById(R.id.txtReviewsCount);
+//		if(tv != null){
+//			int count = mApp.getReviewsCount();
+//			tv.setText(String.format(mActivity.getString(R.string.reviews_count), count));
+//			tv.setTypeface(mActivity.mLightFont);
+//		}
+
+		tv = (TextView)container.findViewById(R.id.txtDetails);
 		if(tv != null){
-			int count = mApp.getReviewsCount();
-			tv.setText(String.format(mActivity.getString(R.string.reviews_count), count));
+			long size = mApp.getCloudSize();
+			if(size == 0) size = mApp.getSize();
+			tv.setText(String.format(mActivity.getString(R.string.app_details_x), size/1048576.0, mApp.getVersionName()));
 			tv.setTypeface(mActivity.mLightFont);
 		}
 

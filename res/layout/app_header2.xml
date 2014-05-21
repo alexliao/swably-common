@@ -4,102 +4,177 @@
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	>
-	<include android:id="@+id/viewInfo" layout="@layout/app_info2" />
-	<LinearLayout android:id="@+id/viewUploaders"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:padding="@dimen/padding"
-	    android:orientation="horizontal"
-	    android:gravity="center_vertical"
-	    android:background="@drawable/row"
-	    android:layout_below="@id/viewInfo" 
-	    android:clickable="true"
-	    >
-		<goofy2.utils.Avatar
-			style="@style/avatar"
-			android:layout_width="24dp"
-			android:layout_height="24dp"
-			app:radius="12"
-			android:layout_centerHorizontal="true"
-			android:layout_marginRight="10dp"
-			android:tag="uploader1"
-			android:src="@drawable/noname"
-			android:visibility="gone"
-		/>
-		<goofy2.utils.Avatar
-			style="@style/avatar"
-			android:layout_width="24dp"
-			android:layout_height="24dp"
-			app:radius="12"
-			android:layout_centerHorizontal="true"
-			android:layout_marginRight="8dp"
-			android:tag="uploader2"
-			android:src="@drawable/noname"
-			android:visibility="gone"
-		/>
-		<goofy2.utils.Avatar
-			style="@style/avatar"
-			android:layout_width="24dp"
-			android:layout_height="24dp"
-			app:radius="12"
-			android:layout_centerHorizontal="true"
-			android:layout_marginRight="10dp"
-			android:tag="uploader3"
-			android:src="@drawable/noname"
-			android:visibility="gone"
-		/>
-		<TextView
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="@string/recent_uploaders"
-		    android:textColor="@color/content"
-		    android:textSize="12sp"
-		    />
-	</LinearLayout>
-	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/viewUploaders"/>
-	<Button android:id="@+id/btnLike"
-	    android:text="@string/bookmark"  
-	    style="@style/roundBtnLight.text"
-	    android:layout_alignParentRight="true"
-		android:layout_marginRight="15dp"
-		android:layout_marginTop="18dp"
-	    />
-	<ImageButton android:id="@+id/btnUnlike" 
-	    style="@style/roundBtnLight"
-	    android:background="@color/none"
-	    android:src="@drawable/starred_blue"
-	    android:layout_alignParentRight="true"
-		android:layout_marginRight="15dp"
-		android:layout_marginTop="18dp"
-	    />
-	<LinearLayout android:id="@+id/viewEmpty"
+	<LinearLayout 
 	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-		android:visibility="gone"
-		android:layout_below="@id/bottomDivider"
-		>
-		<LinearLayout android:id="@+id/btnAdd"
+	    style="@style/fill"	    
+	    >
+		<include android:id="@+id/viewInfo" layout="@layout/app_info2" />
+		<LinearLayout 
 		    android:orientation="horizontal"
-			android:layout_width="fill_parent" 
-			android:layout_height="wrap_content"
-			android:padding="@dimen/padding"
-			android:background="@drawable/row"
-			android:clickable="true"
-			android:gravity="center_vertical"
-			>
-			<ImageView 
-				android:layout_width="32dp"
-				android:layout_height="32dp"
-				android:src="@drawable/add_pressed"
-				android:layout_marginRight="5dp"
-			/>
-			<TextView 
-				style="@style/name"
-				android:text="@string/add_a_review"
-			/>
+		    android:layout_width="fill_parent"
+		    android:layout_height="48dp" 
+		    >
+			<LinearLayout 
+			    android:orientation="vertical"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent" 
+			    android:layout_weight="1"
+			    android:gravity="center"
+			    >
+			    <TextView
+			        style="@style/desc"
+				    android:text="@string/posts"
+				    android:textAllCaps="true" 
+			        />
+			    <TextView android:id="@+id/txtPostsCount"
+			        style="@style/desc"
+			        />
+		    </LinearLayout>
+			<View style="@style/divider.vertical" />
+			<LinearLayout 
+			    android:orientation="vertical"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent" 
+			    android:layout_weight="1"
+			    android:gravity="center"
+			    >
+			    <TextView
+			        style="@style/desc"
+				    android:text="@string/starred"
+				    android:textAllCaps="true" 
+			        />
+			    <TextView android:id="@+id/txtStarredCount"
+			        style="@style/desc"
+			        />
+			</LinearLayout>
+			<View style="@style/divider.vertical" />
+			<LinearLayout 
+			    android:orientation="vertical"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent" 
+			    android:layout_weight="1"
+			    android:gravity="center"
+			    >
+			    <TextView
+			        style="@style/desc"
+				    android:text="@string/downloads"
+				    android:textAllCaps="true" 
+			        />
+			    <TextView android:id="@+id/txtDownloadsCount"
+			        style="@style/desc"
+			        />
+			</LinearLayout>
 		</LinearLayout>
-		<View android:id="@+id/dividerEmpty" style="@style/divider"/>
+		<View style="@style/divider" />
+		<LinearLayout android:id="@+id/viewActions" 
+		    android:orientation="horizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="48dp" 
+		    >
+			<LinearLayout android:id="@+id/btnReview" style="@style/streamBtn">
+				<ImageView android:src="@drawable/add_pressed" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/btnLike" style="@style/streamBtn">
+				<ImageView android:src="@drawable/star" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/btnUnlike" style="@style/streamBtn" android:visibility="gone">
+				<ImageView android:src="@drawable/starred" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/btnShare" style="@style/streamBtn">
+				<ImageView android:src="@drawable/share_pressed" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+			</LinearLayout>
+		</LinearLayout>
+		<View style="@style/divider" />
+		<LinearLayout android:id="@+id/viewUploaders"
+		    android:layout_width="fill_parent"
+		    android:layout_height="48dp"
+		    android:padding="@dimen/padding"
+		    android:orientation="horizontal"
+		    android:gravity="center_vertical"
+		    android:background="@drawable/row"
+		    android:clickable="true"
+		    android:visibility="gone"
+		    >
+			<goofy2.utils.Avatar
+				style="@style/avatar"
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				app:radius="12"
+				android:layout_centerHorizontal="true"
+				android:layout_marginRight="10dp"
+				android:tag="uploader1"
+				android:src="@drawable/noname"
+				android:visibility="gone"
+			/>
+			<goofy2.utils.Avatar
+				style="@style/avatar"
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				app:radius="12"
+				android:layout_centerHorizontal="true"
+				android:layout_marginRight="8dp"
+				android:tag="uploader2"
+				android:src="@drawable/noname"
+				android:visibility="gone"
+			/>
+			<goofy2.utils.Avatar
+				style="@style/avatar"
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				app:radius="12"
+				android:layout_centerHorizontal="true"
+				android:layout_marginRight="10dp"
+				android:tag="uploader3"
+				android:src="@drawable/noname"
+				android:visibility="gone"
+			/>
+			<TextView
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="@string/recent_uploaders"
+			    android:textColor="@color/content"
+			    android:textSize="12sp"
+			    />
+		</LinearLayout>
+		<View android:id="@+id/dividerUploaders" style="@style/divider" android:visibility="gone"/>
+		<LinearLayout android:id="@+id/viewEmpty"
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+			android:visibility="gone"
+			>
+			<LinearLayout android:id="@+id/btnAdd"
+			    android:orientation="horizontal"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:padding="@dimen/padding"
+				android:background="@drawable/row"
+				android:clickable="true"
+				android:gravity="center_vertical"
+				>
+				<ImageView 
+					android:layout_width="32dp"
+					android:layout_height="32dp"
+					android:src="@drawable/add_pressed"
+					android:layout_marginRight="5dp"
+				/>
+				<TextView 
+					style="@style/name"
+					android:text="@string/add_a_review"
+				/>
+			</LinearLayout>
+			<View android:id="@+id/dividerEmpty" style="@style/divider"/>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_marginRight="@dimen/padding" 
+	    android:layout_marginTop="24dp" 
+	    >
+		<include android:id="@+id/tribtn" 
+		    layout="@layout/app_tribtn_text_small_white" />
 	</LinearLayout>
 </RelativeLayout>
 	

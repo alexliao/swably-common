@@ -55,8 +55,10 @@ public class App {
 	// permenent status
 	public static final String IS_SHARED_BY_ME = "is_shared_by_me";
 	public static final String IS_LIKED = "is_liked";
-	public static final String REVIEWS_COUNT = "reviews_count";
+	public static final String POSTS_COUNT = "reviews_count";
 	private static final String UPLOADS_COUNT = "uploaders_count";
+	public static final String DOWNLOADS_COUNT = "downloads_count";
+	public static final String STARRED_COUNT = "likes_count";
 	//public static final String IS_CLOUDED = "is_clouded";
 	public static final String IS_SYSTEM = "is_system";
 	public static final String IS_SHAREABLE = "is_shareable";
@@ -78,7 +80,7 @@ public class App {
 			PackageInfo pi = pm.getPackageInfo(getPackage(), PackageManager.GET_META_DATA);
 			ret = pi.versionCode;
 		} catch (NameNotFoundException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return ret; 
 	}
@@ -90,7 +92,7 @@ public class App {
 			PackageInfo pi = pm.getPackageInfo(getPackage(), PackageManager.GET_SIGNATURES);
 			ret = getShortSignature(pi);
 		} catch (NameNotFoundException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return ret; 
 	}
@@ -196,11 +198,17 @@ public class App {
 		}
 		return ret;
 	}
-	public int getReviewsCount(){
-		return mJson.optInt(REVIEWS_COUNT, 0);
+	public int getPostsCount(){
+		return mJson.optInt(POSTS_COUNT, 0);
 	}
 	public int getUploadsCount(){
 		return mJson.optInt(UPLOADS_COUNT, 0);
+	}
+	public int getDownloadsCount(){
+		return mJson.optInt(DOWNLOADS_COUNT, 0);
+	}
+	public int getStarredCount(){
+		return mJson.optInt(STARRED_COUNT, 0);
 	}
 
 	public App(){

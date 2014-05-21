@@ -173,8 +173,8 @@ public class DownloadingApp extends WithHeaderActivity {
 //			tv.setTypeface(mHeaderFont);
 //		}
     	header.bindAppHeader(viewBack);
-    	findViewById(R.id.txtReviewsCount).setVisibility(View.GONE);
-    	findViewById(R.id.txtSize).setVisibility(View.VISIBLE);
+//    	findViewById(R.id.txtReviewsCount).setVisibility(View.GONE);
+//    	findViewById(R.id.txtSize).setVisibility(View.VISIBLE);
     }
 
 //	protected void notifyQueued(App app){

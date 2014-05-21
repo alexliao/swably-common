@@ -106,12 +106,12 @@ public class AppHistoryFragment extends CloudListFragment {
     protected void bind(View v){
     	if(v == null) return; 
 		header.bindAppHeader(v);
-		TextView tv = (TextView)v.findViewById(R.id.txtReviewsCount);
-		if(tv != null){
-			int count = header.getApp().getUploadsCount();
-			tv.setText(String.format(a().getString(R.string.uploads_count), count));
-			tv.setTypeface(ca().mLightFont);
-		}
+//		TextView tv = (TextView)v.findViewById(R.id.txtReviewsCount);
+//		if(tv != null){
+//			int count = header.getApp().getUploadsCount();
+//			tv.setText(String.format(a().getString(R.string.uploads_count), count));
+//			tv.setTypeface(ca().mLightFont);
+//		}
 		
     }
 	

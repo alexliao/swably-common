@@ -136,7 +136,6 @@
     <string name="installed_apps">Installed</string>
     <string name="claimed">Claimed</string>
     <string name="claimed_count">%d claimed</string>
-    <string name="starred">Starred Apps</string>
     <string name="people">People</string>
     <string name="starred_count">%d starred</string>
     <string name="a_review">A POST</string>
@@ -303,5 +302,9 @@
     <string name="btn_add_app">Add an app</string>
     
     <string name="menu_posts">Posts</string>
+    <string name="app_details_x" formatted="false">Size %.1fM, Version %s</string>
+    <string name="posts">Posts</string>
+    <string name="downloads">Downloads</string>
+    <string name="starred">Starred</string>
     
 </resources>

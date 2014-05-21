@@ -163,7 +163,7 @@
 		<item name="android:shadowDy">1</item>
 		<item name="android:shadowRadius">1</item>
     </style>
-		<style name="content">
+	<style name="content">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textSize">16sp</item>
@@ -402,7 +402,12 @@
    		<item name="android:layout_height">1dp</item>
    		<item name="android:background">@color/divider</item>
 	</style>
-	<style name="btnTriangle">
+    <style name="divider.vertical">
+   		<item name="android:orientation">vertical</item>
+        <item name="android:layout_width">1dp</item>
+   		<item name="android:layout_height">fill_parent</item>
+	</style>
+    <style name="btnTriangle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:src">@drawable/btn_triangle</item>
@@ -504,7 +509,11 @@
    		<item name="android:layout_height">20dp</item>
 		<item name="android:textSize">9sp</item>
    	</style>
-    <style name="streamBtn">
+	<style name="frameBtn.small.white">
+   		<item name="android:background">@drawable/frame_btn_white</item>
+		<item name="android:textColor">@color/frame_btn_white</item>
+	</style>
+	<style name="streamBtn">
    		<item name="android:layout_width">fill_parent</item>
    		<item name="android:layout_height">fill_parent</item>
    		<item name="android:layout_weight">1</item>

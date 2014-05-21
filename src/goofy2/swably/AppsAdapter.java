@@ -154,7 +154,7 @@ public class AppsAdapter extends CloudInplaceActionsAdapter {
 			
 			tv = holder.txtReviewsCount;
 			tv.setTypeface(mContext.mLightFont);
-			int c = app.getReviewsCount();
+			int c = app.getPostsCount();
 			if(c > 0){
 				tv.setVisibility(View.VISIBLE);
 				tv.setText(""+c);

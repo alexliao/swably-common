@@ -128,8 +128,8 @@ public class AppAboutFragment extends CloudFragment {
 //		tv = (TextView)v.findViewById(R.id.txtAppName);
 //		tv.setText(app.getName());
 		header.bindAppHeader(v);
-    	v.findViewById(R.id.txtReviewsCount).setVisibility(View.GONE);
-    	v.findViewById(R.id.txtSize).setVisibility(View.VISIBLE);
+//    	v.findViewById(R.id.txtReviewsCount).setVisibility(View.GONE);
+//    	v.findViewById(R.id.txtSize).setVisibility(View.VISIBLE);
 
 //		View btnReport = v.findViewById(R.id.btnReport);
 //		btnReport.setOnClickListener(new View.OnClickListener() {

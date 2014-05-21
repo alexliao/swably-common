@@ -9,7 +9,6 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:paddingBottom="48dp"
         >
 		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
 			<ImageButton  android:id="@+id/btnMenu"	android:src="@drawable/menu" style="@style/titleBtn"/>
@@ -27,13 +26,4 @@
         <RelativeLayout android:id="@+id/fragment" style="@style/fill" >
 	    </RelativeLayout>
     </LinearLayout>
-	<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
-		<LinearLayout android:id="@+id/btnReview" android:orientation="vertical" style="@style/inplaceBtn">
-			<ImageView android:src="@drawable/hover_add" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-		</LinearLayout>
-		<include android:id="@+id/tribtn" layout="@layout/app_tribtn4" />
-		<LinearLayout android:id="@+id/btnShare" android:orientation="vertical" style="@style/inplaceBtn">
-			<ImageView android:src="@drawable/hover_share" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-		</LinearLayout>
-	</LinearLayout>
 </goofy2.utils.RevealLayout>

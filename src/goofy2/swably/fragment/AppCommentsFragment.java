@@ -136,7 +136,28 @@ public class AppCommentsFragment extends CloudCommentsFragment {
     protected void bind(View v){
     	if(v == null) return; 
 		header.bindAppHeader(v);
+
 		
+		TextView tv;
+		int count;
+		
+		tv = (TextView)v.findViewById(R.id.txtPostsCount);
+		count = header.getApp().getPostsCount();
+		tv.setText(""+count);
+		tv.setTypeface(ca().mLightFont);
+		
+		tv = (TextView)v.findViewById(R.id.txtDownloadsCount);
+		count = header.getApp().getDownloadsCount();
+		tv.setText(""+count);
+		tv.setTypeface(ca().mLightFont);
+		
+		tv = (TextView)v.findViewById(R.id.txtStarredCount);
+		count = header.getApp().getStarredCount();
+		tv.setText(""+count);
+		tv.setTypeface(ca().mLightFont);
+		
+		
+		View dividerUploaders = v.findViewById(R.id.dividerUploaders);
 		View viewUploaders = v.findViewById(R.id.viewUploaders);
 		viewUploaders.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -148,6 +169,8 @@ public class AppCommentsFragment extends CloudCommentsFragment {
 		JSONArray uploaders = header.getApp().getJSON().optJSONArray("recent_uploaders");
 		if(uploaders != null){
 			for(int i=0; i<uploaders.length(); i++){
+				viewUploaders.setVisibility(View.VISIBLE);
+				dividerUploaders.setVisibility(View.VISIBLE);
 				JSONObject user = uploaders.optJSONObject(i);
 //				Log.d("", "uploader: " + "uploader"+(i+1));
 				ImageView iv = (ImageView) v.findViewWithTag("uploader"+(i+1));
@@ -214,8 +237,8 @@ public class AppCommentsFragment extends CloudCommentsFragment {
 			if(mData != null){
 				App app = new App(new JSONObject(mData).optJSONObject("app"));
 				ca().cacheData(app.getJSON().toString(), AppProfile.cacheId(app.getCloudId()));
-				header.setApp(app);
-				bind(getView());
+//				header.setApp(app);
+//				bind(getView());
 //				mCallback.onRefresh(app);
 				Intent i = new Intent(Const.BROADCAST_REFRESH_APP);
 				i.putExtra(Const.KEY_ID, app.getCloudId());

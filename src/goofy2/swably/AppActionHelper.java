@@ -63,7 +63,7 @@ public class AppActionHelper {
 		if(holder == null) btnLike = container.findViewById(R.id.btnLike);
 		else btnLike = holder.getBtnLike();
 		if(btnLike != null) {
-			((TextView)btnLike).setTypeface(mActivity.mNormalFont);
+//			((TextView)btnLike).setTypeface(mActivity.mNormalFont);
 			btnLike.setOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View v) {
@@ -77,19 +77,24 @@ public class AppActionHelper {
 	//							if(callback != null) callback.run();
 	//						}
 	//					});
-						btnUnlike.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.round_btn_light));
-						mActivity.transitWidth(btnLike, btnUnlike, new Runnable(){
-							@Override
-							public void run() {
-								btnUnlike.setBackgroundColor(mActivity.getResources().getColor(R.color.none));
-							}
-						});
+//						btnUnlike.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.round_btn_light));
+//						mActivity.transitWidth(btnLike, btnUnlike, new Runnable(){
+//							@Override
+//							public void run() {
+//								btnUnlike.setBackgroundColor(mActivity.getResources().getColor(R.color.none));
+//							}
+//						});
 						Utils.starApp(mActivity, app.getCloudId(), true, null);
 						app.getJSON().put(App.IS_LIKED, true);
+						app.getJSON().put(App.STARRED_COUNT, app.getStarredCount() + 1);
 						mHeader.setApp(app);
 						// cache user for following status
 						mActivity.cacheData(app.getJSON().toString(), AppProfile.cacheId(app.getCloudId()));
-	//					bind();
+						bind();
+						// refresh status on other Activities
+						Intent i = new Intent(Const.BROADCAST_REFRESH_APP);
+						i.putExtra(Const.KEY_ID, app.getCloudId());
+						mActivity.sendBroadcast(i);
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
@@ -113,13 +118,18 @@ public class AppActionHelper {
 //							if(callback != null) callback.run();
 //						}
 //					});
-					mActivity.transitWidth(btnUnlike, btnLike, null);
+//					mActivity.transitWidth(btnUnlike, btnLike, null);
 					Utils.starApp(mActivity, app.getCloudId(), false, null);
 					app.getJSON().put(App.IS_LIKED, false);
+					app.getJSON().put(App.STARRED_COUNT, app.getStarredCount() - 1);
 					mHeader.setApp(app);
 					// cache user for following status
 					mActivity.cacheData(app.getJSON().toString(), AppProfile.cacheId(app.getCloudId()));
-//					bind();
+					bind();
+					// refresh status on other Activities
+					Intent i = new Intent(Const.BROADCAST_REFRESH_APP);
+					i.putExtra(Const.KEY_ID, app.getCloudId());
+					mActivity.sendBroadcast(i);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

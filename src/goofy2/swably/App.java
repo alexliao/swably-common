@@ -118,8 +118,8 @@ public class App extends WithHeaderActivity
     }
 
     public void bind() {
-		TextView tv = (TextView)findViewById(R.id.txtTitle);
-		tv.setText(header.getApp().getName());
+//		TextView tv = (TextView)findViewById(R.id.txtTitle);
+//		tv.setText(header.getApp().getName());
     	actionHelper.bind();
 	}
 
