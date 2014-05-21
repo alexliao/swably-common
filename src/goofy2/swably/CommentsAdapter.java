@@ -312,7 +312,7 @@ public class CommentsAdapter extends CloudBaseAdapter {
 			holder.imgReply1.setVisibility(View.GONE);
 			holder.imgReply2.setVisibility(View.GONE);
 			holder.imgReply3.setVisibility(View.GONE);
-//			holder.txtReplies.setVisibility(View.GONE);
+//			holder.txtRepliesCount.setVisibility(View.GONE);
 			if(repliesCount >= 1){
 				holder.imgReply1.setVisibility(View.VISIBLE);
 				holder.imgReply1.setImageResource(R.drawable.bubble);
@@ -328,10 +328,10 @@ public class CommentsAdapter extends CloudBaseAdapter {
 				holder.imgReply3.setImageResource(R.drawable.bubble);
 				new AsyncImageLoader(mContext, holder.imgReply3, mPosition).setThreadPool(mLoadImageThreadPool).loadUrl(appIcons.getString(3-1));
 			}
-			if(repliesCount >= 4){
-//				holder.txtReplies.setVisibility(View.VISIBLE);
-//				holder.txtReplies.setText(String.format(mContext.getString(R.string.replies_count_x), repliesCount));
-			}
+//			if(repliesCount >= 0){
+//				holder.txtRepliesCount.setVisibility(View.VISIBLE);
+//				holder.txtRepliesCount.setText(repliesCount);
+//			}
 		}
 	}
 	
@@ -375,7 +375,7 @@ public class CommentsAdapter extends CloudBaseAdapter {
 		holder.imgReply1 = (ImageView) convertView.findViewById(R.id.imgReply1);
 		holder.imgReply2 = (ImageView) convertView.findViewById(R.id.imgReply2);
 		holder.imgReply3 = (ImageView) convertView.findViewById(R.id.imgReply3);
-		holder.txtReplies = (TextView) convertView.findViewById(R.id.txtReplies);
+		holder.txtRepliesCount = (TextView) convertView.findViewById(R.id.txtRepliesCount);
 		return holder;
 	}
 	
@@ -406,7 +406,7 @@ public class CommentsAdapter extends CloudBaseAdapter {
 		ImageView imgReply1;
 		ImageView imgReply2;
 		ImageView imgReply3;
-		TextView txtReplies;
+		TextView txtRepliesCount;
 		@Override
 		public View getBtnDownload() {
 			return btnDownload;
@@ -454,6 +454,10 @@ public class CommentsAdapter extends CloudBaseAdapter {
 		@Override
 		public View getBtnAddApp() {
 			return btnAddApp;
+		}
+		@Override
+		public TextView getTxtRepliesCount() {
+			return txtRepliesCount;
 		}
 	}
 	

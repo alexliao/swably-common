@@ -522,7 +522,7 @@
 		<item name="android:focusable">false</item>
 	</style>
     <style name="streamBtn.left">
-		<item name="android:gravity">left</item>
+		<item name="android:gravity">left|center_vertical</item>
 	</style>
     		    
 </resources>

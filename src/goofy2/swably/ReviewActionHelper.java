@@ -5,6 +5,7 @@ import goofy2.swably.AppTribtn.ViewHolder;
 import goofy2.swably.data.App;
 import goofy2.utils.ParamRunnable;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,6 +34,7 @@ public class ReviewActionHelper {
 	public View btnShareReview;
 	public View viewAppBtn;
 	public View btnAddApp;
+	public TextView txtRepliesCount;
 	
 	public ReviewActionHelper(final CloudActivity activity, JSONObject review){
 		mActivity = activity;
@@ -125,6 +127,10 @@ public class ReviewActionHelper {
 				if(callback != null) callback.run();
 			}
         });
+
+		if(holder == null) txtRepliesCount = (TextView) container.findViewById(R.id.txtRepliesCount);
+		else txtRepliesCount = holder.getTxtRepliesCount();
+	
 	}
 
 	public void bind() {
@@ -144,6 +150,23 @@ public class ReviewActionHelper {
 //			viewAppBtn.setVisibility(View.VISIBLE);
 //			btnAddApp.setVisibility(View.GONE);
 //		}
+		if(txtRepliesCount != null){
+			String belowStr = mReview.optString("below_json");
+			if(belowStr.equals("")) belowStr = "{}";
+			JSONObject belowJson;
+			try {
+				belowJson = new JSONObject(belowStr);
+				int repliesCount = belowJson.optInt("replies_count");
+				if(repliesCount > 0){
+					txtRepliesCount.setVisibility(View.VISIBLE);
+					txtRepliesCount.setText(""+repliesCount);
+				}else{
+					txtRepliesCount.setVisibility(View.GONE);
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	static public interface ViewHolder{
@@ -153,5 +176,6 @@ public class ReviewActionHelper {
 		View getBtnShareReview();
 		View getViewAppBtn();
 		View getBtnAddApp();
+		TextView getTxtRepliesCount();
 	}
 }
