@@ -94,7 +94,7 @@ public class FeedsFragment extends CloudListFragment {
 	}
 
     static public int getLastReadTime(Context context){
-		String strTime = Utils.getUserPrefString(context, Utils.getCurrentUserId(context) + "lastReadTime", "0");
+		String strTime = Utils.getUserPrefString(context, Utils.getCurrentUserId(context) + "lastReadTime", ""+System.currentTimeMillis()/1000);
 		return Integer.parseInt(strTime);
 	}
     
