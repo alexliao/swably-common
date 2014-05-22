@@ -308,5 +308,6 @@
     <string name="starred">Starred</string>
     <string name="user_details_x" formatted="false">%d Posts   %d Uploads</string>
     <string name="hearted">Hearted</string>
+    <string name="conversation">Conversation</string>
     
 </resources>
