@@ -260,7 +260,8 @@ public class StartBase extends WithHeaderActivity {
 		    		setCurrentUser(mRet);
 		    		saveSignedIn(mRet.optString("name"), null);
 					sendBroadcast(new Intent(Const.BROADCAST_FINISH));
-		    		Utils.goHome(StartBase.this);
+//		    		Utils.goHome(StartBase.this);
+			    	startActivity(new Intent(StartBase.this, GuideSnsFriends.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 		    		finish();
 		    	}else{
 					Utils.alert(StartBase.this, mErr);

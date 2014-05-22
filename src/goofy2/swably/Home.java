@@ -33,10 +33,10 @@ public class Home extends PublicTabs {
     	}, 10*1000); // delay execution
 		
 		JSONObject me = Utils.getCurrentUser(Home.this);
-		if(null != me && !me.optBoolean("guided")){
-	    	startActivity(new Intent(Home.this, GuideSnsFriends.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-			finish();
-		}
+//		if(null != me && !me.optBoolean("guided")){
+//	    	startActivity(new Intent(Home.this, GuideSnsFriends.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+//			finish();
+//		}
     }
 
 	protected void notifyNewVersion(){
