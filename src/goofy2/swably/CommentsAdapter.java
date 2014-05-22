@@ -376,6 +376,8 @@ public class CommentsAdapter extends CloudBaseAdapter {
 		holder.imgReply2 = (ImageView) convertView.findViewById(R.id.imgReply2);
 		holder.imgReply3 = (ImageView) convertView.findViewById(R.id.imgReply3);
 		holder.txtRepliesCount = (TextView) convertView.findViewById(R.id.txtRepliesCount);
+		holder.txtHeartedCount1 = (TextView) convertView.findViewById(R.id.txtHeartedCount1);
+		holder.txtHeartedCount2 = (TextView) convertView.findViewById(R.id.txtHeartedCount2);
 		return holder;
 	}
 	
@@ -407,6 +409,8 @@ public class CommentsAdapter extends CloudBaseAdapter {
 		ImageView imgReply2;
 		ImageView imgReply3;
 		TextView txtRepliesCount;
+		TextView txtHeartedCount1;
+		TextView txtHeartedCount2;
 		@Override
 		public View getBtnDownload() {
 			return btnDownload;
@@ -458,6 +462,14 @@ public class CommentsAdapter extends CloudBaseAdapter {
 		@Override
 		public TextView getTxtRepliesCount() {
 			return txtRepliesCount;
+		}
+		@Override
+		public TextView getTxtHeartedCount1() {
+			return txtHeartedCount1;
+		}
+		@Override
+		public TextView getTxtHeartedCount2() {
+			return txtHeartedCount2;
 		}
 	}
 	

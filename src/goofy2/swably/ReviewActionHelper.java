@@ -35,6 +35,8 @@ public class ReviewActionHelper {
 	public View viewAppBtn;
 	public View btnAddApp;
 	public TextView txtRepliesCount;
+	public TextView txtHeartedCount1;
+	public TextView txtHeartedCount2;
 	
 	public ReviewActionHelper(final CloudActivity activity, JSONObject review){
 		mActivity = activity;
@@ -130,6 +132,10 @@ public class ReviewActionHelper {
 
 		if(holder == null) txtRepliesCount = (TextView) container.findViewById(R.id.txtRepliesCount);
 		else txtRepliesCount = holder.getTxtRepliesCount();
+		if(holder == null) txtHeartedCount1 = (TextView) container.findViewById(R.id.txtHeartedCount1);
+		else txtHeartedCount1 = holder.getTxtHeartedCount1();
+		if(holder == null) txtHeartedCount2 = (TextView) container.findViewById(R.id.txtHeartedCount2);
+		else txtHeartedCount2 = holder.getTxtHeartedCount2();
 	
 	}
 
@@ -167,6 +173,19 @@ public class ReviewActionHelper {
 				e.printStackTrace();
 			}
 		}
+
+		if(txtHeartedCount1 != null && txtHeartedCount1 != null){
+			int heartedCount = mReview.optInt("digs_count");
+			if(heartedCount > 0){
+				txtHeartedCount1.setVisibility(View.VISIBLE);
+				txtHeartedCount1.setText(""+heartedCount);
+				txtHeartedCount2.setVisibility(View.VISIBLE);
+				txtHeartedCount2.setText(""+heartedCount);
+			}else{
+				txtHeartedCount1.setVisibility(View.GONE);
+				txtHeartedCount2.setVisibility(View.GONE);
+			}
+		}
 	}
 
 	static public interface ViewHolder{
@@ -177,5 +196,7 @@ public class ReviewActionHelper {
 		View getViewAppBtn();
 		View getBtnAddApp();
 		TextView getTxtRepliesCount();
+		TextView getTxtHeartedCount1();
+		TextView getTxtHeartedCount2();
 	}
 }

@@ -10,9 +10,11 @@
 	</LinearLayout>
 	<LinearLayout android:id="@+id/btnStarPost" style="@style/streamBtn.left" >
 		<ImageView android:src="@drawable/heart_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<TextView android:id="@+id/txtHeartedCount1" style="@style/desc" />
 	</LinearLayout>
 	<LinearLayout android:id="@+id/btnUnstarPost" style="@style/streamBtn.left" android:visibility="gone" >
 		<ImageView android:src="@drawable/hearted_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<TextView android:id="@+id/txtHeartedCount2" style="@style/desc" />
 	</LinearLayout>
 	<LinearLayout android:id="@+id/btnShareReview" style="@style/streamBtn.left" >
 		<ImageView android:src="@drawable/share_small" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
