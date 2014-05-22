@@ -88,8 +88,8 @@ public class User extends WithHeaderActivity {
     }
 
     public void bind() {
-		TextView tv = (TextView)findViewById(R.id.txtTitle);
-		tv.setText(header.getUser().optString("name"));
+//		TextView tv = (TextView)findViewById(R.id.txtTitle);
+//		tv.setText(header.getUser().optString("name"));
     }
 
     @Override
@@ -113,15 +113,15 @@ public class User extends WithHeaderActivity {
 	    if (item.getItemId() == R.id.starredApps) {
 			startActivity(new Intent(this, UserStarredApps.class).putExtra(Const.KEY_USER, header.getUser().toString()));
 	    	return true;
-	    }else if (item.getItemId() == R.id.starredPosts) {
-				startActivity(new Intent(this, UserStarredPosts.class).putExtra(Const.KEY_USER, header.getUser().toString()));
-		    	return true;
-	    }else if (item.getItemId() == R.id.following) {
-				startActivity(new Intent(this, UserFollowing.class).putExtra(Const.KEY_USER, header.getUser().toString()));
-		    	return true;
-	    }else if (item.getItemId() == R.id.followers) {
-			startActivity(new Intent(this, UserFollowers.class).putExtra(Const.KEY_USER, header.getUser().toString()));
-	    	return true;
+//	    }else if (item.getItemId() == R.id.starredPosts) {
+//				startActivity(new Intent(this, UserStarredPosts.class).putExtra(Const.KEY_USER, header.getUser().toString()));
+//		    	return true;
+//	    }else if (item.getItemId() == R.id.following) {
+//				startActivity(new Intent(this, UserFollowing.class).putExtra(Const.KEY_USER, header.getUser().toString()));
+//		    	return true;
+//	    }else if (item.getItemId() == R.id.followers) {
+//			startActivity(new Intent(this, UserFollowers.class).putExtra(Const.KEY_USER, header.getUser().toString()));
+//	    	return true;
 	    }else if (item.getItemId() == R.id.claimedApps) {
 			startActivity(new Intent(this, UserClaimedApps.class).putExtra(Const.KEY_USER, header.getUser().toString()));
 	    	return true;

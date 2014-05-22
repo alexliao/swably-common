@@ -8,8 +8,11 @@ import goofy2.swably.CommentsAdapter;
 import goofy2.swably.Const;
 import goofy2.swably.FollowBtn;
 import goofy2.swably.R;
+import goofy2.swably.UserFollowers;
+import goofy2.swably.UserFollowing;
 import goofy2.swably.UserHeader;
 import goofy2.swably.UserProfile;
+import goofy2.swably.UserStarredPosts;
 import goofy2.swably.UserUploadedApps;
 import goofy2.utils.AsyncImageLoader;
 import goofy2.utils.JSONUtils;
@@ -71,7 +74,44 @@ public class UserReviewsFragment extends CloudCommentsFragment {
 		header.bindUserHeader(v, false);
 //		followBar.bind();
 		followBtn.bind();
+
+		TextView tv;
+		int count;
 		
+		tv = (TextView)v.findViewById(R.id.txtFollowingCount);
+		count = header.getUser().optInt("friends_count");
+		tv.setText(""+count);
+		tv.setTypeface(ca().mLightFont);
+		v.findViewById(R.id.btnFollowing).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(a(), UserFollowing.class).putExtra(Const.KEY_USER, header.getUser().toString()));
+			}
+		});
+		
+		tv = (TextView)v.findViewById(R.id.txtFollowersCount);
+		count = header.getUser().optInt("followers_count");
+		tv.setText(""+count);
+		tv.setTypeface(ca().mLightFont);
+		v.findViewById(R.id.btnFollowers).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(a(), UserFollowers.class).putExtra(Const.KEY_USER, header.getUser().toString()));
+			}
+		});
+		
+		tv = (TextView)v.findViewById(R.id.txtHeartedCount);
+		count = header.getUser().optInt("digs_count");
+		tv.setText(""+count);
+		tv.setTypeface(ca().mLightFont);
+		v.findViewById(R.id.btnHearted).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(a(), UserStarredPosts.class).putExtra(Const.KEY_USER, header.getUser().toString()));
+			}
+		});
+		
+		View dividerUploadees = v.findViewById(R.id.dividerUploadees);
 		View viewUploadees = v.findViewById(R.id.viewUploadees);
 		viewUploadees.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -83,6 +123,8 @@ public class UserReviewsFragment extends CloudCommentsFragment {
 		JSONArray uploadees = header.getUser().optJSONArray("recent_uploadees");
 		if(uploadees != null){
 			for(int i=0; i<uploadees.length(); i++){
+				viewUploadees.setVisibility(View.VISIBLE);
+				dividerUploadees.setVisibility(View.VISIBLE);
 				JSONObject app = uploadees.optJSONObject(i);
 //				Log.d("", "uploadee: " + "uploadee"+(i+1));
 				ImageView iv = (ImageView) v.findViewWithTag("uploadee"+(i+1));

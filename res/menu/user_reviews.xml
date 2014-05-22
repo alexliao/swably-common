@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
+<!--     <item
         android:id="@+id/starredPosts"
         android:title="@string/starred_posts"
         />
-    <item
+ -->    <item
         android:id="@+id/starredApps"
         android:title="@string/starred_apps"
         />
-    <item
+<!--     <item
         android:id="@+id/following"
         android:title="@string/following_users"
         />
@@ -16,7 +16,7 @@
         android:id="@+id/followers"
         android:title="@string/followers"
         />
-    <item
+ -->    <item
         android:id="@+id/claimedApps"
         android:title="@string/claimed_apps"
         />

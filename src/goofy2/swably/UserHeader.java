@@ -148,12 +148,17 @@ public class UserHeader {
 		}
 
 
-		tv = (TextView)container.findViewById(R.id.txtReviewsCount);
+//		tv = (TextView)container.findViewById(R.id.txtReviewsCount);
+//		if(tv != null){ 
+//			tv.setText(String.format(mActivity.getString(R.string.reviews_count), getUser().optInt("reviews_count")));
+//			tv.setTypeface(mActivity.mLightFont);
+//		}
+		
+		tv = (TextView)container.findViewById(R.id.txtDetails);
 		if(tv != null){ 
-			tv.setText(String.format(mActivity.getString(R.string.reviews_count), getUser().optInt("reviews_count")));
+			tv.setText(String.format(mActivity.getString(R.string.user_details_x),  getUser().optInt("reviews_count"), getUser().optInt("uploadees_count")));
 			tv.setTypeface(mActivity.mLightFont);
 		}
-		
 
 		if(!getUser().isNull("banner")){
 			ImageView imgBanner = (ImageView)container.findViewById(R.id.imgBanner);

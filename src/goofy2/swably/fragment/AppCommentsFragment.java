@@ -11,6 +11,7 @@ import goofy2.swably.CommentsAdapter;
 import goofy2.swably.Const;
 import goofy2.swably.PostReview;
 import goofy2.swably.R;
+import goofy2.swably.UserFollowing;
 import goofy2.swably.Utils;
 import goofy2.swably.CloudCommentsActivity.ReviewAddedBroadcastReceiver;
 import goofy2.swably.R.id;

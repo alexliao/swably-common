@@ -138,7 +138,7 @@
     <string name="claimed_count">%d claimed</string>
     <string name="people">People</string>
     <string name="starred_count">%d starred</string>
-    <string name="a_review">A POST</string>
+    <string name="a_review">POST</string>
     <string name="add_a_review">Add a review</string>
     <string name="version">Version</string>
     <string name="version_cap">VERSION</string>
@@ -306,5 +306,7 @@
     <string name="posts">Posts</string>
     <string name="downloads">Downloads</string>
     <string name="starred">Starred</string>
+    <string name="user_details_x" formatted="false">%d Posts   %d Uploads</string>
+    <string name="hearted">Hearted</string>
     
 </resources>

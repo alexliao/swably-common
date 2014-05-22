@@ -1,76 +1,144 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff" 
     >
-
-	<ImageView
-	    android:id="@+id/imgBanner"
-	    android:layout_width="fill_parent"
-	    android:layout_height="122dp"
-	    android:scaleType="centerCrop"
-	    />
-
 	<RelativeLayout
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:paddingLeft="15dp"
-		android:paddingRight="15dp"
-		android:paddingTop="18dp"
-		>
-		<Button android:id="@+id/btnFollow"
-		    android:text="@string/follow"  
-		    style="@style/roundBtnLight.text"
-		    android:layout_alignParentRight="true"
-		    />
-		<ImageButton android:id="@+id/btnUnfollow" 
-		    style="@style/roundBtnLight"
-		    android:background="@color/none"
-		    android:src="@drawable/followed"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content" 
-		    android:layout_alignParentRight="true"
-		    />
-		<goofy2.utils.Avatar android:id="@+id/avatar"
-			style="@style/avatar"
-			app:radius="26"
-			android:layout_centerHorizontal="true"
-			android:layout_marginBottom="10dp"
-			android:clickable="true"
-		/>
-		<TextView android:id="@+id/txtUsername" 
-			style="@style/name.shadow"
-			android:textColor="@color/title"
-			android:textSize="20sp"
-			android:layout_below="@id/avatar"
-			android:layout_centerHorizontal="true"
-			android:visibility="gone"
-		/>
-		<TextView android:id="@+id/txtReviewsCount" 
-			style="@style/name.shadow"
-			android:textColor="@color/title"
-			android:textSize="20sp"
-			android:layout_below="@id/txtUsername"
-			android:layout_centerHorizontal="true"
-			android:layout_marginTop="-6dp"
-		/>
-		<ImageView android:id="@+id/iconSns"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:clickable="true"
-		    android:visibility="gone"
-		    />
-	</RelativeLayout>
-	<LinearLayout android:id="@+id/viewUploadees"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
+	    >
+		<ImageView
+		    android:id="@+id/imgBanner"
+		    android:layout_width="fill_parent"
+		    android:layout_height="160dp"
+		    android:scaleType="centerCrop"
+		    />
+	
+		<RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="15dp"
+			android:paddingRight="15dp"
+			android:paddingTop="18dp"
+			>
+			<Button android:id="@+id/btnFollow"
+			    android:text="@string/follow"  
+			    style="@style/roundBtnLight.text"
+			    android:layout_alignParentRight="true"
+			    />
+			<ImageButton android:id="@+id/btnUnfollow" 
+			    style="@style/roundBtnLight"
+			    android:background="@color/none"
+			    android:src="@drawable/followed"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content" 
+			    android:layout_alignParentRight="true"
+			    />
+			<goofy2.utils.Avatar android:id="@+id/avatar"
+				style="@style/avatar"
+				app:radius="26"
+				android:layout_centerHorizontal="true"
+				android:layout_marginBottom="10dp"
+				android:clickable="true"
+			/>
+			<TextView android:id="@+id/txtUsername" 
+				style="@style/name.shadow"
+				android:textColor="@color/title"
+				android:textSize="20sp"
+				android:layout_below="@id/avatar"
+				android:layout_centerHorizontal="true"
+			/>
+			<TextView android:id="@+id/txtDetails"
+				android:singleLine="true"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="#ccffffff"
+				android:textSize="16sp"
+				android:layout_centerHorizontal="true"
+				android:layout_below="@id/txtUsername"
+			/>
+			<ImageView android:id="@+id/iconSns"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:clickable="true"
+			    android:visibility="gone"
+			    />
+		</RelativeLayout>
+	</RelativeLayout>
+	<LinearLayout 
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="48dp" 
+	    >
+		<LinearLayout android:id="@+id/btnFollowing"  
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent" 
+		    android:layout_weight="1"
+		    android:gravity="center"
+		    android:background="@drawable/row"
+		    android:clickable="true"
+		    >
+		    <TextView
+		        style="@style/desc"
+			    android:text="@string/following"
+			    android:textAllCaps="true" 
+		        />
+		    <TextView android:id="@+id/txtFollowingCount"
+		        style="@style/desc"
+		        />
+	    </LinearLayout>
+		<View style="@style/divider.vertical" />
+		<LinearLayout android:id="@+id/btnFollowers"  
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent" 
+		    android:layout_weight="1"
+		    android:gravity="center"
+		    android:background="@drawable/row"
+		    android:clickable="true"
+		    >
+		    <TextView
+		        style="@style/desc"
+			    android:text="@string/followers"
+			    android:textAllCaps="true" 
+		        />
+		    <TextView android:id="@+id/txtFollowersCount"
+		        style="@style/desc"
+		        />
+		</LinearLayout>
+		<View style="@style/divider.vertical" />
+		<LinearLayout android:id="@+id/btnHearted" 
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent" 
+		    android:layout_weight="1"
+		    android:gravity="center"
+		    android:background="@drawable/row"
+		    android:clickable="true"
+		    >
+		    <TextView
+		        style="@style/desc"
+			    android:text="@string/hearted"
+			    android:textAllCaps="true" 
+		        />
+		    <TextView android:id="@+id/txtHeartedCount"
+		        style="@style/desc"
+		        />
+		</LinearLayout>
+	</LinearLayout>
+	<View style="@style/divider" />
+	<LinearLayout android:id="@+id/viewUploadees"
+	    android:layout_width="fill_parent"
+	    android:layout_height="48dp"
 	    android:padding="@dimen/padding"
 	    android:orientation="horizontal"
 	    android:gravity="center_vertical"
 	    android:background="@drawable/row"
-	    android:layout_below="@id/imgBanner" 
 	    android:clickable="true"
+	    android:visibility="gone"
 	    >
 		<ImageView
 			android:layout_width="24dp"
@@ -120,5 +188,5 @@
 		    android:textSize="12sp"
 		    />
 	</LinearLayout>
-	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/viewUploadees"/>
-</RelativeLayout>
+	<View android:id="@+id/dividerUploadees" style="@style/divider" android:visibility="gone"/>
+</LinearLayout>
