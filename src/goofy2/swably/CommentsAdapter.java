@@ -303,15 +303,15 @@ public class CommentsAdapter extends CloudBaseAdapter {
 		}
 		
 		holder.viewReplies.setVisibility(View.VISIBLE);
+		holder.imgReply1.setVisibility(View.GONE);
+		holder.imgReply2.setVisibility(View.GONE);
+		holder.imgReply3.setVisibility(View.GONE);
 		String belowStr = review.optString("below_json");
 		if(belowStr.equals("")) belowStr = "{}";
 		JSONObject belowJson = new JSONObject(belowStr);
 		int repliesCount = belowJson.optInt("replies_count");
 		JSONArray appIcons = belowJson.optJSONArray("app_icons");
 		if(repliesCount > 0){
-			holder.imgReply1.setVisibility(View.GONE);
-			holder.imgReply2.setVisibility(View.GONE);
-			holder.imgReply3.setVisibility(View.GONE);
 //			holder.txtRepliesCount.setVisibility(View.GONE);
 			if(repliesCount >= 1){
 				holder.imgReply1.setVisibility(View.VISIBLE);
