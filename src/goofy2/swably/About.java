@@ -161,9 +161,8 @@ public class About extends Activity {
 //			startActivity(i);
 ////			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Const.HTTP_PREFIX + "/downloads/nappstr.apk")));
 
-// disable OTA for compliance with Google Play policy			
-//			Utils.startDownloading(About.this, getFakeApp());			
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+getPackageName())));
+			Utils.startDownloading(About.this, getFakeApp());			
+//		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+getPackageName())));
 			
 			finish();
 		}
