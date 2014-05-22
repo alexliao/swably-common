@@ -105,7 +105,7 @@ public abstract class PeopleReviews extends TabStripActivity {
 //    				startActivity(new Intent(PublicReviews.this, PostReview.class));
 			}
 		});
-//		Utils.setTouchAnim(this, btnAdd);
+		Utils.setTouchAnim(this, btnAdd);
 	
     }
 
