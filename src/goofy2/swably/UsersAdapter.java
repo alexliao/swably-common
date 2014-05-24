@@ -86,9 +86,9 @@ public class UsersAdapter extends CloudBaseAdapter {
 					public void onClick(View v) {
 				        if(mContext.redirectAnonymous(false)) return;
 //				        mContext.flipView(btnUnfollow, btnFollow, null);
-				        mContext.transitWidth(btnUnfollow, btnFollow, null);
+//				        mContext.transitWidth(btnUnfollow, btnFollow, null);
 						Utils.follow(mContext, info.optString("id"), info.optString("name"), false, null, false);
-//						setStatus(btnFollow, btnUnfollow, false);
+						setStatus(btnFollow, btnUnfollow, false);
 						try {
 							info.put("is_followed", false);
 						} catch (JSONException e) {
@@ -101,15 +101,15 @@ public class UsersAdapter extends CloudBaseAdapter {
 					public void onClick(View v) {
 				        if(mContext.redirectAnonymous(false)) return;
 //				        mContext.flipView(btnFollow, btnUnfollow, null);
-				        btnUnfollow.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.round_btn_light));
-				        mContext.transitWidth(btnFollow, btnUnfollow, new Runnable(){
-							@Override
-							public void run() {
-								btnUnfollow.setBackgroundColor(mContext.getResources().getColor(R.color.none));
-							}
-						});
+//				        btnUnfollow.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.round_btn_light));
+//				        mContext.transitWidth(btnFollow, btnUnfollow, new Runnable(){
+//							@Override
+//							public void run() {
+//								btnUnfollow.setBackgroundColor(mContext.getResources().getColor(R.color.none));
+//							}
+//						});
 						Utils.follow(mContext, info.optString("id"), info.optString("name"), true, null, false);
-//						setStatus(btnFollow, btnUnfollow, true);
+						setStatus(btnFollow, btnUnfollow, true);
 						try {
 							info.put("is_followed", true);
 						} catch (JSONException e) {

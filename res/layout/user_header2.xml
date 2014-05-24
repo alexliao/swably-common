@@ -25,15 +25,13 @@
 			>
 			<Button android:id="@+id/btnFollow"
 			    android:text="@string/follow"  
-			    style="@style/roundBtnLight.text"
+			    style="@style/frameBtn.small"
 			    android:layout_alignParentRight="true"
 			    />
 			<ImageButton android:id="@+id/btnUnfollow" 
-			    style="@style/roundBtnLight"
-			    android:background="@color/none"
+			    style="@style/frameBtn.small"
 			    android:src="@drawable/followed"
 			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content" 
 			    android:layout_alignParentRight="true"
 			    />
 			<goofy2.utils.Avatar android:id="@+id/avatar"
@@ -82,12 +80,12 @@
 		    android:clickable="true"
 		    >
 		    <TextView
-		        style="@style/desc"
+		        style="@style/desc.content"
 			    android:text="@string/following"
 			    android:textAllCaps="true" 
 		        />
 		    <TextView android:id="@+id/txtFollowingCount"
-		        style="@style/desc"
+		        style="@style/desc.content"
 		        />
 	    </LinearLayout>
 		<View style="@style/divider.vertical" />
@@ -101,12 +99,12 @@
 		    android:clickable="true"
 		    >
 		    <TextView
-		        style="@style/desc"
+		        style="@style/desc.content"
 			    android:text="@string/followers"
 			    android:textAllCaps="true" 
 		        />
 		    <TextView android:id="@+id/txtFollowersCount"
-		        style="@style/desc"
+		        style="@style/desc.content"
 		        />
 		</LinearLayout>
 		<View style="@style/divider.vertical" />
@@ -120,12 +118,12 @@
 		    android:clickable="true"
 		    >
 		    <TextView
-		        style="@style/desc"
+		        style="@style/desc.content"
 			    android:text="@string/hearted"
 			    android:textAllCaps="true" 
 		        />
 		    <TextView android:id="@+id/txtHeartedCount"
-		        style="@style/desc"
+		        style="@style/desc.content"
 		        />
 		</LinearLayout>
 	</LinearLayout>

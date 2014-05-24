@@ -184,6 +184,9 @@
 	    <item name="android:textSize">14sp</item>
 		<item name="android:textColor">@color/desc</item>
 	</style>
+	<style name="desc.content">
+		<item name="android:textColor">@color/content</item>
+	</style>
 	<style name="settings_row">
 		<item name="android:orientation">vertical</item>
 		<item name="android:layout_width">fill_parent</item>

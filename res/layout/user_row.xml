@@ -46,12 +46,12 @@
 			    >
 				<TextView android:id="@+id/btnFollow" 
 				    android:text="@string/follow"  
-		    		style="@style/roundBtnLight.text.light"
+		    		style="@style/frameBtn.small"
 				    android:layout_alignParentRight="true"
 				    />
 				<ImageView  android:id="@+id/btnUnfollow" 
-				    style="@style/roundBtnLight"
-				    android:background="@color/none"
+				    style="@style/frameBtn.small"
+				    android:layout_width="wrap_content"
 				    android:src="@drawable/followed"
 				    android:layout_alignParentRight="true"
 				    />

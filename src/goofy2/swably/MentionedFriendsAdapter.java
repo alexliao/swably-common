@@ -71,8 +71,9 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 			        	return;
 			        }
 			        
-			        mContext.transitWidth(btnUnfollow, btnFollow, null);
+//			        mContext.transitWidth(btnUnfollow, btnFollow, null);
 					Api.watch(mContext, mReview.optString("id"), info.optString("id"), false, null);
+					setStatus(btnFollow, btnUnfollow, false);
 					justMentioned.put(info.optString("id"), false);
 					Utils.clearCache(mContext, MyMentionedFriendsFragment.cacheId(mReview.optString("id")));
 					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));
@@ -87,14 +88,15 @@ public class MentionedFriendsAdapter extends UsersAdapter {
 				@Override
 				public void onClick(View v) {
 			        if(mContext.redirectAnonymous(false)) return;
-			        btnUnfollow.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.round_btn_light));
-			        mContext.transitWidth(btnFollow, btnUnfollow, new Runnable(){
-						@Override
-						public void run() {
-							btnUnfollow.setBackgroundColor(mContext.getResources().getColor(R.color.none));
-						}
-					});
+//			        btnUnfollow.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.round_btn_light));
+//			        mContext.transitWidth(btnFollow, btnUnfollow, new Runnable(){
+//						@Override
+//						public void run() {
+//							btnUnfollow.setBackgroundColor(mContext.getResources().getColor(R.color.none));
+//						}
+//					});
 					Api.watch(mContext, mReview.optString("id"), info.optString("id"), true, null);
+					setStatus(btnFollow, btnUnfollow, true);
 					justMentioned.put(info.optString("id"), true);
 					Utils.clearCache(mContext, MyMentionedFriendsFragment.cacheId(mReview.optString("id")));
 					mContext.sendBroadcast(new Intent(CloudActivity.IMAGE_LOADED));

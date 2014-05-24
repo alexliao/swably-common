@@ -22,12 +22,12 @@
 			    android:gravity="center"
 			    >
 			    <TextView
-			        style="@style/desc"
+			        style="@style/desc.content"
 				    android:text="@string/posts"
 				    android:textAllCaps="true" 
 			        />
 			    <TextView android:id="@+id/txtPostsCount"
-			        style="@style/desc"
+			        style="@style/desc.content"
 			        />
 		    </LinearLayout>
 			<View style="@style/divider.vertical" />
@@ -39,12 +39,12 @@
 			    android:gravity="center"
 			    >
 			    <TextView
-			        style="@style/desc"
+			        style="@style/desc.content"
 				    android:text="@string/starred"
 				    android:textAllCaps="true" 
 			        />
 			    <TextView android:id="@+id/txtStarredCount"
-			        style="@style/desc"
+			        style="@style/desc.content"
 			        />
 			</LinearLayout>
 			<View style="@style/divider.vertical" />
@@ -56,12 +56,12 @@
 			    android:gravity="center"
 			    >
 			    <TextView
-			        style="@style/desc"
+			        style="@style/desc.content"
 				    android:text="@string/downloads"
 				    android:textAllCaps="true" 
 			        />
 			    <TextView android:id="@+id/txtDownloadsCount"
-			        style="@style/desc"
+			        style="@style/desc.content"
 			        />
 			</LinearLayout>
 		</LinearLayout>
@@ -174,7 +174,7 @@
 	    android:layout_marginTop="24dp" 
 	    >
 		<include android:id="@+id/tribtn" 
-		    layout="@layout/app_tribtn_text_small_white" />
+		    layout="@layout/app_tribtn_text_small" />
 	</LinearLayout>
 </RelativeLayout>
 	

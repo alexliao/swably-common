@@ -38,13 +38,13 @@ public class FollowBtn {
 			public void onClick(View arg0) {
 		        if(mActivity.redirectAnonymous(false)) return;
 		        Utils.showToast(mActivity, mActivity.getString(R.string.follow_prompt));
-		        btnUnfollow.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.round_btn_light));
-		        mActivity.transitWidth(btnFollow, btnUnfollow, new Runnable(){
-					@Override
-					public void run() {
-						btnUnfollow.setBackgroundColor(mActivity.getResources().getColor(R.color.none));
-					}
-				});
+//		        btnUnfollow.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.frame_btn));
+//		        mActivity.transitWidth(btnFollow, btnUnfollow, new Runnable(){
+//					@Override
+//					public void run() {
+//						btnUnfollow.setBackgroundColor(mActivity.getResources().getColor(R.color.none));
+//					}
+//				});
 //				mActivity.flipView(btnFollow, btnUnfollow, new Runnable(){
 //					@Override
 //					public void run() {
@@ -59,7 +59,7 @@ public class FollowBtn {
 					mHeader.setUser(user);
 					// cache user for following status
 					mActivity.cacheData(user.toString(), UserProfile.cacheId(user.optString("id")));
-//					bind();
+					bind();
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -71,7 +71,7 @@ public class FollowBtn {
 			public void onClick(View arg0) {
 		        if(mActivity.redirectAnonymous(false)) return;
 		        Utils.showToast(mActivity, mActivity.getString(R.string.unfollow_prompt));
-		        mActivity.transitWidth(btnUnfollow, btnFollow, null);
+//		        mActivity.transitWidth(btnUnfollow, btnFollow, null);
 //				mActivity.flipView(btnUnfollow, btnFollow, new Runnable(){
 //					@Override
 //					public void run() {
@@ -86,7 +86,7 @@ public class FollowBtn {
 					mHeader.setUser(user);
 					// cache user for following status
 					mActivity.cacheData(user.toString(), UserProfile.cacheId(user.optString("id")));
-//					bind();
+					bind();
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
