@@ -27,7 +27,8 @@
 		/>
 		<TextView android:id="@+id/txtUserName" 
 			style="@style/name"
-			android:layout_marginTop="-4dp"
+			android:layout_width="190dp"
+			android:layout_marginTop="-3dp"
 			android:layout_toRightOf="@id/avatar"
 			android:layout_alignTop="@id/avatar"
 		/>

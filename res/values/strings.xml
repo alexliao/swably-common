@@ -259,7 +259,7 @@
     <string name="submit_email">Submit email to activate notifications</string>
    	<string name="err_invalid_email">It is not a valid Email address</string>
     
-    <string name="a_request">A Request</string>
+    <string name="a_request">Request</string>
     <string name="add_an_app">Add an app</string>
     <string name="menu_requests">Requests</string>
     <string name="menu_shares">Sharing</string>
