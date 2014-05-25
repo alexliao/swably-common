@@ -15,6 +15,7 @@ public class SwablyApplication extends Application {
 		Const.APP_NAME = getString(R.string.app_name);
 		Const.HTTP_PREFIX = getMainHttpPrefix(this);
 		Const.UPLOAD_HTTP_PREFIX = getUploadHttpPrefix(this);
+		Const.APK_FOLEDER_NAME = "swably";
 	}
 
 	public String getMainHttpPrefix(Context context){

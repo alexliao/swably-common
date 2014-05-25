@@ -187,7 +187,7 @@ public class App {
 		return mJson.optLong(CLOUD_SIZE);
 	}
 	public String getInstallPath(){
-		return Const.TMP_FOLDER + "/" + getCloudId() + "_" + getVersionCode() + ".apk";
+		return Const.APK_FOLDER + "/" + getName() + "_" + getVersionName() + ".apk";
 	}
 	
 	public long getSize(){

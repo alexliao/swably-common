@@ -5,6 +5,7 @@ import android.content.Intent;
 public class Const {
 	
 	public static String APP_NAME;
+	public static String APK_FOLEDER_NAME;
 //	public static String HTTP_PREFIX = "http://192.168.2.107:2001";
 	public static String DNS_URL = "http://swably.com/account/dns?format=json";
 //	public static String UPLOAD_HTTP_PREFIX = HTTP_PREFIX;
@@ -80,6 +81,7 @@ public class Const {
 	public static final String KEY_REMAIN_TIME = "remain_time";
 	
 	static public String TMP_FOLDER = "";
+	static public String APK_FOLDER = "";
 	
 	public static int SCREEN_WIDTH;
 	public static int SCREEN_HEIGHT;

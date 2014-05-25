@@ -47,6 +47,7 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
 
         Utils.createTempDirectory(this);        
+        Utils.createApkDirectory(this);        
         
 		checkDns(this);
         

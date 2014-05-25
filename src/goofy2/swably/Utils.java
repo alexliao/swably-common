@@ -76,6 +76,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -1297,7 +1298,7 @@ i = new Intent(context, DownloaderEx.class);
 	}
 
 	static protected boolean createTempDirectoryBeforeFroyo(Context context) {
-		Const.TMP_FOLDER = "/sdcard/"+Const.APP_NAME;
+		Const.TMP_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + Const.APK_FOLEDER_NAME;
 	    File tempdir = new File(Const.TMP_FOLDER);
 	    if (!tempdir.exists()) {
 	        if (!tempdir.mkdirs()) {
@@ -1323,6 +1324,19 @@ i = new Intent(context, DownloaderEx.class);
 		    }
 		}else return createTempDirectoryBeforeFroyo(context);
 	}
+
+	static protected boolean createApkDirectory(Context context) {
+		Const.APK_FOLDER = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + Const.APK_FOLEDER_NAME;
+	    File apkFolder = new File(Const.APK_FOLDER);
+	    if (!apkFolder.exists()) {
+	        if (!apkFolder.mkdirs()) {
+	        	Utils.showToast(context, context.getString(R.string.err_no_SD));
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+	
 	
 	static public boolean isEmpty(String str){
 		return str == null || str.trim().equals("") || str.trim().equalsIgnoreCase("null");

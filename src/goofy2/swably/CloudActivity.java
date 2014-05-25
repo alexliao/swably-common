@@ -135,6 +135,7 @@ public class CloudActivity extends goofy2.utils.SlidingFragmentActivity {
 Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);        
 
         Utils.createTempDirectory(this);        
+        Utils.createApkDirectory(this);        
         if(Const.LOAD_FONTS){
 	        FONT_ROBOTO_REGULAR = Typeface.createFromAsset(getAssets(), "Roboto-Regular.ttf");
 	        FONT_ROBOTO_LIGHT = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
