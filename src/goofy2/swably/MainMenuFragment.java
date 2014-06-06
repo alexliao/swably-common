@@ -37,6 +37,7 @@ public class MainMenuFragment extends CloudFragment {
 	private View viewFindPeople;
 	private ImageView imgMe;
 	private View viewSettings;
+	private View viewRecommend;
 	private View viewAdd;
 	private View viewSearchApps;
 	
@@ -180,6 +181,17 @@ public class MainMenuFragment extends CloudFragment {
 			public void onClick(View arg0) {
 //				ca().showAbove();
 				if(!(a() instanceof Settings)) startActivity(new Intent(a(), Settings.class));
+				else ca().showAbove();
+			}
+        });
+
+        viewRecommend = v.findViewById(R.id.viewRecommend);
+    	((TextView)viewRecommend).setTypeface(ca().mNormalFont);
+    	viewRecommend.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+//				ca().showAbove();
+				if(!(a() instanceof Settings)) startActivity(new Intent(a(), RecommendSwably.class));
 				else ca().showAbove();
 			}
         });

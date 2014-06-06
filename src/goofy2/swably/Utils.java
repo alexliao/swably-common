@@ -679,6 +679,7 @@ Log.d("",Const.APP_NAME + " checkVersion: " + actionURL);
 //	}
 
 	public static String getImageFileName(String relative_url){
+		if(relative_url == null) return null;
 		return Const.TMP_FOLDER + "/" + relative_url.replaceAll("[\\/\\\\:*?\"<>|\\[\\]]", "_");
 	}
 
@@ -689,6 +690,7 @@ Log.d("",Const.APP_NAME + " checkVersion: " + actionURL);
 	}
 	
 	static public Bitmap getImageFromFile(Context context, String pathName, int reqWidth, int reqHeight){
+		if(pathName == null) return null;
 		Bitmap bm = null;
 		try{
 		    // First decode with inJustDecodeBounds=true to check dimensions

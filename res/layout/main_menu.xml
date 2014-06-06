@@ -56,6 +56,9 @@
 		<TextView android:id="@+id/viewSettings" android:text="@string/settings" android:drawableLeft="@drawable/hover_ic_menu_settings" style="@style/menu_row" />
 		
 		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
+		<TextView android:id="@+id/viewRecommend" android:text="@string/menu_recommend" android:drawableLeft="@drawable/hover_ic_menu_recommend" style="@style/menu_row" />
+
+		<View android:background="@color/divider_menu" android:layout_height="1dp" android:layout_width="fill_parent"/>
 		<TextView android:id="@+id/viewTestClaiming" android:text="Test Claiming" style="@style/menu_row" android:visibility="gone"/>
 		
 	</LinearLayout>

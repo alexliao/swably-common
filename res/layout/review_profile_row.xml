@@ -116,7 +116,7 @@
 					android:layout_width="48dp"
 					android:layout_height="48dp"
 					android:src="@drawable/noimage"
-					android:layout_marginRight="5dp"
+					android:layout_marginRight="10dp"
 				/>
 				<TextView android:id="@+id/txtAppName" 
 					style="@style/name"

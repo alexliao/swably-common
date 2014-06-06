@@ -269,7 +269,6 @@
     <string name="mention_title">ATTENTION</string>
     <string name="mention">Attention</string>
     <string name="menu_notifications">Notifications</string>
-    <string name="add_a_review">Add a review</string>
 
     <string name="new_feeds_count">%d new messages</string>
     		 	
@@ -309,5 +308,8 @@
     <string name="user_details_x" formatted="false">%d Posts   %d Uploads</string>
     <string name="hearted">Hearted</string>
     <string name="conversation">Conversation</string>
+
+    <string name="menu_recommend">Send Swably to friends</string>
+    <string name="recommend_text">万宝乐是朋友分享APP的网络，可以发现很多平时发现不了的APP。加入小伙伴们吧！</string>
     
 </resources>

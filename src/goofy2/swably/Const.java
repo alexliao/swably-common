@@ -70,6 +70,7 @@ public class Const {
 	public static final String KEY_UNREAD_FOLLOWS_COUNT = "unread_follows_count";
 	public static final String KEY_TEXT = "text";
 	public static final String KEY_SUBJECT = "subject";
+	public static final String KEY_URL = "url";
 
 	
     final static int AUTHORIZE_ACTIVITY_RESULT_CODE = 0;

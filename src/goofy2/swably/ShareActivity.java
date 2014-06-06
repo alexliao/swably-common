@@ -42,6 +42,7 @@ public class ShareActivity extends TrackActivity {
 				i.putExtra(Const.KEY_SUBJECT, getIntent().getStringExtra(Const.KEY_SUBJECT));
 				i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
 				i.putExtra(Const.KEY_APP, getIntent().getStringExtra(Const.KEY_APP));
+				i.putExtra(Const.KEY_URL, getIntent().getStringExtra(Const.KEY_URL));
 				startActivity(i);
 				finish();
 				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_private), null).build());
@@ -57,6 +58,7 @@ public class ShareActivity extends TrackActivity {
 				i.putExtra(Const.KEY_SUBJECT, getIntent().getStringExtra(Const.KEY_SUBJECT));
 				i.putExtra(Const.KEY_REVIEW, getIntent().getStringExtra(Const.KEY_REVIEW));
 				i.putExtra(Const.KEY_APP, getIntent().getStringExtra(Const.KEY_APP));
+				i.putExtra(Const.KEY_URL, getIntent().getStringExtra(Const.KEY_URL));
 				startActivity(i);
 				finish();
 				tracker.send(MapBuilder.createEvent("ui_action", "button_press", getString(R.string.share_public), null).build());
