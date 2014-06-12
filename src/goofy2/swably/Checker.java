@@ -105,13 +105,13 @@ public class Checker extends CloudAlarmService {
     	CloudAlarmService.cancelNextRun(context, Checker.class);
     }
     
-	public void checkSnsJoin(){
+	static public void checkSnsJoin(Context context){
 		String cacheId = SnsFriendsFragment.cacheId();
-		String strCache = Utils.loadCache(this, cacheId);
+		String strCache = Utils.loadCache(context, cacheId);
 
-		if(strCache == null || (System.currentTimeMillis() - Utils.getCacheAt(this,cacheId)) > SnsFriendsFragment.cacheExpiresIn()){
-			String snsId = Utils.getCurrentUser(this).optString("signup_sns");
-		    String url = Const.HTTP_PREFIX + "/connections/find_friends/"+snsId+"?format=json&check=true&"+Utils.getLoginParameters(this)+"&"+Utils.getClientParameters(this);
+		if(strCache == null || (System.currentTimeMillis() - Utils.getCacheAt(context,cacheId)) > SnsFriendsFragment.cacheExpiresIn()){
+			String snsId = Utils.getCurrentUser(context).optString("signup_sns");
+		    String url = Const.HTTP_PREFIX + "/connections/find_friends/"+snsId+"?format=json&check=true&"+Utils.getLoginParameters(context)+"&"+Utils.getClientParameters(context);
 			String strResult = null;
 			String err = null;
 			
@@ -119,7 +119,7 @@ public class Checker extends CloudAlarmService {
 				Log.d(Const.APP_NAME, Const.APP_NAME + " checkSnsJoin run");
 				HttpPost httpReq = new HttpPost(url);
 				List <NameValuePair> params = new ArrayList <NameValuePair>();
-				params.add(new BasicNameValuePair("contacts", SnsFriendsFragment.getContactsEmails(this)));
+				params.add(new BasicNameValuePair("contacts", SnsFriendsFragment.getContactsEmails(context)));
 				httpReq.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 				HttpParams httpParameters = new BasicHttpParams();
 				HttpConnectionParams.setConnectionTimeout(httpParameters, Const.HTTP_TIMEOUT);
@@ -135,7 +135,7 @@ public class Checker extends CloudAlarmService {
 				err = e.getMessage();
 				Log.e(Const.APP_NAME, Const.APP_NAME + " checkSnsJoin err: " + err);
 			}finally{
-				setLastCheckSnsJoinTime(this, System.currentTimeMillis()/1000);
+				setLastCheckSnsJoinTime(context, System.currentTimeMillis()/1000);
 			}
 			
 			if(err == null){
@@ -150,9 +150,9 @@ public class Checker extends CloudAlarmService {
 								newJoins.put(latest.getJSONObject(i));
 							}
 						}
-						if(newJoins.length() > 0) notifyJoins(newJoins);
+						if(newJoins.length() > 0) notifyJoins(context, newJoins);
 					}
-					Utils.cacheData(this, latest.toString(), cacheId);
+					Utils.cacheData(context, latest.toString(), cacheId);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -160,8 +160,8 @@ public class Checker extends CloudAlarmService {
 		}
 	}
 	 
-    private void notifyJoins(JSONArray newJoins) {
-		if(!isNoticeOn(this)) return;
+    static private void notifyJoins(Context context, JSONArray newJoins) {
+		if(!isNoticeOn(context)) return;
     	int thisCount = newJoins.length();
     	if(thisCount == 0) return;
 
@@ -171,21 +171,22 @@ public class Checker extends CloudAlarmService {
 		Intent i;
     	if(thisCount == 1){
     		JSONObject user = newJoins.optJSONObject(0); 
-        	text = String.format(getString(R.string.joining_noti_title), user.optString("name"));
+        	text = String.format(context.getString(R.string.joining_noti_title), user.optString("name"));
     		expandedTitle = text;
     		expandedText = "";
     	}else{
-        	text = String.format(getString(R.string.new_joins_count), thisCount);
+        	text = String.format(context.getString(R.string.new_joins_count), thisCount);
         	expandedTitle = text;
-        	expandedText = getString(R.string.tap_to_check);
+        	expandedText = context.getString(R.string.tap_to_check);
     	}
-		i = new Intent(this, People.class);
-		i.setData(Uri.parse("0")); // initial at sns friends tab
+//		i = new Intent(context, People.class);
+//		i.setData(Uri.parse("0")); // initial at sns friends tab
+		i = new Intent(context, SnsFriends.class);
 
-    	NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+    	NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 		Notification notification = Utils.getDefaultNotification(text);
-		PendingIntent launchIntent = PendingIntent.getActivity(this, newJoins.hashCode(), i, PendingIntent.FLAG_ONE_SHOT);
-		notification.setLatestEventInfo(this, expandedTitle, expandedText, launchIntent);
+		PendingIntent launchIntent = PendingIntent.getActivity(context, newJoins.hashCode(), i, PendingIntent.FLAG_ONE_SHOT);
+		notification.setLatestEventInfo(context, expandedTitle, expandedText, launchIntent);
 		nm.notify(NOTIFICATION_ID+2, notification);
 	}
 
@@ -407,7 +408,7 @@ public class Checker extends CloudAlarmService {
 		else time = Double.parseDouble(strTime);
 		return time;
 	}
-	public void setLastCheckSnsJoinTime(Context context, double value){
+	static public void setLastCheckSnsJoinTime(Context context, double value){
 		Utils.setUserPrefString(context, Utils.getCurrentUserId(context) + "lastCheckSnsJoinTime", Double.toString(value));
 	}
 

@@ -121,8 +121,7 @@
     <string name="friends">Friends</string>
     <string name="following_reviews">Following</string>
     <string name="friends_on">Friends on %s</string>
-    <string name="friends_on_swably">People you may know</string>
-    <string name="friends_on_swably_cap">PEOPLE YOU MAY KNOW</string>
+    <string name="friends_on_swably">Your friends</string>
     <string name="zero_friend">Oops, seems you don\'t have known friends on Swably.</string>
     <string name="contacts">Contacts</string>
     <string name="new_reviews_count">%d new reviews</string>
@@ -298,7 +297,7 @@
     <string name="btn_install">Install</string>
     <string name="btn_open">Open</string>
     <string name="btn_stop">Disabled</string>
-    <string name="btn_add_app">Add an app</string>
+    <string name="btn_add_app">Recommend</string>
     
     <string name="menu_posts">Posts</string>
     <string name="app_details_x" formatted="false">Size %.1fM, Version %s</string>
@@ -310,6 +309,9 @@
     <string name="conversation">Conversation</string>
 
     <string name="menu_recommend">Send Swably to friends</string>
-    <string name="recommend_text">万宝乐是朋友分享APP的网络，可以发现很多平时发现不了的APP。加入小伙伴们吧！</string>
+    <string name="recommend_text">Swably is where I share and discuss apps with friends. You are gonna find lots of cool apps. Come join me!</string>
+    <string name="invite_prompt1" formatted="false">%s, you have %d friends joined Swably</string>
+    <string name="invite_prompt2">More friends, more apps, more fun.</string>
+    <string name="invite_more" >Invite more</string>
     
 </resources>

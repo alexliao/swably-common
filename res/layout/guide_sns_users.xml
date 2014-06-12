@@ -23,7 +23,7 @@
 	<LinearLayout style="@style/sectionBar" android:visibility="gone">
 		<TextView 
 			style="@style/sectionTitle"
-			android:text="@string/friends_on_swably_cap" 
+			android:text="@string/friends_on_swably" 
 		/>
 		<include layout="@layout/section_divider" />
 	</LinearLayout>

@@ -136,10 +136,10 @@ public class InviteSnsFriendsAdapter extends CloudBaseAdapter {
 			btnInvite.setVisibility(View.VISIBLE);
 			btnPending.setVisibility(View.GONE);
 		}
-		if(Utils.getCurrentUser(mContext).optInt("invites_left") <= 0){
-			btnInvite.setEnabled(false);
-			btnPending.setEnabled(false);
-		}
+//		if(Utils.getCurrentUser(mContext).optInt("invites_left") <= 0){
+//			btnInvite.setEnabled(false);
+//			btnPending.setEnabled(false);
+//		}
 	}
 	
 	public View newView(ViewGroup parent) {
@@ -234,11 +234,14 @@ public class InviteSnsFriendsAdapter extends CloudBaseAdapter {
 
 
 	protected String getInviteContent(){
-		return Utils.getUserPrefString(mContext, "invite_content", mContext.getString(R.string.invite_request));
+//		return Utils.getUserPrefString(mContext, "invite_content", mContext.getString(R.string.invite_request));
+		return  mContext.getString(R.string.recommend_text) + " " + RecommendSwably.genRecommendUrl(Utils.getCurrentUserId(mContext), "invite") ;
 	}
 	
 	protected String genInviteContent(String requestId){
-		return getInviteContent() + " " + Const.HTTP_PREFIX+"/invites/show?request_ids="+requestId;
+//		return getInviteContent() + " " + Const.HTTP_PREFIX+"/invites/show?request_ids="+requestId;
+//		return getInviteContent() + "&request_ids="+requestId ;
+		return getInviteContent() ;
 	}
 
 

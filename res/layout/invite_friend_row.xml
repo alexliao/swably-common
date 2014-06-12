@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
 	android:layout_width="fill_parent" 
 	android:layout_height="wrap_content"
@@ -15,9 +16,11 @@
 		    android:orientation="horizontal"
 			android:layout_width="fill_parent" 
 			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
 			>
-			<goofy2.utils.Avatar android:id="@+id/avatar" 
+			<goofy2.utils.Avatar android:id="@+id/avatar"
 				style="@style/avatar"
+				app:radius="26"
 				android:layout_marginRight="10dp"
 			/>
 			<LinearLayout 
@@ -35,22 +38,19 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					style="@style/content"
+					android:visibility="gone"
 				/>
 			</LinearLayout>
 			<Button android:id="@+id/btnInvite"
 				android:text="@string/invite"
-				style="@style/holoBtn.blue"
-				android:layout_width="80dp"
-				android:layout_gravity="center_vertical"
+				style="@style/frameBtn.small"
 			/>
 			<Button android:id="@+id/btnPending"
 				android:text="@string/invited"
-				style="@style/holoBtn.default"
-				android:layout_width="80dp"
-				android:layout_gravity="center_vertical"
+				style="@style/frameBtn.small"
 				android:visibility="gone"
 			/>
 		</LinearLayout>
 	</LinearLayout>
-	<LinearLayout android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"/>
+	<View android:id="@+id/bottomDivider" style="@style/divider" android:layout_below="@id/row" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"/>
 </LinearLayout>		

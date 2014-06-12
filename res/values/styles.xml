@@ -449,6 +449,7 @@
 		<item name="android:textColor">@color/panel</item>
 		<item name="android:paddingTop">6dp</item>
 		<item name="android:paddingBottom">6dp</item>
+		<item name="android:textAllCaps">true</item>
 	</style>
 	<style name="sectionBar">
 		<item name="android:orientation">vertical</item>

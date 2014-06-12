@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	>
+	<RelativeLayout
+		android:layout_width="fill_parent"
+		android:layout_height="140dp"
+		android:padding="@dimen/padding"
+		android:layout_margin="@dimen/padding"
+		android:background="@color/panel"
+		>
+		<ProgressBar android:id="@+id/loadingFriends"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerInParent="true"
+		/>
+	    
+    	<TextView android:id="@+id/txtFriendCount"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="32sp"
+			android:textColor="@color/content"
+			android:text="0"
+		    android:typeface="serif"	    
+		    android:layout_centerInParent="true"
+		    android:visibility="gone"
+		    />
+		<RelativeLayout android:id="@+id/viewNext"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:gravity="center_horizontal"
+			android:visibility="gone"
+			>
+	    	<TextView android:id="@+id/txtInvitePrompt"
+	    	    style="@style/name"
+	    	    android:singleLine="false"
+	    	    android:text="@string/invite_prompt1"
+	    	    android:layout_centerHorizontal="true"
+	    	    android:layout_marginTop="5dp"
+			    />
+	    	<TextView
+	    	    style="@style/name"
+	    	    android:text="@string/invite_prompt2"
+	    	    android:layout_below="@id/txtInvitePrompt"
+	    	    android:layout_centerHorizontal="true"
+			    />
+	    	<TextView android:id="@+id/btnInviteMore"
+	    	    style="@style/name"
+	    	    android:text="@string/invite_more"
+	    	    android:layout_height="36dp"
+	    	    android:layout_width="180dp"
+	    	    android:gravity="center"
+	    	    android:background="#f29c9f"
+	    	    android:layout_centerHorizontal="true"
+	    	    android:layout_alignParentBottom="true"
+	    	    android:layout_marginBottom="5dp"
+	    	    android:clickable="true"
+			    />
+	   	</RelativeLayout>
+	</RelativeLayout>
+</LinearLayout>

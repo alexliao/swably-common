@@ -116,14 +116,14 @@ public class InviteContacts extends CloudUsersActivity {
 	@Override
     protected void setContent(){
 //    	enableSlidingMenu();
-//	    setContentView(R.layout.invite_sns_friends);
+	    setContentView(R.layout.invite_sns_friends);
     }
 
     protected void bind(){
 	    
-	    int invitesLeft = Utils.getCurrentUser(this).optInt("invites_left", 0);
-	    TextView tv = (TextView) findViewById(R.id.txtInvitesLeft);
-	    tv.setText(String.format(getString(R.string.invites_left), invitesLeft));
+//	    int invitesLeft = Utils.getCurrentUser(this).optInt("invites_left", 0);
+//	    TextView tv = (TextView) findViewById(R.id.txtInvitesLeft);
+//	    tv.setText(String.format(getString(R.string.invites_left), invitesLeft));
 
     }
 

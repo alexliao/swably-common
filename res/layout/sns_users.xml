@@ -7,17 +7,12 @@
 	android:background="@color/back"
 	>
 	<LinearLayout style="@style/titleBar" >
-		<TextView android:id="@+id/txtTitle" style="@style/title" android:text="@string/recommend_friends" android:gravity="left"/>
+        <ImageButton
+            android:id="@+id/btnMenu"
+            style="@style/titleBtn"
+            android:src="@drawable/menu" />
+	    <TextView android:id="@+id/txtTitle" style="@style/title" android:text="@string/friends_on_swably" />
 		<include android:id="@+id/loading"	layout="@layout/loading" />
-		<ImageView
-		    android:src="@drawable/step2"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content" 
-		    />
-		<ImageButton  android:id="@+id/btnNext"
-			android:src="@drawable/next" 
-			style="@style/titleBtn"
-		/>
 	</LinearLayout>
 	<include layout="@layout/header_bottom" />
 	<LinearLayout style="@style/sectionBar" android:visibility="gone">
@@ -34,12 +29,11 @@
 		layout="@layout/zero_sns_users"
 		android:visibility="gone"
 	/>
-	<LinearLayout android:id="@+id/viewFollow" android:orientation="horizontal" style="@style/bottomBar" android:visibility="gone" >
+	<LinearLayout android:id="@+id/viewFollow" android:orientation="horizontal" style="@style/bottomBar" >
 		<LinearLayout android:id="@+id/btnFollow" 
 		    android:orientation="horizontal"
 		    style="@style/action_row"
 		    android:gravity="center"
-		    
 		    >
 	   		<TextView 
 	   		    android:layout_width="wrap_content"

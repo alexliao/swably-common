@@ -63,7 +63,7 @@ public class SnsFriends extends CloudUsersActivity {
     @Override
     protected void setContent(){
 //    	enableSlidingMenu();
-//	    setContentView(R.layout.sns_users);
+	    setContentView(R.layout.sns_users);
     }
 
     protected void bind(){
@@ -227,7 +227,12 @@ public class SnsFriends extends CloudUsersActivity {
 
 	@Override
 	public String getCacheId(){
-    	return SnsFriendsFragment.class.getName();
+    	return SnsFriendsFragment.cacheId();
     }
+	
+    @Override
+	public long getCacheExpiresIn(){
+		return SnsFriendsFragment.cacheExpiresIn(); 
+	}
 
 }

@@ -33,19 +33,19 @@ public class RecommendSwably extends WithHeaderActivity {
         btnShare.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String text =  getString(R.string.recommend_text) + " " + genRecommendUrl(Utils.getCurrentUserId(getApplicationContext())) ;
+				String text =  getString(R.string.recommend_text) + " " + genRecommendUrl(Utils.getCurrentUserId(getApplicationContext()), "recommend") ;
 				Intent i = new Intent(getApplicationContext(), ShareActivity.class);
 				i.putExtra(Const.KEY_TEXT, text);
 				i.putExtra(Const.KEY_SUBJECT,  getString(R.string.app_name));
-				i.putExtra(Const.KEY_URL, genRecommendUrl(Utils.getCurrentUserId(getApplicationContext())));
+				i.putExtra(Const.KEY_URL, genRecommendUrl(Utils.getCurrentUserId(getApplicationContext()), "recommend"));
 				startActivity(i);
 			}
 		});
 
     }
 
-	static public String genRecommendUrl(String userId){
-    	return "http://" + Const.DEFAULT_MAIN_HOST+"/users/recommend_swably/" + userId + "?r=recommend";
+	static public String genRecommendUrl(String userId, String ref){
+    	return "http://" + Const.DEFAULT_MAIN_HOST+"/users/recommend_swably/" + userId + "?r=" + ref;
 	}
     
     

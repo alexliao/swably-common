@@ -256,7 +256,7 @@ public class SnsFriendsFragment extends CloudUsersFragment {
 	}
 
     static public long cacheExpiresIn(){
-		return 24*3600*1000; 
+		return 3600*1000; 
     }
 
     @Override
