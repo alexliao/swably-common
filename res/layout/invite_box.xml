@@ -1,5 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/viewInviteBox"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	>
@@ -59,4 +59,12 @@
 			    />
 	   	</RelativeLayout>
 	</RelativeLayout>
-</LinearLayout>
+	<ImageButton android:id="@+id/btnCloseInvite"            
+	    style="@style/titleBtn"
+	    android:layout_width="32dp"
+	    android:layout_height="32dp"
+	    android:layout_margin="@dimen/padding"
+		android:src="@drawable/cancel_email"
+		android:layout_alignParentRight="true"
+	    />
+</RelativeLayout>

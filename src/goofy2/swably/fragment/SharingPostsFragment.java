@@ -38,6 +38,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class SharingPostsFragment extends PeopleReviewsFragment{
@@ -58,17 +59,37 @@ public class SharingPostsFragment extends PeopleReviewsFragment{
 	}
 
 	protected View getListHeader() {
-    	if(Utils.getCurrentUser(a()) == null) return null;
-		
+		if(!shouldShowInvite()) return null;
 		LayoutInflater inflater = LayoutInflater.from(a());
 		View v = inflater.inflate(R.layout.invite_box, null);
 		return v;
 	}
 
+    public double getLastCloseInviteTime(Context context){
+		String strTime = Utils.getUserPrefString(context, Utils.getCurrentUserId(context) + "LastCloseInviteTime", null);
+		double time;
+		if(strTime == null){
+			time = 0;
+			setLastCloseInviteTime(context, time);
+		}
+		else time = Double.parseDouble(strTime);
+		return time;
+	}
+	static public void setLastCloseInviteTime(Context context, double value){
+		Utils.setUserPrefString(context, Utils.getCurrentUserId(context) + "LastCloseInviteTime", Double.toString(value));
+	}
+	
+	boolean shouldShowInvite(){
+		JSONObject me = Utils.getCurrentUser(a());
+    	if(me == null) return false;
+		if(Utils.isEmpty(me.optString("email"))) return false; // don't show invite box if there is an Email input box;
+		if((System.currentTimeMillis()/1000 - getLastCloseInviteTime(a())) < 7*24*3600) return false;
+		return true;
+	}
     @Override
     public void onActivityCreated (Bundle savedInstanceState){
     	super.onActivityCreated(savedInstanceState);
-    	if(Utils.getCurrentUser(a()) == null) return;
+    	if(!shouldShowInvite()) return;
     	
         final Handler handler = new Handler();
 		final TextView txtFriendCount = (TextView) getView().findViewById(R.id.txtFriendCount);
@@ -153,6 +174,15 @@ public class SharingPostsFragment extends PeopleReviewsFragment{
 			}
 		});
 
+		View btnCloseInvite = getView().findViewById(R.id.btnCloseInvite);
+		btnCloseInvite.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				View viewInviteBox = getView().findViewById(R.id.viewInviteBox);
+				((ListView) mList).removeHeaderView(viewInviteBox);
+				setLastCloseInviteTime(a(), System.currentTimeMillis()/1000);
+			}
+		});
     }
 
 //	public void getFriendsCount(){
