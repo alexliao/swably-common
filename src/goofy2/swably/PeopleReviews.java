@@ -53,7 +53,7 @@ public abstract class PeopleReviews extends TabStripActivity {
 		btnCloseEmail.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Utils.pushUp(PeopleReviews.this, viewEmail);
+				Utils.pushUp(PeopleReviews.this, viewEmail, null);
 			}
 		});
 		if(Utils.getCurrentUser(this) != null && Utils.isEmpty(Utils.getCurrentUser(this).optString("email"))){
@@ -69,7 +69,7 @@ public abstract class PeopleReviews extends TabStripActivity {
 							Utils.showToast(PeopleReviews.this, getString(R.string.err_invalid_email));
 							editEmail.requestFocus();
 						}else{
-							Utils.pushUp(PeopleReviews.this, viewEmail);
+							Utils.pushUp(PeopleReviews.this, viewEmail, null);
 							new Thread(new Runnable(){
 								@Override
 								public void run() {

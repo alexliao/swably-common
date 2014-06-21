@@ -45,6 +45,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.Animator.AnimatorListener;
 import com.nineoldandroids.animation.ObjectAnimator;
 
 import goofy2.swably.R;
@@ -88,6 +90,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.Toast;
 
 public class Utils {
@@ -1588,12 +1591,22 @@ i = new Intent(context, DownloaderEx.class);
 		anim.start();
 	}
 
-	public static void pushUp(Context context, View v){
+	public static void pushUp(Context context, View v, final Runnable callback){
 		(new ViewWrapper(v)).setHeight(LayoutParams.WRAP_CONTENT);
 		v.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 		int currentHeight = v.getMeasuredHeight();
 		ObjectAnimator anim = ObjectAnimator.ofInt(new ViewWrapper(v), "Height", currentHeight, 0);
 		anim.setDuration(context.getResources().getInteger(R.integer.config_longAnimTime));
+		anim.addListener(new AnimatorListener(){
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				if(callback != null) callback.run();
+			}
+
+			@Override public void onAnimationStart(Animator animation) {}
+			@Override public void onAnimationCancel(Animator animation) {}
+			@Override public void onAnimationRepeat(Animator animation) {}
+		});
 		anim.start();
 	}
 

@@ -310,8 +310,7 @@
 
     <string name="menu_recommend">Send Swably to friends</string>
     <string name="recommend_text">Swably is where I share and discuss apps with friends. You are gonna find lots of cool apps. Come join me!</string>
-    <string name="invite_prompt1" formatted="false">%s, you have %d friends joined Swably</string>
-    <string name="invite_prompt2">More friends, more apps, more fun.</string>
+    <string name="invite_prompt" formatted="false">%s, you have %d friends joined Swably. More friends, more apps, more fun.</string>
     <string name="invite_more" >Invite more</string>
     
 </resources>

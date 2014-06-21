@@ -22,6 +22,7 @@ import goofy2.swably.Checker;
 import goofy2.swably.Const;
 import goofy2.swably.InviteContacts;
 import goofy2.swably.People;
+import goofy2.swably.PeopleReviews;
 import goofy2.swably.R;
 import goofy2.swably.SnsFriendsFragment;
 import goofy2.swably.Utils;
@@ -129,7 +130,8 @@ public class SharingPostsFragment extends PeopleReviewsFragment{
 							txtFriendCount.setVisibility(View.GONE);
 							viewNext.setVisibility(View.VISIBLE);
 							TextView txtInvitePrompt = (TextView) getView().findViewById(R.id.txtInvitePrompt);
-							txtInvitePrompt.setText(String.format(a().getString(R.string.invite_prompt1), Utils.getCurrentUser(a()).optString("name"), (Integer)param));
+							txtInvitePrompt.setText(String.format(a().getString(R.string.invite_prompt), Utils.getCurrentUser(a()).optString("name"), (Integer)param));
+							txtInvitePrompt.setTypeface(ca().mLightFont);
 						}
 					});
 				} catch (Exception e) {
@@ -166,7 +168,8 @@ public class SharingPostsFragment extends PeopleReviewsFragment{
 //			}
 //		}.start();
 		
-		View btnInviteMore = getView().findViewById(R.id.btnInviteMore);
+		TextView btnInviteMore = (TextView) getView().findViewById(R.id.btnInviteMore);
+		btnInviteMore.setTypeface(ca().mNormalFont);
 		btnInviteMore.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -178,9 +181,14 @@ public class SharingPostsFragment extends PeopleReviewsFragment{
 		btnCloseInvite.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				View viewInviteBox = getView().findViewById(R.id.viewInviteBox);
-				((ListView) mList).removeHeaderView(viewInviteBox);
 				setLastCloseInviteTime(a(), System.currentTimeMillis()/1000);
+				final View viewInviteBox = getView().findViewById(R.id.viewInviteBox);
+				Utils.pushUp(a(), viewInviteBox, new Runnable(){
+					@Override
+					public void run() {
+						((ListView) mList).removeHeaderView(viewInviteBox);
+					}
+				});
 			}
 		});
     }
