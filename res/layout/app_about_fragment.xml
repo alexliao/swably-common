@@ -33,6 +33,7 @@
 		    <TextView
 		        android:id="@+id/txtDescription"
 		        style="@style/name"
+		        android:singleLine="false"
 				android:autoLink="all"
 				android:textColorLink="@color/tab"
 		        android:layout_marginBottom="@dimen/padding"
