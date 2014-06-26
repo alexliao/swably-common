@@ -25,6 +25,7 @@
 			<TextView
 			    android:id="@+id/txtPrompt1"
 			    style="@style/name"
+			    android:singleLine="false"
 				android:textSize="20sp"
 			    />
 			<TextView
