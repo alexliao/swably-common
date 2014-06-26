@@ -56,6 +56,7 @@ public class App {
 	public static final String IS_SHARED_BY_ME = "is_shared_by_me";
 	public static final String IS_LIKED = "is_liked";
 	public static final String POSTS_COUNT = "reviews_count";
+	public static final String TAGS_COUNT = "tags_count";
 	private static final String UPLOADS_COUNT = "uploaders_count";
 	public static final String DOWNLOADS_COUNT = "downloads_count";
 	public static final String STARRED_COUNT = "likes_count";
@@ -187,7 +188,9 @@ public class App {
 		return mJson.optLong(CLOUD_SIZE);
 	}
 	public String getInstallPath(){
-		return Const.APK_FOLDER + "/" + getName() + "_" + getVersionName() + ".apk";
+		String validFileName = getName().replaceAll("[\\?\\\\/:|<>\\*]", " "); //filter ? \ / : | < > *
+		validFileName = validFileName.replaceAll("\\s+", "_"); // replace space with _
+		return Const.APK_FOLDER + "/" + validFileName + "-" + getVersionName() + ".apk";
 	}
 	
 	public long getSize(){
@@ -200,6 +203,9 @@ public class App {
 	}
 	public int getPostsCount(){
 		return mJson.optInt(POSTS_COUNT, 0);
+	}
+	public int getTagsCount(){
+		return mJson.optInt(TAGS_COUNT, 0);
 	}
 	public int getUploadsCount(){
 		return mJson.optInt(UPLOADS_COUNT, 0);
