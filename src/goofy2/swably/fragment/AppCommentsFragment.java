@@ -147,6 +147,11 @@ public class AppCommentsFragment extends CloudCommentsFragment {
 		tv.setText(""+count);
 		tv.setTypeface(ca().mLightFont);
 		
+		tv = (TextView)v.findViewById(R.id.txtTagsCount);
+		count = header.getApp().getTagsCount();
+		tv.setText(""+count);
+		tv.setTypeface(ca().mLightFont);
+
 		tv = (TextView)v.findViewById(R.id.txtDownloadsCount);
 		count = header.getApp().getDownloadsCount();
 		tv.setText(""+count);

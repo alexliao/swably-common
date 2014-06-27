@@ -44,6 +44,8 @@ public class Const {
 	public static  String BROADCAST_LIKE_DELETED = "goofy2.swably.LIKE_DELETED";
 	public static  String BROADCAST_FOLLOW_ADDED = "goofy2.swably.FOLLOW_ADDED";
 	public static  String BROADCAST_FOLLOW_DELETED = "goofy2.swably.FOLLOW_DELETED";
+	public static  String BROADCAST_TAG_ADDED = "goofy2.swably.TAG_ADDED";
+	public static  String BROADCAST_TAG_DELETED = "goofy2.swably.TAG_DELETED";
 	public static  String BROADCAST_REFRESH_APP = "goofy2.swably.REVIEW_APP";
 	public static  String BROADCAST_REFRESH_USER = "goofy2.swably.REVIEW_USER";
 	public static  String BROADCAST_FINISH = "goofy2.swably.FINISH";
@@ -71,6 +73,7 @@ public class Const {
 	public static final String KEY_TEXT = "text";
 	public static final String KEY_SUBJECT = "subject";
 	public static final String KEY_URL = "url";
+	public static final String KEY_TAG = "tag";
 
 	
     final static int AUTHORIZE_ACTIVITY_RESULT_CODE = 0;

@@ -241,6 +241,7 @@ public class AppsAdapter extends CloudInplaceActionsAdapter {
 		holder.btnPlay = convertView.findViewById(R.id.btnPlay);
 		holder.btnInstall = convertView.findViewById(R.id.btnInstall);
 		holder.btnReview = convertView.findViewById(R.id.btnReview);
+		holder.btnTags = convertView.findViewById(R.id.btnTags);
 		holder.btnShare = convertView.findViewById(R.id.btnShare);
 		holder.btnLike = convertView.findViewById(R.id.btnLike);
 		holder.btnUnlike = convertView.findViewById(R.id.btnUnlike);
@@ -266,6 +267,7 @@ public class AppsAdapter extends CloudInplaceActionsAdapter {
 		View btnPlay;
 		View btnInstall;
 		View btnReview;
+		View btnTags;
 		View btnShare;
 		View btnLike;
 		View btnUnlike;
@@ -297,6 +299,10 @@ public class AppsAdapter extends CloudInplaceActionsAdapter {
 		@Override
 		public View getBtnReview() {
 			return btnReview;
+		}
+		@Override
+		public View getBtnTags() {
+			return btnTags;
 		}
 		@Override
 		public View getBtnShare() {

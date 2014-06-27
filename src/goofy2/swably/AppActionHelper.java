@@ -28,6 +28,7 @@ public class AppActionHelper {
 	protected CloudActivity mActivity;
 	protected AppHeader mHeader;
 	public View btnReview;
+	public View btnTags;
 	public View btnLike;
 	public View btnUnlike;
 	public View btnShare;
@@ -53,6 +54,19 @@ public class AppActionHelper {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(mActivity, PostReview.class);
+				i.putExtra(Const.KEY_APP, mHeader.getApp().getJSON().toString());
+				mActivity.startActivity(i);
+//				mActivity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+				if(callback != null) callback.run();
+			}
+		});
+
+		if(holder == null) btnTags = container.findViewById(R.id.btnTags);
+		else btnTags = holder.getBtnTags();
+		if(btnTags != null) btnTags.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(mActivity, AppTags.class);
 				i.putExtra(Const.KEY_APP, mHeader.getApp().getJSON().toString());
 				mActivity.startActivity(i);
 //				mActivity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -204,6 +218,7 @@ public class AppActionHelper {
 
 	static public interface ViewHolder{
 		View getBtnReview();
+		View getBtnTags();
 		View getBtnLike();
 		View getBtnUnlike();
 		View getBtnShare();

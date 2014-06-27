@@ -136,6 +136,73 @@ public class Api {
 		}
     }
 
+    protected static void appTag(final Context context, final String appId, final String tagName, final boolean isAdd, final ParamRunnable r){
+    	String actionURL = Const.HTTP_PREFIX;
+    	if(isAdd)
+    		actionURL += "/app_tags.json" + "?app_id=" + appId;
+    	else
+    		actionURL += "/app_tags/destroy.json" + "?app_id=" + appId;
+    	actionURL += "&" + Utils.getLoginParameters(context);
+		final List <NameValuePair> params = new ArrayList <NameValuePair>();
+		params.add(new BasicNameValuePair("tag_name", tagName));
+
+		try{
+			final String url = actionURL;
+			final Handler handler = new Handler(); 
+			new Thread() {
+				public void run(){
+					try {
+						final HttpResponse httpResp = post(url, params);
+						handler.post(new Runnable() {
+							public void run(){
+								if(httpResp.getStatusLine().getStatusCode() == 200){
+									JSONObject json;
+									try {
+										json = new JSONObject(EntityUtils.toString(httpResp.getEntity()));
+
+										// notify list to change
+										Intent intent;
+//										if(isAdd)
+//											intent = new Intent(Const.BROADCAST_TAG_ADDED);
+//										else
+//											intent = new Intent(Const.BROADCAST_TAG_DELETED);
+//										intent.putExtra(Const.KEY_ID, appId);
+//										context.sendBroadcast(intent);
+										
+										if(r != null){
+											try {
+												r.param = json;
+												r.run();
+											} catch (Exception e) {
+												e.printStackTrace();
+											}
+										}
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}else{
+									try {
+										Utils.showToast(context, Utils.getError(EntityUtils.toString(httpResp.getEntity())));
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}
+							}
+						});
+					} catch (final Exception e) {
+						handler.post(new Runnable() {
+							public void run(){
+								Utils.showToast(context, e.getMessage());
+							}
+						});
+						e.printStackTrace();
+					}
+				}
+			}.start();
+		}catch (Exception e){
+			Log.e(Const.APP_NAME, Const.APP_NAME + " appTag error: " + e.getMessage());
+		}
+    }
 	
 	static protected HttpResponse get(String url) throws ClientProtocolException, IOException{
 		HttpGet httpReq = new HttpGet(url);

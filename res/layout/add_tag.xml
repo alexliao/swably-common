@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<goofy2.utils.RevealLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+   	<LinearLayout
+	    android:id="@+id/body"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+		<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
+			<TextView android:id="@+id/txtTitle" android:text="@string/add_tag" style="@style/title" android:gravity="left"/>
+			<include android:id="@+id/loading"	layout="@layout/loading" />
+		</LinearLayout>
+		<include layout="@layout/header_bottom" />
+  		<RelativeLayout android:id="@+id/viewTag"  
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/highlight_light"
+	        android:padding="@dimen/padding"
+	        android:gravity="center_horizontal"
+	        >
+	        <EditText android:id="@+id/editTag" 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:paddingLeft="17dp"
+		        android:paddingRight="32dp"
+	            android:textSize="@dimen/title_text"
+				android:textColor="@color/content"
+				android:hint="@string/add_tag_hint"
+				android:textColorHint="@color/hint"
+				android:singleLine="true"
+				android:inputType="textPersonName"
+				android:imeOptions="actionSearch"
+	            />
+	        <ImageView android:id="@+id/btnSend"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginRight="3dp"
+		        android:src="@drawable/send"
+		        android:clickable="true"
+		        android:layout_alignParentRight="true"
+		        android:layout_centerVertical="true"
+	            />
+			<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="#"
+	            android:textSize="@dimen/title_text"
+				android:textColor="@color/hint"
+				android:layout_marginLeft="5dp"
+				android:layout_alignBaseline="@id/editTag"
+			    />
+   		</RelativeLayout>
+		<RelativeLayout android:id="@+id/fragment" style="@style/fill" >
+	    </RelativeLayout>
+		<LinearLayout android:id="@+id/viewBottomBar" android:orientation="horizontal" style="@style/bottomBar" android:layout_alignParentBottom="true" >
+			<ImageButton  android:id="@+id/btnDone"	android:src="@drawable/ok" style="@style/inplaceBtn"/>
+		</LinearLayout>
+    </LinearLayout>
+</goofy2.utils.RevealLayout>

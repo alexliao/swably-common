@@ -313,4 +313,11 @@
     <string name="invite_prompt" formatted="false">%s, you have %d friends joined Swably. More friends, more apps, more fun.</string>
     <string name="invite_more" >Invite more</string>
     
+    <string name="tags">Tags</string>
+    <string name="app_tags">App Tags</string> 
+    <string name="add_tag">Choose Tags</string> 
+    <string name="add_tag_hint">Enter tag here</string>
+    <string name="select">Select</string>
+    <string name="add">Add</string>
+    <string name="err_invalid_tag">Tag can not contain punctuation</string>
 </resources>

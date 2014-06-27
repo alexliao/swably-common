@@ -10,6 +10,7 @@
     <color name="back">#ffffff</color>
     <color name="name">#1a1a1a</color>
     <color name="content">#1a1a1a</color>
+    <color name="hint">#888888</color>
     <color name="panel">#24adde</color>
     <color name="divider">#cccccc</color>
     <color name="action_count">#02779e</color>

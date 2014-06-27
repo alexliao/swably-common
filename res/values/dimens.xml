@@ -10,4 +10,5 @@
 	<dimen name="shareButtonPadding">15dp</dimen>
 	<dimen name="shareButtonSize">100dp</dimen>
 	<dimen name="main_text">16sp</dimen>
+	<dimen name="title_text">20sp</dimen>
 </resources>
