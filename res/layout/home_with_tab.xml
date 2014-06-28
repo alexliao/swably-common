@@ -19,7 +19,7 @@
 				style="@style/titleBtn"
 				android:visibility="gone"
 			/>
-			<ImageButton  android:id="@+id/btnMenu"
+			<ImageButton 
 				android:src="@drawable/header_triangle" 
 				style="@style/titleBtn"
 			/>

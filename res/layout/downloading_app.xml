@@ -19,7 +19,7 @@
 		android:layout_weight="1" 
 		android:gravity="center_vertical"
 		>
-		<LinearLayout android:id="@+id/viewUpload"
+		<LinearLayout
 			android:orientation="vertical"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"

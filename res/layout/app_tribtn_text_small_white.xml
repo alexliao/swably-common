@@ -6,6 +6,5 @@
 	<TextView android:id="@+id/btnUpload" android:text="@string/btn_upload" style="@style/frameBtn.small.white" android:visibility="gone" />
 	<TextView android:id="@+id/btnPlay" android:text="@string/btn_open" style="@style/frameBtn.small.white" android:visibility="gone" />
 	<TextView android:id="@+id/btnInstall" android:text="@string/btn_install" style="@style/frameBtn.small.white" android:visibility="gone" />
-	<TextView android:id="@+id/btnUpload" android:text="@string/btn_upload" style="@style/frameBtn.small.white" android:visibility="gone" />
 	<TextView android:id="@+id/btnStop" android:text="@string/btn_stop" style="@style/frameBtn.small.white" android:visibility="gone" />
 </LinearLayout>
