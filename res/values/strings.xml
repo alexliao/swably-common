@@ -320,4 +320,6 @@
     <string name="select">Select</string>
     <string name="add">Add</string>
     <string name="err_invalid_tag">Tag can not contain punctuation</string>
+    <string name="zero_app_tag_prompt">There is no tag for this app, be the first one to add tag!</string>
+    <string name="tag_the_app">Tag the app</string>
 </resources>

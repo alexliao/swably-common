@@ -1,5 +1,6 @@
 package goofy2.swably.fragment;
 
+import goofy2.swably.AddTag;
 import goofy2.swably.AppHeader;
 import goofy2.swably.AppHistoryAdapter;
 import goofy2.swably.AppProfile;
@@ -53,17 +54,19 @@ public class AppTagsFragment extends CloudListFragment {
     protected void bind(View v){
     	if(v == null) return; 
 //		header.bindAppHeader(v);
-//		TextView tv = (TextView)v.findViewById(R.id.txtReviewsCount);
-//		if(tv != null){
-//			int count = header.getApp().getUploadsCount();
-//			tv.setText(String.format(a().getString(R.string.uploads_count), count));
-//			tv.setTypeface(ca().mLightFont);
-//		}
-		
+		View btnZeroAddTag = v.findViewById(R.id.btnZeroAddTag);
+		btnZeroAddTag.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(a(), AddTag.class);
+				intent.putExtra(Const.KEY_APP, header.getApp().getJSON().toString());
+				startActivity(intent);
+			}
+		});
     }
 	
     protected void setContent(){
-	    setContentView(R.layout.list_fragment);
+	    setContentView(R.layout.app_tags_fragment);
     }
 
 	@Override
@@ -122,16 +125,39 @@ public class AppTagsFragment extends CloudListFragment {
     @Override
 	protected void onDataChanged(int item) {
     	needRefresh = true;
+//		setViewStatus(getView(), mListData.length()==0);
 	}
 
+//	@Override
+//	protected void loadedMore(boolean succeeded){
+//		super.loadedMore(succeeded);
+//		setViewStatus(getView(), mListData.length()==0);
+//	}	
+    
     @Override
 	public void onStart() {
     	super.onStart();
     	if(needRefresh) this.refresh();
     	needRefresh = false;
+//		setViewStatus(getView(), mListData.length()==0);
     }
 
-	@Override
+    @Override
+    protected void setData(){
+    	super.setData();
+		setViewStatus(getView(), mListData.length()==0);
+    }
+
+    protected void setViewStatus(View v, boolean isEmpty){
+		View viewEmpty = v.findViewById(R.id.viewEmpty);
+    	if(isEmpty){
+    		viewEmpty.setVisibility(View.VISIBLE);
+    	}else{
+    		viewEmpty.setVisibility(View.GONE);
+    	}
+    }
+
+    @Override
 	protected void onClickItem(int position) throws JSONException {
 		// TODO Auto-generated method stub
 		

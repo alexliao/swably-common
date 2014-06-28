@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:padding="@dimen/padding"
+	android:layout_margin="@dimen/padding"
+	android:background="@color/panel"
+	android:gravity="center_horizontal"
+	>
+   	<TextView android:id="@+id/txtZeroPrompt"
+   	    style="@style/name"
+   	    android:singleLine="false"
+   	    android:text="@string/zero_app_tag_prompt"
+	    />
+   	<TextView android:id="@+id/btnZeroAddTag"
+   	    style="@style/name"
+   	    android:text="@string/tag_the_app"
+   	    android:layout_height="36dp"
+   	    android:layout_width="fill_parent"
+   	    android:gravity="center"
+   	    android:background="#f29c9f"
+   	    android:textColor="#ffffff"
+   	    android:textAllCaps="true"
+   	    android:layout_centerHorizontal="true"
+   	    android:layout_marginTop="@dimen/padding"
+   	    android:clickable="true"
+	    />
+</LinearLayout>
