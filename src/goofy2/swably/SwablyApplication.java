@@ -24,7 +24,7 @@ public class SwablyApplication extends Application {
 
 	protected String getMainHost(final Context context){
 		String result = Utils.getPrefString(context, "main_host", Const.DEFAULT_MAIN_HOST);
-		result = "10.0.1.2:3000";
+//		result = "10.0.1.2:3000";
 //		result = "zh.swably.com:3000";
 //		result = "117.121.10.138";
 //		result = "192.168.1.200:3000";

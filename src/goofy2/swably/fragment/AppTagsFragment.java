@@ -8,6 +8,8 @@ import goofy2.swably.AppTagsAdapter;
 import goofy2.swably.CloudBaseAdapter;
 import goofy2.swably.Const;
 import goofy2.swably.R;
+import goofy2.swably.ReviewProfile;
+import goofy2.swably.TagApps;
 import goofy2.swably.data.App;
 
 import org.json.JSONArray;
@@ -159,8 +161,10 @@ public class AppTagsFragment extends CloudListFragment {
 
     @Override
 	protected void onClickItem(int position) throws JSONException {
-		// TODO Auto-generated method stub
-		
+    	final JSONObject json = mListData.getJSONObject(position);
+		Intent i = new Intent(a(), TagApps.class);
+		i.putExtra(Const.KEY_TAG, json.toString());
+		startActivity(i);
 	}
 
 }
