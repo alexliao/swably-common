@@ -155,7 +155,7 @@ public class Api {
 						final HttpResponse httpResp = post(url, params);
 						handler.post(new Runnable() {
 							public void run(){
-								if(httpResp.getStatusLine().getStatusCode() == 200){
+								if(httpResp.getStatusLine().getStatusCode() == 201){
 									JSONObject json;
 									try {
 										json = new JSONObject(EntityUtils.toString(httpResp.getEntity()));
