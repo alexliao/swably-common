@@ -34,6 +34,7 @@ import org.json.JSONObject;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.Animator.AnimatorListener;
+import com.umeng.analytics.MobclickAgent;
 
 import goofy2.swably.R;
 import goofy2.swably.data.App;
@@ -201,6 +202,19 @@ Utils.logV(this, "http_prefix: "+Const.HTTP_PREFIX);
     	tracker.activityStart(this);
     }
 
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	MobclickAgent.onResume(this);
+//Log.v(Const.APP_NAME, Utils.getDeviceInfo(this));
+	}
+    
+    @Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+    	
     @Override
     public void onStop(){
     	super.onStop();
