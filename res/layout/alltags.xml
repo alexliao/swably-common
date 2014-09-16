@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+ 	android:id="@+id/viewBack"
+	android:background="@color/back"
+	>
+	<LinearLayout android:id="@+id/viewHeaderBar" style="@style/titleBar" >
+	    <ImageButton
+                android:id="@+id/btnMenu"
+                style="@style/titleBtn"
+                android:src="@drawable/menu" />
+		<TextView android:id="@+id/txtTitle" android:text="@string/all_tags" style="@style/title" /> 
+		<include android:id="@+id/loading"	layout="@layout/loading" /> 
+	</LinearLayout>
+	<include layout="@layout/header_bottom" />
+	
+	<ScrollView
+	    style="@style/fill"
+	    android:layout_marginLeft="8dp"
+	    android:layout_marginRight="8dp">
+		<goofy2.utils.PredicateLayout
+		    android:id="@+id/pdl_main"
+		    style="@style/fill">
+		    
+		</goofy2.utils.PredicateLayout>
+		</ScrollView>
+    
+
+</LinearLayout>
