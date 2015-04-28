@@ -189,6 +189,7 @@ public class About extends Activity {
     private class OnClickListener_btnDone implements Button.OnClickListener {
 		@Override
 		public void onClick(View v) {
+			Test.changeCurrentUserBanner(About.this);
 			finish();
 		}
     }
